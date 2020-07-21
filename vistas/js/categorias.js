@@ -18,7 +18,7 @@ $(".tablas").on("click", ".btnEditarCategoria", function(){
      	dataType:"json",
      	success: function(respuesta){
 
-     		$("#editarCategoria").val(respuesta["categoria"]);
+     		$("#editarCategoria").val(respuesta["descripcion"]);
      		$("#idCategoria").val(respuesta["id"]);
 
      	}

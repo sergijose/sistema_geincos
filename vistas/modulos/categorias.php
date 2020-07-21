@@ -63,7 +63,7 @@
 
                     <td>'.($key+1).'</td>
 
-                    <td class="text-uppercase">'.$value["categoria"].'</td>
+                    <td class="text-uppercase">'.$value["descripcion"].'</td>
 
                     <td>
 
