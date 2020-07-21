@@ -1,5 +1,7 @@
 <?php
 
+
+
 class ControladorUsuarios{
 
 	/*=============================================
@@ -55,8 +57,18 @@ class ControladorUsuarios{
 						if($ultimoLogin == "ok"){
 
 							echo '<script>
-
-								window.location = "inicio";
+							
+							swal({
+								type: "success",
+								title: "Bienvenido",
+								showConfirmButton: true,
+								}).then(function(result){
+										  if (result.value) {
+	  
+										  window.location = "inicio";
+	  
+										  }
+									  })
 
 							</script>';
 
