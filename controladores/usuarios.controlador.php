@@ -60,7 +60,7 @@ class ControladorUsuarios{
 							
 							swal({
 								type: "success",
-								title: "Bienvenido",
+								title: "Bienvenido '.$respuesta["nombre"].' ",
 								showConfirmButton: true,
 								}).then(function(result){
 										  if (result.value) {
