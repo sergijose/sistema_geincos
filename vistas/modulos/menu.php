@@ -26,14 +26,58 @@
 
 			</li>
 
-			<li>
+			<li class="treeview">
 
-				<a href="categorias">
+				<a href="#">
 
-					<i class="fa fa-th"></i>
-					<span>Categorías</span>
+					<i class="fa fa-list-ul"></i>
+					
+					<span>Categorias</span>
+					
+					<span class="pull-right-container">
+					
+						<i class="fa fa-angle-left pull-right"></i>
+
+					</span>
 
 				</a>
+
+				<ul class="treeview-menu">
+					
+					<li>
+
+						<a href="categorias">
+							
+							<i class="fa fa-circle-o"></i>
+							<span>Administrar Categorias</span>
+
+						</a>
+
+					</li>
+
+					<li>
+
+						<a href="marcas">
+							
+							<i class="fa fa-circle-o"></i>
+							<span>Administrar Marcas</span>
+
+						</a>
+
+					</li>
+
+					<li>
+
+						<a href="modelos">
+							
+							<i class="fa fa-circle-o"></i>
+							<span>Administrar Modelo</span>
+
+						</a>
+
+					</li>
+
+				</ul>
 
 			</li>
 
