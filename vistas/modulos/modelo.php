@@ -44,6 +44,7 @@
            <th>Categoria</th>
            <th>Marca</th>
            <th>Modelo</th>
+           <th>Imagen</th>
 
          </tr> 
 
@@ -67,6 +68,7 @@
                     <td class="text-uppercase">'.$value["categoria"].'</td>
                     <td class="text-uppercase">'.$value["marca"].'</td>
                     <td class="text-uppercase">'.$value["descripcion"].'</td>
+                    <td class="text-uppercase">'.$value["imagen"].'</td>
 
                     <td>
 

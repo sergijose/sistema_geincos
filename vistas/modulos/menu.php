@@ -68,7 +68,7 @@
 
 					<li>
 
-						<a href="modelos">
+						<a href="modelo">
 							
 							<i class="fa fa-circle-o"></i>
 							<span>Administrar Modelo</span>

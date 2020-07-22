@@ -5,7 +5,7 @@ class ControladorModelos{
 	/*=============================================
 	CREAR MODELOS
 	=============================================*/
-
+/*
 	static public function ctrCrearModelo(){
 
 		if(isset($_POST["nuevaMarca"])){
@@ -30,7 +30,7 @@ class ControladorModelos{
 						  }).then(function(result){
 									if (result.value) {
 
-									window.location = "marcas";
+									window.location = "modelos";
 
 									}
 								})
@@ -52,7 +52,7 @@ class ControladorModelos{
 						  }).then(function(result){
 							if (result.value) {
 
-							window.location = "marcas";
+							window.location = "modelos";
 
 							}
 						})
@@ -64,6 +64,7 @@ class ControladorModelos{
 		}
 
 	}
+	*/
 
 	/*=============================================
 	MOSTRAR MODELOS
@@ -83,6 +84,7 @@ class ControladorModelos{
 	EDITAR MARCA
 	=============================================*/
 
+	/*
 	static public function ctrEditarModelo(){
 
 		if(isset($_POST["editarMarca"])){
@@ -108,7 +110,7 @@ class ControladorModelos{
 						  }).then(function(result){
 									if (result.value) {
 
-									window.location = "marcas";
+									window.location = "modelos";
 
 									}
 								})
@@ -130,7 +132,7 @@ class ControladorModelos{
 						  }).then(function(result){
 							if (result.value) {
 
-							window.location = "marcas";
+							window.location = "modelos";
 
 							}
 						})
@@ -142,11 +144,12 @@ class ControladorModelos{
 		}
 
 	}
-
+*/
 	/*=============================================
 	BORRAR MARCA
 	=============================================*/
 
+	/*
 	static public function ctrBorrarModelo(){
 
 		if(isset($_GET["idMarca"])){
@@ -168,7 +171,7 @@ class ControladorModelos{
 						  }).then(function(result){
 									if (result.value) {
 
-									window.location = "marcas";
+									window.location = "modelos";
 
 									}
 								})
@@ -178,4 +181,5 @@ class ControladorModelos{
 		}
 		
 	}
+	*/
 }

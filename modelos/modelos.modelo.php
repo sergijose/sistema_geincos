@@ -8,7 +8,7 @@ class ModeloModelos{
 	CREAR MARCA
 	=============================================*/
 
-	static public function mdlIngresarModelo($tabla, $datos){
+	/*static public function mdlIngresarModelo($tabla, $datos){
 
 		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(descripcion) VALUES (:marca)");
 
@@ -28,7 +28,7 @@ class ModeloModelos{
 		$stmt = null;
 
 	}
-
+*/
 	/*=============================================
 	MOSTRAR Modelos
 	=============================================*/
@@ -47,7 +47,7 @@ class ModeloModelos{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT mo.id,cat.descripcion AS categoria,mar.descripcion AS marca,mo.descripcion FROM $tabla mo
+			$stmt = Conexion::conectar()->prepare("SELECT mo.id,cat.descripcion AS categoria,mar.descripcion AS marca,mo.descripcion,mo.imagen FROM $tabla mo
 			INNER JOIN categoria cat
 			ON mo.idcategoria=cat.id
 			INNER JOIN marca mar
@@ -68,7 +68,7 @@ class ModeloModelos{
 	/*=============================================
 	EDITAR CATEGORIA
 	=============================================*/
-
+/*
 	static public function mdlEditarModelo($tabla, $datos){
 
 		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET descripcion = :marca WHERE id = :id");
@@ -90,11 +90,11 @@ class ModeloModelos{
 		$stmt = null;
 
 	}
-
+*/
 	/*=============================================
 	BORRAR MARCA	
 	=============================================*/
-
+/*
 	static public function mdlBorrarModelo($tabla, $datos){
 
 		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
@@ -116,6 +116,6 @@ class ModeloModelos{
 		$stmt = null;
 
 	}
-
+*/
 }
 
