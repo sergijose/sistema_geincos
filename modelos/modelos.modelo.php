@@ -8,11 +8,14 @@ class ModeloModelos{
 	CREAR MARCA
 	=============================================*/
 
-	/*static public function mdlIngresarModelo($tabla, $datos){
+	static public function mdlIngresarModelo($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(descripcion) VALUES (:marca)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(idcategoria,idmarca,descripcion,imagen) VALUES (:idcategoria,:idmarca,:descripcion,:imagen)");
 
-		$stmt->bindParam(":marca", $datos, PDO::PARAM_STR);
+		$stmt->bindParam(":idcategoria", $datos["idcategoria"], PDO::PARAM_INT);
+		$stmt->bindParam(":idmarca", $datos["idmarca"], PDO::PARAM_INT);
+		$stmt->bindParam(":descripcion", $datos["descripcion"], PDO::PARAM_STR);
+		$stmt->bindParam(":imagen", $datos["imagen"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 
@@ -28,7 +31,7 @@ class ModeloModelos{
 		$stmt = null;
 
 	}
-*/
+
 	/*=============================================
 	MOSTRAR Modelos
 	=============================================*/

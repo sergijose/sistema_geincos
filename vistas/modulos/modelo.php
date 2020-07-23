@@ -45,6 +45,7 @@
            <th>Marca</th>
            <th>Modelo</th>
            <th>Imagen</th>
+           <th>Acciones</th>
 
          </tr> 
 
@@ -67,10 +68,20 @@
 
                     <td class="text-uppercase">'.$value["categoria"].'</td>
                     <td class="text-uppercase">'.$value["marca"].'</td>
-                    <td class="text-uppercase">'.$value["descripcion"].'</td>
-                    <td class="text-uppercase">'.$value["imagen"].'</td>
+                    <td class="text-uppercase">'.$value["descripcion"].'</td>';
+                    
+                    if($value["imagen"] != ""){
 
-                    <td>
+                      echo '<td><img src="'.$value["imagen"].'" class="img-thumbnail" width="40px"></td>';
+  
+                    }else{
+  
+                      echo '<td><img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail" width="40px"></td>';
+  
+                    }
+  
+
+                    echo '<td>
 
                       <div class="btn-group">
                           
@@ -100,16 +111,16 @@
 </div>
 
 <!--=====================================
-MODAL AGREGAR CATEGORÍA
+MODAL AGREGAR MODELO
 ======================================-->
 
-<div id="modalAgregarMarca" class="modal fade" role="dialog">
+<div id="modalAgregarModelo" class="modal fade" role="dialog">
   
   <div class="modal-dialog">
 
     <div class="modal-content">
 
-      <form role="form" method="post">
+      <form role="form" method="post" enctype="multipart/form-data" >
 
         <!--=====================================
         CABEZA DEL MODAL
@@ -119,7 +130,7 @@ MODAL AGREGAR CATEGORÍA
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Agregar marca</h4>
+          <h4 class="modal-title">Agregar modelo</h4>
 
         </div>
 
@@ -131,7 +142,7 @@ MODAL AGREGAR CATEGORÍA
 
           <div class="box-body">
 
-            <!-- ENTRADA PARA EL NOMBRE -->
+            <!-- ENTRADA PARA LA CATEGORIA -->
             
             <div class="form-group">
               
@@ -139,10 +150,88 @@ MODAL AGREGAR CATEGORÍA
               
                 <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="nuevaMarca" placeholder="Ingresar marca" required>
+                <select class="form-control input-lg" id="nuevaCategoria" name="nuevaCategoria" required>
+                  
+                  <option value="">Seleccionar Categoria</option>
+
+                  <?php
+
+                  $item = null;
+                  $valor = null;
+
+                  $categoria = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+
+                  foreach ($categoria as $key => $value) {
+                    
+                    echo '<option value="'.$value["id"].'">'.$value["descripcion"].'</option>';
+                  }
+
+                  ?>
+  
+                </select>
 
               </div>
 
+            </div>
+
+                  <!-- ENTRADA PARA LA MARCA -->
+            
+            <div class="form-group">
+              
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+
+                <select class="form-control input-lg" id="nuevaMarca" name="nuevaMarca" required>
+                  
+                  <option value="">Selecionar marca</option>
+
+                  <?php
+
+                  $item = null;
+                  $valor = null;
+
+                  $marca = ControladorMarcas::ctrMostrarMarca($item, $valor);
+
+                  foreach ($marca as $key => $value) {
+                    
+                    echo '<option value="'.$value["id"].'">'.$value["descripcion"].'</option>';
+                  }
+
+                  ?>
+  
+                </select>
+
+              </div>
+
+            </div>
+
+
+            <!-- ENTRADA PARA EL DESCRIPCION DEL MODELO -->
+            
+            <div class="form-group">
+              
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+
+                <input type="text" class="form-control input-lg" name="nuevoModelo" placeholder="Ingresar Modelo" required>
+
+              </div>
+
+            </div>
+                <!-- ENTRADA PARA FOTO DEL MODELO -->
+            <div class="form-group">
+              
+              <div class="panel">SUBIR IMAGEN</div>
+
+              <input type="file" class="nuevaFoto" name="nuevaImagen">
+
+              <p class="help-block">Peso máximo de la imagen 2MB</p>
+
+              <img src="vistas/img/modelos/default/anonymous.png" class="img-thumbnail previsualizar" width="100px">
+                  <br>
+                  <br>
             </div>
   
           </div>
@@ -163,8 +252,8 @@ MODAL AGREGAR CATEGORÍA
 
         <?php
 
-          $crearMarca = new ControladorMarcas();
-          $crearMarca -> ctrCrearMarca();
+          $crearModelo = new ControladorModelos();
+          $crearModelo -> ctrCrearModelo();
 
         ?>
 
@@ -175,6 +264,11 @@ MODAL AGREGAR CATEGORÍA
   </div>
 
 </div>
+
+
+
+
+
 
 <!--=====================================
 MODAL EDITAR CATEGORÍA

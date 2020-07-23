@@ -5,18 +5,93 @@ class ControladorModelos{
 	/*=============================================
 	CREAR MODELOS
 	=============================================*/
-/*
+
 	static public function ctrCrearModelo(){
 
 		if(isset($_POST["nuevaMarca"])){
 
-			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevaMarca"])){
+			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevaMarca"])
+			
+			){
 
-				$tabla = "marca";
+				/*=============================================
+				VALIDAR IMAGEN
+				=============================================*/
 
-				$datos = $_POST["nuevaMarca"];
+				$ruta = "vistas/img/modelos/default/anonymous.png";
 
-				$respuesta = ModeloMarcas::mdlIngresarMarca($tabla, $datos);
+				if(isset($_FILES["nuevaImagen"]["tmp_name"])){
+
+				 list($ancho, $alto) = getimagesize($_FILES["nuevaImagen"]["tmp_name"]);
+
+				 $nuevoAncho = 500;
+				 $nuevoAlto = 500;
+
+				 /*=============================================
+				 CREAMOS EL DIRECTORIO DONDE VAMOS A GUARDAR LA FOTO DEL USUARIO
+				 =============================================*/
+
+				 $directorio = "vistas/img/modelos/".$_POST["nuevoModelo"];
+
+				 mkdir($directorio, 0755);
+
+				 /*=============================================
+				 DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
+				 =============================================*/
+
+				 if($_FILES["nuevaImagen"]["type"] == "image/jpeg"){
+
+					 /*=============================================
+					 GUARDAMOS LA IMAGEN EN EL DIRECTORIO
+					 =============================================*/
+
+					 $aleatorio = mt_rand(100,999);
+
+					 $ruta = "vistas/img/modelos/".$_POST["nuevoModelo"]."/".$aleatorio.".jpg";
+
+					 $origen = imagecreatefromjpeg($_FILES["nuevaImagen"]["tmp_name"]);						
+
+					 $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+
+					 imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+
+					 imagejpeg($destino, $ruta);
+
+				 }
+
+				 if($_FILES["nuevaImagen"]["type"] == "image/png"){
+
+					 /*=============================================
+					 GUARDAMOS LA IMAGEN EN EL DIRECTORIO
+					 =============================================*/
+
+					 $aleatorio = mt_rand(100,999);
+
+					 $ruta = "vistas/img/modelos/".$_POST["nuevoModelo"]."/".$aleatorio.".png";
+
+					 $origen = imagecreatefrompng($_FILES["nuevaImagen"]["tmp_name"]);						
+
+					 $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+
+					 imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+
+					 imagepng($destino, $ruta);
+
+				 }
+
+			 }
+
+
+				$tabla = "modelo";
+				
+				$datos = array("idcategoria" => $_POST["nuevaCategoria"],
+					           "idmarca" => $_POST["nuevaMarca"],
+					           "descripcion" =>$_POST["nuevoModelo"],
+					           "imagen" => $ruta
+					          );
+				
+
+				$respuesta = ModeloModelos::mdlIngresarModelo($tabla, $datos);
 
 				if($respuesta == "ok"){
 
@@ -24,13 +99,13 @@ class ControladorModelos{
 
 					swal({
 						  type: "success",
-						  title: "La nueva MARCA ha sido guardada correctamente",
+						  title: "el nuevo Modelo ha sido guardada correctamente",
 						  showConfirmButton: true,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
 									if (result.value) {
 
-									window.location = "modelos";
+									window.location = "modelo";
 
 									}
 								})
@@ -46,7 +121,7 @@ class ControladorModelos{
 
 					swal({
 						  type: "error",
-						  title: "¡La marca no puede ir vacía o llevar caracteres especiales!",
+						  title: "¡el MODELO no puede ir vacía o llevar caracteres especiales!",
 						  showConfirmButton: true,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
@@ -64,7 +139,7 @@ class ControladorModelos{
 		}
 
 	}
-	*/
+
 
 	/*=============================================
 	MOSTRAR MODELOS
