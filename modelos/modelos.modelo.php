@@ -33,7 +33,7 @@ class ModeloModelos{
 	}
 
 	/*=============================================
-	MOSTRAR Modelos
+	MOSTRAR MODELOS
 	=============================================*/
 
 	static public function mdlMostrarModelos($tabla, $item, $valor){
@@ -42,7 +42,7 @@ class ModeloModelos{
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_INT);
 
 			$stmt -> execute();
 
@@ -62,21 +62,24 @@ class ModeloModelos{
 
 		}
 
-		$stmt -> close();
+	
 
 		$stmt = null;
 
 	}
 
 	/*=============================================
-	EDITAR CATEGORIA
+	EDITAR MODELO
 	=============================================*/
-/*
+
 	static public function mdlEditarModelo($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET descripcion = :marca WHERE id = :id");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET idcategoria=:idcategoria,idmarca=:idmarca,descripcion=:descripcion,imagen=:imagen WHERE id = :id");
 
-		$stmt -> bindParam(":marca", $datos["marca"], PDO::PARAM_STR);
+		$stmt -> bindParam(":idcategoria", $datos["idcategoria"], PDO::PARAM_INT);
+		$stmt -> bindParam(":idmarca", $datos["idmarca"], PDO::PARAM_INT);
+		$stmt -> bindParam(":descripcion", $datos["descripcion"], PDO::PARAM_STR);
+		$stmt -> bindParam(":imagen", $datos["imagen"], PDO::PARAM_STR);
 		$stmt -> bindParam(":id", $datos["id"], PDO::PARAM_INT);
 
 		if($stmt->execute()){
@@ -89,11 +92,11 @@ class ModeloModelos{
 		
 		}
 
-		$stmt->close();
+
 		$stmt = null;
 
 	}
-*/
+
 	/*=============================================
 	BORRAR MARCA	
 	=============================================*/

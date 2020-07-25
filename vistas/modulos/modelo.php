@@ -72,11 +72,11 @@
                     
                     if($value["imagen"] != ""){
 
-                      echo '<td><img src="'.$value["imagen"].'" class="img-thumbnail" width="40px"></td>';
+                      echo '<td><img src="'.$value["imagen"].'" class="img-thumbnail" width="40px" data-toggle="modal" data-target="#modalMostrar" id="'.$value["id"].'"></td>';
   
                     }else{
   
-                      echo '<td><img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail" width="40px"></td>';
+                      echo '<td><img src="vistas/img/modelos/default/anonymous.png" class="img-thumbnail"  width="40px" data-toggle="modal" data-target="#modalMostrar" id="'.$value["id"].'"></td>';
   
                     }
   
@@ -85,9 +85,9 @@
 
                       <div class="btn-group">
                           
-                        <button class="btn btn-warning btnEditarMarca" idMarca="'.$value["id"].'" data-toggle="modal" data-target="#modalEditarMarca"><i class="fa fa-pencil"></i></button>
+                        <button class="btn btn-warning btnEditarModelo" idModelo="'.$value["id"].'" data-toggle="modal" data-target="#modalEditarModelo"><i class="fa fa-pencil"></i></button>
 
-                        <button class="btn btn-danger btnEliminarMarca" idMarca="'.$value["id"].'"><i class="fa fa-times"></i></button>
+                        <button class="btn btn-danger btnEliminarModelo" idModelo="'.$value["id"].'"><i class="fa fa-times"></i></button>
 
                       </div>  
 
@@ -109,6 +109,68 @@
   </section>
 
 </div>
+
+<!--=====================================
+MODAL MOSTRAR IMAGEN MARCAS
+======================================-->
+<div id="modalMostrar" class="modal fade" role="dialog">
+  
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+
+      <form role="form" method="post">
+
+        <!--=====================================
+        CABEZA DEL MODAL
+        ======================================-->
+
+        <div class="modal-header" style="background:#3c8dbc; color:white">
+
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+          <h4 class="modal-title">IMAGEN</h4>
+
+        </div>
+
+        <!--=====================================
+        CUERPO DEL MODAL
+        ======================================-->
+
+        <div class="modal-body">
+
+          <div class="box-body">
+
+            <!-- ENTRADA PARA EL NOMBRE -->
+            <img src="<?php echo $value["imagen"]; ?>" width="200px" id="editarimagen">
+            <input type="text"  name="idModelo" id="idModelo" required>
+  
+          </div>
+
+        </div>
+
+        <!--=====================================
+        PIE DEL MODAL
+        ======================================-->
+
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-default pull-center" data-dismiss="modal">Salir</button>
+
+         
+
+        </div>
+
+     
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+
 
 <!--=====================================
 MODAL AGREGAR MODELO
@@ -271,10 +333,10 @@ MODAL AGREGAR MODELO
 
 
 <!--=====================================
-MODAL EDITAR CATEGORÍA
+MODAL EDITAR MODELO
 ======================================-->
 
-<div id="modalEditarMarca" class="modal fade" role="dialog">
+<div id="modalEditarModelo" class="modal fade" role="dialog">
   
   <div class="modal-dialog">
 
@@ -290,7 +352,7 @@ MODAL EDITAR CATEGORÍA
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Editar marca</h4>
+          <h4 class="modal-title">Editar modelo</h4>
 
         </div>
 
@@ -302,7 +364,7 @@ MODAL EDITAR CATEGORÍA
 
           <div class="box-body">
 
-            <!-- ENTRADA PARA EL NOMBRE -->
+            <!-- ENTRADA PARA EDITAR LA CATEGORIA -->
             
             <div class="form-group">
               
@@ -310,17 +372,92 @@ MODAL EDITAR CATEGORÍA
               
                 <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="editarMarca" id="editarMarca" required>
+                <select class="form-control input-lg" id="editarCategoria" name="editarCategoria" required>
+                  
+                  <option value="">Seleccionar Categoria</option>
 
-                 <input type="hidden"  name="idMarca" id="idMarca" required>
+                  <?php
+
+                  $item = null;
+                  $valor = null;
+
+                  $categoria = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+
+                  foreach ($categoria as $key => $value) {
+                    
+                    echo '<option value="'.$value["id"].'">'.$value["descripcion"].'</option>';
+                  }
+
+                  ?>
+  
+                </select>
 
               </div>
 
             </div>
+
+                  <!-- ENTRADA PARA EDITAR LA MARCA -->
+            
+            <div class="form-group">
+              
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+
+                <select class="form-control input-lg" id="editarMarca" name="editarMarca" required>
+                  
+                  <option value="">Selecionar marca</option>
+
+                  <?php
+
+                  $item = null;
+                  $valor = null;
+
+                  $marca = ControladorMarcas::ctrMostrarMarca($item, $valor);
+
+                  foreach ($marca as $key => $value) {
+                    
+                    echo '<option value="'.$value["id"].'">'.$value["descripcion"].'</option>';
+                  }
+
+                  ?>
+  
+                </select>
+
+              </div>
+
+            </div>
+
+
+            <!-- ENTRADA PARA EDITAR DESCRIPCION DEL MODELO -->
+            
+            <div class="form-group">
+              
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+
+                <input type="text" class="form-control input-lg" name="editarModelo" id="editarModelo" require>
+
+              </div>
+
+            </div>
+                <!-- ENTRADA PARA EDITAR FOTO DEL MODELO -->
+            <div class="form-group">
+              
+              <div class="panel">SUBIR IMAGEN</div>
+
+              <input type="file" class="nuevaFoto" name="editarImagen">
+
+              <p class="help-block">Peso máximo de la imagen 2MB</p>
+
+              <img src="vistas/img/modelos/default/anonymous.png" class="img-thumbnail previsualizar" width="100px">
+              <input type="hidden" name="imagenActual" id="imagenActual">
+              <input type="hidden"  name="idModelo" id="idModelo" >   
+            </div>
   
           </div>
-
-        </div>
+          </div>
 
         <!--=====================================
         PIE DEL MODAL
@@ -333,7 +470,12 @@ MODAL EDITAR CATEGORÍA
           <button type="submit" class="btn btn-primary">Guardar cambios</button>
 
         </div>
+        <?php
 
+        $editarModelo = new ControladorModelos();
+        $editarModelo -> ctrEditarModelo();
+
+?>       
      
 
       </form>

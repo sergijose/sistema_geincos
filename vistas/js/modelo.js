@@ -48,18 +48,18 @@ $(".nuevaFoto").change(function(){
 })
 
 /*=============================================
-EDITAR USUARIO
+EDITAR MODELO
 =============================================*/
-$(".tablas").on("click", ".btnEditarUsuario", function(){
+$(".tablas").on("click", ".btnEditarModelo", function(){
 
-	var idUsuario = $(this).attr("idUsuario");
+	var idModelo = $(this).attr("idModelo");
 	
 	var datos = new FormData();
-	datos.append("idUsuario", idUsuario);
+	datos.append("idModelo", idModelo);
 
 	$.ajax({
 
-		url:"ajax/usuarios.ajax.php",
+		url:"ajax/modelos.ajax.php",
 		method: "POST",
 		data: datos,
 		cache: false,
@@ -67,18 +67,14 @@ $(".tablas").on("click", ".btnEditarUsuario", function(){
 		processData: false,
 		dataType: "json",
 		success: function(respuesta){
-			
-			$("#editarNombre").val(respuesta["nombre"]);
-			$("#editarUsuario").val(respuesta["usuario"]);
-			$("#editarPerfil").html(respuesta["perfil"]);
-			$("#editarPerfil").val(respuesta["perfil"]);
-			$("#fotoActual").val(respuesta["foto"]);
-
-			$("#passwordActual").val(respuesta["password"]);
-
-			if(respuesta["foto"] != ""){
-
-				$(".previsualizar").attr("src", respuesta["foto"]);
+			console.log(respuesta);
+			$("#editarCategoria").val(respuesta["idcategoria"]);
+			$("#editarMarca").val(respuesta["idmarca"]);
+			$("#editarModelo").val(respuesta["descripcion"]);
+			$("#fotoActual").val(respuesta["imagen"]);
+			if(respuesta["imagen"] != ""){
+			$(".previsualizar").attr("src", respuesta["imagen"]);
+			$("#idModelo").val(respuesta["id"]);
 
 			}
 
@@ -215,6 +211,10 @@ $(".tablas").on("click", ".btnEliminarUsuario", function(){
   })
 
 })
+
+
+
+
 
 
 

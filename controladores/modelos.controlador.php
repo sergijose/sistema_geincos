@@ -156,20 +156,99 @@ class ControladorModelos{
 	}
 
 	/*=============================================
-	EDITAR MARCA
+	EDITAR MODELO
 	=============================================*/
 
-	/*
+	
 	static public function ctrEditarModelo(){
 
-		if(isset($_POST["editarMarca"])){
+		if(isset($_POST["editarModelo"])){
 
-			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarMarca"])){
+			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarModelo"])){
 
-				$tabla = "marca";
+				
+							$ruta = $_POST["imagenActual"];
 
-				$datos = array("marca"=>$_POST["editarMarca"],
-							   "id"=>$_POST["idMarca"]);
+			   	if(isset($_FILES["editarImagen"]["tmp_name"]) && !empty($_FILES["editarImagen"]["tmp_name"])){
+
+					list($ancho, $alto) = getimagesize($_FILES["editarImagen"]["tmp_name"]);
+
+					$nuevoAncho = 500;
+					$nuevoAlto = 500;
+
+					/*=============================================
+					CREAMOS EL DIRECTORIO DONDE VAMOS A GUARDAR LA FOTO DEL USUARIO
+					=============================================*/
+
+					$directorio = "vistas/img/modelos/".$_POST["editarModelo"];
+
+					/*=============================================
+					PRIMERO PREGUNTAMOS SI EXISTE OTRA IMAGEN EN LA BD
+					=============================================*/
+
+					if(!empty($_POST["imagenActual"]) && $_POST["imagenActual"] != "vistas/img/modelos/default/anonymous.png"){
+
+						unlink($_POST["imagenActual"]);
+
+					}else{
+
+						mkdir($directorio, 0755);	
+					
+					}
+					
+					/*=============================================
+					DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
+					=============================================*/
+
+					if($_FILES["editarImagen"]["type"] == "image/jpeg"){
+
+						/*=============================================
+						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
+						=============================================*/
+
+						$aleatorio = mt_rand(100,999);
+
+						$ruta = "vistas/img/modelos/".$_POST["editarModelo"]."/".$aleatorio.".jpg";
+
+						$origen = imagecreatefromjpeg($_FILES["editarImagen"]["tmp_name"]);						
+
+						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+
+						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+
+						imagejpeg($destino, $ruta);
+
+					}
+
+					if($_FILES["editarImagen"]["type"] == "image/png"){
+
+						/*=============================================
+						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
+						=============================================*/
+
+						$aleatorio = mt_rand(100,999);
+
+						$ruta = "vistas/img/modelos/".$_POST["editarModelo"]."/".$aleatorio.".png";
+
+						$origen = imagecreatefrompng($_FILES["editarImagen"]["tmp_name"]);						
+
+						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+
+						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+
+						imagepng($destino, $ruta);
+
+					}
+
+				}	
+				$tabla = "modelo";
+
+				$datos = array("idcategoria"=>$_POST["editarCategoria"],
+							   "idmarca"=>$_POST["editarMarca"],
+							   "descripcion"=>$_POST["editarModelo"],
+							   "imagen"=>$ruta,
+							   "id"=>$_POST["idModelo"]);
+
 
 				$respuesta = ModeloModelos::mdlEditarModelo($tabla, $datos);
 
@@ -179,13 +258,13 @@ class ControladorModelos{
 
 					swal({
 						  type: "success",
-						  title: "La  MARCA ha sido cambiada correctamente",
+						  title: "El MODELO ha sido cambiada correctamente",
 						  showConfirmButton: true,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
 									if (result.value) {
 
-									window.location = "modelos";
+									window.location = "modelo";
 
 									}
 								})
@@ -201,13 +280,13 @@ class ControladorModelos{
 
 					swal({
 						  type: "error",
-						  title: "¡La MARCA no puede ir vacía o llevar caracteres especiales!",
+						  title: "¡El MODELO no puede ir vacía o llevar caracteres especiales!",
 						  showConfirmButton: true,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
 							if (result.value) {
 
-							window.location = "modelos";
+							window.location = "modelo";
 
 							}
 						})
@@ -219,7 +298,7 @@ class ControladorModelos{
 		}
 
 	}
-*/
+
 	/*=============================================
 	BORRAR MARCA
 	=============================================*/
