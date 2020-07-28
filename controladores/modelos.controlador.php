@@ -300,16 +300,21 @@ class ControladorModelos{
 	}
 
 	/*=============================================
-	BORRAR MARCA
+	BORRAR MODELO
 	=============================================*/
+	static public function ctrEliminarModelo(){
 
-	/*
-	static public function ctrBorrarModelo(){
+		if(isset($_GET["idModelo"])){
 
-		if(isset($_GET["idMarca"])){
+			$tabla ="modelo";
+			$datos = $_GET["idModelo"];
 
-			$tabla ="marca";
-			$datos = $_GET["idMarca"];
+			if($_GET["imagen"] != "" && $_GET["imagen"] != "vistas/img/modelos/default/anonymous.png"){
+
+				unlink($_GET["imagen"]);
+				rmdir('vistas/img/modelos/'.$_GET["descripcion"]);
+
+			}
 
 			$respuesta = ModeloModelos::mdlBorrarModelo($tabla, $datos);
 
@@ -317,23 +322,28 @@ class ControladorModelos{
 
 				echo'<script>
 
-					swal({
-						  type: "success",
-						  title: "La marca ha sido borrada correctamente",
-						  showConfirmButton: true,
-						  confirmButtonText: "Cerrar"
-						  }).then(function(result){
-									if (result.value) {
+				swal({
+					  type: "success",
+					  title: "El modelo ha sido borrado correctamente",
+					  showConfirmButton: true,
+					  confirmButtonText: "Cerrar"
+					  }).then(function(result){
+								if (result.value) {
 
-									window.location = "modelos";
+								window.location = "modelo";
 
-									}
-								})
+								}
+							})
 
-					</script>';
-			}
+				</script>';
+
+			}		
 		}
-		
+
+
 	}
-	*/
+
+	
+	
+	
 }

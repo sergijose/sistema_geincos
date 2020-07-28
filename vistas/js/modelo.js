@@ -1,5 +1,5 @@
 /*=============================================
-SUBIENDO LA FOTO DEL USUARIO
+SUBIENDO LA FOTO DEL MODELO
 =============================================*/
 $(".nuevaFoto").change(function(){
 
@@ -67,7 +67,7 @@ $(".tablas").on("click", ".btnEditarModelo", function(){
 		processData: false,
 		dataType: "json",
 		success: function(respuesta){
-			console.log(respuesta);
+			
 			$("#editarCategoria").val(respuesta["idcategoria"]);
 			$("#editarMarca").val(respuesta["idmarca"]);
 			$("#editarModelo").val(respuesta["descripcion"]);
@@ -85,128 +85,64 @@ $(".tablas").on("click", ".btnEditarModelo", function(){
 	});
 
 })
-
 /*=============================================
-ACTIVAR USUARIO
+MOSTRAR IMAGEN EN MODAL PARA VISUALIZAR
 =============================================*/
-$(".tablas").on("click", ".btnActivar", function(){
+$(".tablas").on("click", ".btnMostrarImagen", function(){
 
-	var idUsuario = $(this).attr("idUsuario");
-	var estadoUsuario = $(this).attr("estadoUsuario");
-
+	var id = $(this).attr("id");
+	
 	var datos = new FormData();
- 	datos.append("activarId", idUsuario);
-  	datos.append("activarUsuario", estadoUsuario);
+	datos.append("idModelo", id);
 
-  	$.ajax({
+	$.ajax({
 
-	  url:"ajax/usuarios.ajax.php",
-	  method: "POST",
-	  data: datos,
-	  cache: false,
-      contentType: false,
-      processData: false,
-      success: function(respuesta){
+		url:"ajax/modelos.ajax.php",
+		method: "POST",
+		data: datos,
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType: "json",
+		success: function(respuesta){	
 
-      	if(window.matchMedia("(max-width:767px)").matches){
+			$(".previsualizarimagen").attr("src", respuesta["imagen"]);
+	
+			
 
-      		 swal({
-		      title: "El usuario ha sido actualizado",
-		      type: "success",
-		      confirmButtonText: "¡Cerrar!"
-		    }).then(function(result) {
-		        if (result.value) {
+			}
 
-		        	window.location = "usuarios";
+		
 
-		        }
+	});
+});
 
 
-			});
 
-      	}
-
-      }
-
-  	})
-
-  	if(estadoUsuario == 0){
-
-  		$(this).removeClass('btn-success');
-  		$(this).addClass('btn-danger');
-  		$(this).html('Desactivado');
-  		$(this).attr('estadoUsuario',1);
-
-  	}else{
-
-  		$(this).addClass('btn-success');
-  		$(this).removeClass('btn-danger');
-  		$(this).html('Activado');
-  		$(this).attr('estadoUsuario',0);
-
-  	}
-
-})
 
 /*=============================================
-REVISAR SI EL USUARIO YA ESTÁ REGISTRADO
+ELIMINAR MODELO
 =============================================*/
+$(".tablas").on("click", ".btnEliminarModelo", function(){
 
-$("#nuevoUsuario").change(function(){
-
-	$(".alert").remove();
-
-	var usuario = $(this).val();
-
-	var datos = new FormData();
-	datos.append("validarUsuario", usuario);
-
-	 $.ajax({
-	    url:"ajax/usuarios.ajax.php",
-	    method:"POST",
-	    data: datos,
-	    cache: false,
-	    contentType: false,
-	    processData: false,
-	    dataType: "json",
-	    success:function(respuesta){
-	    	
-	    	if(respuesta){
-
-	    		$("#nuevoUsuario").parent().after('<div class="alert alert-warning">Este usuario ya existe en la base de datos</div>');
-
-	    		$("#nuevoUsuario").val("");
-
-	    	}
-
-	    }
-
-	})
-})
-
-/*=============================================
-ELIMINAR USUARIO
-=============================================*/
-$(".tablas").on("click", ".btnEliminarUsuario", function(){
-
-  var idUsuario = $(this).attr("idUsuario");
-  var fotoUsuario = $(this).attr("fotoUsuario");
-  var usuario = $(this).attr("usuario");
+  var idModelo = $(this).attr("idModelo");
+  var imagen = $(this).attr("fotoModelo");
+  var modelo = $(this).attr("modelo");
 
   swal({
-    title: '¿Está seguro de borrar el usuario?',
+    title: '¿Está seguro de borrar el modelo?',
     text: "¡Si no lo está puede cancelar la accíón!",
     type: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       cancelButtonText: 'Cancelar',
-      confirmButtonText: 'Si, borrar usuario!'
+      confirmButtonText: 'Si, borrar modelo!'
   }).then(function(result){
 
     if(result.value){
 
-      window.location = "index.php?ruta=usuarios&idUsuario="+idUsuario+"&usuario="+usuario+"&fotoUsuario="+fotoUsuario;
+      window.location = "index.php?ruta=modelo&idModelo="+idModelo+"&modelo="+modelo+"&imagen="+imagen;
 
     }
 
