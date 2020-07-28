@@ -407,7 +407,7 @@ MODAL EDITAR MODELO
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                <input type="text" class="form-control input-lg" name="editarModelo" id="editarModelo" require>
+                <input type="text" readonly class="form-control input-lg" name="editarModelo" id="editarModelo" require>
                 <input type="hidden" name="id" id="id" require>
               </div>
 

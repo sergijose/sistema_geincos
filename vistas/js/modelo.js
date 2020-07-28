@@ -71,13 +71,14 @@ $(".tablas").on("click", ".btnEditarModelo", function(){
 			$("#editarCategoria").val(respuesta["idcategoria"]);
 			$("#editarMarca").val(respuesta["idmarca"]);
 			$("#editarModelo").val(respuesta["descripcion"]);
-			$("#fotoActual").val(respuesta["imagen"]);
+			//$("#imagenActual").val(respuesta["imagen"]);
 			$("#id").val(respuesta["id"]);
 			if(respuesta["imagen"] != ""){
-				$(".imagenActual").val(respuesta["imagen"]);	
-			$(".previsualizar").attr("src", respuesta["imagen"]);
-			
 
+				$("#imagenActual").val(respuesta["imagen"]);
+ 
+				$(".previsualizar").attr("src",  respuesta["imagen"]);
+ 
 			}
 
 		}

@@ -186,7 +186,7 @@ class ControladorModelos{
 					PRIMERO PREGUNTAMOS SI EXISTE OTRA IMAGEN EN LA BD
 					=============================================*/
 
-					if(!empty($_POST["imagenActual"]) && $_POST["imagenActual"] != "vistas/img/modelos/default/anonymous.png"){
+					if(!empty($_POST["imagenActual"])&& $_POST["imagenActual"] != "vistas/img/modelos/default/anonymous.png" ){
 
 						unlink($_POST["imagenActual"]);
 
