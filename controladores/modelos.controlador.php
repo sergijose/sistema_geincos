@@ -247,7 +247,7 @@ class ControladorModelos{
 							   "idmarca"=>$_POST["editarMarca"],
 							   "descripcion"=>$_POST["editarModelo"],
 							   "imagen"=>$ruta,
-							   "id"=>$_POST["idModelo"]);
+							   "id"=>$_POST["id"]);
 
 
 				$respuesta = ModeloModelos::mdlEditarModelo($tabla, $datos);
@@ -258,7 +258,7 @@ class ControladorModelos{
 
 					swal({
 						  type: "success",
-						  title: "El MODELO ha sido cambiada correctamente",
+						  title: "El MODELO ha sido actualizada correctamente",
 						  showConfirmButton: true,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){

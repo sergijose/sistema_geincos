@@ -74,7 +74,7 @@ class ModeloModelos{
 
 	static public function mdlEditarModelo($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET idcategoria=:idcategoria,idmarca=:idmarca,descripcion=:descripcion,imagen=:imagen WHERE id = :id");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET idcategoria=:idcategoria, idmarca=:idmarca, descripcion=:descripcion, imagen=:imagen WHERE id=:id");
 
 		$stmt -> bindParam(":idcategoria", $datos["idcategoria"], PDO::PARAM_INT);
 		$stmt -> bindParam(":idmarca", $datos["idmarca"], PDO::PARAM_INT);
@@ -92,7 +92,7 @@ class ModeloModelos{
 		
 		}
 
-
+		$stmt->close();
 		$stmt = null;
 
 	}

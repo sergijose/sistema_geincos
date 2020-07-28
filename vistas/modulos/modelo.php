@@ -1,19 +1,19 @@
 <div class="content-wrapper">
 
   <section class="content-header">
-    
+
     <h1>
-      
+
       Administrar modelo
-    
+
     </h1>
 
     <ol class="breadcrumb">
-      
+
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      
+
       <li class="active">Administrar modelo</li>
-    
+
     </ol>
 
   </section>
@@ -23,9 +23,9 @@
     <div class="box">
 
       <div class="box-header with-border">
-  
+
         <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarModelo">
-          
+
           Agregar modelo
 
         </button>
@@ -33,74 +33,72 @@
       </div>
 
       <div class="box-body">
-        
-       <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
-         
-        <thead>
-         
-         <tr>
-           
-           <th style="width:10px">#</th>
-           <th>Categoria</th>
-           <th>Marca</th>
-           <th>Modelo</th>
-           <th>Imagen</th>
-           <th>Acciones</th>
 
-         </tr> 
+        <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
 
-        </thead>
+          <thead>
 
-        <tbody>
+            <tr>
 
-        <?php
+              <th style="width:10px">#</th>
+              <th>Categoria</th>
+              <th>Marca</th>
+              <th>Modelo</th>
+              <th>Imagen</th>
+              <th>Acciones</th>
 
-          $item = null;
-          $valor = null;
+            </tr>
 
-          $modelo = ControladorModelos::ctrMostrarModelo($item, $valor);
+          </thead>
 
-          foreach ($modelo as $key => $value) {
-           
-            echo ' <tr>
+          <tbody>
 
-                    <td>'.($key+1).'</td>
+            <?php
 
-                    <td class="text-uppercase">'.$value["categoria"].'</td>
-                    <td class="text-uppercase">'.$value["marca"].'</td>
-                    <td class="text-uppercase">'.$value["descripcion"].'</td>';
-                    
-                    if($value["imagen"] != ""){
+            $item = null;
+            $valor = null;
 
-                      echo '<td><img src="'.$value["imagen"].'" class="img-thumbnail" width="40px" data-toggle="modal" data-target="#modalMostrar" id="'.$value["id"].'"></td>';
-  
-                    }else{
-  
-                      echo '<td><img src="vistas/img/modelos/default/anonymous.png" class="img-thumbnail"  width="40px" data-toggle="modal" data-target="#modalMostrar" id="'.$value["id"].'"></td>';
-  
-                    }
-  
+            $modelo = ControladorModelos::ctrMostrarModelo($item, $valor);
 
-                    echo '<td>
+            foreach ($modelo as $key => $value) {
+
+              echo ' <tr>
+
+                    <td>' . ($key + 1) . '</td>
+
+                    <td class="text-uppercase">' . $value["categoria"] . '</td>
+                    <td class="text-uppercase">' . $value["marca"] . '</td>
+                    <td class="text-uppercase">' . $value["descripcion"] . '</td>';
+
+              if ($value["imagen"] != "") {
+
+                echo '<td><img src="' . $value["imagen"] . '" class="img-thumbnail" width="40px" data-toggle="modal" data-target="#modalMostrar" id="' . $value["id"] . '"></td>';
+              } else {
+
+                echo '<td><img src="vistas/img/modelos/default/anonymous.png" class="img-thumbnail"  width="40px" data-toggle="modal" data-target="#modalMostrar" id="' . $value["id"] . '"></td>';
+              }
+
+
+              echo '<td>
 
                       <div class="btn-group">
                           
-                        <button class="btn btn-warning btnEditarModelo" idModelo="'.$value["id"].'" data-toggle="modal" data-target="#modalEditarModelo"><i class="fa fa-pencil"></i></button>
+                        <button class="btn btn-warning btnEditarModelo" idModelo="' . $value["id"] . '" data-toggle="modal" data-target="#modalEditarModelo"><i class="fa fa-pencil"></i></button>
 
-                        <button class="btn btn-danger btnEliminarModelo" idModelo="'.$value["id"].'"><i class="fa fa-times"></i></button>
+                        <button class="btn btn-danger btnEliminarModelo" idModelo="' . $value["id"] . '"><i class="fa fa-times"></i></button>
 
                       </div>  
 
                     </td>
 
                   </tr>';
-          }
+            }
 
-        ?>
+            ?>
 
-        </tbody>
+          </tbody>
 
-       </table>
+        </table>
 
       </div>
 
@@ -111,10 +109,10 @@
 </div>
 
 <!--=====================================
-MODAL MOSTRAR IMAGEN MARCAS
+MODAL MOSTRAR MOSTRARIMAGEN MARCAS
 ======================================-->
 <div id="modalMostrar" class="modal fade" role="dialog">
-  
+
   <div class="modal-dialog">
 
     <div class="modal-content">
@@ -143,8 +141,8 @@ MODAL MOSTRAR IMAGEN MARCAS
 
             <!-- ENTRADA PARA EL NOMBRE -->
             <img src="<?php echo $value["imagen"]; ?>" width="200px" id="editarimagen">
-            <input type="text"  name="idModelo" id="idModelo" required>
-  
+            <!-- <input type="text" name="idModelo" id="idModelo" required>  -->
+
           </div>
 
         </div>
@@ -157,11 +155,11 @@ MODAL MOSTRAR IMAGEN MARCAS
 
           <button type="button" class="btn btn-default pull-center" data-dismiss="modal">Salir</button>
 
-         
+
 
         </div>
 
-     
+
 
       </form>
 
@@ -177,12 +175,12 @@ MODAL AGREGAR MODELO
 ======================================-->
 
 <div id="modalAgregarModelo" class="modal fade" role="dialog">
-  
+
   <div class="modal-dialog">
 
     <div class="modal-content">
 
-      <form role="form" method="post" enctype="multipart/form-data" >
+      <form role="form" method="post" enctype="multipart/form-data">
 
         <!--=====================================
         CABEZA DEL MODAL
@@ -205,15 +203,15 @@ MODAL AGREGAR MODELO
           <div class="box-body">
 
             <!-- ENTRADA PARA LA CATEGORIA -->
-            
+
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
                 <select class="form-control input-lg" id="nuevaCategoria" name="nuevaCategoria" required>
-                  
+
                   <option value="">Seleccionar Categoria</option>
 
                   <?php
@@ -224,28 +222,28 @@ MODAL AGREGAR MODELO
                   $categoria = ControladorCategorias::ctrMostrarCategorias($item, $valor);
 
                   foreach ($categoria as $key => $value) {
-                    
-                    echo '<option value="'.$value["id"].'">'.$value["descripcion"].'</option>';
+
+                    echo '<option value="' . $value["id"] . '">' . $value["descripcion"] . '</option>';
                   }
 
                   ?>
-  
+
                 </select>
 
               </div>
 
             </div>
 
-                  <!-- ENTRADA PARA LA MARCA -->
-            
+            <!-- ENTRADA PARA LA MARCA -->
+
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
                 <select class="form-control input-lg" id="nuevaMarca" name="nuevaMarca" required>
-                  
+
                   <option value="">Selecionar marca</option>
 
                   <?php
@@ -256,12 +254,12 @@ MODAL AGREGAR MODELO
                   $marca = ControladorMarcas::ctrMostrarMarca($item, $valor);
 
                   foreach ($marca as $key => $value) {
-                    
-                    echo '<option value="'.$value["id"].'">'.$value["descripcion"].'</option>';
+
+                    echo '<option value="' . $value["id"] . '">' . $value["descripcion"] . '</option>';
                   }
 
                   ?>
-  
+
                 </select>
 
               </div>
@@ -270,21 +268,21 @@ MODAL AGREGAR MODELO
 
 
             <!-- ENTRADA PARA EL DESCRIPCION DEL MODELO -->
-            
+
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
                 <input type="text" class="form-control input-lg" name="nuevoModelo" placeholder="Ingresar Modelo" required>
 
               </div>
 
             </div>
-                <!-- ENTRADA PARA FOTO DEL MODELO -->
+            <!-- ENTRADA PARA FOTO DEL MODELO -->
             <div class="form-group">
-              
+
               <div class="panel">SUBIR IMAGEN</div>
 
               <input type="file" class="nuevaFoto" name="nuevaImagen">
@@ -292,10 +290,10 @@ MODAL AGREGAR MODELO
               <p class="help-block">Peso máximo de la imagen 2MB</p>
 
               <img src="vistas/img/modelos/default/anonymous.png" class="img-thumbnail previsualizar" width="100px">
-                  <br>
-                  <br>
+              <br>
+              <br>
             </div>
-  
+
           </div>
 
         </div>
@@ -314,8 +312,8 @@ MODAL AGREGAR MODELO
 
         <?php
 
-          $crearModelo = new ControladorModelos();
-          $crearModelo -> ctrCrearModelo();
+        $crearModelo = new ControladorModelos();
+        $crearModelo->ctrCrearModelo();
 
         ?>
 
@@ -337,12 +335,12 @@ MODAL EDITAR MODELO
 ======================================-->
 
 <div id="modalEditarModelo" class="modal fade" role="dialog">
-  
+
   <div class="modal-dialog">
 
     <div class="modal-content">
 
-      <form role="form" method="post">
+      <form role="form" method="post" enctype="multipart/form-data">
 
         <!--=====================================
         CABEZA DEL MODAL
@@ -365,15 +363,15 @@ MODAL EDITAR MODELO
           <div class="box-body">
 
             <!-- ENTRADA PARA EDITAR LA CATEGORIA -->
-            
+
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
                 <select class="form-control input-lg" id="editarCategoria" name="editarCategoria" required>
-                  
+
                   <option value="">Seleccionar Categoria</option>
 
                   <?php
@@ -384,28 +382,28 @@ MODAL EDITAR MODELO
                   $categoria = ControladorCategorias::ctrMostrarCategorias($item, $valor);
 
                   foreach ($categoria as $key => $value) {
-                    
-                    echo '<option value="'.$value["id"].'">'.$value["descripcion"].'</option>';
+
+                    echo '<option value="' . $value["id"] . '">' . $value["descripcion"] . '</option>';
                   }
 
                   ?>
-  
+
                 </select>
 
               </div>
 
             </div>
 
-                  <!-- ENTRADA PARA EDITAR LA MARCA -->
-            
+            <!-- ENTRADA PARA EDITAR LA MARCA -->
+
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
                 <select class="form-control input-lg" id="editarMarca" name="editarMarca" required>
-                  
+
                   <option value="">Selecionar marca</option>
 
                   <?php
@@ -416,12 +414,12 @@ MODAL EDITAR MODELO
                   $marca = ControladorMarcas::ctrMostrarMarca($item, $valor);
 
                   foreach ($marca as $key => $value) {
-                    
-                    echo '<option value="'.$value["id"].'">'.$value["descripcion"].'</option>';
+
+                    echo '<option value="' . $value["id"] . '">' . $value["descripcion"] . '</option>';
                   }
 
                   ?>
-  
+
                 </select>
 
               </div>
@@ -430,21 +428,21 @@ MODAL EDITAR MODELO
 
 
             <!-- ENTRADA PARA EDITAR DESCRIPCION DEL MODELO -->
-            
+
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
                 <input type="text" class="form-control input-lg" name="editarModelo" id="editarModelo" require>
-
+                <input type="hidden" name="id" id="id" require>
               </div>
 
             </div>
-                <!-- ENTRADA PARA EDITAR FOTO DEL MODELO -->
+            <!-- ENTRADA PARA EDITAR FOTO DEL MODELO -->
             <div class="form-group">
-              
+
               <div class="panel">SUBIR IMAGEN</div>
 
               <input type="file" class="nuevaFoto" name="editarImagen">
@@ -453,11 +451,11 @@ MODAL EDITAR MODELO
 
               <img src="vistas/img/modelos/default/anonymous.png" class="img-thumbnail previsualizar" width="100px">
               <input type="hidden" name="imagenActual" id="imagenActual">
-              <input type="hidden"  name="idModelo" id="idModelo" >   
+              
             </div>
-  
+
           </div>
-          </div>
+        </div>
 
         <!--=====================================
         PIE DEL MODAL
@@ -467,25 +465,20 @@ MODAL EDITAR MODELO
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Guardar cambios</button>
+          <button type="submit" class="btn btn-primary">actualizar cambios</button>
 
         </div>
         <?php
 
-        $editarModelo = new ControladorModelos();
-        $editarModelo -> ctrEditarModelo();
+        $editarModelos = new ControladorModelos();
+        $editarModelos->ctrEditarModelo();
 
-?>       
-     
-
+        ?>
       </form>
+
 
     </div>
 
   </div>
 
 </div>
-
-
-
-

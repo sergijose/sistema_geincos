@@ -72,9 +72,11 @@ $(".tablas").on("click", ".btnEditarModelo", function(){
 			$("#editarMarca").val(respuesta["idmarca"]);
 			$("#editarModelo").val(respuesta["descripcion"]);
 			$("#fotoActual").val(respuesta["imagen"]);
+			$("#id").val(respuesta["id"]);
 			if(respuesta["imagen"] != ""){
+				$(".imagenActual").val(respuesta["imagen"]);	
 			$(".previsualizar").attr("src", respuesta["imagen"]);
-			$("#idModelo").val(respuesta["id"]);
+			
 
 			}
 
