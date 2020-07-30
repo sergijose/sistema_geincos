@@ -309,11 +309,12 @@ class ControladorModelos{
 			$tabla ="modelo";
 			$datos = $_GET["idModelo"];
 
-			if($_GET["imagen"] != "" && $_GET["imagen"] != "vistas/img/modelos/default/anonymous.png"){
+			if($_GET["imagen"] !="" && $_GET["imagen"] != "vistas/img/modelos/default/anonymous.png"){
 
 				unlink($_GET["imagen"]);
-				rmdir('vistas/img/modelos/'.$_GET["descripcion"]);
+				rmdir('vistas/img/modelos/'.$_GET["modelo"]);
 
+				
 			}
 
 			$respuesta = ModeloModelos::mdlBorrarModelo($tabla, $datos);
