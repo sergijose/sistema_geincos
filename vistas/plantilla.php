@@ -150,6 +150,7 @@ CUERPO DOCUMENTO
 <script src="vistas/js/categorias.js"></script>
 <script src="vistas/js/marcas.js"></script>
 <script src="vistas/js/modelo.js"></script>
+<script src="vistas/js/productos.js"></script>
 
 </body>
 </html>
