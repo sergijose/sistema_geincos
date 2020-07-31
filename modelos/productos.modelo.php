@@ -5,17 +5,17 @@ require_once "conexion.php";
 class ModeloProductos{
 
 	/*=============================================
-	CREAR MODELO
+	CREAR PRODUCTO
 	=============================================*/
 
 	static public function mdlIngresarProducto($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(idcategoria,idmarca,descripcion,imagen) VALUES (:idcategoria,:idmarca,:descripcion,:imagen)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(idmodelo,cod_producto,idestado,estado_prestamo) VALUES (:idmodelo,:cod_producto,:idestado,:estado_prestamo)");
 
-		$stmt->bindParam(":idcategoria", $datos["idcategoria"], PDO::PARAM_INT);
-		$stmt->bindParam(":idmarca", $datos["idmarca"], PDO::PARAM_INT);
-		$stmt->bindParam(":descripcion", $datos["descripcion"], PDO::PARAM_STR);
-		$stmt->bindParam(":imagen", $datos["imagen"], PDO::PARAM_STR);
+		$stmt->bindParam(":idmodelo", $datos["idmodelo"], PDO::PARAM_INT);
+		$stmt->bindParam(":cod_producto", $datos["cod_producto"], PDO::PARAM_STR);
+		$stmt->bindParam(":idestado", $datos["idestado"], PDO::PARAM_INT);
+		$stmt->bindParam(":estado_prestamo", $datos["estado_prestamo"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 
