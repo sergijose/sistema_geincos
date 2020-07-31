@@ -37,9 +37,7 @@ class ControladorProductos{
 			   preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["nuevoEstado"]) &&
 			   preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["nuevoEstadoPrestamo"])){
 
-		   		/*=============================================
-				VALIDAR IMAGEN
-				=============================================*/
+		   		
 
 				$tabla = "producto";
 
@@ -101,101 +99,20 @@ class ControladorProductos{
 
 	static public function ctrEditarProducto(){
 
-		if(isset($_POST["editarDescripcion"])){
+		if(isset($_POST["editarModelo"])){
 
-			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarDescripcion"]) &&
-			   preg_match('/^[0-9]+$/', $_POST["editarStock"]) &&	
-			   preg_match('/^[0-9.]+$/', $_POST["editarPrecioCompra"]) &&
-			   preg_match('/^[0-9.]+$/', $_POST["editarPrecioVenta"])){
+			if(preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["editarModelo"]) &&
+			   preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["editarCodigo"]) &&	
+			   preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["editarEstado"]) &&
+			   preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["editarEstadoPrestamo"])){
 
-		   		/*=============================================
-				VALIDAR IMAGEN
-				=============================================*/
+				$tabla = "producto";
 
-			   	$ruta = $_POST["imagenActual"];
-
-			   	if(isset($_FILES["editarImagen"]["tmp_name"]) && !empty($_FILES["editarImagen"]["tmp_name"])){
-
-					list($ancho, $alto) = getimagesize($_FILES["editarImagen"]["tmp_name"]);
-
-					$nuevoAncho = 500;
-					$nuevoAlto = 500;
-
-					/*=============================================
-					CREAMOS EL DIRECTORIO DONDE VAMOS A GUARDAR LA FOTO DEL USUARIO
-					=============================================*/
-
-					$directorio = "vistas/img/productos/".$_POST["editarCodigo"];
-
-					/*=============================================
-					PRIMERO PREGUNTAMOS SI EXISTE OTRA IMAGEN EN LA BD
-					=============================================*/
-
-					if(!empty($_POST["imagenActual"]) && $_POST["imagenActual"] != "vistas/img/productos/default/anonymous.png"){
-
-						unlink($_POST["imagenActual"]);
-
-					}else{
-
-						mkdir($directorio, 0755);	
-					
-					}
-					
-					/*=============================================
-					DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
-					=============================================*/
-
-					if($_FILES["editarImagen"]["type"] == "image/jpeg"){
-
-						/*=============================================
-						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
-						=============================================*/
-
-						$aleatorio = mt_rand(100,999);
-
-						$ruta = "vistas/img/productos/".$_POST["editarCodigo"]."/".$aleatorio.".jpg";
-
-						$origen = imagecreatefromjpeg($_FILES["editarImagen"]["tmp_name"]);						
-
-						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-
-						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
-						imagejpeg($destino, $ruta);
-
-					}
-
-					if($_FILES["editarImagen"]["type"] == "image/png"){
-
-						/*=============================================
-						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
-						=============================================*/
-
-						$aleatorio = mt_rand(100,999);
-
-						$ruta = "vistas/img/productos/".$_POST["editarCodigo"]."/".$aleatorio.".png";
-
-						$origen = imagecreatefrompng($_FILES["editarImagen"]["tmp_name"]);						
-
-						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-
-						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
-						imagepng($destino, $ruta);
-
-					}
-
-				}
-
-				$tabla = "productos";
-
-				$datos = array("id_categoria" => $_POST["editarCategoria"],
-							   "codigo" => $_POST["editarCodigo"],
-							   "descripcion" => $_POST["editarDescripcion"],
-							   "stock" => $_POST["editarStock"],
-							   "precio_compra" => $_POST["editarPrecioCompra"],
-							   "precio_venta" => $_POST["editarPrecioVenta"],
-							   "imagen" => $ruta);
+				$datos = array("idmodelo" => $_POST["editarModelo"],
+							   "cod_producto" => $_POST["editarCodigo"],
+							   "idestado" => $_POST["editarEstado"],
+							   "estado_prestamo" => $_POST["editarEstadoPrestamo"],
+							   "id" => $_POST["id"]);
 
 				$respuesta = ModeloProductos::mdlEditarProducto($tabla, $datos);
 

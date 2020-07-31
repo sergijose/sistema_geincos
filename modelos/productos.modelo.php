@@ -65,17 +65,17 @@ class ModeloProductos{
 	}
 
 	/*=============================================
-	EDITAR MODELO
+	EDITAR PRODUCTO
 	=============================================*/
 
-	static public function mdlEditarModelo($tabla, $datos){
+	static public function mdlEditarProducto($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET idcategoria=:idcategoria, idmarca=:idmarca, descripcion=:descripcion, imagen=:imagen WHERE id=:id");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET idmodelo=:idmodelo,cod_producto=:cod_producto, idestado=:idestado,estado_prestamo=:estado_prestamo WHERE id=:id");
 
-		$stmt -> bindParam(":idcategoria", $datos["idcategoria"], PDO::PARAM_INT);
-		$stmt -> bindParam(":idmarca", $datos["idmarca"], PDO::PARAM_INT);
-		$stmt -> bindParam(":descripcion", $datos["descripcion"], PDO::PARAM_STR);
-		$stmt -> bindParam(":imagen", $datos["imagen"], PDO::PARAM_STR);
+		$stmt -> bindParam(":idmodelo", $datos["idmodelo"], PDO::PARAM_INT);
+		$stmt -> bindParam(":cod_producto", $datos["cod_producto"], PDO::PARAM_STR);
+		$stmt -> bindParam(":idestado", $datos["idestado"], PDO::PARAM_INT);
+		$stmt -> bindParam(":estado_prestamo", $datos["estado_prestamo"], PDO::PARAM_STR);
 		$stmt -> bindParam(":id", $datos["id"], PDO::PARAM_INT);
 
 		if($stmt->execute()){
@@ -88,7 +88,7 @@ class ModeloProductos{
 		
 		}
 
-		$stmt->close();
+		
 		$stmt = null;
 
 	}

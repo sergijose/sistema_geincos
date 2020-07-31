@@ -305,8 +305,8 @@ MODAL EDITAR PRODUCTO
 
               <span class="input-group-addon"><i class="fa fa-code"></i></span>
 
-              <input type="text" class="form-control input-lg" id="editarCodigo" name="editarCodigo" placeholder="Ingrese Codigo" required>
-
+            <input type="text" class="form-control input-lg" id="editarCodigo" name="editarCodigo" placeholder="Ingrese Codigo" required>
+            <input type="text" id="id" name="id" hidden required>    
             </div>
 
           </div>
