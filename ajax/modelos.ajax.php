@@ -3,15 +3,15 @@
 require_once "../controladores/modelos.controlador.php";
 require_once "../modelos/modelos.modelo.php";
 
-class AjaxUsuarios{
+class AjaxModelos{
 
 	/*=============================================
-	EDITAR USUARIO
+	EDITAR MODELOS
 	=============================================*/	
 
 	public $idModelo;
 
-	public function ajaxEditarUsuario(){
+	public function ajaxEditarModelo(){
 
 		$item = "id";
 		$valor = $this->idModelo;
@@ -21,39 +21,16 @@ class AjaxUsuarios{
 		echo json_encode($respuesta);
 
 	}
-
-	
-
-	/*=============================================
-	VALIDAR NO REPETIR USUARIO
-	=============================================*/	
-
-	public $validarUsuario;
-
-	public function ajaxValidarUsuario(){
-
-		$item = "usuario";
-		$valor = $this->validarUsuario;
-
-		$respuesta = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
-
-		echo json_encode($respuesta);
-
-	}
 }
 
 /*=============================================
-EDITAR USUARIO
-=============================================*/
+EDITAR MODELO
+=============================================*/	
 if(isset($_POST["idModelo"])){
 
-	$editar = new AjaxUsuarios();
-	$editar -> idModelo = $_POST["idModelo"];
-	$editar -> ajaxEditarUsuario();
-
+	$categoria = new AjaxModelos();
+	$categoria -> idModelo = $_POST["idModelo"];
+	$categoria -> ajaxEditarModelo();
 }
-
-
-
 
 

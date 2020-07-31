@@ -79,6 +79,21 @@ class ControladorMarcas{
 	
 	}
 
+
+	/*=============================================
+	MOSTRAR ESTADOS PARA EDITAR EL PRODUCTO
+	=============================================*/
+
+	static public function ctrMostrarEstadoProducto($item, $valor){
+
+		$tabla = "estado";
+
+		$respuesta = ModeloMarcas::mdlMostrarMarca($tabla, $item, $valor);
+
+		return $respuesta;
+	
+	}
+
 	/*=============================================
 	EDITAR MARCA
 	=============================================*/
