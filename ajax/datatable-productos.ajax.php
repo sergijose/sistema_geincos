@@ -59,7 +59,7 @@ class TablaProductos{
               
 
 		  	$item = "id";
-            $valor = $productos[$i]["idmodelo"];
+            $valor = $productos[$i]["idestado"];
             $order="id";  
 
             $estadoProducto = ControladorProductos::ctrMostrarEstadoProducto($item, $valor,$order);
@@ -70,9 +70,9 @@ class TablaProductos{
  	 		ESTADO DEL PRESTAMO DEL PRODUCTO
   			=============================================*/ 
 
-  			if($productos[$i]["estado_prestamo"] ==1){
+  			if($productos[$i]["estado_prestamo"] =="DISPONIBLE"){
 
-  				$estado = "<button class='btn btn-success'>OPERATIVO</button>";
+  				$estado = "<button class='btn btn-success'>DISPONIBLE</button>";
 
   			}else{
 
@@ -83,7 +83,7 @@ class TablaProductos{
 		  	/*=============================================
  	 		TRAEMOS LAS ACCIONES
   			=============================================*/
-  				 $botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["id"]."' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarProducto' idProducto='".$productos[$i]["id"]."' codigo='".$productos[$i]["codigo"]."' imagen='".$productos[$i]["imagen"]."'><i class='fa fa-times'></i></button></div>"; 
+  				 $botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["id"]."' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarProducto' idProducto='".$productos[$i]["id"]."' codigo='".$productos[$i]["cod_producto"]."'><i class='fa fa-times'></i></button></div>"; 
 
   			
 

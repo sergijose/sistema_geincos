@@ -186,7 +186,7 @@ MODAL AGREGAR PRODUCTO
               
                 <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                <select class="form-control input-lg" id="nuevoEstado" name="nuevoEstado" required>
+                <select class="form-control input-lg" id="nuevoEstadoPrestamo" name="nuevoEstadoPrestamo" required>
                   
                   <option value="">Seleccionar estado del prestamo</option>
                     
@@ -273,11 +273,7 @@ MODAL EDITAR PRODUCTO
               
                 <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                <select class="form-control input-lg"  name="editarCategoria" readonly required>
-                  
-                  <option id="editarCategoria"></option>
-
-                </select>
+              
 
               </div>
 
@@ -313,97 +309,15 @@ MODAL EDITAR PRODUCTO
 
              <!-- ENTRADA PARA STOCK -->
 
-             <div class="form-group">
-              
-              <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-check"></i></span> 
-
-                <input type="number" class="form-control input-lg" id="editarStock" name="editarStock" min="0" required>
-
-              </div>
-
-            </div>
+           
 
              <!-- ENTRADA PARA PRECIO COMPRA -->
 
-             <div class="form-group row">
-
-                <div class="col-xs-6">
-                
-                  <div class="input-group">
-                  
-                    <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span> 
-
-                    <input type="number" class="form-control input-lg" id="editarPrecioCompra" name="editarPrecioCompra" step="any" min="0" required>
-
-                  </div>
-
-                </div>
-
-                <!-- ENTRADA PARA PRECIO VENTA -->
-
-                <div class="col-xs-6">
-                
-                  <div class="input-group">
-                  
-                    <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span> 
-
-                    <input type="number" class="form-control input-lg" id="editarPrecioVenta" name="editarPrecioVenta" step="any" min="0" readonly required>
-
-                  </div>
-                
-                  <br>
-
-                  <!-- CHECKBOX PARA PORCENTAJE -->
-
-                  <div class="col-xs-6">
-                    
-                    <div class="form-group">
-                      
-                      <label>
-                        
-                        <input type="checkbox" class="minimal porcentaje" checked>
-                        Utilizar procentaje
-                      </label>
-
-                    </div>
-
-                  </div>
-
-                  <!-- ENTRADA PARA PORCENTAJE -->
-
-                  <div class="col-xs-6" style="padding:0">
-                    
-                    <div class="input-group">
-                      
-                      <input type="number" class="form-control input-lg nuevoPorcentaje" min="0" value="40" required>
-
-                      <span class="input-group-addon"><i class="fa fa-percent"></i></span>
-
-                    </div>
-
-                  </div>
-
-                </div>
-
-            </div>
+            
 
             <!-- ENTRADA PARA SUBIR FOTO -->
 
-             <div class="form-group">
-              
-              <div class="panel">SUBIR IMAGEN</div>
-
-              <input type="file" class="nuevaImagen" name="editarImagen">
-
-              <p class="help-block">Peso máximo de la imagen 2MB</p>
-
-              <img src="vistas/img/productos/default/anonymous.png" class="img-thumbnail previsualizar" width="100px">
-
-              <input type="hidden" name="imagenActual" id="imagenActual">
-
-            </div>
+            
 
           </div>
 
