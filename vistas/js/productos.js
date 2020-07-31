@@ -114,9 +114,6 @@ $(".tablaProductos tbody").on(
 	"button.btnEliminarProducto",
 	function () {
 		var idProducto = $(this).attr("idProducto");
-		var codigo = $(this).attr("codigo");
-		var imagen = $(this).attr("imagen");
-
 		swal({
 			title: "¿Está seguro de borrar el producto?",
 			text: "¡Si no lo está puede cancelar la accíón!",
@@ -130,11 +127,7 @@ $(".tablaProductos tbody").on(
 			if (result.value) {
 				window.location =
 					"index.php?ruta=productos&idProducto=" +
-					idProducto +
-					"&imagen=" +
-					imagen +
-					"&codigo=" +
-					codigo;
+					idProducto;
 			}
 		});
 	}

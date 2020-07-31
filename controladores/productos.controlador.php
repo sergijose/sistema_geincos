@@ -168,15 +168,8 @@ class ControladorProductos{
 
 		if(isset($_GET["idProducto"])){
 
-			$tabla ="productos";
+			$tabla ="producto";
 			$datos = $_GET["idProducto"];
-
-			if($_GET["imagen"] != "" && $_GET["imagen"] != "vistas/img/productos/default/anonymous.png"){
-
-				unlink($_GET["imagen"]);
-				rmdir('vistas/img/productos/'.$_GET["codigo"]);
-
-			}
 
 			$respuesta = ModeloProductos::mdlEliminarProducto($tabla, $datos);
 
@@ -205,19 +198,7 @@ class ControladorProductos{
 
 	}
 
-	/*=============================================
-	MOSTRAR SUMA VENTAS
-	=============================================*/
-
-	static public function ctrMostrarSumaVentas(){
-
-		$tabla = "productos";
-
-		$respuesta = ModeloProductos::mdlMostrarSumaVentas($tabla);
-
-		return $respuesta;
-
-	}
+	
 
 
 }

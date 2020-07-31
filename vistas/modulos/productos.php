@@ -306,6 +306,7 @@ MODAL EDITAR PRODUCTO
               <span class="input-group-addon"><i class="fa fa-code"></i></span>
 
             <input type="text" class="form-control input-lg" id="editarCodigo" name="editarCodigo" placeholder="Ingrese Codigo" required>
+              <!-- oculto el id del producto para poder editar -->
             <input type="text" id="id" name="id" hidden required>    
             </div>
 
@@ -395,3 +396,9 @@ MODAL EDITAR PRODUCTO
   </div>
 
 </div>
+<?php
+
+  $eliminarProducto = new ControladorProductos();
+  $eliminarProducto -> ctrEliminarProducto();
+
+?>      

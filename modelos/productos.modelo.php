@@ -94,10 +94,10 @@ class ModeloProductos{
 	}
 
 	/*=============================================
-	BORRAR MODELO	
+	BORRAR PRODUCTO
 	=============================================*/
 
-	static public function mdlBorrarModelo($tabla, $datos){
+	static public function mdlEliminarProducto($tabla, $datos){
 
 		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
 
@@ -112,8 +112,6 @@ class ModeloProductos{
 			return "error";	
 
 		}
-
-		$stmt -> close();
 
 		$stmt = null;
 
