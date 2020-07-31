@@ -21,7 +21,9 @@ session_start();
    <!--=====================================
   PLUGINS DE CSS
   ======================================-->
-
+<!-- Alertify  css-->
+<link rel="stylesheet" href="vistas/plugins/alertifyjs/css/alertify.css">
+<link rel="stylesheet" href="vistas/plugins/alertifyjs/css/themes/default.css">
 
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="vistas/bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -49,6 +51,8 @@ session_start();
   PLUGINS DE JAVASCRIPT
   ======================================-->
 
+<!-- Alertify  js-->
+  <script src="vistas/plugins/alertifyjs/alertify.js"></script>
   <!-- jQuery 3 -->
   <script src="vistas/bower_components/jquery/dist/jquery.min.js"></script>
   

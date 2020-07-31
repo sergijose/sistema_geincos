@@ -52,18 +52,7 @@ class ControladorProductos{
 
 					echo'<script>
 
-						swal({
-							  type: "success",
-							  title: "El producto ha sido guardado correctamente",
-							  showConfirmButton: true,
-							  confirmButtonText: "Cerrar"
-							  }).then(function(result){
-										if (result.value) {
-
-										window.location = "productos";
-
-										}
-									})
+					alertify.success("Agregado con exito");
 
 						</script>';
 
@@ -74,17 +63,7 @@ class ControladorProductos{
 
 				echo'<script>
 
-					swal({
-						  type: "error",
-						  title: "¡El producto no puede ir con los campos vacíos o llevar caracteres especiales!",
-						  showConfirmButton: true,
-						  confirmButtonText: "Cerrar"
-						  }).then(function(result){
-							if (result.value) {
-
-							window.location = "productos";
-
-							}
+				alertify.error("No se pudo agregar ");
 						})
 
 			  	</script>';
@@ -120,18 +99,7 @@ class ControladorProductos{
 
 					echo'<script>
 
-						swal({
-							  type: "success",
-							  title: "El producto ha sido editado correctamente",
-							  showConfirmButton: true,
-							  confirmButtonText: "Cerrar"
-							  }).then(function(result){
-										if (result.value) {
-
-										window.location = "productos";
-
-										}
-									})
+					alertify.success("Actualizado con exito");
 
 						</script>';
 
@@ -142,18 +110,9 @@ class ControladorProductos{
 
 				echo'<script>
 
-					swal({
-						  type: "error",
-						  title: "¡El producto no puede ir con los campos vacíos o llevar caracteres especiales!",
-						  showConfirmButton: true,
-						  confirmButtonText: "Cerrar"
-						  }).then(function(result){
-							if (result.value) {
-
-							window.location = "productos";
-
-							}
-						})
+					
+						alertify.error("No se pudo Actualizar ");
+						
 
 			  	</script>';
 			}
@@ -176,7 +135,7 @@ class ControladorProductos{
 			if($respuesta == "ok"){
 
 				echo'<script>
-
+					
 				swal({
 					  type: "success",
 					  title: "El producto ha sido borrado correctamente",
