@@ -85,7 +85,8 @@ class TablaProductos
                   "' . $modelos["descripcion"] . '",
                   "' . $productos[$i]["cod_producto"] . '",
                   "' . $estadoProducto["descripcion"] . '",
-                  "' . $estado . '",
+				  "' . $estado . '",
+				  "' . $productos[$i]["fecha"] . '",
 			      "' . $botones . '"
 			    ],';
 		}
