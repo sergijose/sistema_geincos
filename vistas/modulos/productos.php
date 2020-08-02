@@ -43,8 +43,8 @@
               <th style="width:10px">#</th>
               <th>Modelo</th>
               <th>Código</th>
-              <th>Estado</th>
-              <th>Disponible</th>
+              <th>Estado Producto</th>
+              <th>Disponibilidad</th>
               <th>Fecha_Registro</th>
               <th>Acciones</th>
 
