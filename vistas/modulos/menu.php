@@ -94,10 +94,10 @@
 
 			<li>
 
-				<a href="clientes">
+				<a href="prestamos">
 
-					<i class="fa fa-users"></i>
-					<span>Clientes</span>
+					<i class="fa fa-leanpub"></i>
+					<span>Prestamos</span>
 
 				</a>
 

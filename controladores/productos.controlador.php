@@ -99,7 +99,7 @@ class ControladorProductos{
 
 					echo'<script>
 
-					alertify.alert("Actualizado con exito");
+					alertify.success("Actualizado con exito");
 
 						</script>';
 
