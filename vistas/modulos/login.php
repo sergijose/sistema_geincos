@@ -4,13 +4,13 @@
   
   <div class="login-logo">
 
-    <img src="vistas/img/plantilla/login-03.jpg" class="img-responsive" style="padding:30px 100px 0px 100px ">
+  <!--  <img src="vistas/img/plantilla/avatar.png" class="img-responsive" style="padding:30px 100px 0px 100px  ">-->
 
   </div>
 
   <div class="login-box-body">
 
-    <p class="login-box-msg">Ingresar al sistema</p>
+    <p class="login-box-msg"><b>Ingresar al sistema</b></p>
 
     <form method="post">
 
