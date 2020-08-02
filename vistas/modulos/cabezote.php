@@ -8,15 +8,24 @@
 		<!-- logo mini -->
 		<span class="logo-mini">
 			<p>G</p>
+<<<<<<< HEAD
 			<!--<img src="vistas/img/plantilla/avatar.png" class="img-responsive" style="padding:10px">-->
+=======
+		<!--	<img src="vistas/img/plantilla/icono-blanco.png" class="img-responsive" style="padding:10px"> -->
+>>>>>>> 80b0e2827cf91e414ee388fd9b59c9c908014aac
 
 		</span>
 
 		<!-- logo normal -->
 
 		<span class="logo-lg">
+<<<<<<< HEAD
 		<p>GEINCOS</p>
 			<!--<img src="vistas/img/plantilla/logofinal.png" class="img-responsive" style="padding:10px 0px">-->
+=======
+		<p>Geincos</p>
+		<!--	<img src="vistas/img/plantilla/logo-blanco-lineal.png" class="img-responsive" style="padding:10px 0px"> -->
+>>>>>>> 80b0e2827cf91e414ee388fd9b59c9c908014aac
 
 		</span>
 

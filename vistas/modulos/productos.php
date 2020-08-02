@@ -45,6 +45,7 @@
               <th>Código</th>
               <th>Estado</th>
               <th>Disponible</th>
+              <th>Fecha_Registro</th>
               <th>Acciones</th>
 
             </tr>

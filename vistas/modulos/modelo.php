@@ -112,6 +112,13 @@
 MODAL MOSTRAR MOSTRARIMAGEN MARCAS
 ======================================-->
 <div id="modalMostrar" class="modal fade" role="dialog" >
+<div class="modal-header" style="background:#129F9B; color:white">
+
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+
+
+</div>
 
   <div class="modal-dialog modal-sm">
 
