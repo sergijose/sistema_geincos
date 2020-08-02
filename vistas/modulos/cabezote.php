@@ -1,95 +1,93 @@
  <header class="main-header">
- 	
-	<!--=====================================
+
+ 	<!--=====================================
 	LOGOTIPO
 	======================================-->
-	<a href="inicio" class="logo">
-		
-		<!-- logo mini -->
-		<span class="logo-mini">
-			<p>G</p>
-			<!--<img src="vistas/img/plantilla/avatar.png" class="img-responsive" style="padding:10px">-->
-		<!--	<img src="vistas/img/plantilla/icono-blanco.png" class="img-responsive" style="padding:10px"> -->
+ 	<a href="inicio" class="logo">
 
-		</span>
+ 		<!-- logo mini -->
+ 		<span class="logo-mini">
+ 			<p>G</p>
+ 			<!--<img src="vistas/img/plantilla/avatar.png" class="img-responsive" style="padding:10px">-->
+ 			<!--	<img src="vistas/img/plantilla/icono-blanco.png" class="img-responsive" style="padding:10px"> -->
 
-		<!-- logo normal -->
+ 		</span>
 
-		<span class="logo-lg">
-		<p>GEINCOS</p>
-			<!--<img src="vistas/img/plantilla/logofinal.png" class="img-responsive" style="padding:10px 0px">-->
-	
-		<!--	<img src="vistas/img/plantilla/logo-blanco-lineal.png" class="img-responsive" style="padding:10px 0px"> -->
+ 		<!-- logo normal -->
 
-		</span>
+ 		<span class="logo-lg">
+ 			<p>GEINCOS</p>
+ 			<!--<img src="vistas/img/plantilla/logofinal.png" class="img-responsive" style="padding:10px 0px">-->
 
-	</a>
+ 			<!--	<img src="vistas/img/plantilla/logo-blanco-lineal.png" class="img-responsive" style="padding:10px 0px"> -->
 
-	<!--=====================================
+ 		</span>
+
+ 	</a>
+
+ 	<!--=====================================
 	BARRA DE NAVEGACIÓN
 	======================================-->
-	<nav class="navbar navbar-static-top" role="navigation">
-		
-		<!-- Botón de navegación -->
+ 	<nav class="navbar navbar-static-top" role="navigation">
 
-	 	<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        	
-        	<span class="sr-only">Toggle navigation</span>
-      	
-      	</a>
+ 		<!-- Botón de navegación -->
 
-		<!-- perfil de usuario -->
+ 		<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
 
-		<div class="navbar-custom-menu">
-				
-			<ul class="nav navbar-nav">
-				
-				<li class="dropdown user user-menu">
-					
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+ 			<span class="sr-only">Toggle navigation</span>
 
-					<?php
+ 		</a>
 
-					if($_SESSION["foto"] != ""){
+ 		<!-- perfil de usuario -->
 
-						echo '<img src="'.$_SESSION["foto"].'" class="user-image">';
+ 		<div class="navbar-custom-menu">
 
-					}else{
+ 			<ul class="nav navbar-nav">
 
+ 				<li class="dropdown user user-menu">
 
-						echo '<img src="vistas/img/usuarios/default/anonymous.png" class="user-image">';
+ 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-					}
+ 						<?php
+
+							if ($_SESSION["foto"] != "") {
+
+								echo '<img src="' . $_SESSION["foto"] . '" class="user-image">';
+							} else {
 
 
-					?>
-						
-						<span class="hidden-xs"><?php  echo $_SESSION["nombre"]; ?></span>
+								echo '<img src="vistas/img/usuarios/default/anonymous.png" class="user-image">';
+							}
 
-					</a>
 
-					<!-- Dropdown-toggle -->
+							?>
 
-					<ul class="dropdown-menu">
-						
-						<li class="user-body">
-							
-							<div class="pull-right">
-								
-								<a href="salir" class="btn btn-default btn-flat">Salir</a>
+ 						<span class="hidden-xs"><?php echo $_SESSION["nombre"]; ?></span>
 
-							</div>
+ 					</a>
 
-						</li>
+ 					<!-- Dropdown-toggle -->
 
-					</ul>
+ 					<ul class="dropdown-menu">
 
-				</li>
+ 						<li class="user-body">
 
-			</ul>
+ 							<div class="pull-right">
 
-		</div>
+ 								<a href="salir" class="btn btn-default btn-flat">Salir</a>
 
-	</nav>
+ 							</div>
+
+ 						</li>
+
+ 					</ul>
+
+ 				</li>
+
+ 			</ul>
+
+ 		</div>
+
+ 	</nav>
 
  </header>

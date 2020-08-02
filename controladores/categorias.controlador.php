@@ -12,7 +12,7 @@ class ControladorCategorias{
 
 			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevaCategoria"])){
 
-				$tabla = "modelo";
+				$tabla = "categoria";
 
 				$datos = $_POST["nuevaCategoria"];
 
