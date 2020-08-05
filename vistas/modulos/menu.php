@@ -94,24 +94,15 @@
 
 			</li>
 
-			<li>
-
-				<a href="prestamos">
-
-					<i class="fa fa-leanpub"></i>
-					<span>Prestamos</span>
-
-				</a>
-
-			</li>
+			
 
 			<li class="treeview">
 
 				<a href="#">
 
-					<i class="fa fa-list-ul"></i>
+					<i class="fa fa-leanpub"></i>
 
-					<span>Ventas</span>
+					<span>Prestamos</span>
 
 					<span class="pull-right-container">
 
@@ -125,10 +116,10 @@
 
 					<li>
 
-						<a href="ventas">
+						<a href="prestamos">
 
 							<i class="fa fa-circle-o"></i>
-							<span>Administrar ventas</span>
+							<span>Administrar prestamo</span>
 
 						</a>
 
@@ -136,10 +127,10 @@
 
 					<li>
 
-						<a href="crear-venta">
+						<a href="crear-prestamo">
 
 							<i class="fa fa-circle-o"></i>
-							<span>Crear venta</span>
+							<span>Crear prestamo</span>
 
 						</a>
 
@@ -150,7 +141,7 @@
 						<a href="reportes">
 
 							<i class="fa fa-circle-o"></i>
-							<span>Reporte de ventas</span>
+							<span>Reporte de prestamo</span>
 
 						</a>
 
