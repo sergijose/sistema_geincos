@@ -69,6 +69,20 @@ class TablaProductosPrestamos{
   
               $estadoProducto = ControladorProductos::ctrMostrarEstadoProducto($item, $valor,$order);
 
+              if($estadoProducto["descripcion"] =="MALOGRADO"){
+
+                $estado = "<button class='btn btn-danger'>".$estadoProducto["descripcion"]."</button>";
+
+            }else if($estadoProducto["descripcion"]=="REPARACION GARANTIA" or $estadoProducto["descripcion"]=="REPARACION INTERNA" ){
+
+                $estado = "<button class='btn btn-warning'>".$estadoProducto["descripcion"]."</button>";
+
+            }else{
+
+                $estado = "<button class='btn btn-success'>".$estadoProducto["descripcion"]."</button>";
+
+            }
+
 		  	/*=============================================
  	 		TRAEMOS ESTADO DEL PRESTAMO DEL PRODUCTO
               =============================================*/ 
@@ -88,14 +102,14 @@ class TablaProductosPrestamos{
  	 		TRAEMOS LAS ACCIONES
   			=============================================*/ 
 
-		  	$botones =  "<div class='btn-group'><button class='btn btn-primary agregarProducto recuperarBoton' idProducto='".$productos[$i]["id"]."'>Agregar</button></div>"; 
+		  	$botones =  "<div class='btn-group'><button class='btn btn-primary agregarProducto recuperarBoton' idProducto='".$productos[$i]["id"]."'>Prestar</button></div>"; 
 
 		  	$datosJson .='[
                   "'.($i+1).'",
                 "'.$imagenProducto.'",
 			      "'.$modelos["descripcion"].'",
 			      "'.$productos[$i]["cod_producto"].'",
-			      "'.$estadoProducto["descripcion"].'",
+			      "'.$estado.'",
 			      "'.$estadoPrestamoProducto.'",
 			      "'.$botones.'"
 			    ],';

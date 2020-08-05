@@ -1,9 +1,9 @@
 
-
+//esto nos servira para comprobar si nuestro json esta bien estructurado
 $.ajax({
 	url: "ajax/datatable-prestamos.ajax.php",
 	success: function (respuesta) {
-			console.log("respuesta", respuesta);
+			//console.log("respuesta", respuesta);
 	},
 });
 
