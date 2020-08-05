@@ -200,6 +200,7 @@
 
                  <tr>
                   <th style="width: 10px">#</th>
+                  <th>Imagen</th>
                   <th>Modelo</th>
                   <th>Código del Producto</th>
                   <th>Estado Producto</th>
