@@ -65,8 +65,8 @@ $(".tablaPrestamos tbody").on("click", "button.agregarProducto", function () {
       var estado_prestamo = respuesta["estado_prestamo"];
 
       /*=============================================
-					  EVITAR AGREGAR PRODUTO CUANDO EL STOCK ESTÁ EN CERO
-					  =============================================*/
+					  EVITAR AGREGAR PRODUTO CUANDO EL ESTADO DEL PRESTAMO ESTÁ OCUPADO
+       =============================================*/
 
       if (estado_prestamo == "OCUPADO") {
         swal({
@@ -107,23 +107,58 @@ $(".tablaPrestamos tbody").on("click", "button.agregarProducto", function () {
           "</div>" +
           "</div>" +
           "</div>"
-      );
-    },
-  });
+      )
+      localStorage.removeItem("quitarProducto");
+    }
+  })
 });
 
+/*=============================================
+CUANDO CARGUE LA TABLA CADA VEZ QUE NAVEGUE EN ELLA
+=============================================*/
 
+$(".tablaPrestamos").on("draw.dt", function(){
+
+	if(localStorage.getItem("quitarProducto") != null){
+
+		var listaIdProductos = JSON.parse(localStorage.getItem("quitarProducto"));
+
+		for(var i = 0; i < listaIdProductos.length; i++){
+
+			$("button.recuperarBoton[idProducto='"+listaIdProductos[i]["idProducto"]+"']").removeClass('btn-default');
+			$("button.recuperarBoton[idProducto='"+listaIdProductos[i]["idProducto"]+"']").addClass('btn-primary agregarProducto');
+
+		}
+
+
+	}
+
+
+})
 
 /*=============================================
-QUITAR PRODUCTOS DE LA VENTA Y RECUPERAR BOTÓN
+QUITAR PRODUCTOS DEL PRESTAMO Y RECUPERAR BOTÓN
 =============================================*/
+
+var idQuitarProducto=[];
+localStorage.removeItem("quitarProducto");
 $(".formularioPrestamo").on("click", "button.quitarProducto", function(){
 
 	$(this).parent().parent().parent().parent().remove();
 
 	var idProducto = $(this).attr("idProducto");
+/*=============================================
+	ALMACENAR EN EL LOCALSTORAGE EL ID DEL PRODUCTO A QUITAR
+  =============================================*/
+    if(localStorage.getItem("quitarProducto")== null){
+      idQuitarProducto = [];
 
-	
+    }else{
+      idQuitarProducto.concat(localStorage.getItem("quitarProducto"))
+
+    }
+    idQuitarProducto.push({"idProducto":idProducto});
+    localStorage.setItem("quitarProducto", JSON.stringify(idQuitarProducto));
 
 	$("button.recuperarBoton[idProducto='"+idProducto+"']").removeClass('btn-default');
 
