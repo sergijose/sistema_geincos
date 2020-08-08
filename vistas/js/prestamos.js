@@ -111,3 +111,24 @@ $(".tablaPrestamos tbody").on("click", "button.agregarProducto", function () {
     },
   });
 });
+
+
+
+/*=============================================
+QUITAR PRODUCTOS DE LA VENTA Y RECUPERAR BOTÓN
+=============================================*/
+$(".formularioPrestamo").on("click", "button.quitarProducto", function(){
+
+	$(this).parent().parent().parent().parent().remove();
+
+	var idProducto = $(this).attr("idProducto");
+
+	
+
+	$("button.recuperarBoton[idProducto='"+idProducto+"']").removeClass('btn-default');
+
+	$("button.recuperarBoton[idProducto='"+idProducto+"']").addClass('btn-primary agregarProducto');
+
+	
+
+})
