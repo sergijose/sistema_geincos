@@ -13,15 +13,34 @@ class AjaxProductos{
 	=============================================*/	
 
 	public $idProducto;
+	public $traerProductos;
 
 	public function ajaxEditarProducto(){
 
-		$item = "id";
+		if($this->traerProductos == "ok"){
+
+			$item = null;
+			$valor = null;
+			$orden = "id";
+	  
+			$respuesta = ControladorProductos::ctrMostrarProductos($item, $valor,
+			  $orden);
+	  
+			echo json_encode($respuesta);
+	  
+	  
+		  }else {
+
+			$item = "id";
 		$valor = $this->idProducto;
         $orden = "id";
 		$respuesta = ControladorProductos::ctrMostrarProductos($item, $valor,$orden);
 
 		echo json_encode($respuesta);
+
+		  }
+
+		
 
 	}
 }
@@ -35,3 +54,14 @@ if(isset($_POST["idProducto"])){
 	$marca -> idProducto = $_POST["idProducto"];
 	$marca -> ajaxEditarProducto();
 }
+/*=============================================
+TRAER PRODUCTO
+=============================================*/ 
+
+if(isset($_POST["traerProductos"])){
+
+	$traerProductos = new AjaxProductos();
+	$traerProductos -> traerProductos = $_POST["traerProductos"];
+	$traerProductos -> ajaxEditarProducto();
+  
+  }

@@ -167,3 +167,74 @@ $(".formularioPrestamo").on("click", "button.quitarProducto", function(){
 	
 
 })
+
+
+/*=============================================
+AGREGANDO PRODUCTOS DESDE EL BOTÓN PARA DISPOSITIVOS
+=============================================*/
+
+
+
+$(".btnAgregarProducto").click(function(){
+
+	
+
+	var datos = new FormData();
+	datos.append("traerProductos", "ok");
+
+	$.ajax({
+
+		url:"ajax/productos.ajax.php",
+      	method: "POST",
+      	data: datos,
+      	cache: false,
+      	contentType: false,
+      	processData: false,
+      	dataType:"json",
+      	success:function(respuesta){
+      	    
+      	    	$(".nuevoProducto").append(
+
+                '<div class="row" style="padding:5px 15px">' +
+                "<!-- Codigo del producto -->" +
+                '<div class="col-xs-6" style="padding-right:0px">' +
+                '<div class="input-group">' +
+                '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto=" "'+ 
+                '"><i class="fa fa-times"></i></button></span>' +
+                '<select class="form-control nuevaDescripcionProducto" idProducto name="nuevaDescripcionProducto" required>'+
+
+	              '<option>Seleccione el producto</option>'+
+
+	              '</select>'+  
+                "</div>" +
+                "</div>" +
+                "</div>");
+
+
+	        // AGREGAR LOS PRODUCTOS AL SELECT 
+
+	         respuesta.forEach(funcionForEach);
+
+	         function funcionForEach(item, index){
+
+	         	console.log(item);
+
+		         	$(".nuevaDescripcionProducto").append(
+
+						'<option idProducto="'+item.id+'" value="'+item.cod_producto+'">'+item.cod_producto+'</option>'
+		         	)
+              
+              
+		         
+		         	        
+
+	         }
+
+        	
+
+
+      	}
+
+	})
+
+})
