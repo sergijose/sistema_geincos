@@ -217,13 +217,13 @@ $(".btnAgregarProducto").click(function(){
 
 	         function funcionForEach(item, index){
 
-	         	console.log(item);
+            if (item.estado_prestamo != "OCUPADO") {
 
 		         	$("#producto"+numProducto).append(
 
 						'<option idProducto="'+item.id+'" value="'+item.cod_producto+'">'+item.cod_producto+'</option>'
 		         	)
-              
+            }
               
 		         
 		         	        
