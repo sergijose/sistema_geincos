@@ -173,10 +173,10 @@ $(".formularioPrestamo").on("click", "button.quitarProducto", function(){
 AGREGANDO PRODUCTOS DESDE EL BOTÓN PARA DISPOSITIVOS
 =============================================*/
 
-
+var numProducto = 0;
 
 $(".btnAgregarProducto").click(function(){
-
+  numProducto ++;
 	
 
 	var datos = new FormData();
@@ -201,7 +201,7 @@ $(".btnAgregarProducto").click(function(){
                 '<div class="input-group">' +
                 '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto=" "'+ 
                 '"><i class="fa fa-times"></i></button></span>' +
-                '<select class="form-control nuevaDescripcionProducto" idProducto name="nuevaDescripcionProducto" required>'+
+                '<select class="form-control nuevaDescripcionProducto"  id="producto'+numProducto+'" idProducto name="nuevaDescripcionProducto" required>'+
 
 	              '<option>Seleccione el producto</option>'+
 
@@ -219,7 +219,7 @@ $(".btnAgregarProducto").click(function(){
 
 	         	console.log(item);
 
-		         	$(".nuevaDescripcionProducto").append(
+		         	$("#producto"+numProducto).append(
 
 						'<option idProducto="'+item.id+'" value="'+item.cod_producto+'">'+item.cod_producto+'</option>'
 		         	)
