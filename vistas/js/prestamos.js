@@ -60,7 +60,7 @@ $(".tablaPrestamos tbody").on("click", "button.agregarProducto", function () {
     processData: false,
     dataType: "json",
     success: function (respuesta) {
-      console.log(respuesta);
+     
       var codigo = respuesta["cod_producto"];
       var estado_prestamo = respuesta["estado_prestamo"];
 
@@ -87,7 +87,7 @@ $(".tablaPrestamos tbody").on("click", "button.agregarProducto", function () {
           "<!-- Codigo del producto -->" +
           '<div class="col-xs-6" style="padding-right:0px">' +
           '<div class="input-group">' +
-          '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto="' +
+          '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs  quitarProducto" idProducto="' +
           idProducto +
           '"><i class="fa fa-times"></i></button></span>' +
           '<input type="text" class="form-control nuevoCodigoProducto" idProducto="' +
@@ -108,9 +108,13 @@ $(".tablaPrestamos tbody").on("click", "button.agregarProducto", function () {
           "</div>" +
           "</div>"
       )
+      listarProductos();
       localStorage.removeItem("quitarProducto");
+      
     }
+    
   })
+  
 });
 
 /*=============================================
@@ -164,7 +168,7 @@ $(".formularioPrestamo").on("click", "button.quitarProducto", function(){
 
 	$("button.recuperarBoton[idProducto='"+idProducto+"']").addClass('btn-primary agregarProducto');
 
-	
+	listarProductos();
 
 })
 
@@ -201,7 +205,7 @@ $(".btnAgregarProducto").click(function(){
                 '<div class="input-group">' +
                 '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto=" "'+ 
                 '"><i class="fa fa-times"></i></button></span>' +
-                '<select class="form-control nuevaDescripcionProducto"  id="producto'+numProducto+'" idProducto name="nuevaDescripcionProducto" required>'+
+                '<select class="form-control nuevoCodigoProducto"  id="producto'+numProducto+'" idProducto name="nuevaDescripcionProducto" required>'+
 
 	              '<option>Seleccione el producto</option>'+
 
@@ -224,17 +228,88 @@ $(".btnAgregarProducto").click(function(){
 						'<option idProducto="'+item.id+'" value="'+item.cod_producto+'">'+item.cod_producto+'</option>'
 		         	)
             }
-              
+           
 		         
 		         	        
 
 	         }
-
+          
         	
 
 
       	}
 
 	})
-
+  
 })
+
+/*=============================================
+SELECCIONAR PRODUCTO
+=============================================*/
+
+$(".formularioPrestamo").on("change", "select.nuevoCodigoProducto", function(){
+
+  var codigoProducto = $(this).val();
+
+  var nuevaDescripcionProducto = $(this).parent().parent().parent().children().children().children(".nuevoCodigoProducto");
+	
+	var datos = new FormData();
+    datos.append("codigoProducto", codigoProducto);
+
+
+	  $.ajax({
+
+     	url:"ajax/productos.ajax.php",
+      	method: "POST",
+      	data: datos,
+      	cache: false,
+      	contentType: false,
+      	processData: false,
+      	dataType:"json",
+      	success:function(respuesta){
+      	    //console.log(respuesta);
+      	    $(nuevaDescripcionProducto).attr("idProducto", respuesta["id"]);	  
+  	      // AGRUPAR PRODUCTOS EN FORMATO JSON
+
+	        listarProductos()
+
+      	}
+
+      })
+})
+
+
+
+
+
+
+
+
+
+
+      
+
+
+
+/*=============================================
+LISTAR TODOS LOS PRODUCTOS
+=============================================*/
+
+function listarProductos(){
+
+	var listaProductos = [];
+
+	var codigo = $(".nuevoCodigoProducto");
+
+
+	for(var i = 0; i < codigo.length; i++){
+
+		listaProductos.push({ "id" : $(codigo[i]).attr("idProducto"), 
+							  "codigo" : $(codigo[i]).val()})
+
+	}
+console.log(listaProductos);
+  $("#listaProductos").val(JSON.stringify(listaProductos)); 
+  
+
+}
