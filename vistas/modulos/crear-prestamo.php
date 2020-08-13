@@ -66,7 +66,7 @@
 
                     <span class="input-group-addon"><i class="fa fa-users"></i></span>
 
-                    <input type="text" class="form-control" id="nuevoEmpleado" name="nuevoEmpleado" value="pedro" readonly>
+                    <input type="text" class="form-control" id="nuevoEmpleado" name="nuevoEmpleado"  value=1 readonly>
 
                   </div>
 
@@ -126,8 +126,8 @@
 
           <?php
 
-          /*$guardarPrestamo = new ControladorPrestamos();
-          $guardarPrestamo -> ctrCrearPrestamo();*/
+          $guardarPrestamo = new ControladorPrestamos();
+          $guardarPrestamo -> ctrCrearPrestamo();
 
           ?>
 
