@@ -113,35 +113,133 @@ class ControladorPrestamos{
 
 		}
 
+    }
+    
+    /*=============================================
+	EDITAR PRESTAMOS
+	=============================================*/
+
+	static public function ctrEditarPrestamo(){
+
+		if(isset($_POST["idPrestamo"])){
+
+            /*=============================================
+			FORMATEAR TABLA DE PRODUCTOS 
+			=============================================*/
+			$tabla = "prestamo";
+
+			$item = "id";
+			$valor = $_POST["idPrestamo"];
+
+			$traerPrestamo = ModeloPrestamos::mdlMostrarPrestamos($tabla, $item, $valor);
+
+			/*=============================================
+			REVISAR SI VIENE PRODUCTOS EDITADOS
+			=============================================*/
+
+			if($_POST["listaProductos"] == ""){
+
+				$listaProductos = $traerPrestamo["producto"];
+				$cambioProducto = false;
+
+
+			}else{
+
+				$listaProductos = $_POST["listaProductos"];
+				$cambioProducto = true;
+			}
+
+			if($cambioProducto){
+
+				$productos =  json_decode($traerPrestamo["producto"], true);
+
+				$totalProductosPrestados = array();
+
+				foreach ($productos as $key => $value) {
+
+					array_push($totalProductosPrestados, $value["codigo"]);
+					
+					$tablaProductos = "producto";
+					$item1a = "estado_prestamo";
+                    $valor1a = "DISPONIBLE";
+                    $valorproducto = $value["id"];
+				    
+			    $nuevasPrestamos = ModeloProductos::mdlActualizarProducto($tablaProductos, $item1a, $valor1a, $valorproducto);
+
+
+				
+
+					
+
+				}
+
+				
+			
+                    //ACTUALIZAR EL ESTADO DEL PRODUCTO AL REALIZAR EL PRESTAMO ACTUALIZADO
+
+			$listaProductos_2 = json_decode($listaProductos, true);
+
+			foreach ($listaProductos_2 as $key => $value) {
+
+			   
+				//con esto actualizo todos los productos que tienen ese id de la listaProductos
+			    $tablaProductos_2 = "producto";
+			    $valor_2 = $value["id"];
+				$item1a_2 = "estado_prestamo";
+				$valor1a_2 = "OCUPADO";
+			    $nuevosPrestamos_2 = ModeloProductos::mdlActualizarProducto($tablaProductos_2, $item1a_2, $valor1a_2, $valor_2);
+
+
+            }
+        }
+			/*=============================================
+			GUARDAR LA COMPRA
+			=============================================*/	
+
+			
+
+            $datos = array("idusuario"=>$_POST["idUsuario"],
+                            "producto"=>$listaProductos,
+                           "idempleado"=>$_POST["nuevoEmpleado"],    
+                           "observaciones"=>$_POST["editarObservacion"],
+                           "id"=>$_POST["idPrestamo"]);
+
+			$respuesta = ModeloPrestamos::mdlEditarPrestamo($tabla, $datos);
+
+			if($respuesta == "ok"){
+              
+                echo'<script>
+                
+				swal({
+					  type: "success",
+					  title: "El prestamo se ha actualizado  correctamente",
+					  showConfirmButton: true,
+					  confirmButtonText: "Cerrar"
+					  }).then(function(result){
+								if (result.value) {
+
+								window.location = "prestamos";
+
+								}
+							})
+
+				</script>';
+
+            }
+            else{
+              
+				echo'<script>
+
+					
+						alertify.error("No se pudo Actualizar el prestamo ");
+						
+
+			  	</script>';
+			}
+
+		
+
 	}
-
-	/*=============================================
-	EDITAR VENTA
-	=============================================*/
-
-	
-
-
-	/*=============================================
-	ELIMINAR VENTA
-	=============================================*/
-
-	
-	/*=============================================
-	RANGO FECHAS
-	=============================================*/	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-	
+}
 
 }
