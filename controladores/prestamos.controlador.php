@@ -193,14 +193,16 @@ class ControladorPrestamos{
             }
         }
 			/*=============================================
-			GUARDAR LA COMPRA
+			GUARDAR EL PRESTAMO
 			=============================================*/	
 
+			
 			
 
             $datos = array("idusuario"=>$_POST["idUsuario"],
                             "producto"=>$listaProductos,
-                           "idempleado"=>$_POST["nuevoEmpleado"],    
+						   "idempleado"=>$_POST["nuevoEmpleado"], 
+						   "fecha_devolucion"=>$_POST["fechaDevolucion"],   
                            "observaciones"=>$_POST["editarObservacion"],
                            "id"=>$_POST["idPrestamo"]);
 

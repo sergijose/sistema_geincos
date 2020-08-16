@@ -99,10 +99,19 @@
 
                   <div class="input-group">
 
-                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
                     <textarea class="form-control" name="editarObservacion" id="nuevaObservacion" required><?php echo $prestamo["observaciones"]; ?></textarea>
 
                   </div>
+
+                </div>
+                  <!--=====================================
+                ENTRADA PARA REGISTRAR FECHA DE DEVOLUCION
+                ======================================-->
+                <p>* Registre <b> FECHA DE DEVOLUCION </b> solo cuando no se tenga ningun pendiente</p>
+                <div class="form-group  mostrarFecha" id="mostrarFecha" >
+
+                 
 
                 </div>
 

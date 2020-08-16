@@ -70,11 +70,12 @@ class ModeloPrestamos{
 
 	static public function mdlEditarPrestamo($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET idusuario= :idusuario,producto = :producto, idempleado = :idempleado,observaciones=:observaciones WHERE id = :id");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET idusuario= :idusuario,producto = :producto, idempleado = :idempleado,observaciones=:observaciones,fecha_devolucion=:fecha_devolucion WHERE id = :id");
 
 		$stmt->bindParam(":idusuario", $datos["idusuario"], PDO::PARAM_INT);
 		$stmt->bindParam(":producto", $datos["producto"], PDO::PARAM_STR);
-        $stmt->bindParam(":idempleado", $datos["idempleado"], PDO::PARAM_INT);
+		$stmt->bindParam(":idempleado", $datos["idempleado"], PDO::PARAM_INT);
+		$stmt->bindParam(":fecha_devolucion", $datos["fecha_devolucion"], PDO::PARAM_STR);
         $stmt->bindParam(":observaciones", $datos["observaciones"], PDO::PARAM_STR);
 		$stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
 	

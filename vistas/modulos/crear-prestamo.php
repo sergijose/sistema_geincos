@@ -81,12 +81,13 @@
 
                   <div class="input-group">
 
-                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
                     <textarea class="form-control" name="nuevaObservacion" id="nuevaObservacion" placeholder="Escriba si existe alguna observacion"></textarea>
 
                   </div>
 
                 </div>
+               
 
 
 

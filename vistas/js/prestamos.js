@@ -294,9 +294,9 @@ $(".formularioPrestamo").on("change", "select.nuevoCodigoProducto", function(){
 /*=============================================
 LISTAR TODOS LOS PRODUCTOS
 =============================================*/
-
+var contador = 0;
 function listarProductos(){
-
+contador++;
 	var listaProductos = [];
 
 	var codigo = $(".nuevoCodigoProducto");
@@ -308,8 +308,27 @@ function listarProductos(){
 							  "codigo" : $(codigo[i]).val()})
 
 	}
-console.log(listaProductos);
+
   $("#listaProductos").val(JSON.stringify(listaProductos)); 
+
+  if ($("#nuevoProducto").childNodes().length<1){
+    console.log("hola");
+     $(".mostrarFecha").append(
+
+      '<div class="input-group mostrarCaja'+contador+'">'+
+      '<span class="input-group-addon"><i class="fa fa-calendar"></i></span>'+
+      '<input type="date" class="form-control" id="fechaDevolucion" name="fechaDevolucion" value="<?php echo $prestamo["fecha_devolucion"];?>'+
+      '</div>')
+
+     
+      
+  }
+
+  //else{
+ //   $(".mostrarFecha").removeClass("mostrarFecha");
+  //  console.log($(".mostrarFecha"));
+  //}
+
   
 
 }
