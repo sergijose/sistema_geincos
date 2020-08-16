@@ -320,7 +320,7 @@ contador++;
       '<input type="date" class="form-control" id="fechaDevolucion" name="fechaDevolucion" value="<?php echo $prestamo["fecha_devolucion"];?>'+
       '</div>')
 
-     
+     //prueba
       
   }
 
