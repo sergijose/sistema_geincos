@@ -51,7 +51,7 @@
                     <input type="text" class="form-control" id="nuevoUsuario" name="nuevoUsuario" value="<?php echo $_SESSION["nombre"]; ?>" readonly>
 
                     <input type="hidden" name="idUsuario" value="<?php echo $_SESSION["id"]; ?>">
-
+                    <input type="hidden" name="nuevaObservacion" value="<?php echo $_SESSION["id"]; ?>">
                   </div>
 
                 </div>
@@ -73,20 +73,7 @@
                 </div>
 
 
-                <!--=====================================
-                ENTRADA PARA REGISTRAR OBSERVACIONES
-                ======================================-->
-
-                <div class="form-group">
-
-                  <div class="input-group">
-
-                    <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                    <textarea class="form-control" name="nuevaObservacion" id="nuevaObservacion" placeholder="Escriba si existe alguna observacion"></textarea>
-
-                  </div>
-
-                </div>
+               
                
 
 
@@ -102,6 +89,12 @@
                 </div>
 
                 <input type="hidden" id="listaProductos" name="listaProductos">
+
+                
+                 <!--=====================================
+                PARA INSERTAR VARIOS PRODUCTOS (ALMACENAMIENTO )
+                ======================================-->
+                <input type="hidden" id="listaProductos2" name="listaProductos2">
 
                 <!--=====================================
                 BOTÓN PARA AGREGAR PRODUCTO

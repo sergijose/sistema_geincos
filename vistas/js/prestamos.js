@@ -44,7 +44,7 @@ AGREGANDO PRODUCTOS PARA EL PRESTAMO DESDE LA TABLA
 =============================================*/
 var contadorObs = 0;
 $(".tablaPrestamos tbody").on("click", "button.agregarProducto", function () {
- contadorObs++;
+ contadorObs=contadorObs+1;
   var idProducto = $(this).attr("idProducto");
 
   $(this).removeClass("btn-primary agregarProducto");
@@ -93,7 +93,7 @@ $(".tablaPrestamos tbody").on("click", "button.agregarProducto", function () {
           '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs  quitarProducto" idProducto="' +
           idProducto +
           '"><i class="fa fa-times"></i></button></span>' +
-          '<input type="text" class="form-control nuevoCodigoProducto" idProducto="' +
+          '<input type="text" class="form-control nuevoCodigoProducto " idProducto="' +
           idProducto +
           '" name="agregarProducto" value="' +
           codigo +
@@ -112,7 +112,8 @@ $(".tablaPrestamos tbody").on("click", "button.agregarProducto", function () {
           "<!-- Agregar OBSERVACION DE PRESTAMO-->" +
           '<div class="col-xs-4 observaciones" style="padding-left:0px">' +
           '<div class="input-group">' +
-          '<button type="button"  class="btn btn-warning  form-control btnObservacion" name="btnObservacion" id="btnObservacion'+contadorObs+'" idProducto="'+ idProducto +'"  required>INSERTAR OBSERVACION' +
+          '<button type="button"  class="btn btn-warning  form-control btnObservacion" valor name="btnObservacion" id="btnObservacion'+contadorObs+'" idProducto="'+ idProducto +'"  required>INSERTAR OBSERVACION' +
+          '<input type="hidden" class="form-control nuevaObservacion" valor="" id="nuevaObservacion'+contadorObs+'" name="nuevaObservacion"> ' +
           "</div>" +
           "</div>" +
 
@@ -185,7 +186,8 @@ $(".formularioPrestamo").on("click", "button.quitarProducto", function(){
 
 	$("button.recuperarBoton[idProducto='"+idProducto+"']").addClass('btn-primary agregarProducto');
 
-	listarProductos();
+  listarProductos();
+  listaProductos2();
 
 })
 
@@ -288,7 +290,8 @@ $(".formularioPrestamo").on("change", "select.nuevoCodigoProducto", function(){
       	    $(nuevaDescripcionProducto).attr("idProducto", respuesta["id"]);	  
   	      // AGRUPAR PRODUCTOS EN FORMATO JSON
 
-	        listarProductos()
+          listarProductos()
+          listaProductos2();
 
       	}
 
@@ -314,28 +317,18 @@ LISTAR TODOS LOS PRODUCTOS
 
 function listarProductos(){
 
-	var listaProductos = [];
+  var listaProductos = [];
 
-	var codigo = $(".nuevoCodigoProducto");
-
-
+  var codigo = $(".nuevoCodigoProducto");
+  
 	for(var i = 0; i < codigo.length; i++){
 
 		listaProductos.push({ "id" : $(codigo[i]).attr("idProducto"), 
-							  "codigo" : $(codigo[i]).val()})
+                       "codigo" : $(codigo[i]).val()})        
 
 	}
 
   $("#listaProductos").val(JSON.stringify(listaProductos)); 
-
-  
-
-  //else{
- //   $(".mostrarFecha").removeClass("mostrarFecha");
-  //  console.log($(".mostrarFecha"));
-  //}
-
-  //comentario
 
 }
 
@@ -355,22 +348,59 @@ $(".tablas").on("click", "·btnEditarPrestamo", function(){
 
 //aparecer swal para llenar observaciones
 $(".nuevoProducto").on("click",".btnObservacion", function(){
-console.log("hola");
+  $(this).attr('disabled',true);
+  $(this).removeClass('btn-warning');
+  $(this).addClass('btn-success');
 swal({
   title: "Ingrese Observacion sobre el prestamo de este producto",
   input: "text",
-  type: "success",
+  type: "info",
+  inputPlaceholder: "campo obligatorio" , 
   showCancelButton: true,
   confirmButtonText: "Guardar",
-  cancelButtonText: "Cancelar",
+  allowEscapeKey:false,
+  allowOutsideClick:false,
+  closeOnClickOutside: false,
+  showCancelButton:false,
+  inputValidator: (value) => {
+    if (!value) {
+      return 'Este campo es obligatorio!'
+    }
+  }
   }).then(function(result){
+
+    
       if (result.value) {
 
         let nombre = result.value;
-        $("#btnObservacion"+contadorObs).val(nombre);
+       
+        $("#nuevaObservacion"+contadorObs).val(nombre);
         console.log(nombre);
-        }
-    })
+        listaProductos2();
+        
+    }
+  })
 
 
 })
+
+
+function listaProductos2(){
+  var listaProductos2 = [];
+  var codigo = $(".nuevoCodigoProducto");
+  var Observacion=$(".nuevaObservacion");
+  
+  //para llenar lista de productos 2
+  for(var i = 0; i < codigo.length; i++){                
+   listaProductos2.push({ "id" : $(codigo[i]).attr("idProducto"), 
+                         "observacion" :$(Observacion[i]).val()})           
+
+  } 
+  $("#listaProductos2").val(JSON.stringify(listaProductos2));
+
+
+  }
+
+
+
+

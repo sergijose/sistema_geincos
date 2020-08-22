@@ -102,7 +102,7 @@
               echo '<td>' . $respuestaUsuario["nombre"] . '</td>';
              
 //str_replace( str_split('{}[])""'),"",$value["producto"])
-              echo '<td>' .str_replace( str_split('{}[])""'),"",$value["producto"]). '</td>
+              echo '<td>' .str_replace( str_split('{}[])""'),"",$value["idproducto"]). '</td>
               
               <td>' . $value["idempleado"]. '</td>
 

@@ -30,7 +30,7 @@ class ControladorPrestamos{
 			ACTUALIZAR LAS EL ESTADO DE PRESTAMO DE LOS PRODUCTOS 
 			=============================================*/
 
-			if($_POST["listaProductos"] == ""){
+			if($_POST["listaProductos2"] == ""){
 
 					echo'<script>
 
@@ -54,6 +54,7 @@ class ControladorPrestamos{
 
 
 			$listaProductos = json_decode($_POST["listaProductos"], true);
+			$listaProductos2 = json_decode($_POST["listaProductos2"], true);
 
 			foreach ($listaProductos as $key => $value) {
 
@@ -67,19 +68,27 @@ class ControladorPrestamos{
 
 
 			}
-			/*=============================================
+			foreach ($listaProductos2 as $key => $value) {
+				$valorCaja=$value["id"];
+				$valorObservaciones=$value["observacion"];
+			   /*=============================================
 			GUARDAR LA COMPRA
 			=============================================*/	
 
 			$tabla = "prestamo";
 
             $datos = array("idusuario"=>$_POST["idUsuario"],
-                            "idproducto"=>$_POST["listaProductos"],
+                            "idproducto"=>$valorCaja,
 						   "idempleado"=>$_POST["nuevoEmpleado"],  
-						   "observaciones"=>$_POST["nuevaObservacion"]);
-
+						   "observaciones"=>$valorObservaciones);
+						 
 			$respuesta = ModeloPrestamos::mdlIngresarPrestamo($tabla, $datos);
 
+				
+			
+
+			}
+			
 			if($respuesta == "ok"){
                 var_dump($respuesta);
                 echo'<script>
