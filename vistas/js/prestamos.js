@@ -40,8 +40,11 @@ $(".tablaPrestamos").DataTable({
 
 /*=============================================
 AGREGANDO PRODUCTOS PARA EL PRESTAMO DESDE LA TABLA
+
 =============================================*/
+var contadorObs = 0;
 $(".tablaPrestamos tbody").on("click", "button.agregarProducto", function () {
+ contadorObs++;
   var idProducto = $(this).attr("idProducto");
 
   $(this).removeClass("btn-primary agregarProducto");
@@ -85,7 +88,7 @@ $(".tablaPrestamos tbody").on("click", "button.agregarProducto", function () {
       $(".nuevoProducto").append(
         '<div class="row" style="padding:5px 15px">' +
           "<!-- Codigo del producto -->" +
-          '<div class="col-xs-6" style="padding-right:0px">' +
+          '<div class="col-xs-4" style="padding-right:0px">' +
           '<div class="input-group">' +
           '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs  quitarProducto" idProducto="' +
           idProducto +
@@ -98,7 +101,7 @@ $(".tablaPrestamos tbody").on("click", "button.agregarProducto", function () {
           "</div>" +
           "</div>" +
           "<!-- Estado del producto -->" +
-          '<div class="col-xs-6 estadoProducto" style="padding-left:0px">' +
+          '<div class="col-xs-4 estadoProducto" style="padding-right:0px">' +
           '<div class="input-group">' +
           '<span class="input-group-addon"><i class="fa fa-thumbs-o-up"></i></span>' +
           '<input type="text" class="form-control nuevoEstadoProducto"name="nuevoEstadoProducto" value="' +
@@ -106,6 +109,13 @@ $(".tablaPrestamos tbody").on("click", "button.agregarProducto", function () {
           '" readonly required>' +
           "</div>" +
           "</div>" +
+          "<!-- Agregar OBSERVACION DE PRESTAMO-->" +
+          '<div class="col-xs-4 observaciones" style="padding-left:0px">' +
+          '<div class="input-group">' +
+          '<button type="button"  class="btn btn-warning  form-control btnObservacion" name="btnObservacion" id="btnObservacion'+contadorObs+'" idProducto="'+ idProducto +'"  required>INSERTAR OBSERVACION' +
+          "</div>" +
+          "</div>" +
+
           "</div>"
       )
       listarProductos();
@@ -116,6 +126,13 @@ $(".tablaPrestamos tbody").on("click", "button.agregarProducto", function () {
   })
   
 });
+
+
+
+
+
+
+
 
 /*=============================================
 CUANDO CARGUE LA TABLA CADA VEZ QUE NAVEGUE EN ELLA
@@ -294,9 +311,9 @@ $(".formularioPrestamo").on("change", "select.nuevoCodigoProducto", function(){
 /*=============================================
 LISTAR TODOS LOS PRODUCTOS
 =============================================*/
-var contador = 0;
+
 function listarProductos(){
-contador++;
+
 	var listaProductos = [];
 
 	var codigo = $(".nuevoCodigoProducto");
@@ -311,18 +328,7 @@ contador++;
 
   $("#listaProductos").val(JSON.stringify(listaProductos)); 
 
-  if ($("#nuevoProducto").childNodes().length<1){
-    console.log("hola");
-     $(".mostrarFecha").append(
-
-      '<div class="input-group mostrarCaja'+contador+'">'+
-      '<span class="input-group-addon"><i class="fa fa-calendar"></i></span>'+
-      '<input type="date" class="form-control" id="fechaDevolucion" name="fechaDevolucion" value="<?php echo $prestamo["fecha_devolucion"];?>'+
-      '</div>')
-
-     
-      
-  }
+  
 
   //else{
  //   $(".mostrarFecha").removeClass("mostrarFecha");
@@ -336,11 +342,35 @@ contador++;
 /*=============================================
 BOTON EDITAR VENTA
 =============================================*/
-$(".tablas").on("click", ".btnEditarPrestamo", function(){
+
+$(".tablas").on("click", "·btnEditarPrestamo", function(){
 
 	var idPrestamo = $(this).attr("idPrestamo");
 
 	window.location = "index.php?ruta=editar-prestamo&idPrestamo="+idPrestamo;
+
+
+})
+
+
+//aparecer swal para llenar observaciones
+$(".nuevoProducto").on("click",".btnObservacion", function(){
+console.log("hola");
+swal({
+  title: "Ingrese Observacion sobre el prestamo de este producto",
+  input: "text",
+  type: "success",
+  showCancelButton: true,
+  confirmButtonText: "Guardar",
+  cancelButtonText: "Cancelar",
+  }).then(function(result){
+      if (result.value) {
+
+        let nombre = result.value;
+        $("#btnObservacion"+contadorObs).val(nombre);
+        console.log(nombre);
+        }
+    })
 
 
 })

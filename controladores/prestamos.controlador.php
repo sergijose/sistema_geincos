@@ -74,7 +74,7 @@ class ControladorPrestamos{
 			$tabla = "prestamo";
 
             $datos = array("idusuario"=>$_POST["idUsuario"],
-                            "producto"=>$_POST["listaProductos"],
+                            "idproducto"=>$_POST["listaProductos"],
 						   "idempleado"=>$_POST["nuevoEmpleado"],  
 						   "observaciones"=>$_POST["nuevaObservacion"]);
 

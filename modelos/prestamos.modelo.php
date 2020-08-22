@@ -41,10 +41,10 @@ class ModeloPrestamos{
 
 	static public function mdlIngresarPrestamo($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(idusuario,producto,idempleado,observaciones) VALUES (:idusuario,:producto,:idempleado,:observaciones)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(idusuario,idproducto,idempleado,observaciones) VALUES (:idusuario,:idproducto,:idempleado,:observaciones)");
 
 		$stmt->bindParam(":idusuario", $datos["idusuario"], PDO::PARAM_INT);
-		$stmt->bindParam(":producto", $datos["producto"], PDO::PARAM_STR);
+		$stmt->bindParam(":idproducto", $datos["idproducto"], PDO::PARAM_STR);
 		$stmt->bindParam(":idempleado", $datos["idempleado"], PDO::PARAM_INT);
 		$stmt->bindParam(":observaciones", $datos["observaciones"], PDO::PARAM_STR);
 	
