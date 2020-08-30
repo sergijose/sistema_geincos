@@ -112,14 +112,15 @@ $(".tablaPrestamos tbody").on("click", "button.agregarProducto", function () {
           "<!-- Agregar OBSERVACION DE PRESTAMO-->" +
           '<div class="col-xs-4 observaciones" style="padding-left:0px">' +
           '<div class="input-group">' +
-          '<button type="button"  class="btn btn-warning  form-control btnObservacion" valor name="btnObservacion" id="btnObservacion'+contadorObs+'" idProducto="'+ idProducto +'"  required>INSERTAR OBSERVACION' +
-          '<input type="hidden" class="form-control nuevaObservacion" valor="" id="nuevaObservacion'+contadorObs+'" name="nuevaObservacion"> ' +
+          '<button type="button"  class="btn btn-warning  form-control btnObservacion" valor name="btnObservacion" id="btnObservacion'+contadorObs+'" idProducto="'+ idProducto +'"  required>INSERTAR OBSERVACION</button>' +
+          '<input type="hidden" class="form-control nuevaObservacion" idProducto="' +idProducto +'" id="nuevaObservacion'+contadorObs+'" name="nuevaObservacion"> ' +
           "</div>" +
           "</div>" +
 
           "</div>"
       )
       listarProductos();
+      listarProductos2();
       localStorage.removeItem("quitarProducto");
       
     }
@@ -187,7 +188,7 @@ $(".formularioPrestamo").on("click", "button.quitarProducto", function(){
 	$("button.recuperarBoton[idProducto='"+idProducto+"']").addClass('btn-primary agregarProducto');
 
   listarProductos();
-  listaProductos2();
+  listarProductos2();
 
 })
 
@@ -291,23 +292,12 @@ $(".formularioPrestamo").on("change", "select.nuevoCodigoProducto", function(){
   	      // AGRUPAR PRODUCTOS EN FORMATO JSON
 
           listarProductos()
-          listaProductos2();
+         // listarProductos2();
 
       	}
 
       })
 })
-
-
-
-
-
-
-
-
-
-
-      
 
 
 
@@ -324,33 +314,43 @@ function listarProductos(){
 	for(var i = 0; i < codigo.length; i++){
 
 		listaProductos.push({ "id" : $(codigo[i]).attr("idProducto"), 
-                       "codigo" : $(codigo[i]).val()})        
+                       "codigo" : $(codigo[i]).val()
+                       })        
 
 	}
 
   $("#listaProductos").val(JSON.stringify(listaProductos)); 
-
+  
 }
-
 /*=============================================
-BOTON EDITAR VENTA
+LISTAR TODOS LOS PRODUCTOS PARA GENERAR PRESTAMOS
 =============================================*/
+function listarProductos2(){
+  var listaProductos2 = [];
+ 
+  var observacion=$(".nuevaObservacion");
+  
+  //para llenar lista de productos 2
+  for(var i = 0; i < observacion.length; i++){                
+   listaProductos2.push({ "id" : $(observacion[i]).attr("idproducto"), 
+                         "observacion" :$(observacion[i]).val()})           
 
-$(".tablas").on("click", "·btnEditarPrestamo", function(){
+  } 
+  $("#listaProductos2").val(JSON.stringify(listaProductos2));
 
-	var idPrestamo = $(this).attr("idPrestamo");
-
-	window.location = "index.php?ruta=editar-prestamo&idPrestamo="+idPrestamo;
-
-
-})
-
+  }
 
 //aparecer swal para llenar observaciones
-$(".nuevoProducto").on("click",".btnObservacion", function(){
+$(".formularioPrestamo").on("click","button.btnObservacion", function(){
+
+
   $(this).attr('disabled',true);
   $(this).removeClass('btn-warning');
   $(this).addClass('btn-success');
+  //aparecer swal para llenar observaciones
+ var capturarCaja=$(this).parent().children(".nuevaObservacion");
+
+  
 swal({
   title: "Ingrese Observacion sobre el prestamo de este producto",
   input: "text",
@@ -372,11 +372,11 @@ swal({
     
       if (result.value) {
 
-        let nombre = result.value;
-       
-        $("#nuevaObservacion"+contadorObs).val(nombre);
-        console.log(nombre);
-        listaProductos2();
+       let nombre = result.value;
+      
+       $(capturarCaja).val(nombre);
+        listarProductos2();
+        
         
     }
   })
@@ -385,21 +385,6 @@ swal({
 })
 
 
-function listaProductos2(){
-  var listaProductos2 = [];
-  var codigo = $(".nuevoCodigoProducto");
-  var Observacion=$(".nuevaObservacion");
-  
-  //para llenar lista de productos 2
-  for(var i = 0; i < codigo.length; i++){                
-   listaProductos2.push({ "id" : $(codigo[i]).attr("idProducto"), 
-                         "observacion" :$(Observacion[i]).val()})           
-
-  } 
-  $("#listaProductos2").val(JSON.stringify(listaProductos2));
-
-
-  }
 
 
 
