@@ -30,7 +30,7 @@ class ControladorPrestamos{
 			ACTUALIZAR LAS EL ESTADO DE PRESTAMO DE LOS PRODUCTOS 
 			=============================================*/
 
-			if($_POST["listaProductos2"] == ""){
+			if($_POST["listaProductos2"] == "" or $_POST["listaProductos2"]=="[]" ){
 
 					echo'<script>
 
@@ -60,11 +60,11 @@ class ControladorPrestamos{
 
 			   
 				//con esto actualizo todos los productos que tienen ese id de la listaProductos
-			    $tablaProductos = "producto";
+			    $tablaPrestamo = "producto";
 			    $valor = $value["id"];
 				$item1a = "estado_prestamo";
 				$valor1a = "OCUPADO";
-			    $nuevasPrestamos = ModeloProductos::mdlActualizarProducto($tablaProductos, $item1a, $valor1a, $valor);
+			    $nuevasPrestamos = ModeloProductos::mdlActualizarProducto($tablaPrestamo, $item1a, $valor1a, $valor);
 
 
 			}
@@ -72,7 +72,7 @@ class ControladorPrestamos{
 				$valorCaja=$value["id"];
 				$valorObservaciones=$value["observacion"];
 			   /*=============================================
-			GUARDAR LA COMPRA
+			GUARDAR EL PRESTAMO
 			=============================================*/	
 
 			$tabla = "prestamo";
@@ -80,17 +80,13 @@ class ControladorPrestamos{
             $datos = array("idusuario"=>$_POST["idUsuario"],
                             "idproducto"=>$valorCaja,
 						   "idempleado"=>$_POST["nuevoEmpleado"],  
-						   "observaciones"=>$valorObservaciones);
+						   "observacion_prestamo"=>$valorObservaciones);
 						 
 			$respuesta = ModeloPrestamos::mdlIngresarPrestamo($tabla, $datos);
-
-				
-			
 
 			}
 			
 			if($respuesta == "ok"){
-                var_dump($respuesta);
                 echo'<script>
                 
 				swal({
@@ -110,7 +106,7 @@ class ControladorPrestamos{
 
             }
             else{
-                var_dump($respuesta);
+               
 				echo'<script>
 
 					
@@ -122,135 +118,73 @@ class ControladorPrestamos{
 
 		}
 
-    }
-    
-    /*=============================================
-	EDITAR PRESTAMOS
-	=============================================*/
+	}
+	
 
-	static public function ctrEditarPrestamo(){
+	static public function ctrDevolverProducto(){
 
-		if(isset($_POST["idPrestamo"])){
+		if(isset($_POST["observacionDevolucion"])){
 
-            /*=============================================
-			FORMATEAR TABLA DE PRODUCTOS 
-			=============================================*/
-			$tabla = "prestamo";
+			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ, ]+$/', $_POST["observacionDevolucion"])){
 
-			$item = "id";
-			$valor = $_POST["idPrestamo"];
+				$tabla = "prestamo";
 
-			$traerPrestamo = ModeloPrestamos::mdlMostrarPrestamos($tabla, $item, $valor);
+				$datos = array("fecha_devolucion"=>$_POST["fechaDevolucion"],
+								"observacion_devolucion"=>$_POST["observacionDevolucion"],
+							   "id"=>$_POST["idPrestamo"]);
 
-			/*=============================================
-			REVISAR SI VIENE PRODUCTOS EDITADOS
-			=============================================*/
+				$respuesta = ModeloPrestamos::mdlDevolverProducto($tabla, $datos);
 
-			if($_POST["listaProductos"] == ""){
+				if($respuesta == "ok"){
+					$tablaProducto="producto";
+					$valor =$_POST["idProducto"];
+					$item1a = "estado_prestamo";
+					$valor1a = "DISPONIBLE";
+					$devolucion = ModeloProductos::mdlActualizarProducto($tablaProducto, $item1a, $valor1a, $valor);
+					echo'<script>
 
-				$listaProductos = $traerPrestamo["producto"];
-				$cambioProducto = false;
+					swal({
+						  type: "success",
+						  title: "Se registro la devolucion del producto",
+						  showConfirmButton: true,
+						  confirmButtonText: "Cerrar"
+						  }).then(function(result){
+									if (result.value) {
+
+									window.location = "prestamos";
+
+									}
+								})
+
+					</script>';
+
+				}
 
 
 			}else{
 
-				$listaProductos = $_POST["listaProductos"];
-				$cambioProducto = true;
-			}
-
-			if($cambioProducto){
-
-				$productos =  json_decode($traerPrestamo["producto"], true);
-
-				$totalProductosPrestados = array();
-
-				foreach ($productos as $key => $value) {
-
-					array_push($totalProductosPrestados, $value["codigo"]);
-					
-					$tablaProductos = "producto";
-					$item1a = "estado_prestamo";
-                    $valor1a = "DISPONIBLE";
-                    $valorproducto = $value["id"];
-				    
-			    $nuevasPrestamos = ModeloProductos::mdlActualizarProducto($tablaProductos, $item1a, $valor1a, $valorproducto);
-
-
-				
-
-					
-
-				}
-
-				
-			
-                    //ACTUALIZAR EL ESTADO DEL PRODUCTO AL REALIZAR EL PRESTAMO ACTUALIZADO
-
-			$listaProductos_2 = json_decode($listaProductos, true);
-
-			foreach ($listaProductos_2 as $key => $value) {
-
-			   
-				//con esto actualizo todos los productos que tienen ese id de la listaProductos
-			    $tablaProductos_2 = "producto";
-			    $valor_2 = $value["id"];
-				$item1a_2 = "estado_prestamo";
-				$valor1a_2 = "OCUPADO";
-			    $nuevosPrestamos_2 = ModeloProductos::mdlActualizarProducto($tablaProductos_2, $item1a_2, $valor1a_2, $valor_2);
-
-
-            }
-        }
-			/*=============================================
-			GUARDAR EL PRESTAMO
-			=============================================*/	
-
-			
-			
-
-            $datos = array("idusuario"=>$_POST["idUsuario"],
-                            "producto"=>$listaProductos,
-						   "idempleado"=>$_POST["nuevoEmpleado"], 
-						   "fecha_devolucion"=>$_POST["fechaDevolucion"],   
-                           "observaciones"=>$_POST["editarObservacion"],
-                           "id"=>$_POST["idPrestamo"]);
-
-			$respuesta = ModeloPrestamos::mdlEditarPrestamo($tabla, $datos);
-
-			if($respuesta == "ok"){
-              
-                echo'<script>
-                
-				swal({
-					  type: "success",
-					  title: "El prestamo se ha actualizado  correctamente",
-					  showConfirmButton: true,
-					  confirmButtonText: "Cerrar"
-					  }).then(function(result){
-								if (result.value) {
-
-								window.location = "prestamos";
-
-								}
-							})
-
-				</script>';
-
-            }
-            else{
-              
 				echo'<script>
 
-					
-						alertify.error("No se pudo Actualizar el prestamo ");
-						
+					swal({
+						  type: "error",
+						  title: "La devolucion no se ha podido registrar",
+						  showConfirmButton: true,
+						  confirmButtonText: "Cerrar"
+						  }).then(function(result){
+							if (result.value) {
+
+							window.location = "prestamos";
+
+							}
+						})
 
 			  	</script>';
+
 			}
 
-		
+		}
 
 	}
+    
 }
 
-}

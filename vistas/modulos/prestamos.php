@@ -72,7 +72,8 @@
               <th>Empleado</th>
               <th>Fecha_Prestamo</th>
               <th>Fecha_Devolucion</th>
-              <th>Comentario</th>
+              <th>observacion_prestamo</th>
+              <th>observacion_devolucion</th>
               <th>Acciones</th>
 
             </tr>
@@ -91,7 +92,8 @@
 
               echo '<tr>
 
-             <td>' . ($key + 1) . '</td>';
+             <td style="width:8px">' . ($key + 1) . '</td>';
+
 
 
               $itemUsuario = "id";
@@ -100,15 +102,21 @@
               $respuestaUsuario = ControladorUsuarios::ctrMostrarUsuarios($itemUsuario, $valorUsuario);
 
               echo '<td>' . $respuestaUsuario["nombre"] . '</td>';
+
+              $item ="id";
+              $valor =$value["idproducto"];
+              $order ="id";
+
+              $respuestaProducto = ControladorProductos::ctrMostrarProductos($item, $valor,$order);
              
-//str_replace( str_split('{}[])""'),"",$value["producto"])
-              echo '<td>' .str_replace( str_split('{}[])""'),"",$value["idproducto"]). '</td>
+              echo '<td>' .$respuestaProducto["cod_producto"]. '</td>
               
               <td>' . $value["idempleado"]. '</td>
 
               <td>' . $value["fecha_prestamo"]. '</td>
               <td>' . $value["fecha_devolucion"]. '</td>
-              <td>' . $value["observaciones"]. '</td>
+              <td>' . $value["observacion_prestamo"]. '</td>
+              <td>' . $value["observacion_devolucion"]. '</td>
 
         <td>
 
@@ -122,11 +130,15 @@
 
             </button>';
 
+             if($value["fecha_devolucion"]==null){
+              echo '<button class="btn btn-warning btnEditarPrestamo" idPrestamo="'.$value["id"].'" data-toggle="modal" data-target="#modalDevolverProducto"><i class="fa fa-pencil"></i></button>';
+             }
+             else{
+              echo '<button class="btn btn-warning btnEditarPrestamo" idPrestamo="'.$value["id"].'" data-toggle="modal" data-target="#modalDevolverProducto" disabled><i class="fa fa-pencil" ></i></button>';
+             }
              
 
-                echo '<button class="btn btn-warning btnEditarPrestamo" idPrestamo="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
-
-            <button class="btn btn-danger btnEliminarVenta" idVenta=""><i class="fa fa-times"></i></button>';
+              echo '<button class="btn btn-danger btnEliminarVenta" idVenta=""><i class="fa fa-times"></i></button>';
               
 
               echo '</div>  
@@ -151,5 +163,98 @@
     </div>
 
   </section>
+
+</div>
+
+<!--=====================================
+MODAL REGISTRO DE DEVOLUCION
+======================================-->
+
+<div id="modalDevolverProducto" class="modal fade" role="dialog">
+  
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+
+      <form role="form" method="post">
+
+        <!--=====================================
+        CABEZA DEL MODAL
+        ======================================-->
+
+        <div class="modal-header" style="background:#3c8dbc; color:white">
+
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+          <h4 class="modal-title">Devolver Producto</h4>
+
+        </div>
+
+        <!--=====================================
+        CUERPO DEL MODAL
+        ======================================-->
+
+        <div class="modal-body">
+
+          <div class="box-body">
+
+            <!-- ENTRADA REGISTRAR LA FECHA DE DEVOLUCION -->
+            
+            <div class="form-group">
+              
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
+
+                <input type="date" class="form-control input-lg" name="fechaDevolucion" required>
+
+                 <input type="hidden"  name="idPrestamo" id="idPrestamo"  name="idPrestamo">
+                 <input type="hidden"  name="idProducto" id="idProducto" name="idProducto" >
+
+              </div>
+             
+
+
+
+            </div>
+            <div class="form-group">
+              
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-commenting-o"></i></span> 
+
+                <input type="text" class="form-control input-lg" name="observacionDevolucion" required>
+              </div>
+
+            </div>
+  
+          </div>
+
+        </div>
+
+        <!--=====================================
+        PIE DEL MODAL
+        ======================================-->
+
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+          <button type="submit" class="btn btn-primary">Guardar cambios</button>
+
+        </div>
+
+      <?php
+
+          $devolverProducto = new ControladorPrestamos();
+          $devolverProducto -> ctrDevolverProducto();
+
+        ?> 
+
+      </form>
+
+    </div>
+
+  </div>
 
 </div>

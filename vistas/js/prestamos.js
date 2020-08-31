@@ -44,7 +44,7 @@ AGREGANDO PRODUCTOS PARA EL PRESTAMO DESDE LA TABLA
 =============================================*/
 var contadorObs = 0;
 $(".tablaPrestamos tbody").on("click", "button.agregarProducto", function () {
- contadorObs=contadorObs+1;
+  contadorObs = contadorObs + 1;
   var idProducto = $(this).attr("idProducto");
 
   $(this).removeClass("btn-primary agregarProducto");
@@ -63,7 +63,6 @@ $(".tablaPrestamos tbody").on("click", "button.agregarProducto", function () {
     processData: false,
     dataType: "json",
     success: function (respuesta) {
-     
       var codigo = respuesta["cod_producto"];
       var estado_prestamo = respuesta["estado_prestamo"];
 
@@ -112,86 +111,82 @@ $(".tablaPrestamos tbody").on("click", "button.agregarProducto", function () {
           "<!-- Agregar OBSERVACION DE PRESTAMO-->" +
           '<div class="col-xs-4 observaciones" style="padding-left:0px">' +
           '<div class="input-group">' +
-          '<button type="button"  class="btn btn-warning  form-control btnObservacion" valor name="btnObservacion" id="btnObservacion'+contadorObs+'" idProducto="'+ idProducto +'"  required>INSERTAR OBSERVACION</button>' +
-          '<input type="hidden" class="form-control nuevaObservacion" idProducto="' +idProducto +'" id="nuevaObservacion'+contadorObs+'" name="nuevaObservacion"> ' +
+          '<button type="button"  class="btn btn-warning  form-control btnObservacion" valor name="btnObservacion" id="btnObservacion' +
+          contadorObs +
+          '" idProducto="' +
+          idProducto +
+          '"  required>INSERTAR OBSERVACION</button>' +
+          '<input type="hidden" class="form-control nuevaObservacion" idProducto="' +
+          idProducto +
+          '" id="nuevaObservacion' +
+          contadorObs +
+          '" name="nuevaObservacion"> ' +
           "</div>" +
           "</div>" +
-
           "</div>"
-      )
+      );
       listarProductos();
       listarProductos2();
       localStorage.removeItem("quitarProducto");
-      
-    }
-    
-  })
-  
+    },
+  });
 });
-
-
-
-
-
-
-
 
 /*=============================================
 CUANDO CARGUE LA TABLA CADA VEZ QUE NAVEGUE EN ELLA
 =============================================*/
 
-$(".tablaPrestamos").on("draw.dt", function(){
+$(".tablaPrestamos").on("draw.dt", function () {
+  if (localStorage.getItem("quitarProducto") != null) {
+    var listaIdProductos = JSON.parse(localStorage.getItem("quitarProducto"));
 
-	if(localStorage.getItem("quitarProducto") != null){
-
-		var listaIdProductos = JSON.parse(localStorage.getItem("quitarProducto"));
-
-		for(var i = 0; i < listaIdProductos.length; i++){
-
-			$("button.recuperarBoton[idProducto='"+listaIdProductos[i]["idProducto"]+"']").removeClass('btn-default');
-			$("button.recuperarBoton[idProducto='"+listaIdProductos[i]["idProducto"]+"']").addClass('btn-primary agregarProducto');
-
-		}
-
-
-	}
-
-
-})
+    for (var i = 0; i < listaIdProductos.length; i++) {
+      $(
+        "button.recuperarBoton[idProducto='" +
+          listaIdProductos[i]["idProducto"] +
+          "']"
+      ).removeClass("btn-default");
+      $(
+        "button.recuperarBoton[idProducto='" +
+          listaIdProductos[i]["idProducto"] +
+          "']"
+      ).addClass("btn-primary agregarProducto");
+    }
+  }
+});
 
 /*=============================================
 QUITAR PRODUCTOS DEL PRESTAMO Y RECUPERAR BOTÓN
 =============================================*/
 
-var idQuitarProducto=[];
+var idQuitarProducto = [];
 localStorage.removeItem("quitarProducto");
-$(".formularioPrestamo").on("click", "button.quitarProducto", function(){
+$(".formularioPrestamo").on("click", "button.quitarProducto", function () {
+  $(this).parent().parent().parent().parent().remove();
 
-	$(this).parent().parent().parent().parent().remove();
-
-	var idProducto = $(this).attr("idProducto");
-/*=============================================
+  var idProducto = $(this).attr("idProducto");
+  /*=============================================
 	ALMACENAR EN EL LOCALSTORAGE EL ID DEL PRODUCTO A QUITAR
   =============================================*/
-    if(localStorage.getItem("quitarProducto")== null){
-      idQuitarProducto = [];
+  if (localStorage.getItem("quitarProducto") == null) {
+    idQuitarProducto = [];
+  } else {
+    idQuitarProducto.concat(localStorage.getItem("quitarProducto"));
+  }
+  idQuitarProducto.push({ idProducto: idProducto });
+  localStorage.setItem("quitarProducto", JSON.stringify(idQuitarProducto));
 
-    }else{
-      idQuitarProducto.concat(localStorage.getItem("quitarProducto"))
+  $("button.recuperarBoton[idProducto='" + idProducto + "']").removeClass(
+    "btn-default"
+  );
 
-    }
-    idQuitarProducto.push({"idProducto":idProducto});
-    localStorage.setItem("quitarProducto", JSON.stringify(idQuitarProducto));
-
-	$("button.recuperarBoton[idProducto='"+idProducto+"']").removeClass('btn-default');
-
-	$("button.recuperarBoton[idProducto='"+idProducto+"']").addClass('btn-primary agregarProducto');
+  $("button.recuperarBoton[idProducto='" + idProducto + "']").addClass(
+    "btn-primary agregarProducto"
+  );
 
   listarProductos();
   listarProductos2();
-
-})
-
+});
 
 /*=============================================
 AGREGANDO PRODUCTOS DESDE EL BOTÓN PARA DISPOSITIVOS
@@ -199,193 +194,191 @@ AGREGANDO PRODUCTOS DESDE EL BOTÓN PARA DISPOSITIVOS
 
 var numProducto = 0;
 
-$(".btnAgregarProducto").click(function(){
-  numProducto ++;
-	
+$(".btnAgregarProducto").click(function () {
+  numProducto++;
 
-	var datos = new FormData();
-	datos.append("traerProductos", "ok");
+  var datos = new FormData();
+  datos.append("traerProductos", "ok");
 
-	$.ajax({
+  $.ajax({
+    url: "ajax/productos.ajax.php",
+    method: "POST",
+    data: datos,
+    cache: false,
+    contentType: false,
+    processData: false,
+    dataType: "json",
+    success: function (respuesta) {
+      $(".nuevoProducto").append(
+        '<div class="row" style="padding:5px 15px">' +
+          "<!-- Codigo del producto -->" +
+          '<div class="col-xs-6" style="padding-right:0px">' +
+          '<div class="input-group">' +
+          '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto=" "' +
+          '"><i class="fa fa-times"></i></button></span>' +
+          '<select class="form-control nuevoCodigoProducto"  id="producto' +
+          numProducto +
+          '" idProducto name="nuevaDescripcionProducto" required>' +
+          "<option>Seleccione el producto</option>" +
+          "</select>" +
+          "</div>" +
+          "</div>" +
+          "</div>"
+      );
 
-		url:"ajax/productos.ajax.php",
-      	method: "POST",
-      	data: datos,
-      	cache: false,
-      	contentType: false,
-      	processData: false,
-      	dataType:"json",
-      	success:function(respuesta){
-      	    
-      	    	$(".nuevoProducto").append(
+      // AGREGAR LOS PRODUCTOS AL SELECT
 
-                '<div class="row" style="padding:5px 15px">' +
-                "<!-- Codigo del producto -->" +
-                '<div class="col-xs-6" style="padding-right:0px">' +
-                '<div class="input-group">' +
-                '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto=" "'+ 
-                '"><i class="fa fa-times"></i></button></span>' +
-                '<select class="form-control nuevoCodigoProducto"  id="producto'+numProducto+'" idProducto name="nuevaDescripcionProducto" required>'+
+      respuesta.forEach(funcionForEach);
 
-	              '<option>Seleccione el producto</option>'+
-
-	              '</select>'+  
-                "</div>" +
-                "</div>" +
-                "</div>");
-
-
-	        // AGREGAR LOS PRODUCTOS AL SELECT 
-
-	         respuesta.forEach(funcionForEach);
-
-	         function funcionForEach(item, index){
-
-            if (item.estado_prestamo != "OCUPADO") {
-
-		         	$("#producto"+numProducto).append(
-
-						'<option idProducto="'+item.id+'" value="'+item.cod_producto+'">'+item.cod_producto+'</option>'
-		         	)
-            }
-           
-		         
-		         	        
-
-	         }
-          
-        	
-
-
-      	}
-
-	})
-  
-})
+      function funcionForEach(item, index) {
+        if (item.estado_prestamo != "OCUPADO") {
+          $("#producto" + numProducto).append(
+            '<option idProducto="' +
+              item.id +
+              '" value="' +
+              item.cod_producto +
+              '">' +
+              item.cod_producto +
+              "</option>"
+          );
+        }
+      }
+    },
+  });
+});
 
 /*=============================================
 SELECCIONAR PRODUCTO
 =============================================*/
 
-$(".formularioPrestamo").on("change", "select.nuevoCodigoProducto", function(){
+$(".formularioPrestamo").on(
+  "change",
+  "select.nuevoCodigoProducto",
+  function () {
+    var codigoProducto = $(this).val();
 
-  var codigoProducto = $(this).val();
+    var nuevaDescripcionProducto = $(this)
+      .parent()
+      .parent()
+      .parent()
+      .children()
+      .children()
+      .children(".nuevoCodigoProducto");
 
-  var nuevaDescripcionProducto = $(this).parent().parent().parent().children().children().children(".nuevoCodigoProducto");
-	
-	var datos = new FormData();
+    var datos = new FormData();
     datos.append("codigoProducto", codigoProducto);
 
+    $.ajax({
+      url: "ajax/productos.ajax.php",
+      method: "POST",
+      data: datos,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType: "json",
+      success: function (respuesta) {
+        //console.log(respuesta);
+        $(nuevaDescripcionProducto).attr("idProducto", respuesta["id"]);
+        // AGRUPAR PRODUCTOS EN FORMATO JSON
 
-	  $.ajax({
-
-     	url:"ajax/productos.ajax.php",
-      	method: "POST",
-      	data: datos,
-      	cache: false,
-      	contentType: false,
-      	processData: false,
-      	dataType:"json",
-      	success:function(respuesta){
-      	    //console.log(respuesta);
-      	    $(nuevaDescripcionProducto).attr("idProducto", respuesta["id"]);	  
-  	      // AGRUPAR PRODUCTOS EN FORMATO JSON
-
-          listarProductos()
-         // listarProductos2();
-
-      	}
-
-      })
-})
-
-
+        listarProductos();
+        // listarProductos2();
+      },
+    });
+  }
+);
 
 /*=============================================
 LISTAR TODOS LOS PRODUCTOS
 =============================================*/
 
-function listarProductos(){
-
+function listarProductos() {
   var listaProductos = [];
 
   var codigo = $(".nuevoCodigoProducto");
-  
-	for(var i = 0; i < codigo.length; i++){
 
-		listaProductos.push({ "id" : $(codigo[i]).attr("idProducto"), 
-                       "codigo" : $(codigo[i]).val()
-                       })        
+  for (var i = 0; i < codigo.length; i++) {
+    listaProductos.push({
+      id: $(codigo[i]).attr("idProducto"),
+      codigo: $(codigo[i]).val(),
+    });
+  }
 
-	}
-
-  $("#listaProductos").val(JSON.stringify(listaProductos)); 
-  
+  $("#listaProductos").val(JSON.stringify(listaProductos));
 }
 /*=============================================
 LISTAR TODOS LOS PRODUCTOS PARA GENERAR PRESTAMOS
 =============================================*/
-function listarProductos2(){
+function listarProductos2() {
   var listaProductos2 = [];
- 
-  var observacion=$(".nuevaObservacion");
-  
+
+  var observacion = $(".nuevaObservacion");
+
   //para llenar lista de productos 2
-  for(var i = 0; i < observacion.length; i++){                
-   listaProductos2.push({ "id" : $(observacion[i]).attr("idproducto"), 
-                         "observacion" :$(observacion[i]).val()})           
-
-  } 
-  $("#listaProductos2").val(JSON.stringify(listaProductos2));
-
+  for (var i = 0; i < observacion.length; i++) {
+    listaProductos2.push({
+      id: $(observacion[i]).attr("idproducto"),
+      observacion: $(observacion[i]).val(),
+    });
   }
+  $("#listaProductos2").val(JSON.stringify(listaProductos2));
+}
 
 //aparecer swal para llenar observaciones
-$(".formularioPrestamo").on("click","button.btnObservacion", function(){
-
-
-  $(this).attr('disabled',true);
-  $(this).removeClass('btn-warning');
-  $(this).addClass('btn-success');
+$(".formularioPrestamo").on("click", "button.btnObservacion", function () {
+  $(this).attr("disabled", true);
+  $(this).removeClass("btn-warning");
+  $(this).addClass("btn-success");
   //aparecer swal para llenar observaciones
- var capturarCaja=$(this).parent().children(".nuevaObservacion");
+  var capturarCaja = $(this).parent().children(".nuevaObservacion");
 
-  
-swal({
-  title: "Ingrese Observacion sobre el prestamo de este producto",
-  input: "text",
-  type: "info",
-  inputPlaceholder: "campo obligatorio" , 
-  showCancelButton: true,
-  confirmButtonText: "Guardar",
-  allowEscapeKey:false,
-  allowOutsideClick:false,
-  closeOnClickOutside: false,
-  showCancelButton:false,
-  inputValidator: (value) => {
-    if (!value) {
-      return 'Este campo es obligatorio!'
+  swal({
+    title: "Ingrese Observacion sobre el prestamo de este producto",
+    input: "text",
+    type: "info",
+    inputPlaceholder: "campo obligatorio",
+    showCancelButton: true,
+    confirmButtonText: "Guardar",
+    allowEscapeKey: false,
+    allowOutsideClick: false,
+    closeOnClickOutside: false,
+    showCancelButton: false,
+    inputValidator: (value) => {
+      if (!value) {
+        return "Este campo es obligatorio!";
+      }
+    },
+  }).then(function (result) {
+    if (result.value) {
+      let nombre = result.value;
+
+      $(capturarCaja).val(nombre);
+      listarProductos2();
     }
-  }
-  }).then(function(result){
+  });
+});
 
-    
-      if (result.value) {
+//traer datos para generar la devolucion del producto
 
-       let nombre = result.value;
-      
-       $(capturarCaja).val(nombre);
-        listarProductos2();
-        
-        
-    }
-  })
+$(".tablas").on("click", ".btnEditarPrestamo", function () {
+  var idPrestamo = $(this).attr("idPrestamo");
+  console.log(idPrestamo);
+  var datos = new FormData();
+  datos.append("idPrestamo", idPrestamo);
 
+  $.ajax({
+    url: "ajax/prestamos.ajax.php",
+    method: "POST",
+    data: datos,
+    cache: false,
+    contentType: false,
+    processData: false,
+    dataType: "json",
+    success: function (respuesta) {
+      $("#idPrestamo").val(respuesta["id"]);
+      $("#idProducto").val(respuesta["idproducto"]);
+    },
+  });
 
-})
-
-
-
-
-
-
+ 
+});

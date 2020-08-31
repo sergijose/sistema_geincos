@@ -41,12 +41,12 @@ class ModeloPrestamos{
 
 	static public function mdlIngresarPrestamo($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(idusuario,idproducto,idempleado,observaciones) VALUES (:idusuario,:idproducto,:idempleado,:observaciones)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(idusuario,idproducto,idempleado,observacion_prestamo) VALUES (:idusuario,:idproducto,:idempleado,:observacion_prestamo)");
 
 		$stmt->bindParam(":idusuario", $datos["idusuario"], PDO::PARAM_INT);
 		$stmt->bindParam(":idproducto", $datos["idproducto"], PDO::PARAM_STR);
 		$stmt->bindParam(":idempleado", $datos["idempleado"], PDO::PARAM_INT);
-		$stmt->bindParam(":observaciones", $datos["observaciones"], PDO::PARAM_STR);
+		$stmt->bindParam(":observacion_prestamo", $datos["observacion_prestamo"], PDO::PARAM_STR);
 	
 
 		if($stmt->execute()){
@@ -68,18 +68,13 @@ class ModeloPrestamos{
 	EDITAR PRESTAMO
 	=============================================*/
 
-	static public function mdlEditarPrestamo($tabla, $datos){
+	static public function mdlDevolverProducto($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET idusuario= :idusuario,producto = :producto, idempleado = :idempleado,observaciones=:observaciones,fecha_devolucion=:fecha_devolucion WHERE id = :id");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET fecha_devolucion= :fecha_devolucion,observacion_devolucion = :observacion_devolucion WHERE id = :id");
 
-		$stmt->bindParam(":idusuario", $datos["idusuario"], PDO::PARAM_INT);
-		$stmt->bindParam(":producto", $datos["producto"], PDO::PARAM_STR);
-		$stmt->bindParam(":idempleado", $datos["idempleado"], PDO::PARAM_INT);
 		$stmt->bindParam(":fecha_devolucion", $datos["fecha_devolucion"], PDO::PARAM_STR);
-        $stmt->bindParam(":observaciones", $datos["observaciones"], PDO::PARAM_STR);
+		$stmt->bindParam(":observacion_devolucion", $datos["observacion_devolucion"], PDO::PARAM_STR);
 		$stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
-	
-
 		if($stmt->execute()){
 
 			return "ok";
