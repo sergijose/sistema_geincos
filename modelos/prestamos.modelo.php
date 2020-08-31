@@ -41,13 +41,13 @@ class ModeloPrestamos{
 
 	static public function mdlIngresarPrestamo($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(idusuario,idproducto,idempleado,observacion_prestamo) VALUES (:idusuario,:idproducto,:idempleado,:observacion_prestamo)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(idusuario,idproducto,idempleado,observacion_prestamo,estado_prestamo) VALUES (:idusuario,:idproducto,:idempleado,:observacion_prestamo,:estado_prestamo)");
 
 		$stmt->bindParam(":idusuario", $datos["idusuario"], PDO::PARAM_INT);
 		$stmt->bindParam(":idproducto", $datos["idproducto"], PDO::PARAM_STR);
 		$stmt->bindParam(":idempleado", $datos["idempleado"], PDO::PARAM_INT);
 		$stmt->bindParam(":observacion_prestamo", $datos["observacion_prestamo"], PDO::PARAM_STR);
-	
+		$stmt->bindParam(":estado_prestamo", $datos["estado_prestamo"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 
@@ -70,10 +70,11 @@ class ModeloPrestamos{
 
 	static public function mdlDevolverProducto($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET fecha_devolucion= :fecha_devolucion,observacion_devolucion = :observacion_devolucion WHERE id = :id");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET fecha_devolucion= :fecha_devolucion,observacion_devolucion = :observacion_devolucion,estado_prestamo=:estado_prestamo WHERE id = :id");
 
 		$stmt->bindParam(":fecha_devolucion", $datos["fecha_devolucion"], PDO::PARAM_STR);
 		$stmt->bindParam(":observacion_devolucion", $datos["observacion_devolucion"], PDO::PARAM_STR);
+		$stmt->bindParam(":estado_prestamo", $datos["estado_prestamo"], PDO::PARAM_STR);
 		$stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
 		if($stmt->execute()){
 

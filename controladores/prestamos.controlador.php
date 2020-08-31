@@ -80,7 +80,9 @@ class ControladorPrestamos{
             $datos = array("idusuario"=>$_POST["idUsuario"],
                             "idproducto"=>$valorCaja,
 						   "idempleado"=>$_POST["nuevoEmpleado"],  
-						   "observacion_prestamo"=>$valorObservaciones);
+						   "observacion_prestamo"=>$valorObservaciones,
+						   "estado_prestamo"=>"PENDIENTE"
+						);
 						 
 			$respuesta = ModeloPrestamos::mdlIngresarPrestamo($tabla, $datos);
 
@@ -131,6 +133,7 @@ class ControladorPrestamos{
 
 				$datos = array("fecha_devolucion"=>$_POST["fechaDevolucion"],
 								"observacion_devolucion"=>$_POST["observacionDevolucion"],
+								"estado_prestamo"=>"FINALIZADO",
 							   "id"=>$_POST["idPrestamo"]);
 
 				$respuesta = ModeloPrestamos::mdlDevolverProducto($tabla, $datos);

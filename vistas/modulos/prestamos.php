@@ -74,6 +74,7 @@
               <th>Fecha_Devolucion</th>
               <th>observacion_prestamo</th>
               <th>observacion_devolucion</th>
+              <th>estado_prestamo</th>
               <th>Acciones</th>
 
             </tr>
@@ -116,14 +117,19 @@
               <td>' . $value["fecha_prestamo"]. '</td>
               <td>' . $value["fecha_devolucion"]. '</td>
               <td>' . $value["observacion_prestamo"]. '</td>
-              <td>' . $value["observacion_devolucion"]. '</td>
+              <td>' . $value["observacion_devolucion"]. '</td>';
+              if( $value["estado_prestamo"]=="PENDIENTE"){
+                echo '<td><button class="btn btn-danger" >'. $value["estado_prestamo"].'</button></td>';
+              }
+              else{
+              
+              echo '<td><button class="btn btn-success">'. $value["estado_prestamo"].'</button></td>';
+              }
 
-        <td>
+            echo' <td>
 
           <div class="btn-group">
 
-            <a class="btn btn-success" >xml</a>
-              
             <button class="btn btn-info btnImprimirFactura" codigoVenta="">
 
               <i class="fa fa-print"></i>
