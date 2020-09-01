@@ -92,10 +92,10 @@ class ModeloPrestamos{
 	}
 
 	/*=============================================
-	ELIMINAR VENTA
+	ELIMINAR PRESTAMO
 	=============================================*/
 
-	static public function mdlEliminarVenta($tabla, $datos){
+	static public function mdlEliminarPrestamos($tabla, $datos){
 
 		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
 
@@ -110,8 +110,6 @@ class ModeloPrestamos{
 			return "error";	
 
 		}
-
-		$stmt -> close();
 
 		$stmt = null;
 

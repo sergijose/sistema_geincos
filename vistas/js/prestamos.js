@@ -382,3 +382,33 @@ $(".tablas").on("click", ".btnEditarPrestamo", function () {
 
  
 });
+
+
+
+/*=============================================
+ELIMINAR PRODUCTO
+=============================================*/
+
+$(".tablas tbody").on(
+	"click",
+	"button.btnEliminarPrestamo",
+	function () {
+		var idPrestamo = $(this).attr("idPrestamo");
+		swal({
+			title: "¿Está seguro de eliminar este registro?",
+			text: "¡Si no lo está puede cancelar la accíón!",
+			type: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#3085d6",
+			cancelButtonColor: "#d33",
+			cancelButtonText: "Cancelar",
+			confirmButtonText: "Si, borrar registro!",
+		}).then(function (result) {
+			if (result.value) {
+				window.location =
+					"index.php?ruta=prestamos&idPrestamo=" +
+					idPrestamo;
+			}
+		});
+	}
+);

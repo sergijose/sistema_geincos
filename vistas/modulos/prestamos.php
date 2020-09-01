@@ -142,9 +142,13 @@
              else{
               echo '<button class="btn btn-warning btnEditarPrestamo" idPrestamo="'.$value["id"].'" data-toggle="modal" data-target="#modalDevolverProducto" disabled><i class="fa fa-pencil" ></i></button>';
              }
-             
 
-              echo '<button class="btn btn-danger btnEliminarVenta" idVenta=""><i class="fa fa-times"></i></button>';
+             if($value["estado_prestamo"]=="PENDIENTE"){
+              echo '<button class="btn btn-danger btnEliminarPrestamo" idPrestamo="'.$value["id"].'" disabled><i class="fa fa-times"></i></button>';
+             }
+             else{
+              echo '<button class="btn btn-danger btnEliminarPrestamo" idPrestamo="'.$value["id"].'"><i class="fa fa-times"></i></button>';
+             }
               
 
               echo '</div>  
@@ -264,3 +268,9 @@ MODAL REGISTRO DE DEVOLUCION
   </div>
 
 </div>
+<?php
+
+  $eliminarPrestamo = new ControladorPrestamos();
+  $eliminarPrestamo -> ctrEliminarPrestamo();
+
+?>     

@@ -130,8 +130,14 @@ class ControladorPrestamos{
 			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ, ]+$/', $_POST["observacionDevolucion"])){
 
 				$tabla = "prestamo";
+				date_default_timezone_set('America/Bogota');
 
-				$datos = array("fecha_devolucion"=>$_POST["fechaDevolucion"],
+						$fecha = $_POST["fechaDevolucion"];
+						$hora = date('H:i:s');
+
+						$fechaDevolucion = $fecha.' '.$hora;
+
+				$datos = array("fecha_devolucion"=>$fechaDevolucion,
 								"observacion_devolucion"=>$_POST["observacionDevolucion"],
 								"estado_prestamo"=>"FINALIZADO",
 							   "id"=>$_POST["idPrestamo"]);
@@ -188,6 +194,45 @@ class ControladorPrestamos{
 		}
 
 	}
+		//eliminar prestamo
+
+	static public function ctrEliminarPrestamo(){
+
+		if(isset($_GET["idPrestamo"])){
+
+			$tabla ="prestamo";
+			$datos = $_GET["idPrestamo"];
+
+			$respuesta = ModeloPrestamos::mdlEliminarPrestamos($tabla, $datos);
+
+			if($respuesta == "ok"){
+
+				echo'<script>
+					
+				swal({
+					  type: "success",
+					  title: "El prestamo ha sido borrado correctamente",
+					  showConfirmButton: true,
+					  confirmButtonText: "Cerrar"
+					  }).then(function(result){
+								if (result.value) {
+
+								window.location = "prestamos";
+
+								}
+							})
+
+				</script>';
+
+			}		
+		}
+
+
+	}
+
+
+
+
     
 }
 
