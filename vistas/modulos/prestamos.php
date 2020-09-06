@@ -74,8 +74,8 @@
               <th>Fecha_Devolucion</th>
               <th>observacion_prestamo</th>
               <th>observacion_devolucion</th>
-              <th>estado_prestamo</th>
-              <th>Acciones</th>
+              <th style="width:10px">estado_prestamo</th>
+              <th style="width:10px">Acciones</th>
 
             </tr>
 
@@ -93,7 +93,7 @@
 
               echo '<tr>
 
-             <td style="width:8px">' . ($key + 1) . '</td>';
+             <td>' . ($key + 1) . '</td>';
 
 
 
@@ -119,35 +119,35 @@
               <td>' . $value["observacion_prestamo"]. '</td>
               <td>' . $value["observacion_devolucion"]. '</td>';
               if( $value["estado_prestamo"]=="PENDIENTE"){
-                echo '<td><button class="btn btn-danger" >'. $value["estado_prestamo"].'</button></td>';
+                echo '<td><button class="btn btn-danger btn-xs" >'. $value["estado_prestamo"].'</button></td>';
               }
               else{
               
-              echo '<td><button class="btn btn-success">'. $value["estado_prestamo"].'</button></td>';
+              echo '<td><button class="btn btn-success btn-xs">'. $value["estado_prestamo"].'</button></td>';
               }
 
             echo' <td>
 
           <div class="btn-group">
 
-            <button class="btn btn-info btnImprimirFactura" codigoVenta="">
+            <button class="btn btn-info btn-xs btnImprimirFactura" codigoVenta="">
 
               <i class="fa fa-print"></i>
 
             </button>';
 
              if($value["fecha_devolucion"]==null){
-              echo '<button class="btn btn-warning btnEditarPrestamo" idPrestamo="'.$value["id"].'" data-toggle="modal" data-target="#modalDevolverProducto"><i class="fa fa-pencil"></i></button>';
+              echo '<button class="btn btn-warning btn-xs btnEditarPrestamo" idPrestamo="'.$value["id"].'" data-toggle="modal" data-target="#modalDevolverProducto"><i class="fa fa-pencil"></i></button>';
              }
              else{
-              echo '<button class="btn btn-warning btnEditarPrestamo" idPrestamo="'.$value["id"].'" data-toggle="modal" data-target="#modalDevolverProducto" disabled><i class="fa fa-pencil" ></i></button>';
+              echo '<button class="btn btn-warning btn-xs btnEditarPrestamo" idPrestamo="'.$value["id"].'" data-toggle="modal" data-target="#modalDevolverProducto" disabled><i class="fa fa-pencil" ></i></button>';
              }
 
              if($value["estado_prestamo"]=="PENDIENTE"){
-              echo '<button class="btn btn-danger btnEliminarPrestamo" idPrestamo="'.$value["id"].'" disabled><i class="fa fa-times"></i></button>';
+              echo '<button class="btn btn-danger btn-xs btnEliminarPrestamo" idPrestamo="'.$value["id"].'" disabled><i class="fa fa-times"></i></button>';
              }
              else{
-              echo '<button class="btn btn-danger btnEliminarPrestamo" idPrestamo="'.$value["id"].'"><i class="fa fa-times"></i></button>';
+              echo '<button class="btn btn-danger btn-xs btnEliminarPrestamo" idPrestamo="'.$value["id"].'"><i class="fa fa-times"></i></button>';
              }
               
 
@@ -164,9 +164,6 @@
           </tbody>
 
         </table>
-
-
-
 
       </div>
 

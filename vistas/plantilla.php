@@ -51,6 +51,10 @@ session_start();
   PLUGINS DE JAVASCRIPT
   ======================================-->
 
+
+
+
+
 <!-- Alertify  js-->
   <script src="vistas/plugins/alertifyjs/alertify.js"></script>
   <!-- jQuery 3 -->

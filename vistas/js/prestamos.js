@@ -109,14 +109,14 @@ $(".tablaPrestamos tbody").on("click", "button.agregarProducto", function () {
           "</div>" +
           "</div>" +
           "<!-- Agregar OBSERVACION DE PRESTAMO-->" +
-          '<div class="col-xs-4 observaciones" style="padding-left:0px">' +
+          '<div class="col-xs-4 observaciones" style="padding-left:8px">' +
           '<div class="input-group">' +
           '<button type="button"  class="btn btn-warning  form-control btnObservacion" valor name="btnObservacion" id="btnObservacion' +
           contadorObs +
           '" idProducto="' +
           idProducto +
-          '"  required>INSERTAR OBSERVACION</button>' +
-          '<input type="hidden" class="form-control nuevaObservacion" idProducto="' +
+          '"  required>Observaciones</button>' +
+          '<input type="hidden" class="form-control nuevaObservacion " idProducto="' +
           idProducto +
           '" id="nuevaObservacion' +
           contadorObs +
