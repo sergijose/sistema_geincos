@@ -130,17 +130,17 @@
 
           <div class="btn-group">
 
-            <button class="btn btn-info btn-xs btnImprimirFactura" codigoVenta="">
+            <button class="btn btn-info btn-xs btnImprimirPrestamo" idPrestamo="'.$value["id"].'">
 
               <i class="fa fa-print"></i>
 
             </button>';
 
              if($value["fecha_devolucion"]==null){
-              echo '<button class="btn btn-warning btn-xs btnEditarPrestamo" idPrestamo="'.$value["id"].'" data-toggle="modal" data-target="#modalDevolverProducto"><i class="fa fa-pencil"></i></button>';
+              echo '<button class="btn btn-warning btn-xs btnEditarPrestamo" idPrestamo="'.$value["id"].'" data-toggle="modal" data-target="#modalDevolverProducto" data-toggle="tooltip" title="Devolver Producto"><i class="fa fa-pencil"></i></button>';
              }
              else{
-              echo '<button class="btn btn-warning btn-xs btnEditarPrestamo" idPrestamo="'.$value["id"].'" data-toggle="modal" data-target="#modalDevolverProducto" disabled><i class="fa fa-pencil" ></i></button>';
+              echo '<button class="btn btn-warning btn-xs btnEditarPrestamo" idPrestamo="'.$value["id"].'" data-toggle="modal" data-target="#modalDevolverProducto" data-toggle="tooltip" title="Devolver Producto" disabled><i class="fa fa-pencil" ></i></button>';
              }
 
              if($value["estado_prestamo"]=="PENDIENTE"){
@@ -271,3 +271,12 @@ MODAL REGISTRO DE DEVOLUCION
   $eliminarPrestamo -> ctrEliminarPrestamo();
 
 ?>     
+
+<!--==============================
+PARA MENSAJE AL ESTAR SITUADO EN EL BOTON DEVOLVER
+ ------------------------------ -->
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>

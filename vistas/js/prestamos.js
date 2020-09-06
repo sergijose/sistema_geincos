@@ -412,3 +412,16 @@ $(".tablas tbody").on(
 		});
 	}
 );
+
+
+/*=============================================
+IMPRIMIR FACTURA
+=============================================*/
+
+$(".tablas").on("click", ".btnImprimirPrestamo", function(){
+
+	var idPrestamo = $(this).attr("idPrestamo");
+
+	window.open("extensiones/tcpdf/pdf/prestamo.php?id="+idPrestamo, "_blank");
+
+})
