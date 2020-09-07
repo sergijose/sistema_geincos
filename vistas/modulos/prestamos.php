@@ -85,11 +85,23 @@
             <?php
 
 
-            $item=null;
-            $valor=null;
-            $respuesta = ControladorPrestamos::ctrMostrarPrestamos($item, $valor);
 
-            foreach ($respuesta as $key => $value) {
+
+          if(isset($_GET["fechaInicial"])){
+
+            $fechaInicial = $_GET["fechaInicial"];
+            $fechaFinal = $_GET["fechaFinal"];
+
+          }else{
+
+            $fechaInicial = null;
+            $fechaFinal = null;
+
+          }
+
+          $respuesta = ControladorPrestamos::ctrRangoFechasPrestamos($fechaInicial, $fechaFinal);
+
+          foreach ($respuesta as $key => $value) {
 
               echo '<tr>
 

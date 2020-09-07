@@ -232,6 +232,21 @@ class ControladorPrestamos{
 
 
 
+	/*=============================================
+	RANGO FECHAS
+	=============================================*/	
+
+	static public function ctrRangoFechasPrestamos($fechaInicial, $fechaFinal){
+
+		$tabla = "prestamo";
+
+		$respuesta = ModeloPrestamos::mdlRangoFechasPrestamos($tabla, $fechaInicial, $fechaFinal);
+
+		return $respuesta;
+		
+	}
+
+
 
     
 }

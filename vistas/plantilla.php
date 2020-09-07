@@ -46,14 +46,12 @@ session_start();
    <!-- DataTables -->
   <link rel="stylesheet" href="vistas/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <link rel="stylesheet" href="vistas/bower_components/datatables.net-bs/css/responsive.bootstrap.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="vistas/bower_components/bootstrap-daterangepicker/daterangepicker.css">
 
   <!--=====================================
   PLUGINS DE JAVASCRIPT
   ======================================-->
-
-
-
-
 
 <!-- Alertify  js-->
   <script src="vistas/plugins/alertifyjs/alertify.js"></script>
@@ -79,6 +77,10 @@ session_start();
   <script src="vistas/plugins/sweetalert2/sweetalert2.all.js"></script>
   <!-- By default SweetAlert2 doesn't support IE. To enable IE 11 support, include Promise polyfill:-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+
+   <!-- daterangepicker http://www.daterangepicker.com/-->
+   <script src="vistas/bower_components/moment/min/moment.min.js"></script>
+  <script src="vistas/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 
 </head>
 

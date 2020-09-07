@@ -119,7 +119,7 @@ class ModeloPrestamos{
 	RANGO FECHAS
 	=============================================*/	
 
-	static public function mdlRangoFechasVentas($tabla, $fechaInicial, $fechaFinal){
+	static public function mdlRangoFechasPrestamos($tabla, $fechaInicial, $fechaFinal){
 
 		if($fechaInicial == null){
 
@@ -132,9 +132,9 @@ class ModeloPrestamos{
 
 		}else if($fechaInicial == $fechaFinal){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha like '%$fechaFinal%'");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha_prestamo like '%$fechaFinal%'");
 
-			$stmt -> bindParam(":fecha", $fechaFinal, PDO::PARAM_STR);
+			$stmt -> bindParam(":fecha_prestamo", $fechaFinal, PDO::PARAM_STR);
 
 			$stmt -> execute();
 
@@ -152,12 +152,12 @@ class ModeloPrestamos{
 
 			if($fechaFinalMasUno == $fechaActualMasUno){
 
-				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha BETWEEN '$fechaInicial' AND '$fechaFinalMasUno'");
+				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha_prestamo BETWEEN '$fechaInicial' AND '$fechaFinalMasUno'");
 
 			}else{
 
 
-				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha BETWEEN '$fechaInicial' AND '$fechaFinal'");
+				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha_prestamo BETWEEN '$fechaInicial' AND '$fechaFinal'");
 
 			}
 		
@@ -169,23 +169,8 @@ class ModeloPrestamos{
 
 	}
 
-	/*=============================================
-	SUMAR EL TOTAL DE VENTAS
-	=============================================*/
-
-	static public function mdlSumaTotalVentas($tabla){	
-
-		$stmt = Conexion::conectar()->prepare("SELECT SUM(neto) as total FROM $tabla");
-
-		$stmt -> execute();
-
-		return $stmt -> fetch();
-
-		$stmt -> close();
-
-		$stmt = null;
-
-	}
+	
+	
 
 	
 }
