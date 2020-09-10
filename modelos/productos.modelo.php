@@ -146,5 +146,52 @@ class ModeloProductos{
 
 	}
 
-}
 
+
+
+/*=============================================
+	MOSTRAR TOTAL DE PRODCUTOS POR CATEGORIA
+	=============================================*/
+
+	static public function mdlMostrarTotalProductos($tabla, $item, $valor){
+
+		if($item != null){
+
+			$stmt = Conexion::conectar()->prepare("SELECT cat.descripcion,COUNT(cat.descripcion) AS total 
+			FROM $tabla  pro
+			INNER JOIN modelo mo 
+			ON pro.idmodelo=mo.id
+			INNER JOIN categoria cat
+			ON mo.idcategoria=cat.id
+			WHERE $item=:$item
+			GROUP BY cat.descripcion"
+			);
+
+			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT cat.descripcion,COUNT(cat.descripcion) AS total 
+			FROM $tabla pro
+			INNER JOIN modelo mo 
+			ON pro.idmodelo=mo.id
+			INNER JOIN categoria cat
+			ON mo.idcategoria=cat.id
+			GROUP BY cat.descripcion");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+
+	
+
+		$stmt = null;
+
+	}
+}

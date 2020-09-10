@@ -36,6 +36,37 @@ class ModeloPrestamos{
 	}
 
 	/*=============================================
+	MOSTRAR PRESTAMO PENDIENTES POR EMPLEADO
+	=============================================*/
+
+	static public function mdlMostrarPrestamosPendiente($tabla, $item, $valor){
+
+		if($item != null){
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item=:$item ORDER BY idempleado ASC");
+
+			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY id ASC");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+		
+	
+		$stmt = null;
+
+	}
+
+	/*=============================================
 	REGISTRO DE PRESTAMO
 	=============================================*/
 
@@ -45,7 +76,7 @@ class ModeloPrestamos{
 
 		$stmt->bindParam(":idusuario", $datos["idusuario"], PDO::PARAM_INT);
 		$stmt->bindParam(":idproducto", $datos["idproducto"], PDO::PARAM_STR);
-		$stmt->bindParam(":idempleado", $datos["idempleado"], PDO::PARAM_INT);
+		$stmt->bindParam(":idempleado", $datos["idempleado"], PDO::PARAM_STR);
 		$stmt->bindParam(":observacion_prestamo", $datos["observacion_prestamo"], PDO::PARAM_STR);
 		$stmt->bindParam(":estado_prestamo", $datos["estado_prestamo"], PDO::PARAM_STR);
 

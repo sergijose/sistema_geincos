@@ -14,7 +14,11 @@ class ControladorProductos{
 
 		return $respuesta;
 
-    }
+	}
+	
+	/*=============================================
+	MOSTRAR ESTADO DEL PRODUCTO
+	=============================================*/
     static public function ctrMostrarEstadoProducto($item, $valor, $orden){
 
         $tabla = "estado";
@@ -23,6 +27,21 @@ class ControladorProductos{
 		return $respuesta;
 
 	}
+
+	/*=============================================
+	MOSTRAR TOTAL DE PRODUCTOS
+	=============================================*/
+
+	static public function ctrMostrarTotalProductos($item, $valor){
+
+		$tabla = "producto";
+
+		$respuesta = ModeloProductos::mdlMostrarTotalProductos($tabla, $item, $valor);
+
+		return $respuesta;
+
+    }
+  
 
 	/*=============================================
 	CREAR PRODUCTO

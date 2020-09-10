@@ -1,3 +1,28 @@
+
+
+/*=============================================
+VARIABLE LOCAL STORAGE
+=============================================*/
+
+if(localStorage.getItem("capturarRango") != null){
+
+	$("#daterange-btn span").html(localStorage.getItem("capturarRango"));
+
+
+}else{
+
+	$("#daterange-btn span").html('<i class="fa fa-calendar"></i> Rango de fecha')
+
+}
+
+
+
+
+
+
+
+
+
 //esto nos servira para comprobar si nuestro json esta bien estructurado
 $.ajax({
   url: "ajax/datatable-prestamos.ajax.php",
@@ -487,27 +512,27 @@ $(".daterangepicker.opensleft .ranges li").on("click", function(){
 		var mes = d.getMonth()+1;
 		var año = d.getFullYear();
 
-		 if(mes < 10){
+		 //if(mes < 10){
 
-		 	var fechaInicial = año+"-0"+mes+"-"+dia;
-		 	var fechaFinal = año+"-0"+mes+"-"+dia;
+		// 	var fechaInicial = año+"-0"+mes+"-"+dia;
+		 //	var fechaFinal = año+"-0"+mes+"-"+dia;
 
-		 }else if(dia < 10){
+		// }else //(dia < 10){
 
-			var fechaInicial = año+"-"+mes+"-0"+dia;
-			var fechaFinal = año+"-"+mes+"-0"+dia;
+		//	var fechaInicial = año+"-"+mes+"-0"+dia;
+		//	var fechaFinal = año+"-"+mes+"-0"+dia;
 
-		}else if(mes < 10 && dia < 10){
+		//}else if(mes < 10 && dia < 10){
 
-		 	var fechaInicial = año+"-0"+mes+"-0"+dia;
-		 	var fechaFinal = año+"-0"+mes+"-0"+dia;
+		// 	var fechaInicial = año+"-0"+mes+"-0"+dia;
+		// 	var fechaFinal = año+"-0"+mes+"-0"+dia;
 
-		 }else{
+		// }else{
 
-		 	var fechaInicial = año+"-"+mes+"-"+dia;
-	     	var fechaFinal = año+"-"+mes+"-"+dia;
+		// 	var fechaInicial = año+"-"+mes+"-"+dia;
+	   //  	var fechaFinal = año+"-"+mes+"-"+dia;
 
-		 }
+		// }
 
 		dia = ("0"+dia).slice(-2);
 		mes = ("0"+mes).slice(-2);

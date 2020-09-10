@@ -1,51 +1,271 @@
 <div class="content-wrapper">
 
   <section class="content-header">
-    
+
     <h1>
-      
-      Reportes de ventas
-    
+
+      Reportes de Prestamos
+
     </h1>
 
     <ol class="breadcrumb">
-      
-      <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      
-      <li class="active">Reportes de ventas</li>
-    
+
+      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
+
+      <li class="active">Reportes de Prestamos</li>
+
     </ol>
 
   </section>
 
-  <!-- Main content -->
   <section class="content">
 
-    <!-- Default box -->
     <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Title</h3>
 
-        <div class="box-tools pull-right">
-          <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                  title="Collapse">
-            <i class="fa fa-minus"></i></button>
-          <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-            <i class="fa fa-times"></i></button>
-        </div>
+      <div class="box-header with-border box box-success">
+
+
       </div>
+
       <div class="box-body">
-        Start creating your amazing application!
+
+        <div class="row">
+
+          <div class="col-xs-6 ">
+            <h3 class="box-title">Lista de personal que tienen prestamos pendientes</h3>
+            <table class="table table-bordered table-striped dt-responsive tablas " width="100%">
+
+              <thead>
+
+                <tr>
+
+                  <th style="width:10px">#</th>
+                  <th>Empleado</th>
+                  <th>Producto</th>
+
+                </tr>
+
+              </thead>
+
+              <tbody>
+
+                <?php
+                $item = "estado_prestamo";
+                $valor = "PENDIENTE";
+                $prestamosEmpleado = ControladorPrestamos::ctrMostrarPrestamosPendiente($item, $valor);
+
+
+                foreach ($prestamosEmpleado as $key => $value) {
+
+                  echo ' <tr>
+ 
+                     <td>' . ($key + 1) . '</td>
+ 
+                     <td class="text-uppercase">' . $value["idempleado"] . '</td>';
+
+                  $item2 = "id";
+                  $valor2 = $value["idproducto"];
+                  $order = "id";
+
+                  $respuestaProducto = ControladorProductos::ctrMostrarProductos($item2, $valor2, $order);
+
+                  echo '<td>' . $respuestaProducto["cod_producto"] . '</td>
+                     
+ 
+                   </tr>';
+                }
+
+                ?>
+
+              </tbody>
+
+            </table>
+
+
+            <div class="col-md-6 col-xs-12">
+
+              <?php
+
+              include "reportes/productos-mas-vendidos.php";
+
+              ?>
+
+            </div>
+
+            <div class="col-md-6 col-xs-12">
+
+              <?php
+
+              include "reportes/vendedores.php";
+
+              ?>
+
+            </div>
+
+            <div class="col-md-6 col-xs-12">
+
+              <?php
+
+              include "reportes/compradores.php";
+
+              ?>
+
+            </div>
+
+          </div>
+
+
+
+          <div class="col-xs-2 ">
+            <h3 class="box-title">Cantidad de productos</h3>
+            <table class="table table-bordered table-striped dt-responsive" width="100%">
+
+              <thead>
+
+                <tr>
+
+                  <th style="width:10px">#</th>
+                  <th>CATEGORIA</th>
+                  <th>TOTAL</th>
+
+                </tr>
+
+              </thead>
+
+              <tbody>
+
+                <?php
+                $item = null;
+                $valor = null;
+                $productosTotal = ControladorProductos::ctrMostrarTotalProductos($item, $valor);
+
+
+                foreach ($productosTotal  as $key => $value) {
+
+                  echo ' <tr>
+ 
+                     <td>' . ($key + 1) . '</td>
+ 
+                     <td class="text-uppercase">' . $value["descripcion"] . '</td>
+
+                    <td>' . $value["total"] . '</td>
+                     
+ 
+                   </tr>';
+                }
+
+                ?>
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+
+          <div class="col-xs-2 ">
+            <h3 class="box-title">Total productos ocupados</h3>
+            <table class="table table-bordered table-striped dt-responsive" width="100%">
+
+              <thead>
+
+                <tr>
+
+                  <th style="width:10px">#</th>
+                  <th>CATEGORIA</th>
+                  <th>TOTAL</th>
+
+                </tr>
+
+              </thead>
+
+              <tbody>
+
+                <?php
+                $item ="estado_prestamo";
+                $valor ="OCUPADO";
+                $productosOcupados = ControladorProductos::ctrMostrarTotalProductos($item, $valor);
+
+
+                foreach ($productosOcupados  as $key => $value) {
+
+                  echo ' <tr>
+ 
+                     <td>' . ($key + 1) . '</td>
+ 
+                     <td class="text-uppercase">' . $value["descripcion"] . '</td>
+
+                    <td>' . $value["total"] . '</td>
+                     
+ 
+                   </tr>';
+                }
+
+                ?>
+
+              </tbody>
+
+            </table>
+
+
+           
+
+          </div>
+
+          <div class="col-xs-2 ">
+            <h3 class="box-title">Total productos Libres</h3>
+            <table class="table table-bordered table-striped dt-responsive" width="100%">
+
+              <thead>
+
+                <tr>
+
+                  <th style="width:10px">#</th>
+                  <th>CATEGORIA</th>
+                  <th>TOTAL</th>
+
+                </tr>
+
+              </thead>
+
+              <tbody>
+
+                <?php
+                $item ="estado_prestamo";
+                $valor ="DISPONIBLE";
+                $productosLibres = ControladorProductos::ctrMostrarTotalProductos($item, $valor);
+
+
+                foreach ($productosLibres  as $key => $value) {
+
+                  echo ' <tr>
+ 
+                     <td>' . ($key + 1) . '</td>
+ 
+                     <td class="text-uppercase">' . $value["descripcion"] . '</td>
+
+                    <td>' . $value["total"] . '</td>
+                     
+ 
+                   </tr>';
+                }
+
+                ?>
+
+              </tbody>
+
+            </table>
+
+
+           
+
+          </div>
+
+
+        </div>
+
       </div>
-      <!-- /.box-body -->
-      <div class="box-footer">
-        Footer
-      </div>
-      <!-- /.box-footer-->
-    </div>
-    <!-- /.box -->
 
   </section>
-  <!-- /.content -->
+
 </div>
-<!-- /.content-wrapper -->

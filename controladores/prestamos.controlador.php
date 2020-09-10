@@ -18,6 +18,21 @@ class ControladorPrestamos{
 
 	}
 
+
+
+	/*=============================================
+	MOSTRAR PRESTAMOS PENDIENTES POR EMPLEADO
+	=============================================*/
+
+	static public function ctrMostrarPrestamosPendiente($item, $valor){
+
+		$tabla = "prestamo";
+
+		$respuesta = ModeloPrestamos::mdlMostrarPrestamosPendiente($tabla, $item, $valor);
+
+		return $respuesta;
+
+	}
 	/*=============================================
 	CREAR PRESTAMOS
 	=============================================*/
