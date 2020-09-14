@@ -31,7 +31,7 @@
 
         <div class="row">
 
-          <div class="col-xs-6 ">
+          <div class="col-md-6 col-xs-12">
             <h3 class="box-title">Lista de personal que tienen prestamos pendientes</h3>
             <table class="table table-bordered table-striped dt-responsive tablas " width="100%">
 
@@ -82,41 +82,13 @@
             </table>
 
 
-            <div class="col-md-6 col-xs-12">
-
-              <?php
-
-              include "reportes/productos-mas-vendidos.php";
-
-              ?>
-
-            </div>
-
-            <div class="col-md-6 col-xs-12">
-
-              <?php
-
-              include "reportes/vendedores.php";
-
-              ?>
-
-            </div>
-
-            <div class="col-md-6 col-xs-12">
-
-              <?php
-
-              include "reportes/compradores.php";
-
-              ?>
-
-            </div>
+          
 
           </div>
 
 
 
-          <div class="col-xs-2 ">
+          <div class="col-md-2 col-xs-12 ">
             <h3 class="box-title">Cantidad de productos</h3>
             <table class="table table-bordered table-striped dt-responsive" width="100%">
 
@@ -163,7 +135,7 @@
           </div>
 
 
-          <div class="col-xs-2 ">
+          <div class="col-md-2 col-xs-12 ">
             <h3 class="box-title">Total productos ocupados</h3>
             <table class="table table-bordered table-striped dt-responsive" width="100%">
 
@@ -182,8 +154,8 @@
               <tbody>
 
                 <?php
-                $item ="estado_prestamo";
-                $valor ="OCUPADO";
+                $item = "estado_prestamo";
+                $valor = "OCUPADO";
                 $productosOcupados = ControladorProductos::ctrMostrarTotalProductos($item, $valor);
 
 
@@ -208,11 +180,11 @@
             </table>
 
 
-           
+
 
           </div>
 
-          <div class="col-xs-2 ">
+          <div class="col-md-2 col-xs-12 ">
             <h3 class="box-title">Total productos Libres</h3>
             <table class="table table-bordered table-striped dt-responsive" width="100%">
 
@@ -231,8 +203,8 @@
               <tbody>
 
                 <?php
-                $item ="estado_prestamo";
-                $valor ="DISPONIBLE";
+                $item = "estado_prestamo";
+                $valor = "DISPONIBLE";
                 $productosLibres = ControladorProductos::ctrMostrarTotalProductos($item, $valor);
 
 
@@ -257,14 +229,55 @@
             </table>
 
 
-           
+
 
           </div>
 
 
         </div>
 
-      </div>
+        <div class="row">
+
+          <div class="col-md-6 col-xs-12">
+            <h3 class="box-title">ESTADISTICAS</h3>
+
+            <div class="col-md-6 col-xs-12">
+
+<?php
+
+include "reportes/productos-mas-vendidos.php";
+
+?>
+
+</div>
+
+<div class="col-md-6 col-xs-12">
+
+<?php
+
+include "reportes/vendedores.php";
+
+?>
+
+</div>
+
+<div class="col-md-6 col-xs-12">
+
+<?php
+
+include "reportes/compradores.php";
+
+?>
+
+</div>
+
+
+
+
+
+
+          </div>
+        </div>
 
   </section>
 

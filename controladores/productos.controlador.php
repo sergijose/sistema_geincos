@@ -52,7 +52,7 @@ class ControladorProductos{
 		if(isset($_POST["nuevoModelo"])){
 
 			if(preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["nuevoModelo"]) &&
-			   preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["nuevoCodigo"]) &&	
+			   preg_match('/^[-a-zA-Z0-9 ]+$/', $_POST["nuevoCodigo"]) &&	
 			   preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["nuevoEstado"]) &&
 			   preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["nuevoEstadoPrestamo"])){
 
@@ -61,7 +61,7 @@ class ControladorProductos{
 				$tabla = "producto";
 
 				$datos = array("idmodelo" => $_POST["nuevoModelo"],
-							   "cod_producto" => $_POST["nuevoCodigo"],
+							   "cod_producto" => strtoupper($_POST["nuevoCodigo"]),
 							   "idestado" => $_POST["nuevoEstado"],
 							   "estado_prestamo" => $_POST["nuevoEstadoPrestamo"]);
 
