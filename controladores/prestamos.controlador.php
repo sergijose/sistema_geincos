@@ -262,6 +262,87 @@ class ControladorPrestamos{
 	}
 
 
+	/*=============================================
+	DESCARGAR EXCEL
+	=============================================*/
+
+	public function ctrDescargarReporte(){
+
+		if(isset($_GET["prestamo"])){
+
+			$tabla = "prestamo";
+
+			if(isset($_GET["fechaInicial"]) && isset($_GET["fechaFinal"])){
+
+				$prestamo = ModeloPrestamos::mdlRangoFechasPrestamos($tabla, $_GET["fechaInicial"], $_GET["fechaFinal"]);
+
+			}else{
+
+				$item = null;
+				$valor = null;
+
+				$prestamo = ModeloPrestamos::mdlMostrarPrestamos($tabla, $item, $valor);
+
+			}
+
+
+			/*=============================================
+			CREAMOS EL ARCHIVO DE EXCEL
+			=============================================*/
+
+			$Name = $_GET["prestamo"].'.xls';
+
+			header('Expires: 0');
+			header('Cache-control: private');
+			header("Content-type: application/vnd.ms-excel"); // Archivo de Excel
+			header("Cache-Control: cache, must-revalidate"); 
+			header('Content-Description: File Transfer');
+			header('Last-Modified: '.date('D, d M Y H:i:s'));
+			header("Pragma: public"); 
+			header('Content-Disposition:; filename="'.$Name.'"');
+			header("Content-Transfer-Encoding: binary");
+		
+			echo utf8_decode("<table border='0'> 
+
+					<tr> 
+					<td style='font-weight:bold; border:1px solid #eee;'>USUARIO</td> 
+					<td style='font-weight:bold; border:1px solid #eee;'>PRODUCTO</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>EMPLEADO</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>F_PRESTAMO</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>F_DEVOLUCION</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>OBS_PRESTAMO</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>OBS_DEVOLUCION</td>		
+					<td style='font-weight:bold; border:1px solid #eee;'>ESTADO_PRESTAMO</td>		
+					</tr>");
+
+			foreach ($prestamo as $row => $item){
+
+				$usuario = ControladorUsuarios::ctrMostrarUsuarios("id", $item["idusuario"]);
+				$producto = ControladorProductos::ctrMostrarProductos("id", $item["idproducto"],"id");
+
+			 echo utf8_decode("<tr>
+			 			<td style='border:1px solid #eee;'>".$usuario["nombre"]."</td> 
+			 			<td style='border:1px solid #eee;'>".$producto["cod_producto"]."</td>
+						 <td style='border:1px solid #eee;'>".$item["idempleado"]."</td>
+						 <td style='border:1px solid #eee;'>".substr($item["fecha_prestamo"],0,10)."</td>
+						 <td style='border:1px solid #eee;'>".substr($item["fecha_devolucion"],0,10)."</td>
+						 <td style='border:1px solid #eee;'>".$item["observacion_prestamo"]."</td>
+						 <td style='border:1px solid #eee;'>".$item["observacion_devolucion"]."</td>
+						 <td style='border:1px solid #eee;'>".$item["estado_prestamo"]."</td>
+						
+						 </tr>");
+
+
+			}
+			
+			echo "</table>";
+
+		}
+
+	}
+
+
+
 
     
 }

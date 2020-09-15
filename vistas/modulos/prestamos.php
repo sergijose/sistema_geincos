@@ -32,7 +32,27 @@
 
           </button>
 
+
         </a>
+        
+
+          <?php
+
+          if (isset($_GET["fechaInicial"])) {
+
+            echo '<a href="vistas/modulos/descargar-prestamo.php?prestamo=prestamo&fechaInicial=' . $_GET["fechaInicial"] . '&fechaFinal=' . $_GET["fechaFinal"] . '">';
+          } else {
+
+            echo '<a href="vistas/modulos/descargar-prestamo.php?prestamo=prestamo">';
+          }
+
+          ?>
+
+          <button class="btn btn-success">Descargar reporte en Excel</button>
+
+          </a>
+
+
 
         <button type="button" class="btn btn-default pull-right" id="daterange-btn">
 
@@ -70,11 +90,11 @@
               <th>Usuario</th>
               <th>Producto</th>
               <th>Empleado</th>
-              <th>Fecha_Prestamo</th>
-              <th>Fecha_Devolucion</th>
+              <th>F_Prestamo</th>
+              <th>F_Devolucion</th>
               <th>observacion_prestamo</th>
               <th>observacion_devolucion</th>
-              <th style="width:10px">estado_prestamo</th>
+              <th style="width:10px">estado</th>
               <th style="width:10px">Acciones</th>
 
             </tr>
@@ -87,21 +107,19 @@
 
 
 
-          if(isset($_GET["fechaInicial"])){
+            if (isset($_GET["fechaInicial"])) {
 
-            $fechaInicial = $_GET["fechaInicial"];
-            $fechaFinal = $_GET["fechaFinal"];
+              $fechaInicial = $_GET["fechaInicial"];
+              $fechaFinal = $_GET["fechaFinal"];
+            } else {
 
-          }else{
+              $fechaInicial = null;
+              $fechaFinal = null;
+            }
 
-            $fechaInicial = null;
-            $fechaFinal = null;
+            $respuesta = ControladorPrestamos::ctrRangoFechasPrestamos($fechaInicial, $fechaFinal);
 
-          }
-
-          $respuesta = ControladorPrestamos::ctrRangoFechasPrestamos($fechaInicial, $fechaFinal);
-
-          foreach ($respuesta as $key => $value) {
+            foreach ($respuesta as $key => $value) {
 
               echo '<tr>
 
@@ -116,54 +134,51 @@
 
               echo '<td>' . $respuestaUsuario["nombre"] . '</td>';
 
-              $item ="id";
-              $valor =$value["idproducto"];
-              $order ="id";
+              $item = "id";
+              $valor = $value["idproducto"];
+              $order = "id";
 
-              $respuestaProducto = ControladorProductos::ctrMostrarProductos($item, $valor,$order);
-             
-              echo '<td>' .$respuestaProducto["cod_producto"]. '</td>
+              $respuestaProducto = ControladorProductos::ctrMostrarProductos($item, $valor, $order);
+
+              echo '<td>' . $respuestaProducto["cod_producto"] . '</td>
               
-              <td>' . $value["idempleado"]. '</td>
+              <td>' . $value["idempleado"] . '</td>
 
-              <td>' . $value["fecha_prestamo"]. '</td>
-              <td>' . $value["fecha_devolucion"]. '</td>
-              <td>' . $value["observacion_prestamo"]. '</td>
-              <td>' . $value["observacion_devolucion"]. '</td>';
-              if( $value["estado_prestamo"]=="PENDIENTE"){
-                echo '<td><button class="btn btn-danger btn-xs" >'. $value["estado_prestamo"].'</button></td>';
-              }
-              else{
-              
-              echo '<td><button class="btn btn-success btn-xs">'. $value["estado_prestamo"].'</button></td>';
+              <td>' . $value["fecha_prestamo"] . '</td>
+              <td>' . $value["fecha_devolucion"] . '</td>
+              <td>' . $value["observacion_prestamo"] . '</td>
+              <td>' . $value["observacion_devolucion"] . '</td>';
+              if ($value["estado_prestamo"] == "PENDIENTE") {
+                echo '<td><button class="btn btn-danger btn-xs" >' . $value["estado_prestamo"] . '</button></td>';
+              } else {
+
+                echo '<td><button class="btn btn-success btn-xs">' . $value["estado_prestamo"] . '</button></td>';
               }
 
-            echo' <td>
+              echo ' <td>
 
           <div class="btn-group">
 
-            <button class="btn btn-info btn-xs btnImprimirPrestamo" idPrestamo="'.$value["id"].'">
+            <button class="btn btn-info btn-xs btnImprimirPrestamo" idPrestamo="' . $value["id"] . '">
 
               <i class="fa fa-print"></i>
 
             </button>';
 
-             if($value["fecha_devolucion"]==null){
-              echo '<button class="btn btn-warning btn-xs btnEditarPrestamo" idPrestamo="'.$value["id"].'" data-toggle="modal" data-target="#modalDevolverProducto" data-toggle="tooltip" title="Devolver Producto"><i class="fa fa-pencil"></i></button>';
-             }
-             else{
-              echo '<button class="btn btn-warning btn-xs btnEditarPrestamo" idPrestamo="'.$value["id"].'" data-toggle="modal" data-target="#modalDevolverProducto" data-toggle="tooltip" title="Devolver Producto" disabled><i class="fa fa-pencil" ></i></button>';
-             }
+              if ($value["fecha_devolucion"] == null) {
+                echo '<button class="btn btn-warning btn-xs btnEditarPrestamo" idPrestamo="' . $value["id"] . '" data-toggle="modal" data-target="#modalDevolverProducto" data-toggle="tooltip" title="Devolver Producto"><i class="fa fa-pencil"></i></button>';
+              } else {
+                echo '<button class="btn btn-warning btn-xs btnEditarPrestamo" idPrestamo="' . $value["id"] . '" data-toggle="modal" data-target="#modalDevolverProducto" data-toggle="tooltip" title="Devolver Producto" disabled><i class="fa fa-pencil" ></i></button>';
+              }
 
-             if($value["estado_prestamo"]=="PENDIENTE"){
-              echo '<button class="btn btn-danger btn-xs btnEliminarPrestamo" idPrestamo="'.$value["id"].'" disabled><i class="fa fa-times"></i></button>';
-             }
-             else{
-              echo '<button class="btn btn-danger btn-xs btnEliminarPrestamo" idPrestamo="'.$value["id"].'"><i class="fa fa-times"></i></button>';
-             }
-              
+              if ($value["estado_prestamo"] == "PENDIENTE") {
+                echo '<button class="btn btn-danger btn-xs btnEliminarPrestamo" idPrestamo="' . $value["id"] . '" disabled><i class="fa fa-times"></i></button>';
+              } else {
+                echo '<button class="btn btn-danger btn-xs btnEliminarPrestamo" idPrestamo="' . $value["id"] . '"><i class="fa fa-times"></i></button>';
+              }
 
-              echo '</div>  
+
+              echo '</div> 
 
         </td>
 
@@ -181,6 +196,7 @@
 
     </div>
 
+
   </section>
 
 </div>
@@ -190,7 +206,7 @@ MODAL REGISTRO DE DEVOLUCION
 ======================================-->
 
 <div id="modalDevolverProducto" class="modal fade" role="dialog">
-  
+
   <div class="modal-dialog">
 
     <div class="modal-content">
@@ -218,35 +234,35 @@ MODAL REGISTRO DE DEVOLUCION
           <div class="box-body">
 
             <!-- ENTRADA REGISTRAR LA FECHA DE DEVOLUCION -->
-            
+
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 
                 <input type="date" class="form-control input-lg" name="fechaDevolucion" required>
 
-                 <input type="hidden"  name="idPrestamo" id="idPrestamo"  name="idPrestamo">
-                 <input type="hidden"  name="idProducto" id="idProducto" name="idProducto" >
+                <input type="hidden" name="idPrestamo" id="idPrestamo" name="idPrestamo">
+                <input type="hidden" name="idProducto" id="idProducto" name="idProducto">
 
               </div>
-             
+
 
 
 
             </div>
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-commenting-o"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-commenting-o"></i></span>
 
                 <input type="text" class="form-control input-lg" name="observacionDevolucion" required>
               </div>
 
             </div>
-  
+
           </div>
 
         </div>
@@ -263,12 +279,12 @@ MODAL REGISTRO DE DEVOLUCION
 
         </div>
 
-      <?php
+        <?php
 
-          $devolverProducto = new ControladorPrestamos();
-          $devolverProducto -> ctrDevolverProducto();
+        $devolverProducto = new ControladorPrestamos();
+        $devolverProducto->ctrDevolverProducto();
 
-        ?> 
+        ?>
 
       </form>
 
@@ -279,16 +295,16 @@ MODAL REGISTRO DE DEVOLUCION
 </div>
 <?php
 
-  $eliminarPrestamo = new ControladorPrestamos();
-  $eliminarPrestamo -> ctrEliminarPrestamo();
+$eliminarPrestamo = new ControladorPrestamos();
+$eliminarPrestamo->ctrEliminarPrestamo();
 
-?>     
+?>
 
 <!--==============================
 PARA MENSAJE AL ESTAR SITUADO EN EL BOTON DEVOLVER
  ------------------------------ -->
 <script>
-$(document).ready(function(){
-  $('[data-toggle="tooltip"]').tooltip();   
-});
+  $(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip();
+  });
 </script>

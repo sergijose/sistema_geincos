@@ -82,7 +82,7 @@
             </table>
 
 
-          
+
 
           </div>
 
@@ -236,48 +236,7 @@
 
         </div>
 
-        <div class="row">
-
-          <div class="col-md-6 col-xs-12">
-            <h3 class="box-title">ESTADISTICAS</h3>
-
-            <div class="col-md-6 col-xs-12">
-
-<?php
-
-include "reportes/productos-mas-vendidos.php";
-
-?>
-
-</div>
-
-<div class="col-md-6 col-xs-12">
-
-<?php
-
-include "reportes/vendedores.php";
-
-?>
-
-</div>
-
-<div class="col-md-6 col-xs-12">
-
-<?php
-
-include "reportes/compradores.php";
-
-?>
-
-</div>
-
-
-
-
-
-
-          </div>
-        </div>
+      
 
   </section>
 
