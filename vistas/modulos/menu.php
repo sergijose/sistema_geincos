@@ -4,7 +4,12 @@
 
 		<ul class="sidebar-menu">
 
-			<li class="active">
+			<?php
+			if ($_SESSION["perfil"] =="Administrador") {
+
+
+
+				echo '<li class="active">
 
 				<a href="inicio">
 
@@ -24,9 +29,12 @@
 
 				</a>
 
-			</li>
+			</li>';
+			}
 
-			<li class="treeview">
+			if ($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Especial") {
+
+				echo '<li class="treeview">
 
 				<a href="#">
 
@@ -92,11 +100,11 @@
 
 				</a>
 
-			</li>
+			</li>';
+			}
 
-			
-
-			<li class="treeview">
+			if ($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Visitante"  || $_SESSION["perfil"] == "Especial") {
+				echo '<li class="treeview">
 
 				<a href="#">
 
@@ -114,6 +122,8 @@
 
 				<ul class="treeview-menu">
 
+
+					
 					<li>
 
 						<a href="prestamos">
@@ -123,9 +133,10 @@
 
 						</a>
 
-					</li>
+					</li>';
 
-					<li>
+					if ($_SESSION["perfil"] == "Administrador"  || $_SESSION["perfil"] == "Especial") {	
+					echo '<li>
 
 						<a href="crear-prestamo">
 
@@ -136,6 +147,7 @@
 
 					</li>
 
+				
 					<li>
 
 						<a href="reportes">
@@ -145,11 +157,14 @@
 
 						</a>
 
-					</li>
+					</li>';
+				}
 
-				</ul>
+				echo '</ul>
 
-			</li>
+			</li>';
+			}
+			?>
 
 		</ul>
 

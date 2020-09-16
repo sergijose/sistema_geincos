@@ -11,6 +11,7 @@ $.ajax({
 
 var perfilOculto = $("#perfilOculto").val();
 
+
 $(".tablaProductos").DataTable({
 	ajax: "ajax/datatable-productos.ajax.php?perfilOculto=" + perfilOculto,
 	deferRender: true,

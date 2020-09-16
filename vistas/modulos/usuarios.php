@@ -1,3 +1,21 @@
+<?php
+if($_SESSION["perfil"] == "Visitante" ||$_SESSION["perfil"] == "Especial"){
+
+echo '<script>
+
+  window.location = "inicio";
+
+</script>';
+
+return;
+
+}
+
+?>
+
+
+
+
 <div class="content-wrapper">
 
   <section class="content-header">
@@ -212,7 +230,7 @@ MODAL AGREGAR USUARIO
 
                   <option value="Especial">Especial</option>
 
-                  <option value="Vendedor">Vendedor</option>
+                  <option value="Visitante">Visitante</option>
 
                 </select>
 
@@ -357,7 +375,7 @@ MODAL EDITAR USUARIO
 
                   <option value="Especial">Especial</option>
 
-                  <option value="Vendedor">Vendedor</option>
+                  <option value="Visitante">Visitante</option>
 
                 </select>
 

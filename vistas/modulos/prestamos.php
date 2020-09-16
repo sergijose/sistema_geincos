@@ -21,10 +21,14 @@
   <section class="content">
 
     <div class="box">
+      
+
 
       <div class="box-header with-border">
+      <?php
+      if ($_SESSION["perfil"] == "Administrador" ||$_SESSION["perfil"] == "Especial") {
 
-        <a href="crear-prestamo">
+      echo '<a href="crear-prestamo">
 
           <button class="btn btn-primary">
 
@@ -33,8 +37,9 @@
           </button>
 
 
-        </a>
-        
+        </a>';
+      }
+        ?>
 
           <?php
 
@@ -164,6 +169,7 @@
               <i class="fa fa-print"></i>
 
             </button>';
+            if ($_SESSION["perfil"] == "Administrador" ||$_SESSION["perfil"] == "Especial" ) {
 
               if ($value["fecha_devolucion"] == null) {
                 echo '<button class="btn btn-warning btn-xs btnEditarPrestamo" idPrestamo="' . $value["id"] . '" data-toggle="modal" data-target="#modalDevolverProducto" data-toggle="tooltip" title="Devolver Producto"><i class="fa fa-pencil"></i></button>';
@@ -176,7 +182,7 @@
               } else {
                 echo '<button class="btn btn-danger btn-xs btnEliminarPrestamo" idPrestamo="' . $value["id"] . '"><i class="fa fa-times"></i></button>';
               }
-
+            }
 
               echo '</div> 
 
