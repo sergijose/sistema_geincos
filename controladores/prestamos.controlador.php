@@ -147,10 +147,11 @@ class ControladorPrestamos{
 				$tabla = "prestamo";
 				date_default_timezone_set('America/Bogota');
 
-						$fecha = $_POST["fechaDevolucion"];
+						$fechaDev = $_POST["fechaDevolucion"];
 						$hora = date('H:i:s');
 
-						$fechaDevolucion = $fecha.' '.$hora;
+						$fechaDevolucion = $fechaDev.' '.$hora;
+						var_dump($fechaDev);
 
 				$datos = array("fecha_devolucion"=>$fechaDevolucion,
 								"observacion_devolucion"=>$_POST["observacionDevolucion"],

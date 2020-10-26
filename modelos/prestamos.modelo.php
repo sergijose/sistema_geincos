@@ -101,7 +101,7 @@ class ModeloPrestamos{
 
 	static public function mdlDevolverProducto($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET fecha_devolucion= :fecha_devolucion,observacion_devolucion = :observacion_devolucion,estado_prestamo=:estado_prestamo WHERE id = :id");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET fecha_devolucion=:fecha_devolucion,observacion_devolucion =:observacion_devolucion,estado_prestamo=:estado_prestamo WHERE id = :id");
 
 		$stmt->bindParam(":fecha_devolucion", $datos["fecha_devolucion"], PDO::PARAM_STR);
 		$stmt->bindParam(":observacion_devolucion", $datos["observacion_devolucion"], PDO::PARAM_STR);
