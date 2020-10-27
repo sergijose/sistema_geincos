@@ -307,8 +307,9 @@ class ControladorPrestamos{
 
 					<tr> 
 					<td style='font-weight:bold; border:1px solid #eee;'>USUARIO</td> 
-					<td style='font-weight:bold; border:1px solid #eee;'>PRODUCTO</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>COD PRODUCTO</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>EMPLEADO</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>NUM DOCUMENTO</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>F_PRESTAMO</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>F_DEVOLUCION</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>OBS_PRESTAMO</td>
@@ -319,12 +320,14 @@ class ControladorPrestamos{
 			foreach ($prestamo as $row => $item){
 
 				$usuario = ControladorUsuarios::ctrMostrarUsuarios("id", $item["idusuario"]);
+				$empleados = ControladorEmpleados::ctrMostrarEmpleados("idempleado", $item["idempleado"]);
 				$producto = ControladorProductos::ctrMostrarProductos("id", $item["idproducto"],"id");
 
 			 echo utf8_decode("<tr>
 			 			<td style='border:1px solid #eee;'>".$usuario["nombre"]."</td> 
 			 			<td style='border:1px solid #eee;'>".$producto["cod_producto"]."</td>
-						 <td style='border:1px solid #eee;'>".$item["idempleado"]."</td>
+						 <td style='border:1px solid #eee;'>".$empleados["nombres"]." ".$empleados["ape_pat"]." ".$empleados["ape_mat"]."</td>
+						 <td style='border:1px solid #eee;'>".$empleados["num_documento"]."</td>
 						 <td style='border:1px solid #eee;'>".substr($item["fecha_prestamo"],0,10)."</td>
 						 <td style='border:1px solid #eee;'>".substr($item["fecha_devolucion"],0,10)."</td>
 						 <td style='border:1px solid #eee;'>".$item["observacion_prestamo"]."</td>
