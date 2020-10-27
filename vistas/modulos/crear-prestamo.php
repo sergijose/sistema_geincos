@@ -1,14 +1,13 @@
 <?php
-if($_SESSION["perfil"] == "Visitante"){
+if ($_SESSION["perfil"] == "Visitante") {
 
-echo '<script>
+  echo '<script>
 
   window.location = "inicio";
 
 </script>';
 
-return;
-
+  return;
 }
 
 ?>
@@ -82,7 +81,25 @@ return;
 
                     <span class="input-group-addon"><i class="fa fa-users"></i></span>
 
-                    <input type="text" class="form-control" id="nuevoEmpleado" name="nuevoEmpleado" >
+                    <select class="form-control input-lg" id="nuevoEmpleado" name="nuevoEmpleado" required>
+
+                      <option value="">Seleccionar Empleado</option>
+
+                      <?php
+
+                      $item = null;
+                      $valor = null;
+
+                      $modelo = ControladorEmpleados::ctrMostrarEmpleados($item, $valor);
+
+                      foreach ($modelo as $key => $value) {
+
+                        echo '<option value="' . $value["idempleado"] . '">' . $value["nombres"] ." ".$value["ape_pat"] ." ".$value["ape_mat"].'</option>';
+                      }
+
+                      ?>
+
+                    </select>
 
                   </div>
 
@@ -101,8 +118,8 @@ return;
 
                 <input type="hidden" id="listaProductos" name="listaProductos">
 
-                
-                 <!--=====================================
+
+                <!--=====================================
                 PARA INSERTAR VARIOS PRODUCTOS (ALMACENAMIENTO )
                 ======================================-->
                 <input type="hidden" id="listaProductos2" name="listaProductos2">
@@ -132,7 +149,7 @@ return;
           <?php
 
           $guardarPrestamo = new ControladorPrestamos();
-          $guardarPrestamo -> ctrCrearPrestamo();
+          $guardarPrestamo->ctrCrearPrestamo();
 
           ?>
 

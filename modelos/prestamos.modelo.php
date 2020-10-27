@@ -76,7 +76,7 @@ class ModeloPrestamos{
 
 		$stmt->bindParam(":idusuario", $datos["idusuario"], PDO::PARAM_INT);
 		$stmt->bindParam(":idproducto", $datos["idproducto"], PDO::PARAM_STR);
-		$stmt->bindParam(":idempleado", $datos["idempleado"], PDO::PARAM_STR);
+		$stmt->bindParam(":idempleado", $datos["idempleado"], PDO::PARAM_INT);
 		$stmt->bindParam(":observacion_prestamo", $datos["observacion_prestamo"], PDO::PARAM_STR);
 		$stmt->bindParam(":estado_prestamo", $datos["estado_prestamo"], PDO::PARAM_STR);
 

@@ -145,14 +145,20 @@
 
               $respuestaProducto = ControladorProductos::ctrMostrarProductos($item, $valor, $order);
 
-              echo '<td>' . $respuestaProducto["cod_producto"] . '</td>
-              
-              <td>' . $value["idempleado"] . '</td>
+              echo '<td>' . $respuestaProducto["cod_producto"] . '</td>';
 
-              <td>' . $value["fecha_prestamo"] . '</td>
+
+              $itemEmpleado = "idempleado";
+              $valorEmpleado = $value["idempleado"];
+              $respuestaEmpleado = ControladorEmpleados::ctrMostrarEmpleados($itemEmpleado, $valorEmpleado);
+              
+              echo '<td>' . $respuestaEmpleado["nombres"]." ".$respuestaEmpleado["ape_pat"]." ".$respuestaEmpleado["ape_mat"].'</td>';
+              
+               echo '<td>' . $value["fecha_prestamo"] . '</td>
               <td>' . $value["fecha_devolucion"] . '</td>
               <td>' . $value["observacion_prestamo"] . '</td>
               <td>' . $value["observacion_devolucion"] . '</td>';
+
               if ($value["estado_prestamo"] == "PENDIENTE") {
                 echo '<td><button class="btn btn-danger btn-xs" >' . $value["estado_prestamo"] . '</button></td>';
               } else {
