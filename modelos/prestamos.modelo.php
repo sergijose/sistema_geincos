@@ -12,7 +12,7 @@ class ModeloPrestamos{
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY id ASC");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY fecha_prestamo DESC");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 

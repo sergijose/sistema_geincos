@@ -75,6 +75,7 @@ $(".tablaProductos tbody").on("click", "button.btnEditarProducto", function () {
 				processData: false,
 				dataType: "json",
 				success: function (respuesta) {
+					
 					$("#editarModelo").val(respuesta["id"]);
 					//  $("#editarModelo").html(respuesta["descripcion"]);
 				},
@@ -102,6 +103,7 @@ $(".tablaProductos tbody").on("click", "button.btnEditarProducto", function () {
 			$("#editarEstadoPrestamo").val(respuesta["estado_prestamo"]);
 			//para editar producto -capturando el id
 			$("#id").val(respuesta["id"]);
+			console.log(respuesta["id"]);
 		},
 	});
 });

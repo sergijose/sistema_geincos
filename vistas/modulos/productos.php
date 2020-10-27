@@ -325,7 +325,7 @@ MODAL EDITAR PRODUCTO
 
             <input type="text" class="form-control input-lg" id="editarCodigo" name="editarCodigo" placeholder="Ingrese Codigo" required>
               <!-- oculto el id del producto para poder editar -->
-            <input type="text" id="id" name="id" hidden required>    
+            <input type="hidden" id="id" name="id"  require>    
             </div>
 
           </div>

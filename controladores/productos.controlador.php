@@ -100,7 +100,7 @@ class ControladorProductos{
 		if(isset($_POST["editarModelo"])){
 
 			if(preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["editarModelo"]) &&
-			   preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["editarCodigo"]) &&	
+			   preg_match('/^[-a-zA-Z0-9 ]+$/', $_POST["editarCodigo"]) &&	
 			   preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["editarEstado"]) &&
 			   preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["editarEstadoPrestamo"])){
 
