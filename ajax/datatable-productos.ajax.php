@@ -89,7 +89,8 @@ class TablaProductos
 			$datosJson .= '[
 			      "' . ($i + 1) . '",
                   "' . $modelos["descripcion"] . '",
-                  "' . $productos[$i]["cod_producto"] . '",
+				  "' . $productos[$i]["cod_producto"] . '",
+				  "' . $productos[$i]["num_serie"] . '",
                   "' . $estadoProducto["descripcion"] . '",
 				  "' . $estado . '",
 				  "' . $productos[$i]["fecha"] . '",

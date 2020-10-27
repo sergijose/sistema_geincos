@@ -53,6 +53,7 @@ class ControladorProductos{
 
 			if(preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["nuevoModelo"]) &&
 			   preg_match('/^[-a-zA-Z0-9 ]+$/', $_POST["nuevoCodigo"]) &&	
+			   preg_match('/^[-a-zA-Z0-9 ]+$/', $_POST["nuevoNumSerie"]) &&	
 			   preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["nuevoEstado"]) &&
 			   preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["nuevoEstadoPrestamo"])){
 
@@ -62,6 +63,7 @@ class ControladorProductos{
 
 				$datos = array("idmodelo" => $_POST["nuevoModelo"],
 							   "cod_producto" => strtoupper($_POST["nuevoCodigo"]),
+							   "num_serie" => strtoupper($_POST["nuevoNumSerie"]),
 							   "idestado" => $_POST["nuevoEstado"],
 							   "estado_prestamo" => $_POST["nuevoEstadoPrestamo"]);
 
@@ -101,6 +103,7 @@ class ControladorProductos{
 
 			if(preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["editarModelo"]) &&
 			   preg_match('/^[-a-zA-Z0-9 ]+$/', $_POST["editarCodigo"]) &&	
+			   preg_match('/^[-a-zA-Z0-9 ]+$/', $_POST["editarNumSerie"]) &&
 			   preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["editarEstado"]) &&
 			   preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["editarEstadoPrestamo"])){
 
@@ -108,6 +111,7 @@ class ControladorProductos{
 
 				$datos = array("idmodelo" => $_POST["editarModelo"],
 							   "cod_producto" => $_POST["editarCodigo"],
+							   "num_serie" => $_POST["editarNumSerie"],
 							   "idestado" => $_POST["editarEstado"],
 							   "estado_prestamo" => $_POST["editarEstadoPrestamo"],
 							   "id" => $_POST["id"]);

@@ -1,14 +1,13 @@
 <?php
-if($_SESSION["perfil"] == "Visitante"){
+if ($_SESSION["perfil"] == "Visitante") {
 
-echo '<script>
+  echo '<script>
 
   window.location = "inicio";
 
 </script>';
 
-return;
-
+  return;
 }
 
 ?>
@@ -60,6 +59,7 @@ return;
               <th style="width:10px">#</th>
               <th>Modelo</th>
               <th>Código</th>
+              <th>Numero de Serie</th>
               <th>Estado Producto</th>
               <th>Disponibilidad</th>
               <th>Fecha_Registro</th>
@@ -71,7 +71,7 @@ return;
 
         </table>
         <input type="hidden" value="<?php echo $_SESSION['perfil']; ?>" id="perfilOculto">
-     
+
 
       </div>
 
@@ -113,124 +113,136 @@ MODAL AGREGAR PRODUCTO
         <div class="modal-body">
 
           <div class="box-body">
-          
 
 
-          <!-- ENTRADA PARA SELECCIONAR MODELO -->
 
-          <div class="form-group">
+            <!-- ENTRADA PARA SELECCIONAR MODELO -->
 
-            <div class="input-group">
+            <div class="form-group">
 
-              <span class="input-group-addon"><i class="fa fa-th"></i></span>
+              <div class="input-group">
 
-              <select class="form-control input-lg" id="nuevoModelo" name="nuevoModelo" required>
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                <option value="">Seleccionar Modelo</option>
+                <select class="form-control input-lg" id="nuevoModelo" name="nuevoModelo" required>
 
-                <?php
+                  <option value="">Seleccionar Modelo</option>
 
-                $item = null;
-                $valor = null;
+                  <?php
 
-                $modelo = ControladorModelos::ctrMostrarModelo($item, $valor);
+                  $item = null;
+                  $valor = null;
 
-                foreach ($modelo as $key => $value) {
+                  $modelo = ControladorModelos::ctrMostrarModelo($item, $valor);
 
-                  echo '<option value="' . $value["id"] . '">' . $value["descripcion"] . '</option>';
-                }
+                  foreach ($modelo as $key => $value) {
 
-                ?>
+                    echo '<option value="' . $value["id"] . '">' . $value["descripcion"] . '</option>';
+                  }
 
-              </select>
+                  ?>
+
+                </select>
+
+              </div>
+
+            </div>
+
+            <!-- ENTRADA PARA EL CÓDIGO -->
+
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+
+                <input type="text" class="form-control input-lg" id="nuevoCodigo" name="nuevoCodigo" placeholder="Ingrese Codigo" required>
+
+              </div>
+
+            </div>
+            <!-- ENTRADA PARA EL NUMERO DE SERIE -->
+
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+
+                <input type="text" class="form-control input-lg" id="nuevoNumSerie" name="nuevoNumSerie" placeholder="Ingrese numero de serie" required>
+
+              </div>
+
+            </div>
+            <!-- ENTRADA PARA EL ESTADO -->
+
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+                <select class="form-control input-lg" id="nuevoEstado" name="nuevoEstado" required>
+
+                  <option value="">Seleccionar estado del producto</option>
+
+                  <?php
+
+                  $item = null;
+                  $valor = null;
+                  $orden = "id";
+
+
+                  $estado = ControladorProductos::ctrMostrarEstadoProducto($item, $valor, $orden);
+
+                  foreach ($estado as $key => $value) {
+
+
+                    echo '<option value="' . $value["id"] . '">' . $value["descripcion"] . '</option>';
+                  }
+
+                  ?>
+
+                </select>
+
+              </div>
+
+            </div>
+
+
+            <!-- ENTRADA PARA ESTADO DE PRESTAMO DEL PRODUCTO -->
+
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+                <select class="form-control input-lg" id="nuevoEstadoPrestamo" name="nuevoEstadoPrestamo" required>
+
+                  <option value="">Seleccionar estado del prestamo</option>
+                  <option value="DISPONIBLE">DISPONIBLE</option>
+                  <option value="OCUPADO">OCUPADO</option>
+                </select>
+
+              </div>
 
             </div>
 
           </div>
+        </div>
 
-          <!-- ENTRADA PARA EL CÓDIGO -->
-
-          <div class="form-group">
-
-            <div class="input-group">
-
-              <span class="input-group-addon"><i class="fa fa-code"></i></span>
-
-              <input type="text" class="form-control input-lg" id="nuevoCodigo" name="nuevoCodigo" placeholder="Ingrese Codigo" required>
-
-            </div>
-
-          </div>
-
-          <!-- ENTRADA PARA EL ESTADO -->
-
-          <div class="form-group">
-
-            <div class="input-group">
-
-              <span class="input-group-addon"><i class="fa fa-th"></i></span>
-
-              <select class="form-control input-lg" id="nuevoEstado" name="nuevoEstado" required>
-
-                <option value="">Seleccionar estado del producto</option>
-
-                <?php
-
-                $item = null;
-                $valor = null;
-                $orden = "id";
-
-
-                $estado = ControladorProductos::ctrMostrarEstadoProducto($item, $valor, $orden);
-
-                foreach ($estado as $key => $value) {
-
-
-                  echo '<option value="' . $value["id"] . '">' . $value["descripcion"] . '</option>';
-                }
-
-                ?>
-
-              </select>
-
-            </div>
-
-          </div>
-
-
-          <!-- ENTRADA PARA ESTADO DE PRESTAMO DEL PRODUCTO -->
-
-          <div class="form-group">
-
-            <div class="input-group">
-
-              <span class="input-group-addon"><i class="fa fa-th"></i></span>
-
-              <select class="form-control input-lg" id="nuevoEstadoPrestamo" name="nuevoEstadoPrestamo" required>
-
-                <option value="">Seleccionar estado del prestamo</option>
-                <option value="DISPONIBLE">DISPONIBLE</option>
-                <option value="OCUPADO">OCUPADO</option>
-              </select>
-
-            </div>
-
-          </div>
-
-          </div>
-          </div>
-
-          <!--=====================================
+        <!--=====================================
         PIE DEL MODAL
         ======================================-->
-             
-          <div class="modal-footer">
 
-            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+        <div class="modal-footer">
 
-            <button type="submit" class="btn btn-primary">Guardar producto</button>
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          </div>
+          <button type="submit" class="btn btn-primary">Guardar producto</button>
+
+        </div>
 
       </form>
 
@@ -269,7 +281,7 @@ MODAL EDITAR PRODUCTO
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Editar  producto</h4>
+          <h4 class="modal-title">Editar producto</h4>
 
         </div>
 
@@ -280,125 +292,138 @@ MODAL EDITAR PRODUCTO
         <div class="modal-body">
 
           <div class="box-body">
-          
 
 
-          <!-- ENTRADA PARA EDITAR  SELECCIONAR MODELO -->
 
-          <div class="form-group">
+            <!-- ENTRADA PARA EDITAR  SELECCIONAR MODELO -->
 
-            <div class="input-group">
+            <div class="form-group">
 
-              <span class="input-group-addon"><i class="fa fa-th"></i></span>
+              <div class="input-group">
 
-              <select class="form-control input-lg" id="editarModelo" name="editarModelo" required>
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                <option value="">Seleccionar Modelo</option>
+                <select class="form-control input-lg" id="editarModelo" name="editarModelo" required>
 
-                <?php
+                  <option value="">Seleccionar Modelo</option>
 
-                $item = null;
-                $valor = null;
+                  <?php
 
-                $modelo = ControladorModelos::ctrMostrarModelo($item, $valor);
+                  $item = null;
+                  $valor = null;
 
-                foreach ($modelo as $key => $value) {
+                  $modelo = ControladorModelos::ctrMostrarModelo($item, $valor);
 
-                  echo '<option value="' . $value["id"] . '">' . $value["descripcion"] . '</option>';
-                }
+                  foreach ($modelo as $key => $value) {
 
-                ?>
+                    echo '<option value="' . $value["id"] . '">' . $value["descripcion"] . '</option>';
+                  }
 
-              </select>
+                  ?>
+
+                </select>
+
+              </div>
+
+            </div>
+
+            <!-- ENTRADA PARA EL CÓDIGO -->
+
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+
+                <input type="text" class="form-control input-lg" id="editarCodigo" name="editarCodigo" placeholder="Ingrese Codigo" required>
+                <!-- oculto el id del producto para poder editar -->
+                <input type="hidden" id="id" name="id" require>
+              </div>
+
+            </div>
+            <!-- ENTRADA PARA EL NUMERO DE SERIE -->
+
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+
+                <input type="text" class="form-control input-lg" id="editarNumSerie" name="editarNumSerie" placeholder="editar numero de serie" required>
+
+              </div>
+
+            </div>
+
+            <!-- ENTRADA PARA EL ESTADO -->
+
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+                <select class="form-control input-lg" id="editarEstado" name="editarEstado" required>
+
+                  <option value="">Seleccionar estado del producto</option>
+
+                  <?php
+
+                  $item = null;
+                  $valor = null;
+                  $orden = "id";
+
+
+                  $estado = ControladorProductos::ctrMostrarEstadoProducto($item, $valor, $orden);
+
+                  foreach ($estado as $key => $value) {
+
+
+                    echo '<option value="' . $value["id"] . '">' . $value["descripcion"] . '</option>';
+                  }
+
+                  ?>
+
+                </select>
+
+              </div>
+
+            </div>
+
+
+            <!-- ENTRADA PARA ESTADO DE PRESTAMO DEL PRODUCTO -->
+
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+                <select class="form-control input-lg" id="editarEstadoPrestamo" name="editarEstadoPrestamo" required>
+
+                  <option value="">Seleccionar estado del prestamo</option>
+                  <option value="DISPONIBLE">DISPONIBLE</option>
+                  <option value="OCUPADO">OCUPADO</option>
+                </select>
+
+              </div>
 
             </div>
 
           </div>
+        </div>
 
-          <!-- ENTRADA PARA EL CÓDIGO -->
-
-          <div class="form-group">
-
-            <div class="input-group">
-
-              <span class="input-group-addon"><i class="fa fa-code"></i></span>
-
-            <input type="text" class="form-control input-lg" id="editarCodigo" name="editarCodigo" placeholder="Ingrese Codigo" required>
-              <!-- oculto el id del producto para poder editar -->
-            <input type="hidden" id="id" name="id"  require>    
-            </div>
-
-          </div>
-
-          <!-- ENTRADA PARA EL ESTADO -->
-
-          <div class="form-group">
-
-            <div class="input-group">
-
-              <span class="input-group-addon"><i class="fa fa-th"></i></span>
-
-              <select class="form-control input-lg" id="editarEstado" name="editarEstado" required>
-
-                <option value="">Seleccionar estado del producto</option>
-
-                <?php
-
-                $item = null;
-                $valor = null;
-                $orden = "id";
-
-
-                $estado = ControladorProductos::ctrMostrarEstadoProducto($item, $valor, $orden);
-
-                foreach ($estado as $key => $value) {
-
-
-                  echo '<option value="' . $value["id"] . '">' . $value["descripcion"] . '</option>';
-                }
-
-                ?>
-
-              </select>
-
-            </div>
-
-          </div>
-
-
-          <!-- ENTRADA PARA ESTADO DE PRESTAMO DEL PRODUCTO -->
-
-          <div class="form-group">
-
-            <div class="input-group">
-
-              <span class="input-group-addon"><i class="fa fa-th"></i></span>
-
-              <select class="form-control input-lg" id="editarEstadoPrestamo" name="editarEstadoPrestamo" required>
-
-                <option value="">Seleccionar estado del prestamo</option>
-                <option value="DISPONIBLE">DISPONIBLE</option>
-                <option value="OCUPADO">OCUPADO</option>
-              </select>
-
-            </div>
-
-          </div>
-
-          </div>
-          </div>
-
-          <!--=====================================
+        <!--=====================================
         PIE DEL MODAL
         ======================================-->
-             
-          <div class="modal-footer">
 
-            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+        <div class="modal-footer">
 
-            <button type="submit" class="btn btn-primary">Actualizar producto</button>
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          </div>
+          <button type="submit" class="btn btn-primary">Actualizar producto</button>
+
+        </div>
 
       </form>
 
@@ -416,7 +441,7 @@ MODAL EDITAR PRODUCTO
 </div>
 <?php
 
-  $eliminarProducto = new ControladorProductos();
-  $eliminarProducto -> ctrEliminarProducto();
+$eliminarProducto = new ControladorProductos();
+$eliminarProducto->ctrEliminarProducto();
 
-?>      
+?>

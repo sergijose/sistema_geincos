@@ -10,10 +10,11 @@ class ModeloProductos{
 
 	static public function mdlIngresarProducto($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(idmodelo,cod_producto,idestado,estado_prestamo) VALUES (:idmodelo,:cod_producto,:idestado,:estado_prestamo)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(idmodelo,cod_producto,num_serie,idestado,estado_prestamo) VALUES (:idmodelo,:cod_producto,:num_serie,:idestado,:estado_prestamo)");
 
 		$stmt->bindParam(":idmodelo", $datos["idmodelo"], PDO::PARAM_INT);
 		$stmt->bindParam(":cod_producto", $datos["cod_producto"], PDO::PARAM_STR);
+		$stmt->bindParam(":num_serie", $datos["num_serie"], PDO::PARAM_STR);
 		$stmt->bindParam(":idestado", $datos["idestado"], PDO::PARAM_INT);
 		$stmt->bindParam(":estado_prestamo", $datos["estado_prestamo"], PDO::PARAM_STR);
 
@@ -70,10 +71,11 @@ class ModeloProductos{
 
 	static public function mdlEditarProducto($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET idmodelo=:idmodelo,cod_producto=:cod_producto, idestado=:idestado,estado_prestamo=:estado_prestamo WHERE id=:id");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET idmodelo=:idmodelo,cod_producto=:cod_producto,num_serie=:num_serie, idestado=:idestado,estado_prestamo=:estado_prestamo WHERE id=:id");
 
 		$stmt -> bindParam(":idmodelo", $datos["idmodelo"], PDO::PARAM_INT);
 		$stmt -> bindParam(":cod_producto", $datos["cod_producto"], PDO::PARAM_STR);
+		$stmt -> bindParam(":num_serie", $datos["num_serie"], PDO::PARAM_STR);
 		$stmt -> bindParam(":idestado", $datos["idestado"], PDO::PARAM_INT);
 		$stmt -> bindParam(":estado_prestamo", $datos["estado_prestamo"], PDO::PARAM_STR);
 		$stmt -> bindParam(":id", $datos["id"], PDO::PARAM_INT);

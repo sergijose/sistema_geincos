@@ -99,11 +99,12 @@ $(".tablaProductos tbody").on("click", "button.btnEditarProducto", function () {
 			});
 
 			$("#editarCodigo").val(respuesta["cod_producto"]);
+			$("#editarNumSerie").val(respuesta["num_serie"]);
 
 			$("#editarEstadoPrestamo").val(respuesta["estado_prestamo"]);
 			//para editar producto -capturando el id
 			$("#id").val(respuesta["id"]);
-			console.log(respuesta["id"]);
+			
 		},
 	});
 });
