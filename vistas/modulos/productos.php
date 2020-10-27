@@ -169,7 +169,7 @@ MODAL AGREGAR PRODUCTO
 
                 <span class="input-group-addon"><i class="fa fa-code"></i></span>
 
-                <input type="text" class="form-control input-lg" id="nuevoNumSerie" name="nuevoNumSerie" placeholder="Ingrese numero de serie" required>
+                <input type="text" class="form-control input-lg" id="nuevoNumSerie" name="nuevoNumSerie" placeholder="Ingrese numero de serie" >
 
               </div>
 
@@ -349,7 +349,7 @@ MODAL EDITAR PRODUCTO
 
                 <span class="input-group-addon"><i class="fa fa-code"></i></span>
 
-                <input type="text" class="form-control input-lg" id="editarNumSerie" name="editarNumSerie" placeholder="editar numero de serie" required>
+                <input type="text" class="form-control input-lg" id="editarNumSerie" name="editarNumSerie" placeholder="editar numero de serie" >
 
               </div>
 

@@ -53,7 +53,7 @@ class ControladorProductos{
 
 			if(preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["nuevoModelo"]) &&
 			   preg_match('/^[-a-zA-Z0-9 ]+$/', $_POST["nuevoCodigo"]) &&	
-			   preg_match('/^[-a-zA-Z0-9 ]+$/', $_POST["nuevoNumSerie"]) &&	
+			   //preg_match('/^[-a-zA-Z0-9 ]+$/', $_POST["nuevoNumSerie"]) &&	
 			   preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["nuevoEstado"]) &&
 			   preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["nuevoEstadoPrestamo"])){
 
@@ -103,7 +103,7 @@ class ControladorProductos{
 
 			if(preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["editarModelo"]) &&
 			   preg_match('/^[-a-zA-Z0-9 ]+$/', $_POST["editarCodigo"]) &&	
-			   preg_match('/^[-a-zA-Z0-9 ]+$/', $_POST["editarNumSerie"]) &&
+			 //  preg_match('/^[-a-zA-Z0-9 ]+$/', $_POST["editarNumSerie"]) &&
 			   preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["editarEstado"]) &&
 			   preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["editarEstadoPrestamo"])){
 
