@@ -32,6 +32,43 @@ $(".tablas").on("click", ".btnEditarEmpleado", function(){
 })
 
 /*=============================================
+REVISAR SI EL USUARIO YA ESTÁ REGISTRADO
+=============================================*/
+
+$("#nuevoNumDocumento").change(function(){
+
+	$(".alert").remove();
+
+	var empleado = $(this).val();
+
+	var datos = new FormData();
+	datos.append("validarEmpleado", empleado);
+
+	 $.ajax({
+	    url:"ajax/empleado.ajax.php",
+	    method:"POST",
+	    data: datos,
+	    cache: false,
+	    contentType: false,
+	    processData: false,
+	    dataType: "json",
+	    success:function(respuesta){
+	    	
+	    	if(respuesta){
+
+	    		$("#nuevoNumDocumento").parent().after('<div class="alert alert-warning">Este numero de documento ya existe en la base de datos</div>');
+
+	    		$("#nuevoNumDocumento").val("");
+
+	    	}
+
+	    }
+
+	})
+})
+
+
+/*=============================================
 ELIMINAR CLIENTE
 =============================================*/
 $(".tablas").on("click", ".btnEliminarEmpleado", function(){

@@ -23,6 +23,19 @@ class AjaxEmpleado{
 
 	}
 
+	public $validarEmpleado;
+
+	public function ajaxValidarEmpleado(){
+
+		$item = "num_documento";
+		$valor = $this->validarEmpleado;
+
+		$respuesta = ControladorEmpleados::ctrMostrarEmpleados($item, $valor);
+
+		echo json_encode($respuesta);
+
+	}
+
 }
 
 /*=============================================
@@ -34,5 +47,17 @@ if(isset($_POST["idEmpleado"])){
 	$empleado = new AjaxEmpleado();
 	$empleado -> idEmpleado = $_POST["idEmpleado"];
 	$empleado -> ajaxEditarEmpleado();
+
+}
+
+/*=============================================
+VALIDAR NO REPETIR USUARIO
+=============================================*/
+
+if(isset( $_POST["validarEmpleado"])){
+
+	$valEmpleado = new AjaxEmpleado();
+	$valEmpleado -> validarEmpleado = $_POST["validarEmpleado"];
+	$valEmpleado -> ajaxValidarEmpleado();
 
 }
