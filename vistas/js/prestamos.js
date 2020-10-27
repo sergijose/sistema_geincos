@@ -485,6 +485,12 @@ $('#daterange-btn').daterangepicker(
 
 )
 
+
+//select2 para listar empleados
+$(document).ready(function() {
+  $('.mi-selector').select2();
+});
+
 /*=============================================
 CANCELAR RANGO DE FECHAS
 =============================================*/

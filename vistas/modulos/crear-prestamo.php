@@ -81,7 +81,7 @@ if ($_SESSION["perfil"] == "Visitante") {
 
                     <span class="input-group-addon"><i class="fa fa-users"></i></span>
 
-                    <select class="form-control input-md" id="nuevoEmpleado" name="nuevoEmpleado" required>
+                    <select class="form-control input-md mi-selector" id="nuevoEmpleado" name="nuevoEmpleado" required>
 
                       <option value="">Seleccionar Empleado</option>
 

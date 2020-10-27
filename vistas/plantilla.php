@@ -49,6 +49,9 @@ session_start();
     <!-- Daterange picker -->
     <link rel="stylesheet" href="vistas/bower_components/bootstrap-daterangepicker/daterangepicker.css">
 
+        <!-- select 2 -->
+        <link rel="stylesheet" href="vistas/bower_components/select2/dist/css/select2.min.css">
+
   <!--=====================================
   PLUGINS DE JAVASCRIPT
   ======================================-->
@@ -75,6 +78,10 @@ session_start();
 
   <!-- SweetAlert 2 -->
   <script src="vistas/plugins/sweetalert2/sweetalert2.all.js"></script>
+
+   <!-- Select 2 -->
+   <script src="vistas/bower_components/select2/dist/js/select2.full.js"></script>
+   
   <!-- By default SweetAlert2 doesn't support IE. To enable IE 11 support, include Promise polyfill:-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 
