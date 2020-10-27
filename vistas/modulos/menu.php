@@ -29,7 +29,22 @@
 
 				</a>
 
-			</li>';
+			</li>
+			
+			<li>
+
+				<a href="empleados">
+
+					<i class="fa fa-users"></i>
+					<span>Empleados</span>
+
+				</a>
+
+			</li>'
+			
+			
+			
+			;
 			}
 
 			if ($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Especial") {
