@@ -59,7 +59,7 @@ if ($_SESSION["perfil"] == "Especial") {
                             <th>Apellido Paterno</th>
                             <th>Apellido Materno</th>
                             <th>Nombres</th>
-                            <th>Numero de Documentos</th>
+                            <th>Numero de Documento</th>
                             <th>Estado</th>
                             <th>Fecha_registro</th>
                             <th>Acciones</th>
@@ -90,11 +90,19 @@ if ($_SESSION["perfil"] == "Especial") {
 
                     <td>' . $value["nombres"] . '</td>
 
-                    <td>' . $value["num_documento"] . '</td>
+                    <td>' . $value["num_documento"] . '</td>';
 
-                    <td>' . $value["estado"] . '</td>
+                    if($value["estado"] == 1){
 
-                    <td>' . $value["fecha_registro"] . '</td>
+                        echo '<td><button class="btn btn-success btn-xs ">Activado</button></td>';
+    
+                      }else{
+    
+                        echo '<td><button class="btn btn-danger btn-xs" >Desactivado</button></td>';
+    
+                      }             
+
+                    echo '<td>' . $value["fecha_registro"] . '</td>
 
                     <td>
 
@@ -226,8 +234,8 @@ MODAL AGREGAR CLIENTE
                                 <select class="form-control input-lg" id="nuevoEstado" name="nuevoEstado" required>
 
                                     <option value="">Seleccionar estado del empleado</option>
-                                    <option value="1">ACTIVO</option>
-                                    <option value="2">INACTIVO</option>
+                                    <option value="1">ACTIVADO</option>
+                                    <option value="2">DESACTIVADO</option>
                                 </select>
 
                             </div>
@@ -365,8 +373,8 @@ MODAL EDITAR CLIENTE
                                 <select class="form-control input-lg" id="editarEstado" name="editarEstado" required>
 
                                     <option value="">Seleccionar estado del empleado</option>
-                                    <option value="1">ACTIVO</option>
-                                    <option value="2">INACTIVO</option>
+                                    <option value="1">ACTIVADO</option>
+                                    <option value="2">DESACTIVADO</option>
                                 </select>
 
                             </div>

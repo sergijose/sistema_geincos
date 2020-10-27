@@ -3,6 +3,9 @@
 require_once "../../../controladores/prestamos.controlador.php";
 require_once "../../../modelos/prestamos.modelo.php";
 
+require_once "../../../controladores/empleados.controlador.php";
+require_once "../../../modelos/empleados.modelo.php";
+
 require_once "../../../controladores/usuarios.controlador.php";
 require_once "../../../modelos/usuarios.modelo.php";
 
@@ -35,7 +38,7 @@ $fechaDevolucion = substr($respuestaPrestamo["fecha_devolucion"],0,-8);
 $observacionPrestamo = $respuestaPrestamo["observacion_prestamo"];
 $observacionDevolucion = $respuestaPrestamo["observacion_devolucion"];
 $estadoPrestamo = $respuestaPrestamo["estado_prestamo"];
-$empleado = $respuestaPrestamo["idempleado"];
+//$empleado = $respuestaPrestamo["idempleado"];
 //TRAEMOS LA INFORMACIÓN DEL USUARIO
 $itemUsuario = "id";
 $valorUsuario = $respuestaPrestamo["idusuario"];
@@ -48,6 +51,12 @@ $itemProducto = "id";
 $valorProducto = $respuestaPrestamo["idproducto"];
 
 $respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto,$orden);
+//TRAEMOS LA INFORMACIÓN DEL EMPLEADO
+
+$itemEmpleado = "idempleado";
+$valorEmpleado = $respuestaPrestamo["idempleado"];
+
+$respuestaEmpleado = ControladorEmpleados::ctrMostrarEmpleados($itemEmpleado, $valorEmpleado);
 
 //TRAEMOS LA INFORMACIÓN DEL MODELO
 $itemModelo = "id";
@@ -147,9 +156,14 @@ $bloque2 = <<<EOF
 	
 		<tr>
 		
-			<td style="border: 1px solid #666; background-color:white; width:370px">
+			<td style="border: 1px solid #666; background-color:white; width:220px">
 
-				Empleado: $empleado
+				Empleado:  $respuestaEmpleado[nombres] $respuestaEmpleado[ape_pat] $respuestaEmpleado[ape_mat]
+
+			</td>
+			<td style="border: 1px solid #666; background-color:white; width:150px">
+
+				Num Documento:  $respuestaEmpleado[num_documento]
 
 			</td>
 

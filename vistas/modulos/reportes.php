@@ -55,7 +55,8 @@ return;
 
                   <th style="width:10px">#</th>
                   <th>Empleado</th>
-                  <th>Producto</th>
+                  <th>Num Documento</th>
+                  <th>Cod Producto</th>
 
                 </tr>
 
@@ -73,9 +74,14 @@ return;
 
                   echo ' <tr>
  
-                     <td>' . ($key + 1) . '</td>
+                     <td>' . ($key + 1) . '</td>';
+
+                     $item = "idempleado";
+                     $valor = $value["idempleado"];
+                     $EmpleadoPrestamo = ControladorEmpleados::ctrMostrarEmpleados($item, $valor);
  
-                     <td class="text-uppercase">' . $value["idempleado"] . '</td>';
+                    echo '<td class="text-uppercase">' . $EmpleadoPrestamo["nombres"] ." ".$EmpleadoPrestamo["ape_pat"]." ".$EmpleadoPrestamo["ape_mat"] .'</td>';
+                    echo '<td class="text-uppercase">' . $EmpleadoPrestamo["num_documento"] .'</td>';
 
                   $item2 = "id";
                   $valor2 = $value["idproducto"];
