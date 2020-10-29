@@ -105,7 +105,7 @@ class TablaProductosPrestamos{
 		  	$botones =  "<div class='btn-group'><button class='btn btn-primary agregarProducto recuperarBoton' idProducto='".$productos[$i]["id"]."'>Prestar</button></div>"; 
 
 		  	$datosJson .='[
-                  "'.($i+1).'",
+				"' . ($i + 1) . '",
                 "'.$imagenProducto.'",
 			      "'.$modelos["descripcion"].'",
 			      "'.$productos[$i]["cod_producto"].'",
