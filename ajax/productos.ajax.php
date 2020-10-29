@@ -15,6 +15,30 @@ class AjaxProductos{
 	public $idProducto;
 	public $traerProductos;
 	public $codigoProducto;
+	public $validarCodigo;
+	public $validarSerie;
+
+	public function ajaxValidarCodigoProducto(){
+
+		$item = "cod_producto" ;
+		$valor = $this->validarCodigo;
+
+		$respuestacodigo = ControladorProductos::ctrMostrarProductosRepetidos($item, $valor);
+
+		echo json_encode($respuestacodigo);
+
+	}
+
+	public function ajaxValidarSerieProducto(){
+
+		$item = "num_serie" ;
+		$valor = $this->validarSerie;
+
+		$respuestaSerie = ControladorProductos::ctrMostrarProductosRepetidos($item, $valor);
+
+		echo json_encode($respuestaSerie);
+
+	}
 
 	public function ajaxEditarProducto(){
 
@@ -92,3 +116,25 @@ if(isset($_POST["codigoProducto"])){
 	$traerProductos -> ajaxEditarProducto();
   
   }
+   /*=============================================
+TRAER CODIGO PRODUCTO 
+=============================================*/ 
+
+  if(isset( $_POST["validarCodigo"])){
+
+	$valiProducto = new AjaxProductos();
+	$valiProducto -> validarCodigo = $_POST["validarCodigo"];
+	$valiProducto -> ajaxValidarCodigoProducto();
+
+}
+  /*=============================================
+TRAER NUMERO DE SERIE DEL  PRODUCTO 
+=============================================*/ 
+
+if(isset( $_POST["validarSerie"])){
+
+	$valiProducto = new AjaxProductos();
+	$valiProducto -> validarSerie = $_POST["validarSerie"];
+	$valiProducto -> ajaxValidarSerieProducto();
+
+}

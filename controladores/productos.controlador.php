@@ -15,6 +15,20 @@ class ControladorProductos{
 		return $respuesta;
 
 	}
+
+	/*=============================================
+	MOSTRAR PRODUCTOS REPETIDOS CODIGO Y NUMERO DE SERIE
+	=============================================*/
+
+	static public function ctrMostrarProductosRepetidos($item, $valor){
+
+		$tabla = "producto";
+
+		$respuesta = ModeloProductos::mdlMostrarProductosRepetidos($tabla, $item, $valor);
+
+		return $respuesta;
+
+	}
 	
 	/*=============================================
 	MOSTRAR ESTADO DEL PRODUCTO

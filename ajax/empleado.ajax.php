@@ -39,7 +39,7 @@ class AjaxEmpleado{
 }
 
 /*=============================================
-EDITAR CLIENTE
+EDITAR EMPLEADO
 =============================================*/	
 
 if(isset($_POST["idEmpleado"])){
@@ -51,7 +51,7 @@ if(isset($_POST["idEmpleado"])){
 }
 
 /*=============================================
-VALIDAR NO REPETIR USUARIO
+VALIDAR NO REPETIR ELIMINAR
 =============================================*/
 
 if(isset( $_POST["validarEmpleado"])){

@@ -45,6 +45,79 @@ $(".tablaProductos").DataTable({
 });
 
 /*=============================================
+REVISAR SI EL CODIGO DEL PRODUCTO YA ESTÁ REGISTRADO
+=============================================*/
+
+$("#nuevoCodigo").change(function(){
+
+	$(".alert").remove();
+
+
+	var codigo = $(this).val();
+
+	var datos = new FormData();
+	datos.append("validarCodigo", codigo);
+
+	 $.ajax({
+	    url:"ajax/productos.ajax.php",
+	    method:"POST",
+	    data: datos,
+	    cache: false,
+	    contentType: false,
+	    processData: false,
+	    dataType: "json",
+	    success:function(respuesta){
+	    	
+	    	if(respuesta){
+
+	    		$("#nuevoCodigo").parent().after('<div class="alert alert-warning">Este codigo de producto  ya existe en la base de datos</div>');
+
+	    		$("#nuevoCodigo").val("");
+
+	    	}
+
+	    }
+
+	})
+})
+
+/*=============================================
+REVISAR SI EL NUMERO DE SERIE YA ESTÁ REGISTRADO
+=============================================*/
+
+$("#nuevoNumSerie").change(function(){
+
+	$(".alert").remove();
+	var serie = $(this).val();
+
+	var datos = new FormData();
+	datos.append("validarSerie", serie);
+
+	 $.ajax({
+	    url:"ajax/productos.ajax.php",
+	    method:"POST",
+	    data: datos,
+	    cache: false,
+	    contentType: false,
+	    processData: false,
+	    dataType: "json",
+	    success:function(respuesta){
+	    	
+	    	if(respuesta){
+
+	    		$("#nuevoNumSerie").parent().after('<div class="alert alert-warning">Este numero de serie  ya existe en la base de datos</div>');
+
+	    		$("#nuevoNumSerie").val("");
+
+	    	}
+
+	    }
+
+	})
+})
+
+
+/*=============================================
 EDITAR PRODUCTO
 =============================================*/
 
