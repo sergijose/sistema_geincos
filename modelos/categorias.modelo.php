@@ -3,7 +3,7 @@
 require_once "conexion.php";
 
 class ModeloCategorias{
-
+//comentario prueba
 	/*=============================================
 	CREAR CATEGORIA
 	=============================================*/
