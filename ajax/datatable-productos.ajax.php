@@ -6,6 +6,9 @@ require_once "../modelos/productos.modelo.php";
 require_once "../controladores/modelos.controlador.php";
 require_once "../modelos/modelos.modelo.php";
 
+require_once "../controladores/categorias.controlador.php";
+require_once "../modelos/categorias.modelo.php";
+
 
 class TablaProductos
 {
@@ -50,7 +53,9 @@ class TablaProductos
 
 			$modelos = ControladorModelos::ctrMostrarModelo($item, $valor);
 
+			$idcategoria=$modelos["idcategoria"];
 
+			$categoria = ControladorCategorias::ctrMostrarCategorias($item,$idcategoria);
 			/*=============================================
  	 		ESTADO DEL PRODUCTO
   			=============================================*/
@@ -88,7 +93,7 @@ class TablaProductos
 
 			$datosJson .= '[
 			      "' . ($i + 1) . '",
-                  "' . $modelos["descripcion"] . '",
+                  "' . $categoria["descripcion"]."|".$modelos["descripcion"]. '",
 				  "' . $productos[$i]["cod_producto"] . '",
 				  "' . $productos[$i]["num_serie"] . '",
                   "' . $estadoProducto["descripcion"] . '",

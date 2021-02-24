@@ -2,7 +2,7 @@
 
   <section class="content-header">
     
-  <h1>
+    <h1>
       
       Tablero
       
@@ -21,11 +21,30 @@
   </section>
 
   <section class="content">
-  <div class="col-lg-12">
+
+    <div class="row">
+      
+    <?php
+
+    if($_SESSION["perfil"] =="Administrador"){
+
+      include "inicio/cajas-superiores.php";
+
+    }
+
+    ?>
+
+    </div> 
+
+     <div class="row">
+       
+        <
+
+         <div class="col-lg-12">
            
           <?php
 
-          if($_SESSION["perfil"] =="Especial" || $_SESSION["perfil"] =="Visitante"){
+          if($_SESSION["perfil"] =="Especial" || $_SESSION["perfil"] =="Vendedor"){
 
              echo '<div class="box box-success">
 
@@ -42,15 +61,9 @@
           ?>
 
          </div>
-  
+
+     </div>
 
   </section>
-
+ 
 </div>
-
-
-
-
-
-
-

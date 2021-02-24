@@ -92,9 +92,9 @@
             <tr>
 
               <th style="width:10px">#</th>
-              <th>Usuario</th>
-              <th>Producto</th>
+              <!--<th>Usuario</th>-->
               <th>Empleado</th>
+              <th>Producto</th>
               <th>F_Prestamo</th>
               <th>F_Devolucion</th>
               <th>observacion_prestamo</th>
@@ -137,15 +137,8 @@
 
               $respuestaUsuario = ControladorUsuarios::ctrMostrarUsuarios($itemUsuario, $valorUsuario);
 
-              echo '<td>' . $respuestaUsuario["nombre"] . '</td>';
+              //echo '<td>' . $respuestaUsuario["nombre"] . '</td>';
 
-              $item = "id";
-              $valor = $value["idproducto"];
-              $order = "id";
-
-              $respuestaProducto = ControladorProductos::ctrMostrarProductos($item, $valor, $order);
-
-              echo '<td>' . $respuestaProducto["cod_producto"] . '</td>';
 
 
               $itemEmpleado = "idempleado";
@@ -154,6 +147,13 @@
               
               echo '<td>' . $respuestaEmpleado["nombres"]." ".$respuestaEmpleado["ape_pat"]." ".$respuestaEmpleado["ape_mat"].'</td>';
               
+              $item = "id";
+              $valor = $value["idproducto"];
+              $order = "id";
+
+              $respuestaProducto = ControladorProductos::ctrMostrarProductos($item, $valor, $order);
+
+              echo '<td>' . $respuestaProducto["cod_producto"] . '</td>';
                echo '<td>' . $value["fecha_prestamo"] . '</td>
               <td>' . $value["fecha_devolucion"] . '</td>
               <td>' . $value["observacion_prestamo"] . '</td>

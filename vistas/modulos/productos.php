@@ -132,12 +132,13 @@ MODAL AGREGAR PRODUCTO
 
                   $item = null;
                   $valor = null;
+                  
 
                   $modelo = ControladorModelos::ctrMostrarModelo($item, $valor);
 
                   foreach ($modelo as $key => $value) {
 
-                    echo '<option value="' . $value["id"] . '">' . $value["descripcion"] . '</option>';
+                    echo '<option value="' . $value["id"] . '">' . $value["categoria"] ."| ".$value["marca"] ."| ".$value["descripcion"] . '</option>';
                   }
 
                   ?>
@@ -316,7 +317,7 @@ MODAL EDITAR PRODUCTO
 
                   foreach ($modelo as $key => $value) {
 
-                    echo '<option value="' . $value["id"] . '">' . $value["descripcion"] . '</option>';
+                    echo '<option value="' . $value["id"] . '">' . $value["categoria"] ."| ".$value["marca"] ."| ".$value["descripcion"] . '</option>';
                   }
 
                   ?>

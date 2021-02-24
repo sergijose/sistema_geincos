@@ -46,16 +46,36 @@ class ControladorProductos{
 	MOSTRAR TOTAL DE PRODUCTOS
 	=============================================*/
 
-	static public function ctrMostrarTotalProductos($item, $valor){
+	static public function ctrMostrarTotalProductos(){
 
-		$tabla = "producto";
-
-		$respuesta = ModeloProductos::mdlMostrarTotalProductos($tabla, $item, $valor);
+		$respuesta = ModeloProductos::mdlMostrarTotalProductos();
 
 		return $respuesta;
 
     }
-  
+		/*=============================================
+	MOSTRAR TOTAL DE ESTADOS DEPRODUCTOS POR CATEGORIA PARA EL REPORTE
+	=============================================*/
+
+	static public function ctrMostrarTotalProductosPorEstados($categoria){
+
+		$respuesta = ModeloProductos::mdlMostrarTotalProductosPorEstados($categoria);
+
+		return $respuesta;
+
+    }  
+
+		/*=============================================
+	MOSTRAR TOTAL DE ESTADOS  DE PRESTAMOS  DEPRODUCTOS POR CATEGORIA PARA EL REPORTE
+	=============================================*/
+
+	static public function ctrMostrarTotalProductosPorEstadoDePrestamo($categoria){
+
+		$respuesta = ModeloProductos::mdlMostrarTotalProductosPorEstadosDePrestamo($categoria);
+
+		return $respuesta;
+
+    }
 
 	/*=============================================
 	CREAR PRODUCTO

@@ -167,47 +167,83 @@ class ModeloProductos{
 	MOSTRAR TOTAL DE PRODCUTOS POR CATEGORIA
 	=============================================*/
 
-	static public function mdlMostrarTotalProductos($tabla, $item, $valor){
+	static public function mdlMostrarTotalProductos(){
 
-		if($item != null){
+		
 
-			$stmt = Conexion::conectar()->prepare("SELECT cat.descripcion,COUNT(cat.descripcion) AS total 
-			FROM $tabla  pro
-			INNER JOIN modelo mo 
+			$stmt = Conexion::conectar()->prepare("SELECT  cat.descripcion AS CATEGORIA,mar.descripcion AS MARCA,COUNT(pro.idestado) AS STOCK FROM producto pro 
+			inner JOIN modelo mo
 			ON pro.idmodelo=mo.id
+			INNER JOIN marca mar
+			ON mar.id=mo.idmarca
 			INNER JOIN categoria cat
-			ON mo.idcategoria=cat.id
-			WHERE $item=:$item
-			GROUP BY cat.descripcion"
+			ON  cat.id=mo.idcategoria
+			GROUP BY cat.descripcion,mar.descripcion"
 			);
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
-
 			$stmt -> execute();
 
 			return $stmt -> fetchAll();
 
-		}else{
-
-			$stmt = Conexion::conectar()->prepare("SELECT cat.descripcion,COUNT(cat.descripcion) AS total 
-			FROM $tabla pro
-			INNER JOIN modelo mo 
-			ON pro.idmodelo=mo.id
-			INNER JOIN categoria cat
-			ON mo.idcategoria=cat.id
-			GROUP BY cat.descripcion");
-
-			$stmt -> execute();
-
-			return $stmt -> fetchAll();
-
-		}
-
-	
 
 		$stmt = null;
 
 	}
+
+	/*=============================================
+	MOSTRAR ESTADOS DEPRODCUTOS POR CATEGORIA
+	=============================================*/
+
+	static public function mdlMostrarTotalProductosPorEstados($categoria){
+
+		$stmt = Conexion::conectar()->prepare("SELECT  cat.descripcion AS CATEGORIA,mar.descripcion AS MARCA,es.descripcion AS ESTADO,COUNT(pro.idestado) AS CANTIDAD FROM producto pro 
+		inner JOIN modelo mo
+		ON pro.idmodelo=mo.id
+		INNER JOIN marca mar
+		ON mar.id=mo.idmarca
+		INNER JOIN categoria cat
+		ON  cat.id=mo.idcategoria
+		INNER JOIN estado es
+		ON pro.idestado=es.id
+		GROUP BY cat.descripcion,mar.descripcion,pro.idestado
+		HAVING cat.descripcion=:categoria"
+		);
+		$stmt -> bindParam(":categoria", $categoria, PDO::PARAM_STR);
+
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
+
+
+	$stmt = null;
+
+}
+ /*=============================================
+	MOSTRAR ESTADOS DE PRESTAMOS DE PRODCUTOS POR CATEGORIA
+	=============================================*/
+
+	static public function mdlMostrarTotalProductosPorEstadosDePrestamo($categoria){
+
+		$stmt = Conexion::conectar()->prepare("SELECT  cat.descripcion AS CATEGORIA,mar.descripcion AS MARCA,pro.estado_prestamo,COUNT(cat.descripcion) AS STOCK FROM producto pro 
+		inner JOIN modelo mo
+		ON pro.idmodelo=mo.id
+		INNER JOIN marca mar
+		ON mar.id=mo.idmarca
+		INNER JOIN categoria cat
+		ON  cat.id=mo.idcategoria
+		GROUP BY cat.descripcion,mar.descripcion,pro.estado_prestamo
+		HAVING cat.descripcion=:categoria"
+		);
+		$stmt -> bindParam(":categoria", $categoria, PDO::PARAM_STR);
+
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
+
+
+	$stmt = null;
+
+}
 
 
 
