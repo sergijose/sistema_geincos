@@ -132,6 +132,8 @@ $totalProductos = count($productos);
   </div>
 
 </div>
+
+
 <div class="col-md-3 col-xs-12 ">
   <h3 class="box-title">STOCK DE PRODUCTOS</h3>
   <table class="table table-bordered table-striped dt-responsive" width="100%">

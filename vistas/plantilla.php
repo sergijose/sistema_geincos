@@ -18,9 +18,14 @@ session_start();
 
   <link rel="icon" href="vistas/img/plantilla/login-02.jpg">
 
+  
+
    <!--=====================================
   PLUGINS DE CSS
   ======================================-->
+
+
+
 <!-- Alertify  css-->
 <link rel="stylesheet" href="vistas/plugins/alertifyjs/css/alertify.css">
 <link rel="stylesheet" href="vistas/plugins/alertifyjs/css/themes/default.css">
@@ -55,6 +60,7 @@ session_start();
   <!--=====================================
   PLUGINS DE JAVASCRIPT
   ======================================-->
+
 
 <!-- Alertify  js-->
   <script src="vistas/plugins/alertifyjs/alertify.js"></script>
