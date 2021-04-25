@@ -17,7 +17,8 @@ session_start();
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
   <link rel="icon" href="vistas/img/plantilla/login-02.jpg">
-
+ <!-- Barcode-->
+ <script src="vistas/plugins/barcode/JsBarcode.all.min.js"></script>
   
 
    <!--=====================================
@@ -84,6 +85,9 @@ session_start();
 
   <!-- SweetAlert 2 -->
   <script src="vistas/plugins/sweetalert2/sweetalert2.all.js"></script>
+
+    <!-- Barcode-->
+    <script src="vistas/plugins/barcode/JsBarcode.all.min.js"></script>
 
    <!-- Select 2 -->
    <script src="vistas/bower_components/select2/dist/js/select2.full.js"></script>

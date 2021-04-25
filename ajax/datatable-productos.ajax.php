@@ -1,3 +1,4 @@
+
 <?php
 
 require_once "../controladores/productos.controlador.php";
@@ -44,6 +45,15 @@ class TablaProductos
 
 			//	$imagen = "<img src='".$productos[$i]["imagen"]."' width='40px'>";
 
+				/*=============================================
+ 	 		SVG codigo barras
+  			=============================================*/
+
+				$codigo_barras = "<img class='barcodetabla' id='".$productos[$i]["cod_producto"]."'>";
+
+				
+				
+
 			/*=============================================
  	 		TRAEMOS EL MODELO
   			=============================================*/
@@ -73,10 +83,10 @@ class TablaProductos
 
 			if ($productos[$i]["estado_prestamo"] == "DISPONIBLE") {
 
-				$estado = "<button class='btn btn-success'>DISPONIBLE</button>";
+				$estado = "<button class='btn  btn-xs btn-success'>DISPONIBLE</button>";
 			} else {
 
-				$estado = "<button class='btn btn-danger'>OCUPADO</button>";
+				$estado = "<button class='btn   btn-xs btn-danger'>OCUPADO</button>";
 			}
 
 			/*=============================================
@@ -95,6 +105,7 @@ class TablaProductos
 			      "' . ($i + 1) . '",
                   "' . $categoria["descripcion"]."|".$modelos["descripcion"]. '",
 				  "' . $productos[$i]["cod_producto"] . '",
+				  "' . $codigo_barras . '",
 				  "' . $productos[$i]["num_serie"] . '",
                   "' . $estadoProducto["descripcion"] . '",
 				  "' . $estado . '",
