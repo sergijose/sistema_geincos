@@ -88,6 +88,8 @@ $(".tablaPrestamos tbody").on("click", "button.agregarProducto", function () {
     processData: false,
     dataType: "json",
     success: function (respuesta) {
+
+    
       var codigo = respuesta["cod_producto"];
       var estado_prestamo = respuesta["estado_prestamo"];
 
@@ -112,7 +114,7 @@ $(".tablaPrestamos tbody").on("click", "button.agregarProducto", function () {
       $(".nuevoProducto").append(
         '<div class="row" style="padding:5px 15px">' +
           "<!-- Codigo del producto -->" +
-          '<div class="col-xs-5" style="padding-right:0px">' +
+          '<div class="col-xs-6" style="padding-right:0px">' +
           '<div class="input-group">' +
           '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs  quitarProducto" idProducto="' +
           idProducto +
@@ -125,7 +127,7 @@ $(".tablaPrestamos tbody").on("click", "button.agregarProducto", function () {
           "</div>" +
           "</div>" +
           "<!-- Estado del producto -->" +
-          '<div class="col-xs-3 estadoProducto" style="padding-right:0px">' +
+          '<div class="col-xs-6 estadoProducto" style="padding-left:0px">' +
           '<div class="input-group">' +
           '<span class="input-group-addon"><i class="fa fa-thumbs-o-up"></i></span>' +
           '<input type="text" class="form-control nuevoEstadoProducto"name="nuevoEstadoProducto" value="' +
@@ -134,20 +136,6 @@ $(".tablaPrestamos tbody").on("click", "button.agregarProducto", function () {
           "</div>" +
           "</div>" +
           "<!-- Agregar OBSERVACION DE PRESTAMO-->" +
-          '<div class="col-xs-4 observaciones" style="padding-left:8px">' +
-          '<div class="input-group">' +
-          '<button  required class="btn btn-warning  form-control btnObservacion" valor name="btnObservacion" id="btnObservacion' +
-          contadorObs +
-          '" idProducto="' +
-          idProducto +
-          '" >Observaciones</button>' +
-          '<input type="hidden" class="form-control nuevaObservacion " idProducto="' +
-          idProducto +
-          '" id="nuevaObservacion' +
-          contadorObs +
-          '" name="nuevaObservacion"> ' +
-          "</div>" +
-          "</div>" +
           "</div>"
       );
       listarProductos();
@@ -348,7 +336,7 @@ function listarProductos2() {
   }
   $("#listaProductos2").val(JSON.stringify(listaProductos2));
 }
-
+/*
 //aparecer swal para llenar observaciones
 $(".formularioPrestamo").on("click", "button.btnObservacion", function () {
   $(this).attr("disabled", true);
@@ -382,6 +370,7 @@ $(".formularioPrestamo").on("click", "button.btnObservacion", function () {
     }
   });
 });
+*/
 
 //traer datos para generar la devolucion del producto
 

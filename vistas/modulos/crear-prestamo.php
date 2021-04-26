@@ -66,7 +66,49 @@ if ($_SESSION["perfil"] == "Visitante") {
                     <input type="text" class="form-control" id="nuevoUsuario" name="nuevoUsuario" value="<?php echo $_SESSION["nombre"]; ?>" readonly>
 
                     <input type="hidden" name="idUsuario" value="<?php echo $_SESSION["id"]; ?>">
-                    <input type="hidden" name="nuevaObservacion" value="<?php echo $_SESSION["id"]; ?>">
+
+                  </div>
+
+                </div>
+                <!--=====================================
+                ENTRADA DEL CODIGO DE PRESTAMO
+                ======================================-->
+
+                <!--=====================================
+                ENTRADA DEL CÓDIGO
+                ======================================-->
+
+                <div class="form-group">
+
+                  <div class="input-group">
+
+                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+
+                    <?php
+
+                    $item = null;
+                    $valor = null;
+
+                    $prestamo = ControladorPrestamos::ctrMostrarPrestamos($item, $valor);
+
+                    if (!$prestamo) {
+
+                      echo '<input type="text" class="form-control" id="nuevoPrestamo" name="nuevoPrestamo" value="10001" readonly>';
+                    } else {
+
+                      foreach ($prestamo as $key => $value) {
+                      }
+
+                      $codigo = $value["codigo_prestamo"] + 1;
+
+
+
+                      echo '<input type="text" class="form-control" id="nuevoPrestamo" name="nuevoPrestamo" value="' . $codigo . '" readonly>';
+                    }
+
+                    ?>
+
+
                   </div>
 
                 </div>
@@ -94,14 +136,16 @@ if ($_SESSION["perfil"] == "Visitante") {
 
                       foreach ($modelo as $key => $value) {
 
-                        echo '<option value="' . $value["idempleado"] . '">' . $value["nombres"] ." ".$value["ape_pat"] ." ".$value["ape_mat"].'</option>';
+                        echo '<option value="' . $value["idempleado"] . '">' . $value["nombres"] . " " . $value["ape_pat"] . " " . $value["ape_mat"] . '</option>';
                       }
 
                       ?>
 
                     </select>
+                    <span class="input-group-addon"><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modalAgregarEmpleado" data-dismiss="modal">Agregar cliente</button></span>
 
                   </div>
+
 
                 </div>
 
@@ -113,16 +157,12 @@ if ($_SESSION["perfil"] == "Visitante") {
                 <div class="form-group row nuevoProducto">
 
 
-
                 </div>
 
                 <input type="hidden" id="listaProductos" name="listaProductos">
 
 
-                <!--=====================================
-                PARA INSERTAR VARIOS PRODUCTOS (ALMACENAMIENTO )
-                ======================================-->
-                <input type="hidden" id="listaProductos2" name="listaProductos2">
+
 
                 <!--=====================================
                 BOTÓN PARA AGREGAR PRODUCTO
@@ -135,6 +175,24 @@ if ($_SESSION["perfil"] == "Visitante") {
 
 
               </div>
+                  <!--=====================================
+               ENTRADA PARA INGRESAR LAS OBSERVACIONES DEL PRESTAMO
+                ======================================-->
+
+              <div class="form-group">
+
+                <div class="input-group">
+
+                  <span class="input-group-addon"><i class="fa fa-user"></i></span>
+
+                  <textarea class="form-control" id="observacionPrestamo" name="observacionPrestamo" cols="5" rows="2" placeholder="observaciones del prestamo"></textarea>
+
+
+
+                </div>
+
+              </div>
+
 
             </div>
 
@@ -197,5 +255,140 @@ if ($_SESSION["perfil"] == "Visitante") {
     </div>
 
   </section>
+
+</div>
+
+<div id="modalAgregarEmpleado" class="modal fade" role="dialog">
+
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+
+      <form role="form" method="post">
+
+        <!--=====================================
+        CABEZA DEL MODAL
+        ======================================-->
+
+        <div class="modal-header" style="background:#3c8dbc; color:white">
+
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+          <h4 class="modal-title">Agregar Empleado</h4>
+
+        </div>
+
+        <!--=====================================
+        CUERPO DEL MODAL
+        ======================================-->
+
+        <div class="modal-body">
+
+          <div class="box-body">
+            <!-- ENTRADA PARA EL APELLIDO PATERNO -->
+
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+
+                <input type="text" class="form-control input-lg" name="nuevoApePat" placeholder="Ingresar apellido paterno" required>
+
+              </div>
+
+            </div>
+            <!-- ENTRADA PARA EL APELLIDO MATERNO -->
+
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+
+                <input type="text" class="form-control input-lg" name="nuevoApeMat" placeholder="Ingresar apellido materno" required>
+
+              </div>
+
+            </div>
+
+            <!-- ENTRADA PARA EL NOMBRE -->
+
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+
+                <input type="text" class="form-control input-lg" name="nuevoNombres" placeholder="Ingresar nombre" required>
+
+              </div>
+
+            </div>
+
+            <!-- ENTRADA PARA EL DOCUMENTO -->
+
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+
+                <input type="number" min="0" class="form-control input-lg" name="nuevoNumDocumento" id="nuevoNumDocumento" placeholder="Ingresar documento" required>
+
+              </div>
+
+            </div>
+
+            <!-- ENTRADA PARA EL ESTADO -->
+
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+
+
+                <select class="form-control input-lg" id="nuevoEstado" name="nuevoEstado" required>
+
+                  <option value="">Seleccionar estado del empleado</option>
+                  <option value="1">ACTIVADO</option>
+                  <option value="2">DESACTIVADO</option>
+                </select>
+
+              </div>
+
+            </div>
+
+
+
+          </div>
+
+        </div>
+
+        <!--=====================================
+        PIE DEL MODAL
+        ======================================-->
+
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+          <button type="submit" class="btn btn-primary">Guardar empleado</button>
+
+        </div>
+
+      </form>
+
+      <?php
+
+      $crearEmpleado = new ControladorEmpleados();
+      $crearEmpleado->ctrCrearEmpleados();
+
+      ?>
+
+    </div>
+
+  </div>
 
 </div>

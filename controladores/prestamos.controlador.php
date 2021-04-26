@@ -45,7 +45,7 @@ class ControladorPrestamos{
 			ACTUALIZAR LAS EL ESTADO DE PRESTAMO DE LOS PRODUCTOS 
 			=============================================*/
 
-			if($_POST["listaProductos2"] == "" or $_POST["listaProductos2"]=="[]" ){
+			if($_POST["listaProductos"] == "" or $_POST["listaProductos"]=="[]" ){
 
 					echo'<script>
 
@@ -69,7 +69,7 @@ class ControladorPrestamos{
 
 
 			$listaProductos = json_decode($_POST["listaProductos"], true);
-			$listaProductos2 = json_decode($_POST["listaProductos2"], true);
+			//$listaProductos2 = json_decode($_POST["listaProductos2"], true);
 
 			foreach ($listaProductos as $key => $value) {
 
@@ -79,13 +79,11 @@ class ControladorPrestamos{
 			    $valor = $value["id"];
 				$item1a = "estado_prestamo";
 				$valor1a = "OCUPADO";
-			    $nuevasPrestamos = ModeloProductos::mdlActualizarProducto($tablaPrestamo, $item1a, $valor1a, $valor);
+			    $nuevoPrestamos = ModeloProductos::mdlActualizarProducto($tablaPrestamo, $item1a, $valor1a, $valor);
 
 
 			}
-			foreach ($listaProductos2 as $key => $value) {
-				$valorCaja=$value["id"];
-				$valorObservaciones=$value["observacion"];
+		
 			   /*=============================================
 			GUARDAR EL PRESTAMO
 			=============================================*/	
@@ -93,15 +91,16 @@ class ControladorPrestamos{
 			$tabla = "prestamo";
 
             $datos = array("idusuario"=>$_POST["idUsuario"],
-                            "idproducto"=>$valorCaja,
+							"codigo_prestamo"=>$_POST["nuevoPrestamo"],
+                            "productos"=>$_POST["listaProductos"],
 						   "idempleado"=>$_POST["nuevoEmpleado"],  
-						   "observacion_prestamo"=>$valorObservaciones,
+						   "observacion_prestamo"=>$_POST["observacionPrestamo"],
 						   "estado_prestamo"=>"PENDIENTE"
 						);
 						 
 			$respuesta = ModeloPrestamos::mdlIngresarPrestamo($tabla, $datos);
 
-			}
+			
 			
 			if($respuesta == "ok"){
                 echo'<script>

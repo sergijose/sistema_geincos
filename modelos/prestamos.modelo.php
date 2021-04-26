@@ -72,10 +72,11 @@ class ModeloPrestamos{
 
 	static public function mdlIngresarPrestamo($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(idusuario,idproducto,idempleado,observacion_prestamo,estado_prestamo) VALUES (:idusuario,:idproducto,:idempleado,:observacion_prestamo,:estado_prestamo)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(idusuario,codigo_prestamo,productos,idempleado,observacion_prestamo,estado_prestamo) VALUES (:idusuario,:codigo_prestamo,:productos,:idempleado,:observacion_prestamo,:estado_prestamo)");
 
 		$stmt->bindParam(":idusuario", $datos["idusuario"], PDO::PARAM_INT);
-		$stmt->bindParam(":idproducto", $datos["idproducto"], PDO::PARAM_STR);
+		$stmt->bindParam(":codigo_prestamo", $datos["codigo_prestamo"], PDO::PARAM_INT);
+		$stmt->bindParam(":productos", $datos["productos"], PDO::PARAM_STR);
 		$stmt->bindParam(":idempleado", $datos["idempleado"], PDO::PARAM_INT);
 		$stmt->bindParam(":observacion_prestamo", $datos["observacion_prestamo"], PDO::PARAM_STR);
 		$stmt->bindParam(":estado_prestamo", $datos["estado_prestamo"], PDO::PARAM_STR);

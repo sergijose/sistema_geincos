@@ -32,7 +32,7 @@ public function traerImpresionPrestamo(){
 $itemPrestamo = "id";
 $valorPrestamo = $this->id;
 $respuestaPrestamo = ControladorPrestamos::ctrMostrarPrestamos($itemPrestamo, $valorPrestamo);
-
+$codigoPrestamo = $respuestaPrestamo["codigo_prestamo"];
 $fechaPrestamo = substr($respuestaPrestamo["fecha_prestamo"],0,-8);
 $fechaDevolucion = substr($respuestaPrestamo["fecha_devolucion"],0,-8);
 $observacionPrestamo = $respuestaPrestamo["observacion_prestamo"];
@@ -45,40 +45,14 @@ $valorUsuario = $respuestaPrestamo["idusuario"];
 
 $respuestaUsuario = ControladorUsuarios::ctrMostrarUsuarios($itemUsuario, $valorUsuario);
 
-//TRAEMOS LA INFORMACIÓN DEL PRODUCTO
-$orden="id";
-$itemProducto = "id";
-$valorProducto = $respuestaPrestamo["idproducto"];
+$productos = json_decode($respuestaPrestamo["productos"], true);
 
-$respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto,$orden);
-//TRAEMOS LA INFORMACIÓN DEL EMPLEADO
 
+//TRAEMOS LA INFORMACIÓN DEL CLIENTE
 $itemEmpleado = "idempleado";
 $valorEmpleado = $respuestaPrestamo["idempleado"];
 
 $respuestaEmpleado = ControladorEmpleados::ctrMostrarEmpleados($itemEmpleado, $valorEmpleado);
-
-//TRAEMOS LA INFORMACIÓN DEL MODELO
-$itemModelo = "id";
-$valorModelo = $respuestaProducto["idmodelo"];
-
-$respuestaModelo = ControladorModelos::ctrMostrarModelo($itemModelo, $valorModelo);
-
-
-//TRAEMOS LA INFORMACIÓN DE LA CATEGORIA
-$itemCategoria = "id";
-$valorCategoria = $respuestaModelo["idcategoria"];
-
-$respuestaCategoria = ControladorCategorias::ctrMostrarCategorias($itemCategoria, $valorCategoria);
-
-//TRAEMOS LA INFORMACIÓN DE LA MARCA
-$itemMarca = "id";
-$valorMarca = $respuestaModelo["idmarca"];
-
-$respuestaMarca = ControladorMarcas::ctrMostrarMarca($itemMarca, $valorMarca);
-
-
-//TRAEMOS LA INFORMACIÓN DEL CLIENTE
 
 
 //REQUERIMOS LA CLASE TCPDF
@@ -126,7 +100,7 @@ $bloque1 = <<<EOF
 				
 			</td>
 
-			<td style="background-color:white; width:110px; text-align:center; color:red"><br><br>FORMATO DE PRESTAMO<br></td>
+			<td style="background-color:white; width:110px; text-align:center; color:red"><br><br>FACTURA N.<br>$codigoPrestamo</td>
 
 		</tr>
 
@@ -227,6 +201,36 @@ EOF;
 $pdf->writeHTML($bloque3, false, false, false, false, '');
 
 // ---------------------------------------------------------
+
+//TRAEMOS LA INFORMACIÓN DEL PRODUCTO
+
+foreach ($productos as $key => $item) {
+
+	$itemProducto = "id";
+	$valorProducto = $item["id"];
+	$orden = null;
+	
+	$respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
+
+//TRAEMOS LA INFORMACIÓN DEL MODELO
+$itemModelo = "id";
+$valorModelo = $respuestaProducto["idmodelo"];
+
+$respuestaModelo = ControladorModelos::ctrMostrarModelo($itemModelo, $valorModelo);
+
+
+//TRAEMOS LA INFORMACIÓN DE LA CATEGORIA
+$itemCategoria = "id";
+$valorCategoria = $respuestaModelo["idcategoria"];
+
+$respuestaCategoria = ControladorCategorias::ctrMostrarCategorias($itemCategoria, $valorCategoria);
+
+//TRAEMOS LA INFORMACIÓN DE LA MARCA
+$itemMarca = "id";
+$valorMarca = $respuestaModelo["idmarca"];
+
+$respuestaMarca = ControladorMarcas::ctrMostrarMarca($itemMarca, $valorMarca);
+
 $bloque4 = <<<EOF
 
 	<table style="font-size:10px; padding:5px 10px;">
@@ -239,12 +243,6 @@ $bloque4 = <<<EOF
 		<td style="border: 1px solid #666; background-color:white; width:140px; text-align:center">$respuestaProducto[cod_producto]</td>
 
 		</tr>
-		<tr>
-
-		<td style="width:540px"><img src="images/back.jpg"></td>
-	
-	</tr>
-	
 
 	</table>
 
@@ -252,11 +250,21 @@ EOF;
 
 $pdf->writeHTML($bloque4, false, false, false, false, '');
 
-
+}
 
 // ---------------------------------------------------------
 
 $bloque5 = <<<EOF
+
+	<table>
+		
+	<tr>
+	
+	<td style="width:540px"><img src="images/back.jpg"></td>
+
+	</tr>
+
+	</table>
 
 	<table >
 		
