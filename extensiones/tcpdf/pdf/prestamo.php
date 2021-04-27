@@ -100,7 +100,7 @@ $bloque1 = <<<EOF
 				
 			</td>
 
-			<td style="background-color:white; width:110px; text-align:center; color:red"><br><br>FACTURA N.<br>$codigoPrestamo</td>
+			<td style="background-color:white; width:110px; text-align:center; color:red"><br><br>PRESTAMO N.<br>$codigoPrestamo</td>
 
 		</tr>
 

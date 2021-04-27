@@ -19,7 +19,7 @@ if ($_SESSION["perfil"] == "Visitante") {
 
     <h1>
 
-      Crear Prestamo
+      Editar Prestamo
 
     </h1>
 
@@ -27,7 +27,7 @@ if ($_SESSION["perfil"] == "Visitante") {
 
       <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
 
-      <li class="active">Crear Prestamo</li>
+      <li class="active">Editar Prestamo</li>
 
     </ol>
 
@@ -53,6 +53,24 @@ if ($_SESSION["perfil"] == "Visitante") {
 
               <div class="box">
 
+                <?php
+
+                $item = "id";
+                $valor = $_GET["idPrestamo"];
+
+                $prestamo = ControladorPrestamos::ctrMostrarPrestamos($item, $valor);
+
+                $itemUsuario = "id";
+                $valorUsuario = $prestamo["idusuario"];
+                $usuario = ControladorUsuarios::ctrMostrarUsuarios($itemUsuario, $valorUsuario);
+
+                $itemEmpleado = "idempleado";
+                $valorEmpleado = $prestamo["idempleado"];
+                $empleado = ControladorEmpleados::ctrMostrarEmpleados($itemEmpleado, $valorEmpleado);
+
+                ?>
+
+
                 <!--=====================================
                 ENTRADA DEL USUARIO
                 ======================================-->
@@ -63,9 +81,11 @@ if ($_SESSION["perfil"] == "Visitante") {
 
                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
-                    <input type="text" class="form-control" id="nuevoUsuario" name="nuevoUsuario" value="<?php echo $_SESSION["nombre"]; ?>" readonly>
+                    <input type="text" class="form-control" id="nuevoUsuario" name="idUsuario" value="<?php echo $usuario["nombre"]; ?>" readonly>
 
-                    <input type="hidden" name="idUsuario" value="<?php echo $_SESSION["id"]; ?>">
+                    <input type="hidden" name="idUsuario" value="<?php echo $usuario["id"]; ?>">
+
+                    <input type="hidden" name="idPrestamo" value="<?php echo $valor; ?>">
 
                   </div>
 
@@ -84,29 +104,12 @@ if ($_SESSION["perfil"] == "Visitante") {
 
                     <span class="input-group-addon"><i class="fa fa-key"></i></span>
 
-                    <?php
 
-                    $item = null;
-                    $valor = null;
 
-                    $prestamo = ControladorPrestamos::ctrMostrarPrestamos($item, $valor);
-
-                    if (!$prestamo) {
-
-                      echo '<input type="text" class="form-control" id="nuevoPrestamo" name="nuevoPrestamo" value="10001" readonly>';
-                    } else {
-
-                      foreach ($prestamo as $key => $value) {
-                      }
-
-                      $codigo = $value["codigo_prestamo"] + 1;
+                    <input type="text" class="form-control" id="nuevoPrestamo" name="editarPrestamo" value="<?php echo $prestamo["codigo_prestamo"]; ?>" readonly>
 
 
 
-                      echo '<input type="text" class="form-control" id="nuevoPrestamo" name="nuevoPrestamo" value="' . $codigo . '" readonly>';
-                    }
-
-                    ?>
 
 
                   </div>
@@ -125,7 +128,7 @@ if ($_SESSION["perfil"] == "Visitante") {
 
                     <select class="form-control input-md mi-selector" id="nuevoEmpleado" name="nuevoEmpleado" required>
 
-                      <option value="">Seleccionar Empleado</option>
+                      <option value="<?php echo $empleado["idempleado"]; ?>"><?php echo $empleado["nombres"] . " " . $empleado["ape_pat"] . " " . $empleado["ape_mat"]; ?></option>
 
                       <?php
 
@@ -156,6 +159,34 @@ if ($_SESSION["perfil"] == "Visitante") {
 
                 <div class="form-group row nuevoProducto">
 
+                  <?php
+                  $listaProducto = json_decode($prestamo["productos"], true);
+
+                  foreach ($listaProducto as $key => $value) {
+
+
+                    echo '<div class="row" style="padding:5px 15px">
+                  
+                    <div class="col-xs-6" style="padding-right:0px">
+                    <div class="input-group">
+        <span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs  quitarProducto" idProducto="' .  $value["id"] . '">
+                    <i class="fa fa-times"></i></button></span>
+               <input type="text" class="form-control nuevoCodigoProducto " idProducto="' .  $value["id"] . '" name="agregarProducto" value="' .  $value["codigo"] . '" readonly required>
+                    </div>
+                    </div>
+                  
+                    <div class="col-xs-6 estadoProducto" style="padding-left:0px">
+                    <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-thumbs-o-up"></i></span>
+              <input type="text" class="form-control nuevoEstadoProducto"name="nuevoEstadoProducto" value="DISPONIBLE" readonly required>
+                    </div>
+                    </div>
+                    </div>';
+                  }
+
+
+
+                  ?>
 
                 </div>
 
@@ -175,18 +206,33 @@ if ($_SESSION["perfil"] == "Visitante") {
 
 
               </div>
-                  <!--=====================================
+              <!--=====================================
                ENTRADA PARA INGRESAR LAS OBSERVACIONES DEL PRESTAMO
                 ======================================-->
 
               <div class="form-group">
-              <p><b>Escriba algun comentario para este prestamo<b/></p>
+                <p><b>Escriba algun comentario para este prestamo<b /></p>
                 <div class="input-group">
-               
+
 
                   <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
 
-                  <textarea class="form-control" id="observacionPrestamo" name="observacionPrestamo" cols="5" rows="2" placeholder="observaciones del prestamo"></textarea>
+                  <textarea class="form-control" id="observacionPrestamo" name="observacionPrestamo" cols="5" rows="2" placeholder="observaciones del prestamo"><?php echo $prestamo["observacion_prestamo"]; ?></textarea>
+
+
+
+                </div>
+
+              </div>
+
+              <div class="form-group">
+              <input type="checkbox" id="cbovalidar" value="second_checkbox"> <label for="cbovalidar">Finalizar Prestamo</label>
+                <div class="input-group">
+
+
+                  <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
+
+                  <textarea class="form-control" id="observacionDevolucion" name="observacionDevolucion" cols="5" rows="2" placeholder="observaciones de la devolucion del prestamo"></textarea>
 
 
 
@@ -208,7 +254,7 @@ if ($_SESSION["perfil"] == "Visitante") {
           <?php
 
           $guardarPrestamo = new ControladorPrestamos();
-          $guardarPrestamo->ctrCrearPrestamo();
+          $guardarPrestamo->ctrEditarPrestamo();
 
           ?>
 

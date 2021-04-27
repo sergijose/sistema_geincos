@@ -100,14 +100,18 @@ class ModeloPrestamos{
 	EDITAR PRESTAMO
 	=============================================*/
 
-	static public function mdlDevolverProducto($tabla, $datos){
+	static public function mdlEditarPrestamo($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET fecha_devolucion=:fecha_devolucion,observacion_devolucion =:observacion_devolucion,estado_prestamo=:estado_prestamo WHERE id = :id");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET idusuario=:idusuario,codigo_prestamo=:codigo_prestamo,productos=:productos,idempleado=:idempleado,observacion_prestamo=:observacion_prestamo,estado_prestamo=:estado_prestamo 	WHERE id=:id_prestamo");
 
-		$stmt->bindParam(":fecha_devolucion", $datos["fecha_devolucion"], PDO::PARAM_STR);
-		$stmt->bindParam(":observacion_devolucion", $datos["observacion_devolucion"], PDO::PARAM_STR);
+		$stmt->bindParam(":id_prestamo", $datos["id_prestamo"], PDO::PARAM_INT);
+		$stmt->bindParam(":idusuario", $datos["idusuario"], PDO::PARAM_INT);
+		$stmt->bindParam(":codigo_prestamo", $datos["codigo_prestamo"], PDO::PARAM_INT);
+		$stmt->bindParam(":productos", $datos["productos"], PDO::PARAM_STR);
+		$stmt->bindParam(":idempleado", $datos["idempleado"], PDO::PARAM_INT);
+		$stmt->bindParam(":observacion_prestamo", $datos["observacion_prestamo"], PDO::PARAM_STR);
 		$stmt->bindParam(":estado_prestamo", $datos["estado_prestamo"], PDO::PARAM_STR);
-		$stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
+
 		if($stmt->execute()){
 
 			return "ok";

@@ -135,80 +135,147 @@ class ControladorPrestamos{
 		}
 
 	}
-	
 
-	static public function ctrDevolverProducto(){
 
-		if(isset($_POST["observacionDevolucion"])){
+	/*=============================================
+	EDITAR PRESTAMO
+	=============================================*/
 
-			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ, ]+$/', $_POST["observacionDevolucion"])){
+	static public function ctrEditarPrestamo(){
 
-				$tabla = "prestamo";
-				date_default_timezone_set('America/Bogota');
+		if(isset($_POST["editarPrestamo"])){
 
-						$fechaDev = $_POST["fechaDevolucion"];
-						$hora = date('H:i:s');
+			/*=============================================
+			//FORMATEAR TABLA PRODUCTOS
+			=============================================*/
+			
+			$tabla="prestamo";
+			$item="codigo_prestamo";
+			$valor=$_POST["editarPrestamo"];
 
-						$fechaDevolucion = $fechaDev.' '.$hora;
-						var_dump($fechaDev);
+			$traerPrestamo=ModeloPrestamos::mdlMostrarPrestamos($tabla,$item,$valor);
+			/*=============================================
+			//REVISAR SI VIENE PRODUCTOS EDITADOS
+			=============================================*/
+			if($_POST["listaProductos"] == "" ){
 
-				$datos = array("fecha_devolucion"=>$fechaDevolucion,
-								"observacion_devolucion"=>$_POST["observacionDevolucion"],
-								"estado_prestamo"=>"FINALIZADO",
-							   "id"=>$_POST["idPrestamo"]);
+			$listaProductos=$traerPrestamo["productos"];
+			}
+			else{
+				$listaProductos=$_POST["listaProductos"];
+			}
 
-				$respuesta = ModeloPrestamos::mdlDevolverProducto($tabla, $datos);
 
-				if($respuesta == "ok"){
-					$tablaProducto="producto";
-					$valor =$_POST["idProducto"];
-					$item1a = "estado_prestamo";
-					$valor1a = "DISPONIBLE";
-					$devolucion = ModeloProductos::mdlActualizarProducto($tablaProducto, $item1a, $valor1a, $valor);
+
+
+			$producto=json_decode($traerPrestamo["productos"],true);
+			foreach($producto as $key=>$value){
+				$tablaProducto="producto";
+				$item1b_2="estado_prestamo";
+				$valor1b_2="DISPONIBLE";
+				$valor_2=$value["id"];
+				$actualizarEstado_2=ModeloProductos::mdlActualizarProducto($tablaProducto,$item1b_2,$valor1b_2,$valor_2);
+
+
+			}
+			/*=============================================
+			ACTUALIZAR LAS EL ESTADO DE PRESTAMO DE LOS PRODUCTOS 
+			=============================================*/
+
+			if($listaProductos == "" or $listaProductos=="[]" ){
+
 					echo'<script>
 
-					swal({
-						  type: "success",
-						  title: "Se registro la devolucion del producto",
-						  showConfirmButton: true,
-						  confirmButtonText: "Cerrar"
-						  }).then(function(result){
-									if (result.value) {
+				swal({
+					  type: "error",
+					  title: "El prestamo no procede si no se elige uno",
+					  showConfirmButton: true,
+					  confirmButtonText: "Cerrar"
+					  }).then(function(result){
+								if (result.value) {
 
-									window.location = "prestamos";
+								window.location = "crear-prestamo";
 
-									}
-								})
+								}
+							})
 
-					</script>';
+				</script>';
 
-				}
+				return;
+			}
 
 
-			}else{
+			$listaProductos_2 = json_decode($listaProductos, true);
+			//$listaProductos2 = json_decode($_POST["listaProductos2"], true);
 
+			foreach ($listaProductos_2 as $key => $value) {
+
+			   
+				//con esto actualizo todos los productos que tienen ese id de la listaProductos
+			    $tablaPrestamo = "producto";
+			    $valor = $value["id"];
+				$item1a = "estado_prestamo";
+				$valor1a = "OCUPADO";
+			    $nuevoPrestamos = ModeloProductos::mdlActualizarProducto($tablaPrestamo, $item1a, $valor1a, $valor);
+
+
+			}
+		
+			   /*=============================================
+			GUARDAR EL PRESTAMO
+			=============================================*/	
+
+			//$tabla = "prestamo";
+
+            $datos = array("id_prestamo"=>$_POST["idPrestamo"],
+							"idusuario"=>$_POST["idUsuario"],
+							"codigo_prestamo"=>$_POST["editarPrestamo"],	
+							"codigo_prestamo"=>$_POST["editarPrestamo"],
+                            "productos"=>$listaProductos,
+						   "idempleado"=>$_POST["nuevoEmpleado"],  
+						   "observacion_prestamo"=>$_POST["observacionPrestamo"],
+						   "estado_prestamo"=>"PENDIENTE"
+						);
+						 
+			$respuesta = ModeloPrestamos::mdlEditarPrestamo($tabla, $datos);
+
+			
+			
+			if($respuesta == "ok"){
+                echo'<script>
+                
+				swal({
+					  type: "success",
+					  title: "El prestamo se ha guardado  correctamente",
+					  showConfirmButton: true,
+					  confirmButtonText: "Cerrar"
+					  }).then(function(result){
+								if (result.value) {
+
+								window.location = "prestamos";
+
+								}
+							})
+
+				</script>';
+
+            }
+            else{
+               
 				echo'<script>
 
-					swal({
-						  type: "error",
-						  title: "La devolucion no se ha podido registrar",
-						  showConfirmButton: true,
-						  confirmButtonText: "Cerrar"
-						  }).then(function(result){
-							if (result.value) {
-
-							window.location = "prestamos";
-
-							}
-						})
+					
+						alertify.error("No se pudo Prestar ");
+						
 
 			  	</script>';
-
 			}
 
 		}
 
 	}
+
+	
 		//eliminar prestamo
 
 	static public function ctrEliminarPrestamo(){

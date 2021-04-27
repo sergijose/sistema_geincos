@@ -180,11 +180,11 @@
             </button>';
             if ($_SESSION["perfil"] == "Administrador" ||$_SESSION["perfil"] == "Especial" ) {
 
-              if ($value["fecha_devolucion"] == null) {
+              
                 echo '<button class="btn btn-warning btn-xs btnEditarPrestamo" idPrestamo="' . $value["id"] . '" data-toggle="modal" data-target="#modalDevolverProducto" data-toggle="tooltip" title="Devolver Producto"><i class="fa fa-pencil"></i></button>';
-              } else {
-                echo '<button class="btn btn-warning btn-xs btnEditarPrestamo" idPrestamo="' . $value["id"] . '" data-toggle="modal" data-target="#modalDevolverProducto" data-toggle="tooltip" title="Devolver Producto" disabled><i class="fa fa-pencil" ></i></button>';
-              }
+             
+               
+             
 
               if ($value["estado_prestamo"] == "PENDIENTE") {
                 echo '<button class="btn btn-danger btn-xs btnEliminarPrestamo" idPrestamo="' . $value["id"] . '" disabled><i class="fa fa-times"></i></button>';
@@ -296,8 +296,8 @@ MODAL REGISTRO DE DEVOLUCION
 
         <?php
 
-        $devolverProducto = new ControladorPrestamos();
-        $devolverProducto->ctrDevolverProducto();
+       // $devolverProducto = new ControladorPrestamos();
+        //$devolverProducto->ctrDevolverProducto();
 
         ?>
 
