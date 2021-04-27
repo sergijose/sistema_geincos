@@ -116,7 +116,7 @@ $(".tablaPrestamos tbody").on("click", "button.agregarProducto", function () {
           "<!-- Codigo del producto -->" +
           '<div class="col-xs-6" style="padding-right:0px">' +
           '<div class="input-group">' +
-          '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs  quitarProducto" idProducto="' +
+          '<span class="input-group-addon"><button type="button"  class="btn btn-danger btn-xs eliminarBoton quitarProducto" idProducto="' +
           idProducto +
           '"><i class="fa fa-times"></i></button></span>' +
           '<input type="text" class="form-control nuevoCodigoProducto " idProducto="' +
@@ -227,7 +227,7 @@ $(".btnAgregarProducto").click(function () {
           "<!-- Codigo del producto -->" +
           '<div class="col-xs-6" style="padding-right:0px">' +
           '<div class="input-group">' +
-          '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto=" "' +
+          '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto" id="eliminarBoton" idProducto=" "' +
           '"><i class="fa fa-times"></i></button></span>' +
           '<select class="form-control nuevoCodigoProducto"  id="producto' +
           numProducto +
@@ -550,3 +550,37 @@ var idPrestamo=$(this).attr("idPrestamo");
 window.location="index.php?ruta=editar-prestamo&idPrestamo="+idPrestamo;
 
 })
+
+//PARA ACTIVAR CAHJAS EN EL CHECBOX
+function comprobar(obj)
+{   
+    if (obj.checked){
+      
+document.getElementById('observacionDevolucion').style.display = "";
+document.getElementById('observacionDevolucion').readOnly=false;
+document.getElementById('observacionPrestamo').readOnly=true;
+document.getElementById('caja').style.display = "";
+document.getElementById('btnFinalizar').style.display = "";
+
+//para no manipular las cajas al finalizar el prestamo
+document.getElementById('guardarPrestamo').disabled = true;
+
+//document.getElementById('cajaPadre').disabled=true;
+$("div #cajaPadre").find("*").prop('disabled', true);
+$("div #tablaProductos").find("*").prop('disabled', true);
+
+   } else{
+      
+document.getElementById('observacionDevolucion').style.display = "none";
+document.getElementById('observacionPrestamo').readOnly=false;
+document.getElementById('caja').style.display = "none";
+document.getElementById('btnFinalizar').style.display = "none";
+
+document.getElementById('observacionPrestamo').readOnly=false;
+document.getElementById('cajaPadre').disabled=false;
+
+document.getElementById('guardarPrestamo').disabled = false;
+$("div #cajaPadre").find("*").prop('disabled', false);
+$("div #tablaProductos").find("*").prop('disabled', false);
+   }     
+}
