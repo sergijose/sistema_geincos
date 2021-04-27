@@ -47,11 +47,11 @@ if ($_SESSION["perfil"] == "Visitante") {
 
           <div class="box-header with-border"></div>
 
-          <form role="form" method="post" class="formularioPrestamo">
+          <form role="form" method="post" class="formularioPrestamo" id="formularioPrestamo">
 
             <div class="box-body">
 
-              <div class="box">
+              <div class="box" id="cajaPadre">
 
                 <?php
 
@@ -157,7 +157,7 @@ if ($_SESSION["perfil"] == "Visitante") {
                 ENTRADA PARA AGREGAR PRODUCTO
                 ======================================-->
 
-                <div class="form-group row nuevoProducto">
+                <div class="form-group row nuevoProducto" >
 
                   <?php
                   $listaProducto = json_decode($prestamo["productos"], true);
@@ -167,9 +167,9 @@ if ($_SESSION["perfil"] == "Visitante") {
 
                     echo '<div class="row" style="padding:5px 15px">
                   
-                    <div class="col-xs-6" style="padding-right:0px">
-                    <div class="input-group">
-        <span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs  quitarProducto" idProducto="' .  $value["id"] . '">
+                    <div class="col-xs-6" style="padding-right:0px" >
+                    <div class="input-group" >
+        <span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto eliminarBoton"  idProducto="' .  $value["id"] . '">
                     <i class="fa fa-times"></i></button></span>
                <input type="text" class="form-control nuevoCodigoProducto " idProducto="' .  $value["id"] . '" name="agregarProducto" value="' .  $value["codigo"] . '" readonly required>
                     </div>
@@ -227,7 +227,7 @@ if ($_SESSION["perfil"] == "Visitante") {
               </div>
               <div class="box-footer">
 
-                <button type="submit" class="btn btn-primary pull-right">Guardar prestamo</button>
+                <button type="submit" class="btn btn-primary pull-right" id="guardarPrestamo">Guardar prestamo</button>
 
               </div>
 
@@ -243,16 +243,16 @@ if ($_SESSION["perfil"] == "Visitante") {
           <div class="form-group">
           <form role="form" method="post" class="formularioPrestamo">
 
-            <input type="checkbox" id="cbovalidar" value="second_checkbox"> <label for="cbovalidar">Finalizar Prestamo</label>
-            <div class="input-group">
+            <input type="checkbox" id="cbovalidar" value="second_checkbox" onChange="comprobar(this);"> <label for="cbovalidar">Finalizar Prestamo</label>
+            <div class="input-group" readonly style="display:none" id="caja">
 
 
               <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
 
-              <textarea class="form-control" id="observacionDevolucion" name="observacionDevolucion" cols="5" rows="2" placeholder="observaciones de la devolucion del prestamo"></textarea>
+              <textarea class="form-control" id="observacionDevolucion" name="observacionDevolucion" cols="5" rows="2" placeholder="observaciones de la devolucion del prestamo" readonly style="display:none" required></textarea>
 
             </div>
-            <button type="submit" class="btn btn-danger pull-left">Finalizar</button>   
+            <button type="submit" class="btn btn-danger pull-left" id="btnFinalizar"readonly style="display:none">Finalizar</button>   
             <?php
 
               $finalizarPrestamo = new ControladorPrestamos();
@@ -279,7 +279,7 @@ if ($_SESSION["perfil"] == "Visitante") {
       LA TABLA DE PRODUCTOS
       ======================================-->
 
-    <div class="col-lg-8 hidden-md hidden-sm hidden-xs">
+    <div class="col-lg-8 hidden-md hidden-sm hidden-xs" id="tablaProductos">
 
       <div class="box box-warning">
 
