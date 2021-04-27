@@ -206,6 +206,7 @@ if ($_SESSION["perfil"] == "Visitante") {
 
 
               </div>
+
               <!--=====================================
                ENTRADA PARA INGRESAR LAS OBSERVACIONES DEL PRESTAMO
                 ======================================-->
@@ -224,30 +225,11 @@ if ($_SESSION["perfil"] == "Visitante") {
                 </div>
 
               </div>
+              <div class="box-footer">
 
-              <div class="form-group">
-              <input type="checkbox" id="cbovalidar" value="second_checkbox"> <label for="cbovalidar">Finalizar Prestamo</label>
-                <div class="input-group">
-
-
-                  <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
-
-                  <textarea class="form-control" id="observacionDevolucion" name="observacionDevolucion" cols="5" rows="2" placeholder="observaciones de la devolucion del prestamo"></textarea>
-
-
-
-                </div>
+                <button type="submit" class="btn btn-primary pull-right">Guardar prestamo</button>
 
               </div>
-
-
-            </div>
-
-            <div class="box-footer">
-
-              <button type="submit" class="btn btn-primary pull-right">Guardar prestamo</button>
-
-            </div>
 
           </form>
 
@@ -258,41 +240,31 @@ if ($_SESSION["perfil"] == "Visitante") {
 
           ?>
 
-        </div>
+          <div class="form-group">
+          <form role="form" method="post" class="formularioPrestamo">
 
-      </div>
+            <input type="checkbox" id="cbovalidar" value="second_checkbox"> <label for="cbovalidar">Finalizar Prestamo</label>
+            <div class="input-group">
 
-      <!--=====================================
-      LA TABLA DE PRODUCTOS
-      ======================================-->
 
-      <div class="col-lg-8 hidden-md hidden-sm hidden-xs">
+              <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
 
-        <div class="box box-warning">
+              <textarea class="form-control" id="observacionDevolucion" name="observacionDevolucion" cols="5" rows="2" placeholder="observaciones de la devolucion del prestamo"></textarea>
 
-          <div class="box-header with-border"></div>
+            </div>
+            <button type="submit" class="btn btn-danger pull-left">Finalizar</button>   
+            <?php
 
-          <div class="box-body">
+              $finalizarPrestamo = new ControladorPrestamos();
+              $finalizarPrestamo->ctrfinalizarPrestamo();
 
-            <table class="table table-bordered table-striped dt-responsive tablaPrestamos">
-
-              <thead>
-
-                <tr>
-                  <th style="width: 10px">#</th>
-                  <th>Imagen</th>
-                  <th>Modelo</th>
-                  <th>Código del Producto</th>
-                  <th>Estado Producto</th>
-                  <th>Estado del Prestamo</th>
-                  <th>Acciones</th>
-                </tr>
-
-              </thead>
-
-            </table>
+?>
 
           </div>
+          
+          </form>
+
+
 
         </div>
 
@@ -300,8 +272,49 @@ if ($_SESSION["perfil"] == "Visitante") {
       </div>
 
     </div>
+   
 
-  </section>
+
+    <!--=====================================
+      LA TABLA DE PRODUCTOS
+      ======================================-->
+
+    <div class="col-lg-8 hidden-md hidden-sm hidden-xs">
+
+      <div class="box box-warning">
+
+        <div class="box-header with-border"></div>
+
+        <div class="box-body">
+
+          <table class="table table-bordered table-striped dt-responsive tablaPrestamos">
+
+            <thead>
+
+              <tr>
+                <th style="width: 10px">#</th>
+                <th>Imagen</th>
+                <th>Modelo</th>
+                <th>Código del Producto</th>
+                <th>Estado Producto</th>
+                <th>Estado del Prestamo</th>
+                <th>Acciones</th>
+              </tr>
+
+            </thead>
+
+          </table>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+</div>
+
+</section>
 
 </div>
 

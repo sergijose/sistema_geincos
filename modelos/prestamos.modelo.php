@@ -127,6 +127,30 @@ class ModeloPrestamos{
 
 	}
 
+	static public function mdlFinalizarPrestamo($tabla, $datos){
+
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET fecha_devolucion=:fecha_devolucion,observacion_devolucion=:observacion_devolucion,estado_prestamo=:estado_prestamo	WHERE id=:id_prestamo");
+
+		$stmt->bindParam(":id_prestamo", $datos["id_prestamo"], PDO::PARAM_INT);
+		$stmt->bindParam(":fecha_devolucion", $datos["fecha_devolucion"], PDO::PARAM_STR);
+		$stmt->bindParam(":observacion_devolucion", $datos["observacion_devolucion"], PDO::PARAM_STR);
+		$stmt->bindParam(":estado_prestamo", $datos["estado_prestamo"], PDO::PARAM_STR);
+		
+		if($stmt->execute()){
+
+			return "ok";
+
+		}else{
+
+			return "error";
+		
+		}
+
+		
+		$stmt = null;
+
+	}
+
 	/*=============================================
 	ELIMINAR PRESTAMO
 	=============================================*/

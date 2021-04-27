@@ -2,20 +2,21 @@
 
 
 
-class ControladorPrestamos{
+class ControladorPrestamos
+{
 
 	/*=============================================
 	MOSTRAR Prestamos
 	=============================================*/
 
-	static public function ctrMostrarPrestamos($item, $valor){
+	static public function ctrMostrarPrestamos($item, $valor)
+	{
 
 		$tabla = "prestamo";
 
 		$respuesta = ModeloPrestamos::mdlMostrarPrestamos($tabla, $item, $valor);
 
 		return $respuesta;
-
 	}
 
 
@@ -24,30 +25,31 @@ class ControladorPrestamos{
 	MOSTRAR PRESTAMOS PENDIENTES POR EMPLEADO
 	=============================================*/
 
-	static public function ctrMostrarPrestamosPendiente($item, $valor){
+	static public function ctrMostrarPrestamosPendiente($item, $valor)
+	{
 
 		$tabla = "prestamo";
 
 		$respuesta = ModeloPrestamos::mdlMostrarPrestamosPendiente($tabla, $item, $valor);
 
 		return $respuesta;
-
 	}
 	/*=============================================
 	CREAR PRESTAMOS
 	=============================================*/
 
-	static public function ctrCrearPrestamo(){
+	static public function ctrCrearPrestamo()
+	{
 
-		if(isset($_POST["nuevoUsuario"])){
+		if (isset($_POST["nuevoUsuario"])) {
 
 			/*=============================================
 			ACTUALIZAR LAS EL ESTADO DE PRESTAMO DE LOS PRODUCTOS 
 			=============================================*/
 
-			if($_POST["listaProductos"] == "" or $_POST["listaProductos"]=="[]" ){
+			if ($_POST["listaProductos"] == "" or $_POST["listaProductos"] == "[]") {
 
-					echo'<script>
+				echo '<script>
 
 				swal({
 					  type: "error",
@@ -73,37 +75,36 @@ class ControladorPrestamos{
 
 			foreach ($listaProductos as $key => $value) {
 
-			   
+
 				//con esto actualizo todos los productos que tienen ese id de la listaProductos
-			    $tablaPrestamo = "producto";
-			    $valor = $value["id"];
+				$tablaPrestamo = "producto";
+				$valor = $value["id"];
 				$item1a = "estado_prestamo";
 				$valor1a = "OCUPADO";
-			    $nuevoPrestamos = ModeloProductos::mdlActualizarProducto($tablaPrestamo, $item1a, $valor1a, $valor);
-
-
+				$nuevoPrestamos = ModeloProductos::mdlActualizarProducto($tablaPrestamo, $item1a, $valor1a, $valor);
 			}
-		
-			   /*=============================================
+
+			/*=============================================
 			GUARDAR EL PRESTAMO
-			=============================================*/	
+			=============================================*/
 
 			$tabla = "prestamo";
 
-            $datos = array("idusuario"=>$_POST["idUsuario"],
-							"codigo_prestamo"=>$_POST["nuevoPrestamo"],
-                            "productos"=>$_POST["listaProductos"],
-						   "idempleado"=>$_POST["nuevoEmpleado"],  
-						   "observacion_prestamo"=>$_POST["observacionPrestamo"],
-						   "estado_prestamo"=>"PENDIENTE"
-						);
-						 
+			$datos = array(
+				"idusuario" => $_POST["idUsuario"],
+				"codigo_prestamo" => $_POST["nuevoPrestamo"],
+				"productos" => $_POST["listaProductos"],
+				"idempleado" => $_POST["nuevoEmpleado"],
+				"observacion_prestamo" => $_POST["observacionPrestamo"],
+				"estado_prestamo" => "PENDIENTE"
+			);
+
 			$respuesta = ModeloPrestamos::mdlIngresarPrestamo($tabla, $datos);
 
-			
-			
-			if($respuesta == "ok"){
-                echo'<script>
+
+
+			if ($respuesta == "ok") {
+				echo '<script>
                 
 				swal({
 					  type: "success",
@@ -119,11 +120,9 @@ class ControladorPrestamos{
 							})
 
 				</script>';
+			} else {
 
-            }
-            else{
-               
-				echo'<script>
+				echo '<script>
 
 					
 						alertify.error("No se pudo Prestar ");
@@ -131,9 +130,7 @@ class ControladorPrestamos{
 
 			  	</script>';
 			}
-
 		}
-
 	}
 
 
@@ -141,50 +138,48 @@ class ControladorPrestamos{
 	EDITAR PRESTAMO
 	=============================================*/
 
-	static public function ctrEditarPrestamo(){
+	static public function ctrEditarPrestamo()
+	{
 
-		if(isset($_POST["editarPrestamo"])){
+		if (isset($_POST["editarPrestamo"])) {
 
 			/*=============================================
 			//FORMATEAR TABLA PRODUCTOS
 			=============================================*/
-			
-			$tabla="prestamo";
-			$item="codigo_prestamo";
-			$valor=$_POST["editarPrestamo"];
 
-			$traerPrestamo=ModeloPrestamos::mdlMostrarPrestamos($tabla,$item,$valor);
+			$tabla = "prestamo";
+			$item = "codigo_prestamo";
+			$valor = $_POST["editarPrestamo"];
+
+			$traerPrestamo = ModeloPrestamos::mdlMostrarPrestamos($tabla, $item, $valor);
 			/*=============================================
 			//REVISAR SI VIENE PRODUCTOS EDITADOS
 			=============================================*/
-			if($_POST["listaProductos"] == "" ){
+			if ($_POST["listaProductos"] == "") {
 
-			$listaProductos=$traerPrestamo["productos"];
+				$listaProductos = $traerPrestamo["productos"];
+			} else {
+				$listaProductos = $_POST["listaProductos"];
 			}
-			else{
-				$listaProductos=$_POST["listaProductos"];
-			}
 
 
 
 
-			$producto=json_decode($traerPrestamo["productos"],true);
-			foreach($producto as $key=>$value){
-				$tablaProducto="producto";
-				$item1b_2="estado_prestamo";
-				$valor1b_2="DISPONIBLE";
-				$valor_2=$value["id"];
-				$actualizarEstado_2=ModeloProductos::mdlActualizarProducto($tablaProducto,$item1b_2,$valor1b_2,$valor_2);
-
-
+			$producto = json_decode($traerPrestamo["productos"], true);
+			foreach ($producto as $key => $value) {
+				$tablaProducto = "producto";
+				$item1b_2 = "estado_prestamo";
+				$valor1b_2 = "DISPONIBLE";
+				$valor_2 = $value["id"];
+				$actualizarEstado_2 = ModeloProductos::mdlActualizarProducto($tablaProducto, $item1b_2, $valor1b_2, $valor_2);
 			}
 			/*=============================================
 			ACTUALIZAR LAS EL ESTADO DE PRESTAMO DE LOS PRODUCTOS 
 			=============================================*/
 
-			if($listaProductos == "" or $listaProductos=="[]" ){
+			if ($listaProductos == "" or $listaProductos == "[]") {
 
-					echo'<script>
+				echo '<script>
 
 				swal({
 					  type: "error",
@@ -210,39 +205,40 @@ class ControladorPrestamos{
 
 			foreach ($listaProductos_2 as $key => $value) {
 
-			   
+
 				//con esto actualizo todos los productos que tienen ese id de la listaProductos
-			    $tablaPrestamo = "producto";
-			    $valor = $value["id"];
+				$tablaPrestamo = "producto";
+				$valor = $value["id"];
 				$item1a = "estado_prestamo";
 				$valor1a = "OCUPADO";
-			    $nuevoPrestamos = ModeloProductos::mdlActualizarProducto($tablaPrestamo, $item1a, $valor1a, $valor);
-
-
+				$nuevoPrestamos = ModeloProductos::mdlActualizarProducto($tablaPrestamo, $item1a, $valor1a, $valor);
 			}
-		
-			   /*=============================================
-			GUARDAR EL PRESTAMO
-			=============================================*/	
+
+
+
+			/*=============================================
+				GUARDAR EL PRESTAMO
+			=============================================*/
 
 			//$tabla = "prestamo";
 
-            $datos = array("id_prestamo"=>$_POST["idPrestamo"],
-							"idusuario"=>$_POST["idUsuario"],
-							"codigo_prestamo"=>$_POST["editarPrestamo"],	
-							"codigo_prestamo"=>$_POST["editarPrestamo"],
-                            "productos"=>$listaProductos,
-						   "idempleado"=>$_POST["nuevoEmpleado"],  
-						   "observacion_prestamo"=>$_POST["observacionPrestamo"],
-						   "estado_prestamo"=>"PENDIENTE"
-						);
-						 
+			$datos = array(
+				"id_prestamo" => $_POST["idPrestamo"],
+				"idusuario" => $_POST["idUsuario"],
+				"codigo_prestamo" => $_POST["editarPrestamo"],
+				"codigo_prestamo" => $_POST["editarPrestamo"],
+				"productos" => $listaProductos,
+				"idempleado" => $_POST["nuevoEmpleado"],
+				"observacion_prestamo" => $_POST["observacionPrestamo"],
+				"estado_prestamo" => "PENDIENTE"
+			);
+
 			$respuesta = ModeloPrestamos::mdlEditarPrestamo($tabla, $datos);
 
-			
-			
-			if($respuesta == "ok"){
-                echo'<script>
+
+
+			if ($respuesta == "ok") {
+				echo '<script>
                 
 				swal({
 					  type: "success",
@@ -258,11 +254,9 @@ class ControladorPrestamos{
 							})
 
 				</script>';
+			} else {
 
-            }
-            else{
-               
-				echo'<script>
+				echo '<script>
 
 					
 						alertify.error("No se pudo Prestar ");
@@ -270,26 +264,88 @@ class ControladorPrestamos{
 
 			  	</script>';
 			}
-
 		}
-
 	}
 
+
+
+
+
+
+	static public function ctrFinalizarPrestamo()
+	{
+	if (isset($_POST["observacionDevolucion"])) {
+		
+
+			$tabla = "prestamo";
+			$idprestamo = $_GET["idPrestamo"];
+
+			date_default_timezone_set('America/Bogota');
+
+				$fecha = date('Y-m-d');
+				$hora = date('H:i:s');
+				$fechaActual = $fecha.' '.$hora;
+
+
+			$datos = array(
+				"id_prestamo" => $idprestamo,
+				"fecha_devolucion" =>$fechaActual,
+				"observacion_devolucion" => $_POST["observacionDevolucion"],
+				"estado_prestamo" =>"FINALIZADO",
+				
+			);
+
+			$respuesta = ModeloPrestamos::mdlFinalizarPrestamo($tabla, $datos);
+
+
+
+			if ($respuesta == "ok") {
+				echo '<script>
+
+swal({
+	  type: "success",
+	  title: "El prestamo ha finalizado correctamente",
+	  showConfirmButton: true,
+	  confirmButtonText: "Cerrar"
+	  }).then(function(result){
+				if (result.value) {
+
+				window.location = "prestamos";
+
+				}
+			})
+
+</script>';
+			} else {
+
+				echo '<script>
+
 	
-		//eliminar prestamo
+		alertify.error("No se pudo Finalizar ");
+		
 
-	static public function ctrEliminarPrestamo(){
+  </script>';
+			}
+		
+	}
+}
 
-		if(isset($_GET["idPrestamo"])){
 
-			$tabla ="prestamo";
+	//eliminar prestamo
+
+	static public function ctrEliminarPrestamo()
+	{
+
+		if (isset($_GET["idPrestamo"])) {
+
+			$tabla = "prestamo";
 			$datos = $_GET["idPrestamo"];
 
 			$respuesta = ModeloPrestamos::mdlEliminarPrestamos($tabla, $datos);
 
-			if($respuesta == "ok"){
+			if ($respuesta == "ok") {
 
-				echo'<script>
+				echo '<script>
 					
 				swal({
 					  type: "success",
@@ -305,27 +361,24 @@ class ControladorPrestamos{
 							})
 
 				</script>';
-
-			}		
+			}
 		}
-
-
 	}
 
 
 
 	/*=============================================
 	RANGO FECHAS
-	=============================================*/	
+	=============================================*/
 
-	static public function ctrRangoFechasPrestamos($fechaInicial, $fechaFinal){
+	static public function ctrRangoFechasPrestamos($fechaInicial, $fechaFinal)
+	{
 
 		$tabla = "prestamo";
 
 		$respuesta = ModeloPrestamos::mdlRangoFechasPrestamos($tabla, $fechaInicial, $fechaFinal);
 
 		return $respuesta;
-		
 	}
 
 
@@ -333,23 +386,22 @@ class ControladorPrestamos{
 	DESCARGAR EXCEL
 	=============================================*/
 
-	public function ctrDescargarReporte(){
+	public function ctrDescargarReporte()
+	{
 
-		if(isset($_GET["prestamo"])){
+		if (isset($_GET["prestamo"])) {
 
 			$tabla = "prestamo";
 
-			if(isset($_GET["fechaInicial"]) && isset($_GET["fechaFinal"])){
+			if (isset($_GET["fechaInicial"]) && isset($_GET["fechaFinal"])) {
 
 				$prestamo = ModeloPrestamos::mdlRangoFechasPrestamos($tabla, $_GET["fechaInicial"], $_GET["fechaFinal"]);
-
-			}else{
+			} else {
 
 				$item = null;
 				$valor = null;
 
 				$prestamo = ModeloPrestamos::mdlMostrarPrestamos($tabla, $item, $valor);
-
 			}
 
 
@@ -357,18 +409,18 @@ class ControladorPrestamos{
 			CREAMOS EL ARCHIVO DE EXCEL
 			=============================================*/
 
-			$Name = $_GET["prestamo"].'.xls';
+			$Name = $_GET["prestamo"] . '.xls';
 
 			header('Expires: 0');
 			header('Cache-control: private');
 			header("Content-type: application/vnd.ms-excel"); // Archivo de Excel
-			header("Cache-Control: cache, must-revalidate"); 
+			header("Cache-Control: cache, must-revalidate");
 			header('Content-Description: File Transfer');
-			header('Last-Modified: '.date('D, d M Y H:i:s'));
-			header("Pragma: public"); 
-			header('Content-Disposition:; filename="'.$Name.'"');
+			header('Last-Modified: ' . date('D, d M Y H:i:s'));
+			header("Pragma: public");
+			header('Content-Disposition:; filename="' . $Name . '"');
 			header("Content-Transfer-Encoding: binary");
-		
+
 			echo utf8_decode("<table border='0'> 
 
 					<tr> 
@@ -383,37 +435,27 @@ class ControladorPrestamos{
 					<td style='font-weight:bold; border:1px solid #eee;'>ESTADO_PRESTAMO</td>		
 					</tr>");
 
-			foreach ($prestamo as $row => $item){
+			foreach ($prestamo as $row => $item) {
 
 				$usuario = ControladorUsuarios::ctrMostrarUsuarios("id", $item["idusuario"]);
 				$empleados = ControladorEmpleados::ctrMostrarEmpleados("idempleado", $item["idempleado"]);
-				$producto = ControladorProductos::ctrMostrarProductos("id", $item["idproducto"],"id");
+				$producto = ControladorProductos::ctrMostrarProductos("id", $item["idproducto"], "id");
 
-			 echo utf8_decode("<tr>
-			 			<td style='border:1px solid #eee;'>".$usuario["nombre"]."</td> 
-			 			<td style='border:1px solid #eee;'>".$producto["cod_producto"]."</td>
-						 <td style='border:1px solid #eee;'>".$empleados["nombres"]." ".$empleados["ape_pat"]." ".$empleados["ape_mat"]."</td>
-						 <td style='border:1px solid #eee;'>".$empleados["num_documento"]."</td>
-						 <td style='border:1px solid #eee;'>".substr($item["fecha_prestamo"],0,10)."</td>
-						 <td style='border:1px solid #eee;'>".substr($item["fecha_devolucion"],0,10)."</td>
-						 <td style='border:1px solid #eee;'>".$item["observacion_prestamo"]."</td>
-						 <td style='border:1px solid #eee;'>".$item["observacion_devolucion"]."</td>
-						 <td style='border:1px solid #eee;'>".$item["estado_prestamo"]."</td>
+				echo utf8_decode("<tr>
+			 			<td style='border:1px solid #eee;'>" . $usuario["nombre"] . "</td> 
+			 			<td style='border:1px solid #eee;'>" . $producto["cod_producto"] . "</td>
+						 <td style='border:1px solid #eee;'>" . $empleados["nombres"] . " " . $empleados["ape_pat"] . " " . $empleados["ape_mat"] . "</td>
+						 <td style='border:1px solid #eee;'>" . $empleados["num_documento"] . "</td>
+						 <td style='border:1px solid #eee;'>" . substr($item["fecha_prestamo"], 0, 10) . "</td>
+						 <td style='border:1px solid #eee;'>" . substr($item["fecha_devolucion"], 0, 10) . "</td>
+						 <td style='border:1px solid #eee;'>" . $item["observacion_prestamo"] . "</td>
+						 <td style='border:1px solid #eee;'>" . $item["observacion_devolucion"] . "</td>
+						 <td style='border:1px solid #eee;'>" . $item["estado_prestamo"] . "</td>
 						
 						 </tr>");
-
-
 			}
-			
+
 			echo "</table>";
-
 		}
-
 	}
-
-
-
-
-    
 }
-
