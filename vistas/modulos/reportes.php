@@ -55,7 +55,6 @@ if ($_SESSION["perfil"] == "Visitante") {
                   <th style="width:10px">#</th>
                   <th>Empleado</th>
                   <th>Num Documento</th>
-                  <th>Cod Producto</th>
 
                 </tr>
 
@@ -82,16 +81,7 @@ if ($_SESSION["perfil"] == "Visitante") {
                   echo '<td class="text-uppercase">' . $EmpleadoPrestamo["nombres"] . " " . $EmpleadoPrestamo["ape_pat"] . " " . $EmpleadoPrestamo["ape_mat"] . '</td>';
                   echo '<td class="text-uppercase">' . $EmpleadoPrestamo["num_documento"] . '</td>';
 
-                  $item2 = "id";
-                  $valor2 = $value["idproducto"];
-                  $order = "id";
-
-                  $respuestaProducto = ControladorProductos::ctrMostrarProductos($item2, $valor2, $order);
-
-                  echo '<td>' . $respuestaProducto["cod_producto"] . '</td>
-                     
- 
-                   </tr>';
+                  echo ' </tr>';
                 }
 
                 ?>
