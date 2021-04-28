@@ -230,7 +230,9 @@ class ControladorPrestamos
 				"productos" => $listaProductos,
 				"idempleado" => $_POST["nuevoEmpleado"],
 				"observacion_prestamo" => $_POST["observacionPrestamo"],
-				"estado_prestamo" => "PENDIENTE"
+				"estado_prestamo" => "PENDIENTE",
+				"observacion_devolucion" => null,
+				"fecha_devolucion" => null
 			);
 
 			$respuesta = ModeloPrestamos::mdlEditarPrestamo($tabla, $datos);
@@ -273,26 +275,76 @@ class ControladorPrestamos
 
 
 	static public function ctrFinalizarPrestamo()
-	{
-	if (isset($_POST["observacionDevolucion"])) {
-		
+		{
+		if (isset($_POST["observacionDevolucion"])) {
+
+			/*=============================================
+			//FORMATEAR TABLA PRODUCTOS
+			=============================================*/
+
+			$tabla = "prestamo";
+			$item = "codigo_prestamo";
+			$valor = $_POST["editarPrestamoFinalizar"];
+
+			$traerPrestamo = ModeloPrestamos::mdlMostrarPrestamos($tabla, $item, $valor);
+			/*=============================================
+			//REVISAR SI VIENE PRODUCTOS EDITADOS
+			=============================================*/
+			if ($_POST["listaProductos"] == "") {
+
+				$listaProductos = $traerPrestamo["productos"];
+			} else {
+				$listaProductos = $_POST["listaProductos"];
+			}
+
+
+
+
+			$producto = json_decode($traerPrestamo["productos"], true);
+			foreach ($producto as $key => $value) {
+				$tablaProducto = "producto";
+				$item1b_2 = "estado_prestamo";
+				$valor1b_2 = "DISPONIBLE";
+				$valor_2 = $value["id"];
+				$actualizarEstado_2 = ModeloProductos::mdlActualizarProducto($tablaProducto, $item1b_2, $valor1b_2, $valor_2);
+			}
+			/*=============================================
+			ACTUALIZAR LAS EL ESTADO DE PRESTAMO DE LOS PRODUCTOS 
+			=============================================*/
+
+
+
+
+			$listaProductos_2 = json_decode($listaProductos, true);
+			//$listaProductos2 = json_decode($_POST["listaProductos2"], true);
+
+			foreach ($listaProductos_2 as $key => $value) {
+
+
+				//con esto actualizo todos los productos que tienen ese id de la listaProductos
+				$tablaPrestamo = "producto";
+				$valor = $value["id"];
+				$item1a = "estado_prestamo";
+				$valor1a = "DISPONIBLE";
+				$nuevoPrestamos = ModeloProductos::mdlActualizarProducto($tablaPrestamo, $item1a, $valor1a, $valor);
+			}
 
 			$tabla = "prestamo";
 			$idprestamo = $_GET["idPrestamo"];
 
 			date_default_timezone_set('America/Bogota');
 
-				$fecha = date('Y-m-d');
-				$hora = date('H:i:s');
-				$fechaActual = $fecha.' '.$hora;
+			$fecha = date('Y-m-d');
+			$hora = date('H:i:s');
+			$fechaActual = $fecha . ' ' . $hora;
 
 
 			$datos = array(
 				"id_prestamo" => $idprestamo,
-				"fecha_devolucion" =>$fechaActual,
+				"fecha_devolucion" => $fechaActual,
 				"observacion_devolucion" => $_POST["observacionDevolucion"],
-				"estado_prestamo" =>"FINALIZADO",
-				
+				"estado_prestamo" => "FINALIZADO",
+
 			);
 
 			$respuesta = ModeloPrestamos::mdlFinalizarPrestamo($tabla, $datos);
@@ -326,9 +378,11 @@ swal({
 
   </script>';
 			}
-		
+		}
 	}
-}
+
+
+
 
 
 	//eliminar prestamo
@@ -409,14 +463,14 @@ swal({
 			CREAMOS EL ARCHIVO DE EXCEL
 			=============================================*/
 
-			$Name = $_GET["prestamo"] . '.xls';
+			$Name = $_GET["prestamo"].'.xls';
 
 			header('Expires: 0');
 			header('Cache-control: private');
 			header("Content-type: application/vnd.ms-excel"); // Archivo de Excel
 			header("Cache-Control: cache, must-revalidate");
 			header('Content-Description: File Transfer');
-			header('Last-Modified: ' . date('D, d M Y H:i:s'));
+			header('Last-Modified: '.date('D, d M Y H:i:s'));
 			header("Pragma: public");
 			header('Content-Disposition:; filename="' . $Name . '"');
 			header("Content-Transfer-Encoding: binary");
@@ -439,11 +493,21 @@ swal({
 
 				$usuario = ControladorUsuarios::ctrMostrarUsuarios("id", $item["idusuario"]);
 				$empleados = ControladorEmpleados::ctrMostrarEmpleados("idempleado", $item["idempleado"]);
-				$producto = ControladorProductos::ctrMostrarProductos("id", $item["idproducto"], "id");
+				$productos =  json_decode($item["productos"], true);
+				//$producto = ControladorProductos::ctrMostrarProductos("id", $item["idproducto"], "id");
 
 				echo utf8_decode("<tr>
-			 			<td style='border:1px solid #eee;'>" . $usuario["nombre"] . "</td> 
-			 			<td style='border:1px solid #eee;'>" . $producto["cod_producto"] . "</td>
+			 			<td style='border:1px solid #eee;'>" . $usuario["nombre"] . "</td>");
+
+						 echo utf8_decode("</td><td style='border:1px solid #eee;'>");	
+
+						 foreach ($productos as $key => $valueProductos) {
+								 
+							 echo utf8_decode($valueProductos["codigo"]."<br>");
+						 
+						 }
+		
+						 echo utf8_decode("</td>
 						 <td style='border:1px solid #eee;'>" . $empleados["nombres"] . " " . $empleados["ape_pat"] . " " . $empleados["ape_mat"] . "</td>
 						 <td style='border:1px solid #eee;'>" . $empleados["num_documento"] . "</td>
 						 <td style='border:1px solid #eee;'>" . substr($item["fecha_prestamo"], 0, 10) . "</td>
@@ -458,4 +522,6 @@ swal({
 			echo "</table>";
 		}
 	}
+
+
 }

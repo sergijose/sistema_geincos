@@ -180,9 +180,15 @@
             </button>';
             if ($_SESSION["perfil"] == "Administrador" ||$_SESSION["perfil"] == "Especial" ) {
 
-              
-                echo '<button class="btn btn-warning btn-xs btnEditarPrestamo" idPrestamo="' . $value["id"] . '" data-toggle="modal" data-target="#modalDevolverProducto" data-toggle="tooltip" title="Devolver Producto"><i class="fa fa-pencil"></i></button>';
-             
+
+
+                   if ($value["estado_prestamo"] == "FINALIZADO") {
+
+                echo '<button class="btn btn-warning btn-xs btnEditarPrestamo" idPrestamo="' . $value["id"] . '" disabled ><i class="fa fa-pencil"></i></button>';
+             } else{
+
+              echo '<button class="btn btn-warning btn-xs btnEditarPrestamo" idPrestamo="' . $value["id"] . '" data-toggle="modal" data-target="#modalDevolverProducto" data-toggle="tooltip" title="Devolver Producto"><i class="fa fa-pencil"></i></button>';
+             }
                
              
 
@@ -215,111 +221,10 @@
   </section>
 
 </div>
-
-<!--=====================================
-MODAL REGISTRO DE DEVOLUCION
-======================================-->
-
-<div id="modalDevolverProducto" class="modal fade" role="dialog">
-
-  <div class="modal-dialog">
-
-    <div class="modal-content">
-
-      <form role="form" method="post">
-
-        <!--=====================================
-        CABEZA DEL MODAL
-        ======================================-->
-
-        <div class="modal-header" style="background:#3c8dbc; color:white">
-
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-          <h4 class="modal-title">Devolver Producto</h4>
-
-        </div>
-
-        <!--=====================================
-        CUERPO DEL MODAL
-        ======================================-->
-
-        <div class="modal-body">
-
-          <div class="box-body">
-
-            <!-- ENTRADA REGISTRAR LA FECHA DE DEVOLUCION -->
-
-            <div class="form-group">
-
-              <div class="input-group">
-
-                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-
-                <input type="date" class="form-control input-lg" name="fechaDevolucion" required>
-
-                <input type="hidden" name="idPrestamo" id="idPrestamo" name="idPrestamo">
-                <input type="hidden" name="idProducto" id="idProducto" name="idProducto">
-
-              </div>
-
-
-
-
-            </div>
-            <div class="form-group">
-
-              <div class="input-group">
-
-                <span class="input-group-addon"><i class="fa fa-commenting-o"></i></span>
-
-                <input type="text" class="form-control input-lg" name="observacionDevolucion" required>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <!--=====================================
-        PIE DEL MODAL
-        ======================================-->
-
-        <div class="modal-footer">
-
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-
-          <button type="submit" class="btn btn-primary">Guardar cambios</button>
-
-        </div>
-
-        <?php
-
-       // $devolverProducto = new ControladorPrestamos();
-        //$devolverProducto->ctrDevolverProducto();
-
-        ?>
-
-      </form>
-
-    </div>
-
-  </div>
-
-</div>
 <?php
 
-$eliminarPrestamo = new ControladorPrestamos();
-$eliminarPrestamo->ctrEliminarPrestamo();
+  $eliminarPrestamo = new ControladorPrestamos();
+  $eliminarPrestamo -> ctrEliminarPrestamo();
 
-?>
+?> 
 
-<!--==============================
-PARA MENSAJE AL ESTAR SITUADO EN EL BOTON DEVOLVER
- ------------------------------ -->
-<script>
-  $(document).ready(function() {
-    $('[data-toggle="tooltip"]').tooltip();
-  });
-</script>

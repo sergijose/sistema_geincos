@@ -219,8 +219,7 @@ if ($_SESSION["perfil"] == "Visitante") {
                   <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
 
                   <textarea class="form-control" id="observacionPrestamo" name="observacionPrestamo" cols="5" rows="2" placeholder="observaciones del prestamo"><?php echo $prestamo["observacion_prestamo"]; ?></textarea>
-
-
+              
 
                 </div>
 
@@ -244,6 +243,11 @@ if ($_SESSION["perfil"] == "Visitante") {
           <form role="form" method="post" class="formularioPrestamo">
 
             <input type="checkbox" id="cbovalidar" value="second_checkbox" onChange="comprobar(this);"> <label for="cbovalidar">Finalizar Prestamo</label>
+            <input type="hidden" class="form-control" name="editarPrestamoFinalizar" value="<?php echo $prestamo["codigo_prestamo"]; ?>" >
+
+            <input type="hidden" id="listaProductos" name="listaProductos">
+            
+
             <div class="input-group" readonly style="display:none" id="caja">
 
 
