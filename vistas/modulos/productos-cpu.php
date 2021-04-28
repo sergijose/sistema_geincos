@@ -20,7 +20,7 @@ if ($_SESSION["perfil"] == "Visitante") {
 
     <h1>
 
-      Administrar productos
+      Administrar detalles de productos
 
     </h1>
 
@@ -28,7 +28,7 @@ if ($_SESSION["perfil"] == "Visitante") {
 
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
 
-      <li class="active">Administrar productos</li>
+      <li class="active">Administrar detalles de productos</li>
 
     </ol>
 
@@ -40,20 +40,13 @@ if ($_SESSION["perfil"] == "Visitante") {
 
       <div class="box-header with-border">
 
-        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarProducto">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarProductoDetalle">
 
-          Agregar producto
+          Agregar informacion
 
         </button>
 
-        <a href="productos-cpu">
-
-        <button class="btn btn-primary">
-
-       Ver Detalle de CPU
-
-      </button>
-      <a/>
+     
         
 
       </div>
