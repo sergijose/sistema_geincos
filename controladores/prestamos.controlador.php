@@ -161,7 +161,21 @@ class ControladorPrestamos
 			} else {
 				$listaProductos = $_POST["listaProductos"];
 			}
+			if ($listaProductos == "" or $listaProductos == "[]") {
 
+				echo '<script>
+
+				swal({
+					  type: "error",
+					  title: "este prestamo tiene pendiente productos! si deseas vaciar los productos prestados finalize este prestamo",
+					  showConfirmButton: true,
+					  confirmButtonText: "Cerrar"
+					  })
+
+				</script>';
+
+				return;
+			}
 
 
 
@@ -177,27 +191,7 @@ class ControladorPrestamos
 			ACTUALIZAR LAS EL ESTADO DE PRESTAMO DE LOS PRODUCTOS 
 			=============================================*/
 
-			if ($listaProductos == "" or $listaProductos == "[]") {
-
-				echo '<script>
-
-				swal({
-					  type: "error",
-					  title: "El prestamo no procede si no se elige uno",
-					  showConfirmButton: true,
-					  confirmButtonText: "Cerrar"
-					  }).then(function(result){
-								if (result.value) {
-
-								window.location = "crear-prestamo";
-
-								}
-							})
-
-				</script>';
-
-				return;
-			}
+		
 
 
 			$listaProductos_2 = json_decode($listaProductos, true);
