@@ -17,6 +17,22 @@ class ControladorProductosCpu
 		return $respuesta;
 	}
 
+		/*=============================================
+	MOSTRAR CODIGO DE PRODUCTOS DE LA CATEGORIA CPU
+	=============================================*/
+
+	static public function ctrMostrarCodigoProductoCpu($cat)
+	{
+
+		
+
+		$respuesta = ModeloProductosCpu::mdlMostrarCodigoProductoCpu($cat);
+
+		return $respuesta;
+	}
+
+
+
 	/*=============================================
 	MOSTRAR PRODUCTOS REPETIDOS CODIGO Y NUMERO DE SERIE
 	=============================================*/

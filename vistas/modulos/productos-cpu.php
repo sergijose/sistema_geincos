@@ -40,7 +40,7 @@ if ($_SESSION["perfil"] == "Visitante") {
 
       <div class="box-header with-border">
 
-        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarProductoDetalle">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarProductoCpu">
 
           Agregar informacion
 
@@ -89,7 +89,7 @@ if ($_SESSION["perfil"] == "Visitante") {
 MODAL AGREGAR PRODUCTO
 ======================================-->
 
-<div id="modalAgregarDetalle" class="modal fade" role="dialog">
+<div id="modalAgregarProductoCpu" class="modal fade" role="dialog">
 
 
   <div class="modal-dialog">
@@ -106,7 +106,7 @@ MODAL AGREGAR PRODUCTO
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Agregar producto</h4>
+          <h4 class="modal-title">Agregar informacion del CPU</h4>
 
         </div>
 
@@ -128,23 +128,23 @@ MODAL AGREGAR PRODUCTO
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                <select class="form-control input-lg" id="nuevoModelo" name="nuevoModelo" required>
+                <select class="form-control input-lg" id="nuevoCodProductoCpu" name="nuevoCodProductoCpu" required>
 
-                  <option value="">Seleccionar Modelo</option>
+                  <option value="">Seleccionar Codigo CPU</option>
 
                   <?php
 
-                  $item = null;
-                  $valor = null;
+                 
+                  $categoria = "CPU";
                   
 
-                  $modelo = ControladorModelos::ctrMostrarModelo($item, $valor);
+                  $codProducto = ControladorProductosCpu::ctrMostrarCodigoProductoCpu($categoria);
 
-                  foreach ($modelo as $key => $value) {
+                  foreach ($codProducto as $key => $value) {
 
-                    echo '<option value="' . $value["id"] . '">' . $value["categoria"] ."| ".$value["marca"] ."| ".$value["descripcion"] . '</option>';
+                    echo '<option value="' . $value["id"] . '">' . $value["cod_producto"] .'</option>';
                   }
-
+                 // var_dump($codProducto);
                   ?>
 
                 </select>

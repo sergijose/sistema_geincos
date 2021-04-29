@@ -65,6 +65,30 @@ class ModeloProductosCpu{
 
 	}
 
+			//MOSTRAR LISTA DE CODIGOS DE PRODUCTOS DE LA CATEGORIA CPU
+			static public function mdlMostrarCodigoProductoCpu($cat){
+				$stmt = Conexion::conectar()->prepare("SELECT pro.id,pro.cod_producto FROM producto pro
+				INNER JOIN modelo mo
+				ON pro.idmodelo=mo.id
+				INNER JOIN categoria cat
+				ON mo.idcategoria=cat.id 
+				WHERE cat.descripcion=:$cat");
+		
+		$stmt -> bindParam(":".$cat, $cat, PDO::PARAM_STR);
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
+
+
+	$stmt = null;
+			}
+
+
+
+
+
+
+
 
 		//para validar no repetir codigo y numero de serie del producto
 	static public function mdlMostrarProductosRepetidos($tabla, $item, $valor){
