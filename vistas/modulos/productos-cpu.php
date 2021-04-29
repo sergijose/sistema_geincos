@@ -53,20 +53,20 @@ if ($_SESSION["perfil"] == "Visitante") {
 
       <div class="box-body">
 
-        <table class="table table-bordered table-striped dt-responsive tablaProductos" width="100%">
+        <table class="table table-bordered table-striped dt-responsive tablaProductosCpu" width="100%">
 
           <thead>
 
             <tr>
 
               <th style="width:10px">#</th>
-              <th>Modelo</th>
-              <th>Código</th>
-            <th>Código barras</th> 
-              <th>Numero de Serie</th>
-              <th>Estado Producto</th>
-              <th>Disponibilidad</th>
-              <th>Fecha_Registro</th>
+              <th>Codigo</th>
+              <th>Tipo Disco</th>
+               <th>Tamaño Disco</th> 
+              <th>Tipo Ram</th>
+              <th>Tamaño Ram</th>
+              <th>Procesador</th>
+              <th>Sistema Operativo</th>
               <th>Acciones</th>
 
             </tr>
@@ -89,7 +89,7 @@ if ($_SESSION["perfil"] == "Visitante") {
 MODAL AGREGAR PRODUCTO
 ======================================-->
 
-<div id="modalAgregarProducto" class="modal fade" role="dialog">
+<div id="modalAgregarDetalle" class="modal fade" role="dialog">
 
 
   <div class="modal-dialog">

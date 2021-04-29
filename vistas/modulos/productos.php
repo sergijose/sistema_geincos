@@ -53,7 +53,7 @@ if ($_SESSION["perfil"] == "Visitante") {
        Ver Detalle de CPU
 
       </button>
-      <a/>
+      </a>
         
 
       </div>

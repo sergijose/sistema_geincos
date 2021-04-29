@@ -184,6 +184,7 @@ CUERPO DOCUMENTO
 <script src="vistas/js/marcas.js"></script>
 <script src="vistas/js/modelo.js"></script>
 <script src="vistas/js/productos.js"></script>
+<script src="vistas/js/productos-cpu.js"></script>
 <script src="vistas/js/prestamos.js"></script>
 <script src="vistas/js/empleados.js"></script>
 
