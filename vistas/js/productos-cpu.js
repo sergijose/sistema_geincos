@@ -48,18 +48,19 @@ $(".tablaProductosCpu").DataTable({
 REVISAR SI EL CODIGO DEL PRODUCTO YA ESTÁ REGISTRADO
 =============================================*/
 
-$("#nuevoCodigo").change(function(){
+$("#nuevoCodProductoCpu").change(function(){
 
 	$(".alert").remove();
 
 
 	var codigo = $(this).val();
+	console.log("cod",codigo);
 
 	var datos = new FormData();
 	datos.append("validarCodigo", codigo);
 
 	 $.ajax({
-	    url:"ajax/productos.ajax.php",
+	    url:"ajax/productos-cpu.ajax.php",
 	    method:"POST",
 	    data: datos,
 	    cache: false,
@@ -67,12 +68,12 @@ $("#nuevoCodigo").change(function(){
 	    processData: false,
 	    dataType: "json",
 	    success:function(respuesta){
-	    	
+	    	console.log("res",respuesta);
 	    	if(respuesta){
 
-	    		$("#nuevoCodigo").parent().after('<div class="alert alert-warning">Este codigo de producto  ya existe en la base de datos</div>');
+	    		$("#nuevoCodProductoCpu").parent().after('<div class="alert alert-warning">Este codigo de cpu ya esta registrado</div>');
 
-	    		$("#nuevoCodigo").val("");
+	    		$("#nuevoCodProductoCpu").val("");
 
 	    	}
 

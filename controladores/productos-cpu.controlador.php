@@ -34,15 +34,15 @@ class ControladorProductosCpu
 
 
 	/*=============================================
-	MOSTRAR PRODUCTOS REPETIDOS CODIGO Y NUMERO DE SERIE
+	MOSTRAR PRODUCTOS REPETIDOS CODIGO 
 	=============================================*/
 
-	static public function ctrMostrarProductosRepetidos($item, $valor)
+	static public function ctrMostrarProductosRepetidosCpu($item, $valor)
 	{
 
-		$tabla = "producto";
+		$tabla = "producto_cpu";
 
-		$respuesta = ModeloProductos::mdlMostrarProductosRepetidos($tabla, $item, $valor);
+		$respuesta = ModeloProductosCpu::mdlMostrarProductosRepetidosCpu($tabla, $item, $valor);
 
 		return $respuesta;
 	}
@@ -95,40 +95,44 @@ class ControladorProductosCpu
 	}
 
 	/*=============================================
-	CREAR PRODUCTO
+	CREAR PRODUCTO DE LA CATEGORIA CPU
 	=============================================*/
 
-	static public function ctrCrearProducto()
+	static public function ctrCrearProductoCpu()
 	{
 	
 
 
-		if (isset($_POST["nuevoModelo"])) {
+		if (isset($_POST["nuevoCodProductoCpu"])) {
 
 			if (
-				preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["nuevoModelo"]) &&
-				preg_match('/^[-a-zA-Z0-9 ]+$/', $_POST["nuevoCodigo"]) &&
-				//preg_match('/^[-a-zA-Z0-9 ]+$/', $_POST["nuevoNumSerie"]) &&	
-				preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["nuevoEstado"]) &&
-				preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["nuevoEstadoPrestamo"])
+				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoCodProductoCpu"]) &&
+				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoTipoDisco"]) &&
+				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevaCantDisco"]) &&	
+				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoTipoRam"]) &&
+				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevaCantRam"]) &&
+				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoProcesador"]) &&
+				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoSistemaOperativo"])&&
+				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevaObservacion"])
+
+				
 			) {
 
-				//var_dump($_FILES["barcode1"]["tmp_name"]);
-				//return
-
-
-				$tabla = "producto";
+				$tabla = "producto_cpu";
 
 
 				$datos = array(
-					"idmodelo" => $_POST["nuevoModelo"],
-					"cod_producto" => strtoupper($_POST["nuevoCodigo"]),
-					"num_serie" => strtoupper($_POST["nuevoNumSerie"]),
-					"idestado" => $_POST["nuevoEstado"],
-					"estado_prestamo" => $_POST["nuevoEstadoPrestamo"]
+					"idproducto" => $_POST["nuevoCodProductoCpu"],
+					"tipo_disco" => strtoupper($_POST["nuevoTipoDisco"]),
+					"cant_disco" => strtoupper($_POST["nuevaCantDisco"]),
+					"tipo_memoria" => $_POST["nuevoTipoRam"],
+					"cant_memoria" => $_POST["nuevaCantRam"],
+					"procesador" => $_POST["nuevoProcesador"],
+					"sistema_operativo" => $_POST["nuevoSistemaOperativo"],
+					"observaciones" => $_POST["nuevaObservacion"]
 				);
 
-				$respuesta = ModeloProductos::mdlIngresarProducto($tabla, $datos);
+				$respuesta = ModeloProductosCpu::mdlIngresarProductoCpu($tabla, $datos);
 
 				if ($respuesta == "ok") {
 

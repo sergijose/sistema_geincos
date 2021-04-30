@@ -5,18 +5,21 @@ require_once "conexion.php";
 class ModeloProductosCpu{
 
 	/*=============================================
-	CREAR DETALLE DE PRODUCTO-CPU
+	CREAR  PRODUCTO-CPU
 	=============================================*/
 
-	static public function mdlIngresarProducto($tabla, $datos){
+	static public function mdlIngresarProductoCpu($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(idmodelo,cod_producto,num_serie,idestado,estado_prestamo) VALUES (:idmodelo,:cod_producto,:num_serie,:idestado,:estado_prestamo)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(idproducto,tipo_disco,cant_disco,tipo_ram,cant_ram,procesador,sistema_operativo,observaciones) VALUES (:idproducto,:tipo_disco,:cant_disco,:tipo_ram,:cant_ram,:procesador,:sistema_operativo,:observaciones)");
 
-		$stmt->bindParam(":idmodelo", $datos["idmodelo"], PDO::PARAM_INT);
-		$stmt->bindParam(":cod_producto", $datos["cod_producto"], PDO::PARAM_STR);
-		$stmt->bindParam(":num_serie", $datos["num_serie"], PDO::PARAM_STR);
-		$stmt->bindParam(":idestado", $datos["idestado"], PDO::PARAM_INT);
-		$stmt->bindParam(":estado_prestamo", $datos["estado_prestamo"], PDO::PARAM_STR);
+		$stmt->bindParam(":idproducto", $datos["idproducto"], PDO::PARAM_INT);
+		$stmt->bindParam(":tipo_disco", $datos["tipo_disco"], PDO::PARAM_STR);
+		$stmt->bindParam(":cant_disco", $datos["cant_disco"], PDO::PARAM_INT);
+		$stmt->bindParam(":tipo_ram", $datos["tipo_memoria"], PDO::PARAM_STR);
+		$stmt->bindParam(":cant_ram", $datos["cant_memoria"], PDO::PARAM_INT);
+		$stmt->bindParam(":procesador", $datos["procesador"], PDO::PARAM_STR);
+		$stmt->bindParam(":sistema_operativo", $datos["sistema_operativo"], PDO::PARAM_STR);
+		$stmt->bindParam(":observaciones", $datos["observaciones"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 
@@ -34,7 +37,7 @@ class ModeloProductosCpu{
 	}
 
 	/*=============================================
-	MOSTRAR PRODUCTOS
+	MOSTRAR PRODUCTOS DE LA CATEGORIA CPU
 	=============================================*/
 
 	static public function mdlMostrarProductosCpu($tabla, $item, $valor,$orden){
@@ -90,8 +93,8 @@ class ModeloProductosCpu{
 
 
 
-		//para validar no repetir codigo y numero de serie del producto
-	static public function mdlMostrarProductosRepetidos($tabla, $item, $valor){
+		//para validar no repetir codigo del producto,asi no registramos detalles del mismo producto
+	static public function mdlMostrarProductosRepetidosCpu($tabla, $item, $valor){
 		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
 		$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);

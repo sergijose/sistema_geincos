@@ -240,11 +240,12 @@ MODAL AGREGAR PRODUCTO
                 <select class="form-control input-md" id="nuevoProcesador" name="nuevoProcesador" required>
 
                   <option value="">Seleccionar tipo de Procesador</option>
-                  <option value="DR4">i9</option>
-                  <option value="DR3">i7</option>
-                  <option value="DR2">i5</option>
-                  <option value="DR">i3</option>
-                  <option value="DR">AMD</option>
+                  <option value="i9">i9</option>
+                  <option value="i7">i7</option>
+                  <option value="i5">i5</option>
+                  <option value="i3">i3</option>
+                  <option value="corel 2 duo">Corel 2 duo</option>
+                  <option value="amd">AMD</option>
 
 
                 </select>
@@ -264,12 +265,11 @@ MODAL AGREGAR PRODUCTO
                 <select class="form-control input-md" id="nuevoSistemaOperativo" name="nuevoSistemaOperativo" required>
 
                   <option value="">Seleccionar Sistema Operativo</option>
-                  <option value="DR4">WIN 10</option>
-                  <option value="DR3">WIN 8</option>
-                  <option value="DR2">WIN 7</option>
-                  <option value="DR">LINUX</option>
-
-
+                  <option value="windows 10">WIN 10</option>
+                  <option value="windows 8">WIN 8</option>
+                  <option value="windows 7">WIN 7</option>
+                  <option value="linux">LINUX</option>
+                  
 
                 </select>
 
@@ -311,8 +311,8 @@ MODAL AGREGAR PRODUCTO
 
       <?php
 
-      $crearProducto = new ControladorProductos();
-      $crearProducto->ctrCrearProducto();
+      $crearProductoCpu = new ControladorProductosCpu();
+      $crearProductoCpu->ctrCrearProductoCpu();
 
       ?>
 
