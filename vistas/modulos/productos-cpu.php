@@ -285,7 +285,7 @@ MODAL AGREGAR PRODUCTO
 
               <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
 
-<textarea class="form-control" id="nuevaObservacion" name="nuevaObservacion" cols="5" rows="2" placeholder="escriba aqui si tiene alguna observacion de este producto"  required></textarea>
+<textarea class="form-control" id="nuevaObservacion" name="nuevaObservacion" cols="5" rows="5" placeholder="escriba aqui si tiene alguna observacion de este producto"  required></textarea>
 
               </div>
 
