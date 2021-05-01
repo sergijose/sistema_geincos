@@ -16,8 +16,8 @@ class AjaxProductosCpu{
 	=============================================*/	
 
 	public $idProducto;
-	public $traerProductos;
-	public $codigoProducto;
+	public $traerProductosCpu;
+	public $codigoProductoCpu;
 	public $validarCodigo;
 
 
@@ -34,27 +34,27 @@ class AjaxProductosCpu{
 
 	
 
-	public function ajaxEditarProducto(){
+	public function ajaxEditarProductoCpu(){
 
-		if($this->traerProductos == "ok"){
+		if($this->traerProductosCpu == "ok"){
 
 			$item = null;
 			$valor = null;
 			$orden = "id";
 	  
-			$respuesta = ControladorProductos::ctrMostrarProductos($item, $valor,
+			$respuesta = ControladorProductosCpu::ctrMostrarProductosCpu($item, $valor,
 			  $orden);
 	  
 			echo json_encode($respuesta);
 	  
 	  
-		  }else if($this->codigoProducto != ""){
+		  }else if($this->codigoProductoCpu != ""){
 
 			$item ="cod_producto";
-			$valor = $this->codigoProducto;
+			$valor = $this->codigoProductoCpu;
 			$orden = "id";
 	  
-			$respuesta = ControladorProductos::ctrMostrarProductos($item, $valor,
+			$respuesta = ControladorProductosCpu::ctrMostrarProductosCpu($item, $valor,
 			  $orden);
 	  
 			echo json_encode($respuesta);
@@ -64,10 +64,10 @@ class AjaxProductosCpu{
 		 
 		  else {
 
-			$item = "id";
+		$item = "id";
 		$valor = $this->idProducto;
         $orden = "id";
-		$respuesta = ControladorProductos::ctrMostrarProductos($item, $valor,$orden);
+		$respuesta = ControladorProductosCpu::ctrMostrarProductosCpu($item, $valor,$orden);
 
 		echo json_encode($respuesta);
 
@@ -79,13 +79,13 @@ class AjaxProductosCpu{
 }
 
 /*=============================================
-EDITAR PRODUCTO
+EDITAR PRODUCTO CPU
 =============================================*/	
-if(isset($_POST["nuevoCodProductoCpu"])){
+if(isset($_POST["idProductoCpu"])){
 
-	$marca = new AjaxProductosCpu();
-	$marca -> idProducto = $_POST["nuevoCodProductoCpu"];
-	$marca -> ajaxEditarProducto();
+	$idProducto = new AjaxProductosCpu();
+	$idProducto -> idProducto = $_POST["idProductoCpu"];
+	$idProducto -> ajaxEditarProductoCpu();
 }
 /*=============================================
 TRAER PRODUCTO
@@ -93,9 +93,9 @@ TRAER PRODUCTO
 
 if(isset($_POST["traerProductos"])){
 
-	$traerProductos = new AjaxProductos();
+	$traerProductos = new AjaxProductosCpu();
 	$traerProductos -> traerProductos = $_POST["traerProductos"];
-	$traerProductos -> ajaxEditarProducto();
+	$traerProductos -> ajaxEditarProductoCpu();
   
   }
 
@@ -105,9 +105,9 @@ TRAER PRODUCTO
 
 if(isset($_POST["codigoProducto"])){
 
-	$traerProductos = new AjaxProductos();
+	$traerProductos = new AjaxProductosCpu();
 	$traerProductos -> codigoProducto = $_POST["codigoProducto"];
-	$traerProductos -> ajaxEditarProducto();
+	$traerProductos -> ajaxEditarProductoCpu();
   
   }
    /*=============================================

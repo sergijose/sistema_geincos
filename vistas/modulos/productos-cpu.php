@@ -67,6 +67,7 @@ if ($_SESSION["perfil"] == "Visitante") {
               <th>Tamaño Ram</th>
               <th>Procesador</th>
               <th>Sistema Operativo</th>
+
               <th>Acciones</th>
 
             </tr>
@@ -86,7 +87,7 @@ if ($_SESSION["perfil"] == "Visitante") {
 </div>
 
 <!--=====================================
-MODAL AGREGAR PRODUCTO
+MODAL AGREGAR PRODUCTO CPU
 ======================================-->
 
 <div id="modalAgregarProductoCpu" class="modal fade" role="dialog">
@@ -269,7 +270,7 @@ MODAL AGREGAR PRODUCTO
                   <option value="windows 8">WIN 8</option>
                   <option value="windows 7">WIN 7</option>
                   <option value="linux">LINUX</option>
-                  
+
 
                 </select>
 
@@ -283,9 +284,9 @@ MODAL AGREGAR PRODUCTO
 
               <div class="input-group">
 
-              <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
 
-<textarea class="form-control" id="nuevaObservacion" name="nuevaObservacion" cols="5" rows="5" placeholder="escriba aqui si tiene alguna observacion de este producto"  required></textarea>
+                <textarea class="form-control" id="nuevaObservacion" name="nuevaObservacion" cols="5" rows="5" placeholder="escriba aqui si tiene alguna observacion de este producto" required> </textarea>
 
               </div>
 
@@ -324,17 +325,17 @@ MODAL AGREGAR PRODUCTO
 
 
 <!--=====================================
-MODAL EDITAR PRODUCTO
+MODAL EDITAR PRODUCTO CPU
 ======================================-->
 
-<div id="modalEditarProducto" class="modal fade" role="dialog">
+<div id="modalEditarProductoCpu" class="modal fade" role="dialog">
 
 
   <div class="modal-dialog">
 
     <div class="modal-content">
 
-      <form role="form" method="post">
+      <form role="form" method="post" enctype="multipart/form-data">
 
         <!--=====================================
         CABEZA DEL MODAL
@@ -344,7 +345,7 @@ MODAL EDITAR PRODUCTO
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Editar producto</h4>
+          <h4 class="modal-title">Editar informacion del CPU</h4>
 
         </div>
 
@@ -358,7 +359,7 @@ MODAL EDITAR PRODUCTO
 
 
 
-            <!-- ENTRADA PARA EDITAR  SELECCIONAR MODELO -->
+            <!-- ENTRADA PARA SELECCIONAR CODIGO DE PRODUCTO DE LA CATEGORIA CPU -->
 
             <div class="form-group">
 
@@ -366,59 +367,54 @@ MODAL EDITAR PRODUCTO
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                <select class="form-control input-lg" id="editarModelo" name="editarModelo" required>
+                <input type="text" class="form-control input-md" id="editarCodProductoCpu" name="editarCodProductoCpu" required readonly></input>
 
-                  <option value="">Seleccionar Modelo</option>
-
-                  <?php
-
-                  $item = null;
-                  $valor = null;
-
-                  $modelo = ControladorModelos::ctrMostrarModelo($item, $valor);
-
-                  foreach ($modelo as $key => $value) {
-
-                    echo '<option value="' . $value["id"] . '">' . $value["categoria"] . "| " . $value["marca"] . "| " . $value["descripcion"] . '</option>';
-                  }
-
-                  ?>
-
-                </select>
+                
 
               </div>
 
             </div>
 
-            <!-- ENTRADA PARA EL CÓDIGO -->
+            <!-- ENTRADA PARA SELECCIONAR EL TIPO DE DISCO DURO -->
 
             <div class="form-group">
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                <input type="text" class="form-control input-lg" id="editarCodigo" name="editarCodigo" placeholder="Ingrese Codigo" required>
-                <!-- oculto el id del producto para poder editar -->
+                <select class="form-control input-md" id="editarTipoDisco" name="editarTipoDisco" required>
+
+                  <option value="">Seleccionar tipo de disco</option>
+                  <option value="MECANICO">MECANICO</option>
+                  <option value="SOLIDO">SOLIDO</option>
+
+
+                </select>
+                <!-- oculto el id del detalle del producto de la categoria CPU para poder editar -->
                 <input type="hidden" id="id" name="id" require>
+
               </div>
 
             </div>
-            <!-- ENTRADA PARA EL NUMERO DE SERIE -->
+
+
+
+            <!-- ENTRADA PARA CANTIDAD DE DISCO -->
 
             <div class="form-group">
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+                <span class="input-group-addon"><i class="fa fa-signal"></i></span>
 
-                <input type="text" class="form-control input-lg" id="editarNumSerie" name="editarNumSerie" placeholder="editar numero de serie">
+                <input type="number" class="form-control input-md" id="editarCantDisco" name="editarCantDisco" placeholder="Ingrese GB de disco duro" required>
 
               </div>
 
             </div>
 
-            <!-- ENTRADA PARA EL ESTADO -->
+            <!-- ENTRADA PARA SELECCIONAR EL TIPO DE MEMORIA RAM -->
 
             <div class="form-group">
 
@@ -426,26 +422,14 @@ MODAL EDITAR PRODUCTO
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                <select class="form-control input-lg" id="editarEstado" name="editarEstado" required>
+                <select class="form-control input-md" id="editarTipoRam" name="editarTipoRam" required>
 
-                  <option value="">Seleccionar estado del producto</option>
+                  <option value="">Seleccionar tipo de Memoria Ram</option>
+                  <option value="DR4">DR4</option>
+                  <option value="DR3">DR3</option>
+                  <option value="DR2">DR2</option>
+                  <option value="DR">DR</option>
 
-                  <?php
-
-                  $item = null;
-                  $valor = null;
-                  $orden = "id";
-
-
-                  $estado = ControladorProductos::ctrMostrarEstadoProducto($item, $valor, $orden);
-
-                  foreach ($estado as $key => $value) {
-
-
-                    echo '<option value="' . $value["id"] . '">' . $value["descripcion"] . '</option>';
-                  }
-
-                  ?>
 
                 </select>
 
@@ -454,7 +438,22 @@ MODAL EDITAR PRODUCTO
             </div>
 
 
-            <!-- ENTRADA PARA ESTADO DE PRESTAMO DEL PRODUCTO -->
+
+            <!-- ENTRADA PARA CANTIDAD DE MEMORIA RAM -->
+
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-signal"></i></span>
+
+                <input type="number" class="form-control input-md" id="editarCantRam" name="editarCantRam" placeholder="Ingrese GB de Memoria Ram" required>
+
+              </div>
+
+            </div>
+
+            <!-- ENTRADA PARA SELECCIONAR EL TIPO DE PROCESADOR-->
 
             <div class="form-group">
 
@@ -462,16 +461,60 @@ MODAL EDITAR PRODUCTO
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                <select class="form-control input-lg" id="editarEstadoPrestamo" name="editarEstadoPrestamo" required>
+                <select class="form-control input-md" id="editarProcesador" name="editarProcesador" required>
 
-                  <option value="">Seleccionar estado del prestamo</option>
-                  <option value="DISPONIBLE">DISPONIBLE</option>
-                  <option value="OCUPADO">OCUPADO</option>
+                  <option value="">Seleccionar tipo de Procesador</option>
+                  <option value="i9">i9</option>
+                  <option value="i7">i7</option>
+                  <option value="i5">i5</option>
+                  <option value="i3">i3</option>
+                  <option value="corel 2 duo">Corel 2 duo</option>
+                  <option value="amd">AMD</option>
+
+
                 </select>
 
               </div>
 
             </div>
+
+            <!-- ENTRADA PARA SELECCIONAR EL SISTEMA OPERATIVO-->
+
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+                <select class="form-control input-md" id="editarSistemaOperativo" name="editarSistemaOperativo" required>
+
+                  <option value="">Seleccionar Sistema Operativo</option>
+                  <option value="windows 10">WIN 10</option>
+                  <option value="windows 8">WIN 8</option>
+                  <option value="windows 7">WIN 7</option>
+                  <option value="linux">LINUX</option>
+
+
+                </select>
+
+              </div>
+
+            </div>
+
+            <!-- ENTRADA PARA LAS OBSERVACIONES-->
+
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
+
+                <textarea class="form-control" id="editarObservacion" name="editarObservacion" cols="5" rows="5" placeholder="escriba aqui si tiene alguna observacion de este producto" required> </textarea>
+
+              </div>
+
+            </div>
+
 
           </div>
         </div>
@@ -484,7 +527,7 @@ MODAL EDITAR PRODUCTO
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Actualizar producto</button>
+          <button type="submit" class="btn btn-primary">Guardar Informacion</button>
 
         </div>
 
@@ -492,8 +535,8 @@ MODAL EDITAR PRODUCTO
 
       <?php
 
-      $editarProducto = new ControladorProductos();
-      $editarProducto->ctrEditarProducto();
+      $editarProductoCpu = new ControladorProductosCpu();
+      $editarProductoCpu->ctrEditarProductoCpu();
 
       ?>
 
@@ -502,9 +545,21 @@ MODAL EDITAR PRODUCTO
   </div>
 
 </div>
+
+
+<!--=====================================
+MODAL EDITAR PRODUCTO
+======================================-->
+
+
+
+
+
+
+
 <?php
 
-$eliminarProducto = new ControladorProductos();
-$eliminarProducto->ctrEliminarProducto();
+$eliminarProductoCpu = new ControladorProductosCpu();
+$eliminarProductoCpu->ctrEliminarProductoCpu();
 
 ?>

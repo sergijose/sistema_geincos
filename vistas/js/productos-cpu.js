@@ -5,7 +5,7 @@ CARGAR LA TABLA DINÁMICA DE PRODUCTOS CPU
 $.ajax({
 	url: "ajax/datatable-productos-cpu.ajax.php",
 	success: function (respuesta) {
-		//console.log("respuesta", respuesta);
+	//	console.log("respuesta", respuesta);
 	},
 });
 
@@ -82,54 +82,20 @@ $("#nuevoCodProductoCpu").change(function(){
 	})
 })
 
-/*=============================================
-REVISAR SI EL NUMERO DE SERIE YA ESTÁ REGISTRADO
-=============================================*/
-
-$("#nuevoNumSerie").change(function(){
-
-	$(".alert").remove();
-	var serie = $(this).val();
-
-	var datos = new FormData();
-	datos.append("validarSerie", serie);
-
-	 $.ajax({
-	    url:"ajax/productos.ajax.php",
-	    method:"POST",
-	    data: datos,
-	    cache: false,
-	    contentType: false,
-	    processData: false,
-	    dataType: "json",
-	    success:function(respuesta){
-	    	
-	    	if(respuesta){
-
-	    		$("#nuevoNumSerie").parent().after('<div class="alert alert-warning">Este numero de serie  ya existe en la base de datos</div>');
-
-	    		$("#nuevoNumSerie").val("");
-
-	    	}
-
-	    }
-
-	})
-})
 
 
 /*=============================================
-EDITAR PRODUCTO
+EDITAR PRODUCTO CPU
 =============================================*/
 
-$(".tablaProductos tbody").on("click", "button.btnEditarProducto", function () {
-	var idProducto = $(this).attr("idProducto");
+$(".tablaProductosCpu tbody").on("click", "button.btnEditarProductoCpu", function () {
+	var idProductoCpu = $(this).attr("idProductoCpu");
 
 	var datos = new FormData();
-	datos.append("idProducto", idProducto);
+	datos.append("idProductoCpu", idProductoCpu);
 
 	$.ajax({
-		url: "ajax/productos.ajax.php",
+		url: "ajax/productos-cpu.ajax.php",
 		method: "POST",
 		data: datos,
 		cache: false,
@@ -137,47 +103,38 @@ $(".tablaProductos tbody").on("click", "button.btnEditarProducto", function () {
 		processData: false,
 		dataType: "json",
 		success: function (respuesta) {
-			var datosModelo = new FormData();
-			datosModelo.append("idModelo", respuesta["idmodelo"]);
+
+			console.log("res",respuesta)
+			var datosProducto = new FormData();
+			datosProducto.append("idProducto", respuesta["idproducto"]);
 
 			$.ajax({
-				url: "ajax/modelos.ajax.php",
+				url: "ajax/productos.ajax.php",
 				method: "POST",
-				data: datosModelo,
+				data: datosProducto,
 				cache: false,
 				contentType: false,
 				processData: false,
 				dataType: "json",
 				success: function (respuesta) {
 					
-					$("#editarModelo").val(respuesta["id"]);
-					//  $("#editarModelo").html(respuesta["descripcion"]);
+					$("#editarCodProductoCpu").val(respuesta["cod_producto"]);
+					//$("#editarCodProductoCpu").html(respuesta["cod_producto"]);
 				},
 			});
-			var datosEstado = new FormData();
-			datosEstado.append("idEstado", respuesta["idestado"]);
+			
 
-			$.ajax({
-				url: "ajax/estados.ajax.php",
-				method: "POST",
-				data: datosEstado,
-				cache: false,
-				contentType: false,
-				processData: false,
-				dataType: "json",
-				success: function (respuesta) {
-					;
-					$("#editarEstado").val(respuesta["id"]);
-					// $("#editarEstado").html(respuesta["descripcion"]);
-				},
-			});
-
-			$("#editarCodigo").val(respuesta["cod_producto"]);
-			$("#editarNumSerie").val(respuesta["num_serie"]);
-
-			$("#editarEstadoPrestamo").val(respuesta["estado_prestamo"]);
+			$("#editarTipoDisco").val(respuesta["tipo_disco"]);
+			$("#editarCantDisco").val(respuesta["cant_disco"]);
+			$("#editarTipoRam").val(respuesta["tipo_ram"]);
+			$("#editarCantRam").val(respuesta["cant_ram"]);
+			$("#editarProcesador").val(respuesta["procesador"]);
+			$("#editarSistemaOperativo").val(respuesta["sistema_operativo"]);
+			$("#editarObservacion").val(respuesta["observaciones"]);
+			
 			//para editar producto -capturando el id
 			$("#id").val(respuesta["id"]);
+			
 			
 		},
 	});
@@ -187,25 +144,26 @@ $(".tablaProductos tbody").on("click", "button.btnEditarProducto", function () {
 ELIMINAR PRODUCTO
 =============================================*/
 
-$(".tablaProductos tbody").on(
+$(".tablaProductosCpu tbody").on(
 	"click",
-	"button.btnEliminarProducto",
+	"button.btnEliminarProductoCpu",
 	function () {
-		var idProducto = $(this).attr("idProducto");
+		var idProductoCpu = $(this).attr("idProductoCpu");
+	
 		swal({
-			title: "¿Está seguro de borrar el producto?",
+			title: "¿Está seguro de borrar el detalle de este producto?",
 			text: "¡Si no lo está puede cancelar la accíón!",
 			type: "warning",
 			showCancelButton: true,
 			confirmButtonColor: "#3085d6",
 			cancelButtonColor: "#d33",
 			cancelButtonText: "Cancelar",
-			confirmButtonText: "Si, borrar producto!",
+			confirmButtonText: "Si, borrar detalle del producto!",
 		}).then(function (result) {
 			if (result.value) {
 				window.location =
-					"index.php?ruta=productos&idProducto=" +
-					idProducto;
+					"index.php?ruta=productos-cpu&idProductoCpu=" +
+					idProductoCpu;
 			}
 		});
 	}

@@ -155,34 +155,43 @@ class ControladorProductosCpu
 	}
 
 	/*=============================================
-	EDITAR PRODUCTO
+	EDITAR DETALLE PRODUCTO CPU
 	=============================================*/
 
-	static public function ctrEditarProducto()
+	static public function ctrEditarProductoCpu()
 	{
 
-		if (isset($_POST["editarModelo"])) {
+		if (isset($_POST["editarTipoDisco"])) {
 
 			if (
-				preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["editarModelo"]) &&
-				preg_match('/^[-a-zA-Z0-9 ]+$/', $_POST["editarCodigo"]) &&
-				//  preg_match('/^[-a-zA-Z0-9 ]+$/', $_POST["editarNumSerie"]) &&
-				preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["editarEstado"]) &&
-				preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["editarEstadoPrestamo"])
+			
+				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarTipoDisco"]) &&
+				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarCantDisco"]) &&	
+				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarTipoRam"]) &&
+				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarCantRam"]) &&
+				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarProcesador"]) &&
+				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarSistemaOperativo"])
+				
+
+				
 			) {
 
-				$tabla = "producto";
+				$tabla = "producto_cpu";
+
 
 				$datos = array(
-					"idmodelo" => $_POST["editarModelo"],
-					"cod_producto" => $_POST["editarCodigo"],
-					"num_serie" => $_POST["editarNumSerie"],
-					"idestado" => $_POST["editarEstado"],
-					"estado_prestamo" => $_POST["editarEstadoPrestamo"],
+				
+					"tipo_disco" => strtoupper($_POST["editarTipoDisco"]),
+					"cant_disco" => strtoupper($_POST["editarCantDisco"]),
+					"tipo_ram" => $_POST["editarTipoRam"],
+					"cant_ram" => $_POST["editarCantRam"],
+					"procesador" => $_POST["editarProcesador"],
+					"sistema_operativo" => $_POST["editarSistemaOperativo"],
+					"observaciones" => $_POST["editarObservacion"],
 					"id" => $_POST["id"]
 				);
 
-				$respuesta = ModeloProductos::mdlEditarProducto($tabla, $datos);
+				$respuesta = ModeloProductosCpu::mdlEditarProductoCpu($tabla, $datos);
 
 				if ($respuesta == "ok") {
 
@@ -206,17 +215,17 @@ class ControladorProductosCpu
 	}
 
 	/*=============================================
-	BORRAR PRODUCTO
+	BORRAR PRODUCTO CPU
 	=============================================*/
-	static public function ctrEliminarProducto()
+	static public function ctrEliminarProductoCpu()
 	{
 
-		if (isset($_GET["idProducto"])) {
+		if (isset($_GET["idProductoCpu"])) {
 
-			$tabla = "producto";
-			$datos = $_GET["idProducto"];
+			$tabla = "producto_cpu";
+			$datos = $_GET["idProductoCpu"];
 
-			$respuesta = ModeloProductos::mdlEliminarProducto($tabla, $datos);
+			$respuesta = ModeloProductosCpu::mdlEliminarProductoCpu($tabla, $datos);
 
 			if ($respuesta == "ok") {
 
@@ -224,13 +233,13 @@ class ControladorProductosCpu
 					
 				swal({
 					  type: "success",
-					  title: "El producto ha sido borrado correctamente",
+					  title: "EL detalle de este producto ha sido borrado correctamente",
 					  showConfirmButton: true,
 					  confirmButtonText: "Cerrar"
 					  }).then(function(result){
 								if (result.value) {
 
-								window.location = "productos";
+								window.location = "productos-cpu";
 
 								}
 							})
