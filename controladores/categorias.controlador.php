@@ -26,6 +26,7 @@ class ControladorCategorias{
 						  type: "success",
 						  title: "La categoría ha sido guardada correctamente",
 						  showConfirmButton: true,
+						  allowOutsideClick: false,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
 									if (result.value) {
@@ -48,6 +49,7 @@ class ControladorCategorias{
 						  type: "error",
 						  title: "¡La categoría no puede ir vacía o llevar caracteres especiales!",
 						  showConfirmButton: true,
+						  allowOutsideClick: false,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
 							if (result.value) {
@@ -104,6 +106,7 @@ class ControladorCategorias{
 						  type: "success",
 						  title: "La categoría ha sido cambiada correctamente",
 						  showConfirmButton: true,
+						  allowOutsideClick: false,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
 									if (result.value) {
@@ -164,6 +167,7 @@ class ControladorCategorias{
 						  type: "success",
 						  title: "La categoría ha sido borrada correctamente",
 						  showConfirmButton: true,
+						  allowOutsideClick: false,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
 									if (result.value) {

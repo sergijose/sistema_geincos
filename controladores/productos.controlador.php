@@ -206,6 +206,7 @@ class ControladorProductos
 					  type: "success",
 					  title: "El producto ha sido borrado correctamente",
 					  showConfirmButton: true,
+					  allowOutsideClick: false,
 					  confirmButtonText: "Cerrar"
 					  }).then(function(result){
 								if (result.value) {

@@ -62,6 +62,7 @@ class ControladorUsuarios{
 								type: "success",
 								title: "Bienvenido '.$respuesta["nombre"].' ",
 								showConfirmButton: true,
+								allowOutsideClick: false
 								}).then(function(result){
 										  if (result.value) {
 	  
@@ -192,6 +193,7 @@ class ControladorUsuarios{
 
 						type: "success",
 						title: "¡El usuario ha sido guardado correctamente!",
+						allowOutsideClick: false,
 						showConfirmButton: true,
 						confirmButtonText: "Cerrar"
 
