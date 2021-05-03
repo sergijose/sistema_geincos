@@ -551,7 +551,7 @@ window.location="index.php?ruta=editar-prestamo&idPrestamo="+idPrestamo;
 
 })
 
-//PARA ACTIVAR CAHJAS EN EL CHECBOX
+//PARA ACTIVAR CAHJAS EN EL CHECBOX PARA FINALIZAR PRESTAMO
 function comprobar(obj)
 {   
     if (obj.checked){

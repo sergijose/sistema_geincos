@@ -187,8 +187,15 @@ $("#nuevoCodigo").change(function(){
 })
 
 
-//var codigo_barras=document.querySelectorAll("barcodetabla");
-//console.log("barras",codigo_barras);
+
+//select2 para listar CODIGO DE PRODUCTOS CPU
+$(document).ready(function() {
+	$('.mi-selector2').select2({
+		width: '510px'
+		
+	});
+	
+  });
 
 
 
