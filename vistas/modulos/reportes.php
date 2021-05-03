@@ -98,7 +98,7 @@ if ($_SESSION["perfil"] == "Visitante") {
 
 
           <div class="col-md-6 col-xs-12 ">
-            <h3 class="box-title">STOCK DE PRODUCTOS</h3>
+            <h3 class="box-title">CONTROL DE PRODUCTOS</h3>
             <table class="table table-bordered table-striped dt-responsive" width="100%">
 
               <thead>
@@ -108,7 +108,9 @@ if ($_SESSION["perfil"] == "Visitante") {
                   <th style="width:10px">#</th>
                   <th>CATEGORIA</th>
                   <th>MARCA</th>
-                  <th>STOCK</th>
+                  <th>TOTAL</th>
+                  <th>OCUPADO</th>
+                  <th>LIBRE</th>
 
                 </tr>
 
@@ -130,7 +132,9 @@ if ($_SESSION["perfil"] == "Visitante") {
                      <td class="text-uppercase">' . $value["CATEGORIA"] . '</td>
                      <td class="text-uppercase">' . $value["MARCA"] . '</td>
 
-                    <td>' . $value["STOCK"] . '</td>
+                    <td>' . $value["TOTAL"] . '</td>
+                    <td>' . $value["OCUPADO"] . '</td>
+                    <td>' . $value["LIBRE"] . '</td>
                      
  
                    </tr>';
