@@ -98,7 +98,7 @@ if ($_SESSION["perfil"] == "Visitante") {
 
 
           <div class="col-md-6 col-xs-12 ">
-            <h3 class="box-title">CONTROL DE PRODUCTOS</h3>
+            <h3 class="box-title">LISTA DE ESTADO DE PRESTAMO DE PRODUCTO</h3>
             <table class="table table-bordered table-striped dt-responsive" width="100%">
 
               <thead>
@@ -165,8 +165,8 @@ if ($_SESSION["perfil"] == "Visitante") {
         <div class="row">
         
 
-          <div class="col-md-4 col-xs-12">
-            <h3 class="box-title">ESTADOS DE AUDIFONOS</h3>
+          <div class="col-md-12 col-xs-12">
+            <h3 class="box-title">LISTA DE ESTADOS FISICOS DE PRODUCTOS</h3>
             <table class="table table-bordered table-striped dt-responsive" width="100%">
 
               <thead>
@@ -176,8 +176,11 @@ if ($_SESSION["perfil"] == "Visitante") {
                   <th style="width:10px">#</th>
                   <th>CATEGORIA</th>
                   <th>MARCA</th>
-                  <th>ESTADO</th>
                   <th>TOTAL</th>
+                  <th>OPERATIVOS</th>
+                  <th>MALOGRADOS</th>
+                  <th>REPARACION INTERNA</th>
+                  <th>REPARACION GARANTIA</th>
 
                 </tr>
 
@@ -186,9 +189,9 @@ if ($_SESSION["perfil"] == "Visitante") {
               <tbody>
 
                 <?php
-                $categoria = "AUDIFONO";
+               
 
-                $productosEstados = ControladorProductos::ctrMostrarTotalProductosPorEstados($categoria);
+                $productosEstados = ControladorProductos::ctrMostrarTotalProductosPorEstados();
 
 
                 foreach ($productosEstados  as $key => $value) {
@@ -200,117 +203,12 @@ if ($_SESSION["perfil"] == "Visitante") {
                    
                      <td class="text-uppercase">' . $value["CATEGORIA"] . '</td>
                      <td class="text-uppercase">' . $value["MARCA"] . '</td>
-                     <td class="text-uppercase">' . $value["ESTADO"] . '</td>
+                     <td class="text-uppercase">' . $value["TOTAL"] . '</td>
 
-                    <td>' . $value["CANTIDAD"] . '</td>
-                     
- 
-                   </tr>';
-                }
-
-                ?>
-
-              </tbody>
-
-            </table>
-
-
-
-
-          </div>
-
-          <div class="col-md-4 col-xs-12">
-            <h3 class="box-title">ESTADOS DE CPU</h3>
-            <table class="table table-bordered table-striped dt-responsive" width="100%">
-
-              <thead>
-
-                <tr>
-
-                  <th style="width:10px">#</th>
-                  <th>CATEGORIA</th>
-                  <th>MARCA</th>
-                  <th>ESTADO</th>
-                  <th>TOTAL</th>
-
-                </tr>
-
-              </thead>
-
-              <tbody>
-
-                <?php
-                $categoria = "CPU";
-
-                $productosEstados = ControladorProductos::ctrMostrarTotalProductosPorEstados($categoria);
-
-
-                foreach ($productosEstados  as $key => $value) {
-
-                  echo ' <tr>
- 
-                     <td>' . ($key + 1) . '</td>
- 
-                   
-                     <td class="text-uppercase">' . $value["CATEGORIA"] . '</td>
-                     <td class="text-uppercase">' . $value["MARCA"] . '</td>
-                     <td class="text-uppercase">' . $value["ESTADO"] . '</td>
-
-                    <td>' . $value["CANTIDAD"] . '</td>
-                     
- 
-                   </tr>';
-                }
-
-                ?>
-
-              </tbody>
-
-            </table>
-
-
-
-
-          </div>
-
-          <div class="col-md-4 col-xs-12">
-            <h3 class="box-title">ESTADOS DE MONITOR</h3>
-            <table class="table table-bordered table-striped dt-responsive" width="100%">
-
-              <thead>
-
-                <tr>
-
-                  <th style="width:10px">#</th>
-                  <th>CATEGORIA</th>
-                  <th>MARCA</th>
-                  <th>ESTADO</th>
-                  <th>TOTAL</th>
-
-                </tr>
-
-              </thead>
-
-              <tbody>
-
-                <?php
-                $categoria = "MONITOR";
-
-                $productosEstados = ControladorProductos::ctrMostrarTotalProductosPorEstados($categoria);
-
-
-                foreach ($productosEstados  as $key => $value) {
-
-                  echo ' <tr>
- 
-                     <td>' . ($key + 1) . '</td>
- 
-                   
-                     <td class="text-uppercase">' . $value["CATEGORIA"] . '</td>
-                     <td class="text-uppercase">' . $value["MARCA"] . '</td>
-                     <td class="text-uppercase">' . $value["ESTADO"] . '</td>
-
-                    <td>' . $value["CANTIDAD"] . '</td>
+                    <td>' . $value["OPERATIVO"] . '</td>
+                    <td>' . $value["MALOGRADO"] . '</td>
+                    <td>' . $value["REPARACION_INTERNA"] . '</td>
+                    <td>' . $value["REPARACION_GARANTIA"] . '</td>
                      
  
                    </tr>';
@@ -329,175 +227,7 @@ if ($_SESSION["perfil"] == "Visitante") {
 
         </div>
 
-        <div class="box-header with-border box box-success">
-        </div>
-
-          <!--  TERCERA FILA DE REPORTES-->
-
-          <div class="row">
-        
-
-        <div class="col-md-4 col-xs-12">
-          <h3 class="box-title">ESTADOS DE PRESTAMO DE AUDIFONOS</h3>
-          <table class="table table-bordered table-striped dt-responsive" width="100%">
-
-            <thead>
-
-              <tr>
-
-                <th style="width:10px">#</th>
-                <th>CATEGORIA</th>
-                <th>MARCA</th>
-                <th>ESTADO PRESTAMO</th>
-                <th>TOTAL</th>
-
-              </tr>
-
-            </thead>
-
-            <tbody>
-
-              <?php
-              $categoria = "AUDIFONO";
-
-              $productosEstadosPrestamo = ControladorProductos::ctrMostrarTotalProductosPorEstadoDePrestamo($categoria);
-
-
-              foreach ($productosEstadosPrestamo  as $key => $value) {
-
-                echo ' <tr>
-
-                   <td>' . ($key + 1) . '</td>
-
-                 
-                   <td class="text-uppercase">' . $value["CATEGORIA"] . '</td>
-                   <td class="text-uppercase">' . $value["MARCA"] . '</td>
-                   <td class="text-uppercase">' . $value["estado_prestamo"] . '</td>
-
-                  <td>' . $value["STOCK"] . '</td>
-                   
-
-                 </tr>';
-              }
-
-              ?>
-
-            </tbody>
-
-          </table>
-
-
-
-
-        </div>
-
-        <div class="col-md-4 col-xs-12">
-          <h3 class="box-title">ESTADO DE PRESTAMO DE CPU</h3>
-          <table class="table table-bordered table-striped dt-responsive" width="100%">
-
-            <thead>
-
-              <tr>
-
-                <th style="width:10px">#</th>
-                <th>CATEGORIA</th>
-                <th>MARCA</th>
-                <th>ESTADO PRESTAMO</th>
-                <th>TOTAL</th>
-
-              </tr>
-
-            </thead>
-
-            <tbody>
-
-              <?php
-              $categoria = "CPU";
-
-              $productosEstadosPrestamo  = ControladorProductos::ctrMostrarTotalProductosPorEstadoDePrestamo($categoria);
-
-
-              foreach ($productosEstadosPrestamo   as $key => $value) {
-
-                echo ' <tr>
-
-                   <td>' . ($key + 1) . '</td>
-
-                 
-                   <td class="text-uppercase">' . $value["CATEGORIA"] . '</td>
-                   <td class="text-uppercase">' . $value["MARCA"] . '</td>
-                   <td class="text-uppercase">' . $value["estado_prestamo"] . '</td>
-
-                  <td>' . $value["STOCK"] . '</td>
-                   
-
-                 </tr>';
-              }
-
-              ?>
-
-            </tbody>
-
-          </table>
-
-
-
-
-        </div>
-
-        <div class="col-md-4 col-xs-12">
-          <h3 class="box-title">ESTADOS DE PRESTAMO DE MONITOR</h3>
-          <table class="table table-bordered table-striped dt-responsive" width="100%">
-
-            <thead>
-
-              <tr>
-
-                <th style="width:10px">#</th>
-                <th>CATEGORIA</th>
-                <th>MARCA</th>
-                <th>ESTADO PRESTAMO</th>
-                <th>TOTAL</th>
-
-              </tr>
-
-            </thead>
-
-            <tbody>
-
-              <?php
-              $categoria = "MONITOR";
-
-              $productosEstadosPrestamo  = ControladorProductos::ctrMostrarTotalProductosPorEstadoDePrestamo($categoria);
-
-
-              foreach ($productosEstadosPrestamo   as $key => $value) {
-
-                echo ' <tr>
-
-                   <td>' . ($key + 1) . '</td>
-
-                 
-                   <td class="text-uppercase">' . $value["CATEGORIA"] . '</td>
-                   <td class="text-uppercase">' . $value["MARCA"] . '</td>
-                   <td class="text-uppercase">' . $value["estado_prestamo"] . '</td>
-
-                  <td>' . $value["STOCK"] . '</td>
-                   
-
-                 </tr>';
-              }
-
-              ?>
-
-            </tbody>
-
-          </table>
-
-
-
-
-        </div>
+      
 
       </div>
 

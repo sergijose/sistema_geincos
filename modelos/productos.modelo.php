@@ -192,25 +192,27 @@ class ModeloProductos{
 	}
 
 	/*=============================================
-	MOSTRAR ESTADOS DEPRODCUTOS POR CATEGORIA
+	MOSTRAR ESTADOS FISICOS DE PRODUCTOS 
 	=============================================*/
 
-	static public function mdlMostrarTotalProductosPorEstados($categoria){
+	static public function mdlMostrarTotalProductosPorEstados(){
 
-		$stmt = Conexion::conectar()->prepare("SELECT  cat.descripcion AS CATEGORIA,mar.descripcion AS MARCA,es.descripcion AS ESTADO,COUNT(pro.idestado) AS CANTIDAD FROM producto pro 
-		inner JOIN modelo mo
-		ON pro.idmodelo=mo.id
-		INNER JOIN marca mar
-		ON mar.id=mo.idmarca
-		INNER JOIN categoria cat
-		ON  cat.id=mo.idcategoria
-		INNER JOIN estado es
-		ON pro.idestado=es.id
-		GROUP BY cat.descripcion,mar.descripcion,pro.idestado
-		HAVING cat.descripcion=:categoria"
-		);
-		$stmt -> bindParam(":categoria", $categoria, PDO::PARAM_STR);
-
+		$stmt = Conexion::conectar()->prepare("SELECT  cat.descripcion AS CATEGORIA,mar.descripcion AS MARCA,COUNT(*) AS TOTAL,
+		SUM(es.descripcion='OPERATIVO')AS OPERATIVO,
+		SUM(es.descripcion='MALOGRADO')AS MALOGRADO,
+		SUM(es.descripcion='REPARACION INTERNA')AS REPARACION_INTERNA,
+		SUM(es.descripcion='REPARACION GARANTIA')AS REPARACION_GARANTIA
+		 FROM producto pro 
+			inner JOIN modelo mo
+			ON pro.idmodelo=mo.id
+			INNER JOIN marca mar
+			ON mar.id=mo.idmarca
+			INNER JOIN categoria cat
+			ON  cat.id=mo.idcategoria
+			INNER JOIN estado es
+			ON pro.idestado=es.id
+			GROUP BY cat.descripcion,mar.descripcion");
+		
 		$stmt -> execute();
 
 		return $stmt -> fetchAll();

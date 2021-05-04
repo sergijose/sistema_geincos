@@ -134,35 +134,99 @@ $totalProductos = count($productos);
 </div>
 
 
-<div class="col-md-3 col-xs-12 ">
-  <h3 class="box-title">STOCK DE PRODUCTOS</h3>
-  <table class="table table-bordered table-striped dt-responsive" width="100%">
-
-    <thead>
-
-      <tr>
-
-        <th style="width:10px">#</th>
-        <th>CATEGORIA</th>
-        <th>MARCA</th>
-        <th>TOTAL</th>
-        <th>OCUPADO</th>
-        <th>LIBRE</th>
-
-      </tr>
-
-    </thead>
-
-    <tbody>
-
-      <?php
-
-      $productosTotal = ControladorProductos::ctrMostrarTotalProductos();
 
 
 
-      foreach ($productosTotal  as $key => $value) {
-        echo ' <tr>
+  <div class="col-lg-7 col-xs-12">
+    <h3 class="box-title">ESTADO FISICO DE PRODUCTOS</h3>
+    <table class="table table-bordered table-striped dt-responsive" width="100%">
+
+      <thead>
+
+        <tr>
+
+          <th style="width:10px">#</th>
+          <th>CATEGORIA</th>
+          <th>MARCA</th>
+          <th>TOTAL</th>
+          <th>OPERATIVOS</th>
+          <th>MALOGRADOS</th>
+          <th>REPARACION INTERNA</th>
+          <th>REPARACION GARANTIA</th>
+
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <?php
+
+
+        $productosEstados = ControladorProductos::ctrMostrarTotalProductosPorEstados();
+
+
+        foreach ($productosEstados  as $key => $value) {
+
+          echo ' <tr>
+
+                   <td>' . ($key + 1) . '</td>
+
+                 
+                   <td class="text-uppercase">' . $value["CATEGORIA"] . '</td>
+                   <td class="text-uppercase">' . $value["MARCA"] . '</td>
+                   <td class="text-uppercase">' . $value["TOTAL"] . '</td>
+
+                  <td>' . $value["OPERATIVO"] . '</td>
+                  <td>' . $value["MALOGRADO"] . '</td>
+                  <td>' . $value["REPARACION_INTERNA"] . '</td>
+                  <td>' . $value["REPARACION_GARANTIA"] . '</td>
+                   
+
+                 </tr>';
+        }
+
+        ?>
+
+      </tbody>
+
+    </table>
+
+
+
+
+  </div>
+
+
+  <div class="col-lg-5 col-xs-12 ">
+    <h3 class="box-title">ESTADO DE PRESTAMO DE PRODUCTOS</h3>
+    <table class="table table-bordered table-striped dt-responsive" width="100%">
+
+      <thead>
+
+        <tr>
+
+          <th style="width:10px">#</th>
+          <th>CATEGORIA</th>
+          <th>MARCA</th>
+          <th>TOTAL</th>
+          <th>OCUPADO</th>
+          <th>LIBRE</th>
+
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <?php
+
+        $productosTotal = ControladorProductos::ctrMostrarTotalProductos();
+
+
+
+        foreach ($productosTotal  as $key => $value) {
+          echo ' <tr>
  
                      <td>' . ($key + 1) . '</td>
  
@@ -175,12 +239,14 @@ $totalProductos = count($productos);
                      
  
                    </tr>';
-      }
+        }
 
-      ?>
+        ?>
 
-    </tbody>
+      </tbody>
 
-  </table>
+    </table>
 
-</div>
+  </div>
+  
+

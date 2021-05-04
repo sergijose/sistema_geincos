@@ -55,28 +55,18 @@ class ControladorProductos
 		return $respuesta;
 	}
 	/*=============================================
-	MOSTRAR TOTAL DE ESTADOS DEPRODUCTOS POR CATEGORIA PARA EL REPORTE
+	MOSTRAR TOTAL DE ESTADOS DE PRODUCTOS PARA EL REPORTE
 	=============================================*/
 
-	static public function ctrMostrarTotalProductosPorEstados($categoria)
+	static public function ctrMostrarTotalProductosPorEstados()
 	{
 
-		$respuesta = ModeloProductos::mdlMostrarTotalProductosPorEstados($categoria);
+		$respuesta = ModeloProductos::mdlMostrarTotalProductosPorEstados();
 
 		return $respuesta;
 	}
 
-	/*=============================================
-	MOSTRAR TOTAL DE ESTADOS  DE PRESTAMOS  DEPRODUCTOS POR CATEGORIA PARA EL REPORTE
-	=============================================*/
-
-	static public function ctrMostrarTotalProductosPorEstadoDePrestamo($categoria)
-	{
-
-		$respuesta = ModeloProductos::mdlMostrarTotalProductosPorEstadosDePrestamo($categoria);
-
-		return $respuesta;
-	}
+	
 
 	/*=============================================
 	CREAR PRODUCTO
