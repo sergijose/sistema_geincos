@@ -101,6 +101,7 @@ class ControladorModelos{
 						  type: "success",
 						  title: "el nuevo Modelo ha sido guardada correctamente",
 						  showConfirmButton: true,
+						  allowOutsideClick: false,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
 									if (result.value) {
@@ -123,6 +124,7 @@ class ControladorModelos{
 						  type: "error",
 						  title: "¡el MODELO no puede ir vacía o llevar caracteres especiales!",
 						  showConfirmButton: true,
+						  allowOutsideClick: false,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
 							if (result.value) {
@@ -260,6 +262,7 @@ class ControladorModelos{
 						  type: "success",
 						  title: "El MODELO ha sido actualizada correctamente",
 						  showConfirmButton: true,
+						  allowOutsideClick: false,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
 									if (result.value) {
@@ -282,6 +285,7 @@ class ControladorModelos{
 						  type: "error",
 						  title: "¡El MODELO no puede ir vacía o llevar caracteres especiales!",
 						  showConfirmButton: true,
+						  allowOutsideClick: false,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
 							if (result.value) {

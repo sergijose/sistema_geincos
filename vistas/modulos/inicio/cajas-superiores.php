@@ -145,7 +145,9 @@ $totalProductos = count($productos);
         <th style="width:10px">#</th>
         <th>CATEGORIA</th>
         <th>MARCA</th>
-        <th>STOCK</th>
+        <th>TOTAL</th>
+        <th>OCUPADO</th>
+        <th>LIBRE</th>
 
       </tr>
 
@@ -167,7 +169,9 @@ $totalProductos = count($productos);
                      <td class="text-uppercase">' . $value["CATEGORIA"] . '</td>
                      <td class="text-uppercase">' . $value["MARCA"] . '</td>
 
-                    <td>' . $value["STOCK"] . '</td>
+                    <td>' . $value["TOTAL"] . '</td>
+                    <td>' . $value["OCUPADO"] . '</td>
+                    <td>' . $value["LIBRE"] . '</td>
                      
  
                    </tr>';

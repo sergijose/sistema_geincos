@@ -26,6 +26,7 @@ class ControladorMarcas{
 						  type: "success",
 						  title: "La nueva MARCA ha sido guardada correctamente",
 						  showConfirmButton: true,
+						  allowOutsideClick: false,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
 									if (result.value) {
@@ -48,6 +49,7 @@ class ControladorMarcas{
 						  type: "error",
 						  title: "¡La marca no puede ir vacía o llevar caracteres especiales!",
 						  showConfirmButton: true,
+						  allowOutsideClick: false,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
 							if (result.value) {
@@ -119,6 +121,7 @@ class ControladorMarcas{
 						  type: "success",
 						  title: "La  MARCA ha sido cambiada correctamente",
 						  showConfirmButton: true,
+						  allowOutsideClick: false,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
 									if (result.value) {
@@ -141,6 +144,7 @@ class ControladorMarcas{
 						  type: "error",
 						  title: "¡La MARCA no puede ir vacía o llevar caracteres especiales!",
 						  showConfirmButton: true,
+						  allowOutsideClick: false,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
 							if (result.value) {
@@ -179,6 +183,7 @@ class ControladorMarcas{
 						  type: "success",
 						  title: "La marca ha sido borrada correctamente",
 						  showConfirmButton: true,
+						  allowOutsideClick: false,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
 									if (result.value) {

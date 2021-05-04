@@ -169,26 +169,14 @@ $(".tablaProductosCpu tbody").on(
 	}
 );
 
-
-
-//para llenar atributo del svg el codigo del producto
-$("#nuevoCodigo").change(function(){
-	var codigo = $(this).val();
-	$("#barcode").attr("codigobarras", codigo);
-	JsBarcode("#barcode",codigo.toString(),{
-		format:"CODE39",
-		lineColor: "#000",
-		width:2,
-		height:80,
-		displayValue:true
+//select2 para listar CODIGO DE PRODUCTOS CPU
+$(document).ready(function() {
+	$('.mi-selector2').select2({
+		width: '510px'
 		
-	})
-
-})
-
-
-//var codigo_barras=document.querySelectorAll("barcodetabla");
-//console.log("barras",codigo_barras);
+	});
+	
+  });
 
 
 

@@ -129,7 +129,7 @@ MODAL AGREGAR PRODUCTO CPU
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                <select class="form-control input-md" id="nuevoCodProductoCpu" name="nuevoCodProductoCpu" required>
+                <select class="form-control input-md mi-selector2" id="nuevoCodProductoCpu" name="nuevoCodProductoCpu"  required>
 
                   <option value="">Seleccionar Codigo CPU</option>
 

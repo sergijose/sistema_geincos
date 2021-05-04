@@ -110,6 +110,7 @@ class ControladorPrestamos
 					  type: "success",
 					  title: "El prestamo se ha guardado  correctamente",
 					  showConfirmButton: true,
+					  allowOutsideClick: false,
 					  confirmButtonText: "Cerrar"
 					  }).then(function(result){
 								if (result.value) {
@@ -240,6 +241,7 @@ class ControladorPrestamos
 					  type: "success",
 					  title: "El prestamo se ha guardado  correctamente",
 					  showConfirmButton: true,
+					  allowOutsideClick: false,
 					  confirmButtonText: "Cerrar"
 					  }).then(function(result){
 								if (result.value) {
@@ -352,6 +354,7 @@ swal({
 	  type: "success",
 	  title: "El prestamo ha finalizado correctamente",
 	  showConfirmButton: true,
+	  allowOutsideClick: false,
 	  confirmButtonText: "Cerrar"
 	  }).then(function(result){
 				if (result.value) {
@@ -399,6 +402,7 @@ swal({
 					  type: "success",
 					  title: "El prestamo ha sido borrado correctamente",
 					  showConfirmButton: true,
+					  allowOutsideClick: false,
 					  confirmButtonText: "Cerrar"
 					  }).then(function(result){
 								if (result.value) {

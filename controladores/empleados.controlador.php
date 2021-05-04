@@ -35,6 +35,7 @@ class ControladorEmpleados{
 						  type: "success",
 						  title: "El Empleado ha sido registrado correctamente",
 						  showConfirmButton: true,
+						  allowOutsideClick: false,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
 									if (result.value) {
@@ -123,6 +124,7 @@ class ControladorEmpleados{
 						  type: "success",
 						  title: "El empleado ha sido editado correctamente",
 						  showConfirmButton: true,
+						  allowOutsideClick: false,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
 									if (result.value) {
@@ -144,6 +146,7 @@ class ControladorEmpleados{
 						  type: "error",
 						  title: "¡El empleado no puede ir vacío o llevar caracteres especiales!",
 						  showConfirmButton: true,
+						  allowOutsideClick: false,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
 							if (result.value) {
@@ -184,6 +187,7 @@ class ControladorEmpleados{
 					  type: "success",
 					  title: "El empleado ha sido borrado correctamente",
 					  showConfirmButton: true,
+					  allowOutsideClick: false,
 					  confirmButtonText: "Cerrar",
 					  closeOnConfirm: false
 					  }).then(function(result){
