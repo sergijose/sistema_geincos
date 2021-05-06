@@ -212,7 +212,7 @@ $(".tablaProductos tbody").on(
 
 
 
-//para llenar atributo del svg el codigo del producto
+/*para llenar atributo del svg el codigo del producto
 $("#nuevoCodigo").change(function(){
 	var codigo = $(this).val();
 	$("#barcode").attr("codigobarras", codigo);
@@ -230,6 +230,6 @@ $("#nuevoCodigo").change(function(){
 
 //var codigo_barras=document.querySelectorAll("barcodetabla");
 //console.log("barras",codigo_barras);
-
+*/
 
 

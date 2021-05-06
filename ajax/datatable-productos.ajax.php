@@ -49,10 +49,6 @@ class TablaProductos
  	 		SVG codigo barras
   			=============================================*/
 
-				$codigo_barras = "<img class='barcodetabla' id='".$productos[$i]["cod_producto"]."'>";
-
-				
-				
 
 			/*=============================================
  	 		TRAEMOS EL MODELO
@@ -105,7 +101,6 @@ class TablaProductos
 			      "' . ($i + 1) . '",
                   "' . $categoria["descripcion"]."|".$modelos["descripcion"]. '",
 				  "' . $productos[$i]["cod_producto"] . '",
-				  "' . $codigo_barras . '",
 				  "' . $productos[$i]["num_serie"] . '",
                   "' . $estadoProducto["descripcion"] . '",
 				  "' . $estado . '",
