@@ -69,7 +69,6 @@ if ($_SESSION["perfil"] == "Visitante") {
               <th style="width:10px">#</th>
               <th>Modelo</th>
               <th>Código</th>
-            <th>Código barras</th> 
               <th>Numero de Serie</th>
               <th>Estado Producto</th>
               <th>Disponibilidad</th>
@@ -241,14 +240,14 @@ MODAL AGREGAR PRODUCTO
 
             </div>
 
-  <!-- ENTRADA PARA IMAGEN CODIGO DE BARRAS DEL PRODUCTO -->
+  <!-- ENTRADA PARA IMAGEN CODIGO DE BARRAS DEL PRODUCTO 
 
   <div class="form-group">
 
 <div class="input-group">
-<!--<input type="file" name="barcode1">-->
+<input type="file" name="barcode1">
   <img id="barcode"  name="barcode" ></img>
- <!--</input>  -->
+ </input>  
 </div> 
 
 </div>
@@ -256,6 +255,7 @@ MODAL AGREGAR PRODUCTO
 
           </div>
         </div>
+        -->
 
         <!--=====================================
         PIE DEL MODAL
