@@ -36,6 +36,21 @@
     </div>
 
 
+    <div class="row">
+    <div class="col-md-6 col-xs-12">
+
+<?php
+
+if ($_SESSION["perfil"] == "Administrador") {
+
+  include "inicio/productos-sistema-operativo.php";
+}
+
+?>
+</div>
+</div>
+
+
 
     <div class="row">
 

@@ -70,6 +70,22 @@ class ControladorProductosCpu
 
 		return $respuesta;
 	}
+
+	/*=============================================
+	MOSTRAR SISTEMA OPERATIVO DE PRODUCTOS CPU
+	=============================================*/
+
+	static public function ctrMostrarSistemaOperativo()
+	{
+
+		$respuesta = ModeloProductosCpu::mdlMostrarSistemaOperativo();
+
+		return $respuesta;
+	}
+
+
+
+
 	/*=============================================
 	MOSTRAR TOTAL DE ESTADOS DEPRODUCTOS POR CATEGORIA PARA EL REPORTE
 	=============================================*/

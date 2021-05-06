@@ -1,15 +1,18 @@
 <?php
 
-$item = null;
-$valor = null;
-$orden = "id";
 
-$detalleProductos = ControladorProductosCpu::ctrMostrarProductosCpu($item, $valor, $orden);
 
-$colores = array("red","green","yellow","aqua","purple","blue","cyan","magenta","orange","gold");
+$productoSistema = ControladorProductosCpu::ctrMostrarSistemaOperativo();
 
-$totaldetalle = count($detalleProductos);
+$contadorSistema=count($productoSistema);
 
+
+$colores = array("red","green","yellow","aqua");
+
+
+
+$total =  array_sum(array_column($productoSistema, 'TOTAL'));
+//var_dump($total);
 
 
 ?>
@@ -22,7 +25,7 @@ PRODUCTOS MÁS VENDIDOS
 	
 	<div class="box-header with-border">
   
-      <h3 class="box-title">Lista de Sistema Operativos</h3>
+      <h3 class="box-title">Porcentaje de Sistemas Operativos de las pcs</h3>
 
     </div>
 
@@ -46,9 +49,11 @@ PRODUCTOS MÁS VENDIDOS
 
 		  	 	<?php
 
-					for($i = 0; $i < $totaldetalle; $i++){
+					for($i = 0; $i<$contadorSistema; $i++){
 
-					echo ' <li><i class="fa fa-circle-o text-'.$colores[$i].'"></i> '.$detalleProductos[$i]["sistema_operativo"].'</li>';
+					echo ' <li><i class="fa fa-circle-o text-'.$colores[$i].'"></i> '.$productoSistema[$i]["sistema_operativo"].'</li>'
+          
+          ;
 
 					}
 
@@ -68,7 +73,28 @@ PRODUCTOS MÁS VENDIDOS
     	
 		<ul class="nav nav-pills nav-stacked">
 			
+			 <?php
+
+          	for($i = 0; $i <$contadorSistema; $i++){
 			
+          		echo '<li>
+						 
+						 <a>
+
+						 <img src="" class="img-thumbnail" width="60px" style="margin-right:10px"> 
+						 '.$productoSistema[$i]["sistema_operativo"].'
+
+						 <span class="pull-right text-'.$colores[$i].'">   
+						 '.ceil($productoSistema[$i]["TOTAL"]*100/$total).'%
+						 </span>
+							
+						 </a>
+
+      				</li>';
+
+			}
+
+			?>
 
 
 		</ul>
@@ -90,13 +116,13 @@ PRODUCTOS MÁS VENDIDOS
 
   <?php
 
-  for($i = 0; $totaldetalle < 10; $i++){
+  for($i = 0; $i <$contadorSistema; $i++){
 
   	echo "{
-      value    : ".$totaldetalle.",
+      value    : ".$productoSistema[$i]["TOTAL"].",
       color    : '".$colores[$i]."',
       highlight: '".$colores[$i]."',
-      label    : '".$detalleProductos[$i]["descripcion"]."'
+      label    : '".$productoSistema[$i]["sistema_operativo"]."'
     },";
 
   }

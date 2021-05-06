@@ -112,7 +112,7 @@ class ModeloProductosCpu
 
 		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET tipo_disco=:tipo_disco,cant_disco=:cant_disco,tipo_ram=:tipo_ram,cant_ram=:cant_ram,procesador=:procesador,sistema_operativo=:sistema_operativo,observaciones=:observaciones WHERE id=:id");
 
-		
+
 		$stmt->bindParam(":tipo_disco", $datos["tipo_disco"], PDO::PARAM_STR);
 		$stmt->bindParam(":cant_disco", $datos["cant_disco"], PDO::PARAM_INT);
 		$stmt->bindParam(":tipo_ram", $datos["tipo_ram"], PDO::PARAM_STR);
@@ -204,6 +204,29 @@ class ModeloProductosCpu
 			INNER JOIN categoria cat
 			ON  cat.id=mo.idcategoria
 			GROUP BY cat.descripcion,mar.descripcion"
+		);
+
+		$stmt->execute();
+
+		return $stmt->fetchAll();
+
+
+		$stmt = null;
+	}
+
+
+		/*=============================================
+	MOSTRAR SISTEMA OPERATIVO PRODUCTO CPU
+	=============================================*/
+
+	static public function mdlMostrarSistemaOperativo()
+	{
+
+
+
+		$stmt = Conexion::conectar()->prepare(
+			"SELECT COUNT(*) AS TOTAL,sistema_operativo FROM producto_cpu
+			GROUP BY sistema_operativo"
 		);
 
 		$stmt->execute();
