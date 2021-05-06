@@ -250,12 +250,12 @@ MODAL AGREGAR PRODUCTO
  </input>  
 </div> 
 
-</div>
+</div>-->
 
 
           </div>
         </div>
-        -->
+        
 
         <!--=====================================
         PIE DEL MODAL
