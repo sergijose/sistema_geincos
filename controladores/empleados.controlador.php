@@ -22,8 +22,9 @@ class ControladorEmpleados{
 					           "ape_mat"=>$_POST["nuevoApeMat"],
 					           "nombres"=>$_POST["nuevoNombres"],
                                "num_documento"=>$_POST["nuevoNumDocumento"],
-                               "estado"=>$_POST["nuevoEstado"]);
-                            
+                               "estado"=>$_POST["nuevoEstado"],
+							   "creado_por" => $_POST["creado_por"]);
+
 
 			   	$respuesta = ModeloEmpleado::mdlIngresarEmpleado($tabla, $datos);
 
@@ -104,13 +105,20 @@ class ControladorEmpleados{
 			   preg_match('/^[0-9]+$/', $_POST["editarNumDocumento"]) &&
                preg_match('/^[0-9]+$/', $_POST["editarEstado"])  ){
 
-			   	$tabla = "empleado";
+			  		 	$tabla = "empleado";
+				   date_default_timezone_set('America/Bogota');
+
+				   $fecha = date('Y-m-d');
+				   $hora = date('H:i:s');
+				   $fechaActual = $fecha . ' ' . $hora;
 
 			   	$datos = array("ape_pat"=>$_POST["editarApePat"],
 			   				   "ape_mat"=>$_POST["editarApeMat"],
 					           "nombres"=>$_POST["editarNombres"],
 					           "num_documento"=>$_POST["editarNumDocumento"],
 					           "estado"=>$_POST["editarEstado"],
+							   "actualizado_por" => $_POST["actualizado_por"],
+							   "fecha_actualizacion"=>$fechaActual,
 					           "idempleado"=>$_POST["idEmpleado"] );
                                
 

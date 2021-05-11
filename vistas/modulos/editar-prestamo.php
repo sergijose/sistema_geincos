@@ -192,7 +192,7 @@ if ($_SESSION["perfil"] == "Visitante") {
 
                 <input type="hidden" id="listaProductos" name="listaProductos">
 
-
+                <input type="hidden" class="form-control input-lg" name="actualizado_por" value="<?php echo $_SESSION["id"]; ?>" required>
 
 
                 <!--=====================================
@@ -246,6 +246,7 @@ if ($_SESSION["perfil"] == "Visitante") {
             <input type="hidden" class="form-control" name="editarPrestamoFinalizar" value="<?php echo $prestamo["codigo_prestamo"]; ?>" >
 
             <input type="hidden" id="listaProductos" name="listaProductos">
+            <input type="hidden" class="form-control input-lg" name="finalizado_por" value="<?php echo $_SESSION["id"]; ?>" required>
             
 
             <div class="input-group" readonly style="display:none" id="caja">

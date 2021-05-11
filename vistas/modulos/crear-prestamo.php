@@ -66,7 +66,7 @@ if ($_SESSION["perfil"] == "Visitante") {
                     <input type="text" class="form-control" id="nuevoUsuario" name="nuevoUsuario" value="<?php echo $_SESSION["nombre"]; ?>" readonly>
 
                     <input type="hidden" name="idUsuario" value="<?php echo $_SESSION["id"]; ?>">
-
+                    <input type="hidden" class="form-control input-lg" name="creado_por" value="<?php echo $_SESSION["id"]; ?>" required>
                   </div>
 
                 </div>

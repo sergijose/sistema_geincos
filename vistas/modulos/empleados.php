@@ -176,7 +176,7 @@ MODAL AGREGAR CLIENTE
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
                                 <input type="text" class="form-control input-lg" name="nuevoApePat" placeholder="Ingresar apellido paterno" required>
-
+                                <input type="hidden" class="form-control input-lg" name="creado_por" value="<?php echo $_SESSION["id"]; ?>" required>
                             </div>
 
                         </div>
@@ -328,6 +328,7 @@ MODAL EDITAR CLIENTE
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
                                 <input type="text" class="form-control input-lg" name="editarApeMat"  id="editarApeMat" placeholder="Editar apellido materno" required>
+                                <input type="hidden" class="form-control input-lg" name="actualizado_por" value="<?php echo $_SESSION["id"]; ?>" required>
 
                             </div>
 
