@@ -168,7 +168,7 @@ MODAL AGREGAR PRODUCTO
                 <span class="input-group-addon"><i class="fa fa-code"></i></span>
 
                 <input type="text" class="form-control input-lg" id="nuevoCodigo" name="nuevoCodigo" placeholder="Ingrese Codigo" required>
-
+                <input type="hidden" class="form-control input-lg" name="creado_por" value="<?php echo $_SESSION["id"]; ?>" required>
               </div>
 
             </div>
@@ -363,6 +363,9 @@ MODAL EDITAR PRODUCTO
                 <input type="text" class="form-control input-lg" id="editarCodigo" name="editarCodigo" placeholder="Ingrese Codigo" required>
                 <!-- oculto el id del producto para poder editar -->
                 <input type="hidden" id="id" name="id" require>
+                <input type="hidden" class="form-control input-lg" name="actualizado_por" value="<?php echo $_SESSION["id"]; ?>" required>
+
+
               </div>
 
             </div>

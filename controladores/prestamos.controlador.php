@@ -96,7 +96,8 @@ class ControladorPrestamos
 				"productos" => $_POST["listaProductos"],
 				"idempleado" => $_POST["nuevoEmpleado"],
 				"observacion_prestamo" => $_POST["observacionPrestamo"],
-				"estado_prestamo" => "PENDIENTE"
+				"estado_prestamo" => "PENDIENTE",
+				"creado_por" => $_POST["creado_por"]
 			);
 
 			$respuesta = ModeloPrestamos::mdlIngresarPrestamo($tabla, $datos);
@@ -208,7 +209,11 @@ class ControladorPrestamos
 				$valor1a = "OCUPADO";
 				$nuevoPrestamos = ModeloProductos::mdlActualizarProducto($tablaPrestamo, $item1a, $valor1a, $valor);
 			}
+			date_default_timezone_set('America/Bogota');
 
+				$fecha = date('Y-m-d');
+				$hora = date('H:i:s');
+				$fechaActual = $fecha . ' ' . $hora;
 
 
 			/*=============================================
@@ -227,7 +232,9 @@ class ControladorPrestamos
 				"observacion_prestamo" => $_POST["observacionPrestamo"],
 				"estado_prestamo" => "PENDIENTE",
 				"observacion_devolucion" => null,
-				"fecha_devolucion" => null
+				"fecha_devolucion" => null,
+				"actualizado_por" => $_POST["actualizado_por"],
+				"fecha_actualizacion" => $fechaActual
 			);
 
 			$respuesta = ModeloPrestamos::mdlEditarPrestamo($tabla, $datos);
@@ -340,6 +347,7 @@ class ControladorPrestamos
 				"fecha_devolucion" => $fechaActual,
 				"observacion_devolucion" => $_POST["observacionDevolucion"],
 				"estado_prestamo" => "FINALIZADO",
+				"finalizado_por" => $_POST["finalizado_por"]
 
 			);
 

@@ -99,8 +99,9 @@ class ControladorProductos
 					"cod_producto" => strtoupper($_POST["nuevoCodigo"]),
 					"num_serie" => strtoupper($_POST["nuevoNumSerie"]),
 					"idestado" => $_POST["nuevoEstado"],
-					"estado_prestamo" => $_POST["nuevoEstadoPrestamo"]
-				);
+					"estado_prestamo" => $_POST["nuevoEstadoPrestamo"],
+					"creado_por" => $_POST["creado_por"]
+						);
 
 				$respuesta = ModeloProductos::mdlIngresarProducto($tabla, $datos);
 
@@ -142,6 +143,11 @@ class ControladorProductos
 			) {
 
 				$tabla = "producto";
+				date_default_timezone_set('America/Bogota');
+
+				$fecha = date('Y-m-d');
+				$hora = date('H:i:s');
+				$fechaActual = $fecha . ' ' . $hora;
 
 				$datos = array(
 					"idmodelo" => $_POST["editarModelo"],
@@ -149,6 +155,8 @@ class ControladorProductos
 					"num_serie" => $_POST["editarNumSerie"],
 					"idestado" => $_POST["editarEstado"],
 					"estado_prestamo" => $_POST["editarEstadoPrestamo"],
+					"actualizado_por"=>$_POST["actualizado_por"],
+					"fecha_actualizacion"=>$fechaActual,
 					"id" => $_POST["id"]
 				);
 

@@ -13,8 +13,14 @@ class ControladorCategorias{
 			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevaCategoria"])){
 
 				$tabla = "categoria";
+			
+			
 
-				$datos = $_POST["nuevaCategoria"];
+				$datos = array(
+					"categoria" => $_POST["nuevaCategoria"],
+					"creado_por" => $_POST["creado_por"]
+				);
+
 
 				$respuesta = ModeloCategorias::mdlIngresarCategoria($tabla, $datos);
 
@@ -92,9 +98,16 @@ class ControladorCategorias{
 			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarCategoria"])){
 
 				$tabla = "categoria";
+				date_default_timezone_set('America/Bogota');
+
+				$fecha = date('Y-m-d');
+				$hora = date('H:i:s');
+				$fechaActual = $fecha . ' ' . $hora;
 
 				$datos = array("categoria"=>$_POST["editarCategoria"],
-							   "id"=>$_POST["idCategoria"]);
+				"actualizado_por"=>$_POST["actualizado_por"],
+				"fecha_actualizacion"=>$fechaActual,
+				  "id"=>$_POST["idCategoria"]);
 
 				$respuesta = ModeloCategorias::mdlEditarCategoria($tabla, $datos);
 

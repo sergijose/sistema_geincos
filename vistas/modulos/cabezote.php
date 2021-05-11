@@ -7,7 +7,7 @@
 
  		<!-- logo mini -->
  		<span class="logo-mini">
- 			<p>G</p>
+ 			<p>S.G</p>
  			<!--<img src="vistas/img/plantilla/avatar.png" class="img-responsive" style="padding:10px">-->
  			<!--	<img src="vistas/img/plantilla/icono-blanco.png" class="img-responsive" style="padding:10px"> -->
 
@@ -16,8 +16,8 @@
  		<!-- logo normal -->
 
  		<span class="logo-lg">
- 			<p>GEINCOS</p>
- 			<!--<img src="vistas/img/plantilla/logofinal.png" class="img-responsive" style="padding:10px 0px">-->
+ 			<!--<p>GEINCOS</p>-->
+ 			<img src="vistas/img/plantilla/logo-03.png" class="img-responsive" style="padding:3px 0px">
 
  			<!--	<img src="vistas/img/plantilla/logo-blanco-lineal.png" class="img-responsive" style="padding:10px 0px"> -->
 
