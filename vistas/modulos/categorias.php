@@ -155,7 +155,7 @@ MODAL AGREGAR CATEGORÍA
                 <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
                 <input type="text" class="form-control input-lg" name="nuevaCategoria" placeholder="Ingresar categoría" required>
-
+                <input type="hidden" class="form-control input-lg" name="creado_por" value="<?php echo $_SESSION["id"]; ?>" required>
               </div>
 
             </div>
@@ -234,7 +234,7 @@ MODAL EDITAR CATEGORÍA
                 <input type="text" class="form-control input-lg" name="editarCategoria" id="editarCategoria" required>
 
                  <input type="hidden"  name="idCategoria" id="idCategoria" required>
-
+                 <input type="hidden" class="form-control input-lg" name="actualizado_por" value="<?php echo $_SESSION["id"]; ?>" required>
               </div>
 
             </div>
