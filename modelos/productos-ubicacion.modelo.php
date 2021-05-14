@@ -30,7 +30,7 @@ class ModeloProductoUbicacion{
 	}
 
 	/*=============================================
-	MOSTRAR CATEGORIAS
+	MOSTRAR PRODUCTOS UBICACION
 	=============================================*/
 
 	static public function mdlMostrarProductoUbicacion($tabla, $item, $valor){
@@ -47,7 +47,12 @@ class ModeloProductoUbicacion{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+			$stmt = Conexion::conectar()->prepare("SELECT up.id,pro.cod_producto AS codigo_producto,ubi.descripcion AS ubicacion,up.posicion,up.fecha_registro FROM $tabla up
+			INNER JOIN producto pro
+			ON up.id_producto=pro.id
+			INNER JOIN ubicacion ubi
+			ON up.id_ubicacion=ubi.id
+			");
 
 			$stmt -> execute();
 

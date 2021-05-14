@@ -77,9 +77,9 @@ class ControladorProductoUbicacion{
 	MOSTRAR UBICACION DE PRODUCTOS
 	=============================================*/
 
-	static public function ctrMostrarProdcutoUbicacion($item, $valor){
+	static public function ctrMostrarProductoUbicacion($item, $valor){
 
-		$tabla = "ubicacion-productos";
+		$tabla = "ubicacion_productos";
 
 		$respuesta = ModeloProductoUbicacion::mdlMostrarProductoUbicacion($tabla, $item, $valor);
 

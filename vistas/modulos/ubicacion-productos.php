@@ -18,36 +18,30 @@ if ($_SESSION["perfil"] == "Visitante") {
 
 <div class="content-wrapper">
 
-    <section class="content-header">
+    <div class="row">
 
-        <h1>
+        <div class="col-lg-5 col-xs-6">
 
-            Ubicacion de Productos
+            <section class="content-header">
 
-        </h1>
+                <h1>
 
-        <ol class="breadcrumb">
+                   Ubicacion de Productos
+                </h1>
 
-            <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
 
-            <li class="active">Administrar categorías</li>
+            </section>
 
-        </ol>
+            <section class="content">
 
-    </section>
 
-    <section class="content">
-
-        <div class="row">
-
-            <div class="col-lg-6 col-xs-6">
                 <div class="box">
 
                     <div class="box-header with-border">
 
                         <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarCategoria">
 
-                            Agregar Ubicacion 
+                            Agregar Ubicacion
 
                         </button>
 
@@ -63,7 +57,8 @@ if ($_SESSION["perfil"] == "Visitante") {
 
                                     <th style="width:10px">#</th>
                                     <th>Producto</th>
-                                    <th>Ubicacion</th>
+                                    <th>Oficina</th>
+                                    <th>Posicion</th>
                                     <th>Acciones</th>
 
                                 </tr>
@@ -77,7 +72,7 @@ if ($_SESSION["perfil"] == "Visitante") {
                                 $item = null;
                                 $valor = null;
 
-                                $ubicacionProductos = ControladorProductoUbicacion::ctrMostrarProdcutoUbicacion($item, $valor);
+                                $ubicacionProductos = ControladorProductoUbicacion::ctrMostrarProductoUbicacion($item, $valor);
 
                                 foreach ($ubicacionProductos as $key => $value) {
 
@@ -85,8 +80,10 @@ if ($_SESSION["perfil"] == "Visitante") {
 
                     <td>' . ($key + 1) . '</td>
 
-                    <td class="text-uppercase">' . $value["id_producto"] . '</td>
-                    <td class="text-uppercase">' . $value["id_ubicacion"] . '</td>
+                    <td class="text-uppercase">' . $value["codigo_producto"] . '</td>
+                    <td class="text-uppercase">' . $value["ubicacion"] . '</td>
+                    <td class="text-uppercase">' . $value["posicion"] . '</td>
+                 
 
                     <td>
 
@@ -112,21 +109,33 @@ if ($_SESSION["perfil"] == "Visitante") {
                     </div>
 
                 </div>
+            </section>
 
-            </div>
-
-
-
+        </div>
 
 
-            <div class="col-lg-6 col-xs-6">
+        <div class="col-lg-7 col-xs-6">
+
+            <section class="content-header">
+
+                <h1>
+
+                    Estructura de la Ubicacion
+                </h1>
+
+
+            </section>
+
+            <section class="content">
+
+
                 <div class="box">
 
                     <div class="box-header with-border">
 
                         <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarCategoria">
 
-                            Agregar categoría
+                            Agregar Ubicacion
 
                         </button>
 
@@ -134,68 +143,21 @@ if ($_SESSION["perfil"] == "Visitante") {
 
                     <div class="box-body">
 
-                        <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
-
-                            <thead>
-
-                                <tr>
-
-                                    <th style="width:10px">#</th>
-                                    <th>Categoria</th>
-                                    <th>Acciones</th>
-
-                                </tr>
-
-                            </thead>
-
-                            <tbody>
-
-                                <?php
-
-                                $item = null;
-                                $valor = null;
-
-                                $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
-
-                                foreach ($categorias as $key => $value) {
-
-                                    echo ' <tr>
-
-                    <td>' . ($key + 1) . '</td>
-
-                    <td class="text-uppercase">' . $value["descripcion"] . '</td>
-
-                    <td>
-
-                      <div class="btn-group">
-                          
-                        <button class="btn btn-warning btnEditarCategoria" idCategoria="' . $value["id"] . '" data-toggle="modal" data-target="#modalEditarCategoria"><i class="fa fa-pencil"></i></button>
-
-                        <button class="btn btn-danger btnEliminarCategoria" idCategoria="' . $value["id"] . '"><i class="fa fa-times"></i></button>
-
-                      </div>  
-
-                    </td>
-
-                  </tr>';
-                                }
-
-                                ?>
-
-                            </tbody>
-
-                        </table>
-
+                       <img src="vistas/img/plantilla/plano-611.png" alt="">         
                     </div>
 
                 </div>
-
-            </div>
+            </section>
 
         </div>
 
 
-    </section>
+
+
+    </div>
+
+
+
 
 
 </div>

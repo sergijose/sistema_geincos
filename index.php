@@ -19,6 +19,6 @@ require_once "modelos/productos.modelo.php";
 require_once "modelos/productos-cpu.modelo.php";
 require_once "modelos/prestamos.modelo.php";
 require_once "modelos/empleados.modelo.php";
-require_once "controladores/productos-ubicacion.modelo.php";
+require_once "modelos/productos-ubicacion.modelo.php";
 $plantilla = new ControladorPlantilla();
 $plantilla -> ctrPlantilla();
