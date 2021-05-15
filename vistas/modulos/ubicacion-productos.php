@@ -26,7 +26,7 @@ if ($_SESSION["perfil"] == "Visitante") {
 
                 <h1>
 
-                   Ubicacion de Productos
+                    Ubicacion de Productos
                 </h1>
 
 
@@ -39,7 +39,7 @@ if ($_SESSION["perfil"] == "Visitante") {
 
                     <div class="box-header with-border">
 
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarCategoria">
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarProductoUbicacion">
 
                             Agregar Ubicacion
 
@@ -49,7 +49,7 @@ if ($_SESSION["perfil"] == "Visitante") {
 
                     <div class="box-body">
 
-                        <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
+                        <table class="table table-bordered table-striped dt-responsive tablaProductosUbicacion" width="100%">
 
                             <thead>
 
@@ -64,45 +64,6 @@ if ($_SESSION["perfil"] == "Visitante") {
                                 </tr>
 
                             </thead>
-
-                            <tbody>
-
-                                <?php
-
-                                $item = null;
-                                $valor = null;
-
-                                $ubicacionProductos = ControladorProductoUbicacion::ctrMostrarProductoUbicacion($item, $valor);
-
-                                foreach ($ubicacionProductos as $key => $value) {
-
-                                    echo ' <tr>
-
-                    <td>' . ($key + 1) . '</td>
-
-                    <td class="text-uppercase">' . $value["codigo_producto"] . '</td>
-                    <td class="text-uppercase">' . $value["ubicacion"] . '</td>
-                    <td class="text-uppercase">' . $value["posicion"] . '</td>
-                 
-
-                    <td>
-
-                      <div class="btn-group">
-                          
-                        <button class="btn btn-warning btnEditarProductoUbicacion" idProductoUbicacion="' . $value["id"] . '" data-toggle="modal" data-target="#modalEditarProductoUbicacion"><i class="fa fa-pencil"></i></button>
-
-                        <button class="btn btn-danger btnEliminarProductoUbicacion" idProductoUbicacion="' . $value["id"] . '"><i class="fa fa-times"></i></button>
-
-                      </div>  
-
-                    </td>
-
-                  </tr>';
-                                }
-
-                                ?>
-
-                            </tbody>
 
                         </table>
 
@@ -143,7 +104,7 @@ if ($_SESSION["perfil"] == "Visitante") {
 
                     <div class="box-body">
 
-                       <img src="vistas/img/plantilla/plano-611.png" alt="">         
+                        <img src="vistas/img/plantilla/plano-611.png" alt="">
                     </div>
 
                 </div>
@@ -165,10 +126,10 @@ if ($_SESSION["perfil"] == "Visitante") {
 
 
 <!--=====================================
-MODAL AGREGAR CATEGORÍA
+MODAL AGREGAR PRODUCTO UBICACION
 ======================================-->
 
-<div id="modalAgregarCategoria" class="modal fade" role="dialog">
+<div id="modalAgregarProductoUbicacion" class="modal fade" role="dialog">
 
     <div class="modal-dialog">
 
@@ -184,7 +145,7 @@ MODAL AGREGAR CATEGORÍA
 
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-                    <h4 class="modal-title">Agregar categoría</h4>
+                    <h4 class="modal-title">Agregar Ubicacion de Productos</h4>
 
                 </div>
 
@@ -196,15 +157,84 @@ MODAL AGREGAR CATEGORÍA
 
                     <div class="box-body">
 
-                        <!-- ENTRADA PARA EL NOMBRE -->
+                        <!-- ENTRADA AGREGAR PRODUCTO UBICACION-->
 
                         <div class="form-group">
 
                             <div class="input-group">
 
-                                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                                <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
 
-                                <input type="text" class="form-control input-lg" name="nuevaCategoria" placeholder="Ingresar categoría" required>
+                                <select class="form-control input-md mi-selector3" id="nuevoProductoUbicacion" name="nuevoProductoUbicacion" required>
+
+                                    <option value="">Seleccionar Producto</option>
+
+                                    <?php
+
+                                    $item = null;
+                                    $valor = null;
+                                    $order = "id";
+
+                                    $productoUbicacion = ControladorProductos::ctrMostrarProductos($item, $valor, $order);
+
+                                    foreach ($productoUbicacion as $key => $value) {
+
+                                        echo '<option value="' . $value["id"] . '">' . $value["cod_producto"] . '</option>';
+                                    }
+
+                                    ?>
+
+                                </select>
+
+
+                            </div>
+
+
+                        </div>
+
+                        <!-- ENTRADA LISTA DE UBICACION-->
+
+                        <div class="form-group">
+
+                            <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+
+                                <select class="form-control input-md mi-selector4" id="nuevaUbicacion" name="nuevaUbicacion" required>
+
+                                    <option value="">Seleccionar Ubicacion</option>
+
+                                    <?php
+
+                                    $item = null;
+                                    $valor = null;
+
+
+                                    $productoUbicacionLista = ControladorProductoUbicacion::ctrMostrarUbicacionLista($item, $valor);
+
+                                    foreach ($productoUbicacionLista as $key => $value) {
+
+                                        echo '<option value="' . $value["id"] . '">' . $value["descripcion"] . '</option>';
+                                    }
+
+
+                                    ?>
+
+                                </select>
+
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-sort-numeric-asc" aria-hidden="true"></i></span>
+
+                                <input type="number" class="form-control input-md" name="nuevaPosicion" placeholder="Ingresar Posicion" required>
                                 <input type="hidden" class="form-control input-lg" name="creado_por" value="<?php echo $_SESSION["id"]; ?>" required>
                             </div>
 
@@ -228,8 +258,8 @@ MODAL AGREGAR CATEGORÍA
 
                 <?php
 
-                $crearCategoria = new ControladorCategorias();
-                $crearCategoria->ctrCrearCategoria();
+                $crearProductosUbicacion = new ControladorProductoUbicacion();
+                $crearProductosUbicacion->ctrCrearProductoUbicacion();
 
                 ?>
 
@@ -242,10 +272,10 @@ MODAL AGREGAR CATEGORÍA
 </div>
 
 <!--=====================================
-MODAL EDITAR CATEGORÍA
+MODAL EDITAR PRODUCTO UBICACION
 ======================================-->
 
-<div id="modalEditarCategoria" class="modal fade" role="dialog">
+<div id="modalEditarProductoUbicacion" class="modal fade" role="dialog">
 
     <div class="modal-dialog">
 
@@ -261,7 +291,7 @@ MODAL EDITAR CATEGORÍA
 
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-                    <h4 class="modal-title">Editar categoría</h4>
+                    <h4 class="modal-title">Editar Ubicacion de Productos</h4>
 
                 </div>
 
@@ -273,18 +303,70 @@ MODAL EDITAR CATEGORÍA
 
                     <div class="box-body">
 
-                        <!-- ENTRADA PARA EL NOMBRE -->
+                        <!-- ENTRADA AGREGAR PRODUCTO UBICACION-->
 
                         <div class="form-group">
 
                             <div class="input-group">
 
-                                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                                <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
 
-                                <input type="text" class="form-control input-lg" name="editarCategoria" id="editarCategoria" required>
+                                <input type="text" class="form-control input-md" id="editarProductoUbicacion" name="editarProductoUbicacion" required readonly>
 
-                                <input type="hidden" name="idCategoria" id="idCategoria" required>
+                                
+
+
+                            </div>
+
+
+                        </div>
+
+                        <!-- ENTRADA LISTA DE UBICACION-->
+
+                        <div class="form-group">
+
+                            <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+
+                                <select class="form-control input-md" id="editarUbicacion" name="editarUbicacion" required>
+
+                                    <option value="">Seleccionar Ubicacion</option>
+
+                                    <?php
+
+                                    $item = null;
+                                    $valor = null;
+
+
+                                    $productoUbicacionLista = ControladorProductoUbicacion::ctrMostrarUbicacionLista($item, $valor);
+
+                                    foreach ($productoUbicacionLista as $key => $value) {
+
+                                        echo '<option value="' . $value["id"] . '">' . $value["descripcion"] . '</option>';
+                                    }
+
+
+                                    ?>
+
+                                </select>
+
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-sort-numeric-asc" aria-hidden="true"></i></span>
+
+                                <input type="number" class="form-control input-md" id="editarPosicion" name="editarPosicion" placeholder="Ingresar Posicion" required>
                                 <input type="hidden" class="form-control input-lg" name="actualizado_por" value="<?php echo $_SESSION["id"]; ?>" required>
+                                <!--oculto id para poder editar -->
+                                <input type="hidden" id="id" name="id" require>
                             </div>
 
                         </div>
@@ -301,14 +383,14 @@ MODAL EDITAR CATEGORÍA
 
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    <button type="submit" class="btn btn-primary">Actualizar Ubicacion de Producto</button>
 
                 </div>
 
                 <?php
 
-                $editarCategoria = new ControladorCategorias();
-                $editarCategoria->ctrEditarCategoria();
+             //   $editarProductosUbicacion = new ControladorProductoUbicacion();
+            //    $editarProductosUbicacion->ctrEditarProductoUbicacion();
 
                 ?>
 
@@ -322,7 +404,7 @@ MODAL EDITAR CATEGORÍA
 
 <?php
 
-$borrarCategoria = new ControladorCategorias();
-$borrarCategoria->ctrBorrarCategoria();
+//$borrarProductoUbicacion = new ControladorProductoUbicacion();
+//$borrarProductoUbicacion->ctrBorrarProductoUbicacion();
 
 ?>

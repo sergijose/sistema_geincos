@@ -8,17 +8,20 @@ class ControladorProductoUbicacion{
 
 	static public function ctrCrearProductoUbicacion(){
 
-		if(isset($_POST["nuevoProducto"])){
+		if(isset($_POST["nuevoProductoUbicacion"])){
 
-			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoProducto"])){
+			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoProductoUbicacion"])){
 
 				$tabla = "ubicacion_productos";
 			
 			
 
 				$datos = array(
-					"id_producto" => $_POST["nuevoProducto"],
-					"id_ubicacion" => $_POST["nuevaUbicacion"]
+					"id_producto" => $_POST["nuevoProductoUbicacion"],
+					"id_ubicacion" => $_POST["nuevaUbicacion"],
+					"posicion" => $_POST["nuevaPosicion"],
+					"creado_por" => $_POST["creado_por"]
+
 				);
 
 
@@ -82,6 +85,17 @@ class ControladorProductoUbicacion{
 		$tabla = "ubicacion_productos";
 
 		$respuesta = ModeloProductoUbicacion::mdlMostrarProductoUbicacion($tabla, $item, $valor);
+
+		return $respuesta;
+	
+	}
+
+
+	static public function ctrMostrarUbicacionLista($item, $valor){
+
+		$tabla = "ubicacion";
+
+		$respuesta = ModeloProductoUbicacion::mdlMostrarUbicacionLista($tabla, $item, $valor);
 
 		return $respuesta;
 	

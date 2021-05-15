@@ -10,10 +10,13 @@ class ModeloProductoUbicacion{
 
 	static public function mdlIngresarProductoUbicacion($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_producto,id_ubicacion) VALUES (:id_producto,:id_ubicacion)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_producto,id_ubicacion,posicion,creado_por) VALUES (:id_producto,:id_ubicacion,:posicion,:creado_por)");
 
 		$stmt->bindParam(":id_producto",$datos["id_producto"],PDO::PARAM_INT);
 		$stmt->bindParam(":id_ubicacion", $datos["id_ubicacion"], PDO::PARAM_INT);
+		$stmt->bindParam(":posicion", $datos["posicion"], PDO::PARAM_INT);
+		$stmt->bindParam(":creado_por", $datos["creado_por"], PDO::PARAM_INT);
+		
 		if($stmt->execute()){
 
 			return "ok";
@@ -24,7 +27,7 @@ class ModeloProductoUbicacion{
 		
 		}
 
-		$stmt->close();
+		
 		$stmt = null;
 
 	}
@@ -47,12 +50,39 @@ class ModeloProductoUbicacion{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT up.id,pro.cod_producto AS codigo_producto,ubi.descripcion AS ubicacion,up.posicion,up.fecha_registro FROM $tabla up
-			INNER JOIN producto pro
-			ON up.id_producto=pro.id
-			INNER JOIN ubicacion ubi
-			ON up.id_ubicacion=ubi.id
+			$stmt = Conexion::conectar()->prepare("SELECT * from $tabla
 			");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+
+
+		$stmt = null;
+
+	}
+
+	/*=============================================
+	MOSTRAR  LISTA DE UBICACION 
+	=============================================*/
+
+	static public function mdlMostrarUbicacionLista($tabla, $item, $valor){
+
+		if($item != null){
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+
+			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+			$stmt -> execute();
+
+			return $stmt -> fetch();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
 
 			$stmt -> execute();
 
@@ -65,7 +95,6 @@ class ModeloProductoUbicacion{
 		$stmt = null;
 
 	}
-
 	/*=============================================
 	EDITAR CATEGORIA
 	=============================================
