@@ -23,6 +23,9 @@ class TablaProductosUbicacion
 
     public function mostrarTablaProductosUbicacion()
     {
+        
+
+        
 
         $item = null;
         $valor = null;

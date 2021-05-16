@@ -115,6 +115,17 @@
 
 				</a>
 
+			</li>
+			
+			<li>
+
+				<a href="ubicacion-productos">
+
+					<i class="fa fa-map-marker"></i>
+					<span>Ubicacion de Productos</span>
+
+				</a>
+
 			</li>';
 			}
 

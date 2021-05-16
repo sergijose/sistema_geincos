@@ -138,35 +138,35 @@ $(".tablaProductosUbicacion tbody").on("click", "button.btnEditarProductoUbicaci
 });
 
 /*=============================================
-ELIMINAR PRODUCTO
+ELIMINAR UBICACION DEL PRODUCTO
 =============================================*/
 
-$(".tablaProductosCpu tbody").on(
+$(".tablaProductosUbicacion tbody").on(
 	"click",
-	"button.btnEliminarProductoCpu",
+	"button.btnEliminarProductoUbicacion",
 	function () {
-		var idProductoCpu = $(this).attr("idProductoCpu");
+		var idProductoUbicacion = $(this).attr("idProductoUbicacion");
 	
 		swal({
-			title: "¿Está seguro de borrar el detalle de este producto?",
+			title: "¿Está seguro de borrar la ubicacion de este producto?",
 			text: "¡Si no lo está puede cancelar la accíón!",
 			type: "warning",
 			showCancelButton: true,
 			confirmButtonColor: "#3085d6",
 			cancelButtonColor: "#d33",
 			cancelButtonText: "Cancelar",
-			confirmButtonText: "Si, borrar detalle del producto!",
+			confirmButtonText: "Si, borrar la ubicacion!",
 		}).then(function (result) {
 			if (result.value) {
 				window.location =
-					"index.php?ruta=productos-cpu&idProductoCpu=" +
-					idProductoCpu;
+					"index.php?ruta=ubicacion-productos&idProductoUbicacion=" +
+					idProductoUbicacion;
 			}
 		});
 	}
 );
 
-//select2 para listar CODIGO DE PRODUCTOS CPU
+//select2 para listar CODIGO DE PRODUCTOS 	UBICACION
 $(document).ready(function() {
 	$('.mi-selector3').select2({
 		width: '510px'
@@ -175,7 +175,7 @@ $(document).ready(function() {
 	
   });
 
-  //select2 para listar CODIGO DE PRODUCTOS CPU
+  //select2 para listar CODIGO DE PRODUCTOS UBICACION
 $(document).ready(function() {
 	$('.mi-selector4').select2({
 		width: '510px'
@@ -185,5 +185,16 @@ $(document).ready(function() {
   });
 
 
+  //PARA MOSTRAR IMAGEN DE LA UBICACION SELECCIONADA
+  function ShowSelected(vista)
+  {
+
+  var ruta = $('option:selected', vista).attr('ruta');
+  $("#previsualizar").attr("src", ruta);
+
+
+
+
+  }
 
 

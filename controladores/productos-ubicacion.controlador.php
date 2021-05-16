@@ -105,25 +105,26 @@ class ControladorProductoUbicacion{
 	EDITAR UBICACION DE PRODUCTOS
 	=============================================*/
 
-	static public function ctrEditarCategoria(){
+	static public function ctrEditarProductoUbicacion(){
 
-		if(isset($_POST["editarCategoria"])){
+		if(isset($_POST["editarUbicacion"])){
 
-			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarCategoria"])){
+			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarUbicacion"])){
 
-				$tabla = "categoria";
+				$tabla = "ubicacion_productos";
 				date_default_timezone_set('America/Bogota');
 
 				$fecha = date('Y-m-d');
 				$hora = date('H:i:s');
 				$fechaActual = $fecha . ' ' . $hora;
 
-				$datos = array("categoria"=>$_POST["editarCategoria"],
-				"actualizado_por"=>$_POST["actualizado_por"],
-				"fecha_actualizacion"=>$fechaActual,
-				  "id"=>$_POST["idCategoria"]);
+				$datos = array("id_ubicacion"=>$_POST["editarUbicacion"],
+								"posicion"=>$_POST["editarPosicion"],
+								"actualizado_por"=>$_POST["actualizado_por"],
+								"fecha_actualizacion"=>$fechaActual,
+								  "id"=>$_POST["id"]);
 
-				$respuesta = ModeloCategorias::mdlEditarCategoria($tabla, $datos);
+				$respuesta = ModeloProductoUbicacion::mdlEditarProductoUbicacion($tabla, $datos);
 
 				if($respuesta == "ok"){
 
@@ -131,14 +132,14 @@ class ControladorProductoUbicacion{
 
 					swal({
 						  type: "success",
-						  title: "La categoría ha sido cambiada correctamente",
+						  title: "La Ubicacion de este Producto ha sido actualizado",
 						  showConfirmButton: true,
 						  allowOutsideClick: false,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
 									if (result.value) {
 
-									window.location = "categorias";
+									window.location = "ubicacion-productos";
 
 									}
 								})
@@ -154,13 +155,13 @@ class ControladorProductoUbicacion{
 
 					swal({
 						  type: "error",
-						  title: "¡La categoría no puede ir vacía o llevar caracteres especiales!",
+						  title: "¡la ubicacion  no puede ir vacía o llevar caracteres especiales!",
 						  showConfirmButton: true,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
 							if (result.value) {
 
-							window.location = "categorias";
+							window.location = "ubicacion-productos";
 
 							}
 						})
@@ -177,14 +178,14 @@ class ControladorProductoUbicacion{
 	BORRAR CATEGORIA
 	=============================================*/
 
-	static public function ctrBorrarCategoria(){
+	static public function ctrBorrarProductoUbicacion(){
 
-		if(isset($_GET["idCategoria"])){
+		if(isset($_GET["idProductoUbicacion"])){
 
-			$tabla ="Categoria";
-			$datos = $_GET["idCategoria"];
+			$tabla ="ubicacion_productos";
+			$datos = $_GET["idProductoUbicacion"];
 
-			$respuesta = ModeloCategorias::mdlBorrarCategoria($tabla, $datos);
+			$respuesta = ModeloProductoUbicacion::mdlBorrarProductoUbicacion($tabla, $datos);
 
 			if($respuesta == "ok"){
 
@@ -192,14 +193,14 @@ class ControladorProductoUbicacion{
 
 					swal({
 						  type: "success",
-						  title: "La categoría ha sido borrada correctamente",
+						  title: "La Ubicacion de este producto ha sido borrada correctamente",
 						  showConfirmButton: true,
 						  allowOutsideClick: false,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
 									if (result.value) {
 
-									window.location = "categorias";
+									window.location = "ubicacion-productos";
 
 									}
 								})

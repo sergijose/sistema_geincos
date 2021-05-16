@@ -38,7 +38,6 @@ if ($_SESSION["perfil"] == "Visitante") {
                 <div class="box">
 
                     <div class="box-header with-border">
-
                         <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarProductoUbicacion">
 
                             Agregar Ubicacion
@@ -93,18 +92,53 @@ if ($_SESSION["perfil"] == "Visitante") {
                 <div class="box">
 
                     <div class="box-header with-border">
+                        <!-- ENTRADA LISTA DE UBICACION-->
 
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarCategoria">
+                        <div class="form-group">
 
-                            Agregar Ubicacion
+                            <div class="input-group">
 
-                        </button>
+                                <span class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+
+                                <select class="form-control input-md" id="ubicacion" name="ubicacion" onchange="ShowSelected(this);" required>
+
+                                    <option value="">Seleccionar Ubicacion</option>
+
+                                    <?php
+
+                                    $item = null;
+                                    $valor = null;
+
+
+                                    $productoUbicacionLista = ControladorProductoUbicacion::ctrMostrarUbicacionLista($item, $valor);
+
+                                    foreach ($productoUbicacionLista as $key => $value) {
+
+                                        echo '<option value="' . $value["id"] . '"  ruta="' . $value["imagen"] . '">' . $value["descripcion"] . '</option>';
+                                    }
+
+
+                                    ?>
+
+                                </select>
+
+
+                            </div>
+
+
+                        </div>
+
+
+
 
                     </div>
 
                     <div class="box-body">
 
-                        <img src="vistas/img/plantilla/plano-611.png" alt="">
+                        <div class="col-md-12 .img-responsive center-block">
+                            <img src="vistas/img/plantilla/default.png" alt="" id="previsualizar" class="img-responsive">
+                        </div>
+
                     </div>
 
                 </div>
@@ -313,7 +347,7 @@ MODAL EDITAR PRODUCTO UBICACION
 
                                 <input type="text" class="form-control input-md" id="editarProductoUbicacion" name="editarProductoUbicacion" required readonly>
 
-                                
+
 
 
                             </div>
@@ -389,8 +423,8 @@ MODAL EDITAR PRODUCTO UBICACION
 
                 <?php
 
-             //   $editarProductosUbicacion = new ControladorProductoUbicacion();
-            //    $editarProductosUbicacion->ctrEditarProductoUbicacion();
+                $editarProductosUbicacion = new ControladorProductoUbicacion();
+                $editarProductosUbicacion->ctrEditarProductoUbicacion();
 
                 ?>
 
@@ -404,7 +438,7 @@ MODAL EDITAR PRODUCTO UBICACION
 
 <?php
 
-//$borrarProductoUbicacion = new ControladorProductoUbicacion();
-//$borrarProductoUbicacion->ctrBorrarProductoUbicacion();
+$borrarProductoUbicacion = new ControladorProductoUbicacion();
+$borrarProductoUbicacion->ctrBorrarProductoUbicacion();
 
 ?>

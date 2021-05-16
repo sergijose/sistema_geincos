@@ -40,7 +40,7 @@ $(".nuevaFoto").change(function(){
 
   			var rutaImagen = event.target.result;
 
-  			$(".previsualizar").attr("src", rutaImagen);
+  			$("·previsualizar").attr("src", rutaImagen);
 
   		})
 
