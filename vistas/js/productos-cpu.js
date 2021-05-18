@@ -172,11 +172,23 @@ $(".tablaProductosCpu tbody").on(
 //select2 para listar CODIGO DE PRODUCTOS CPU
 $(document).ready(function() {
 	$('.mi-selector2').select2({
-		width: '510px'
+		//width : 'resolve'
+		width: '380px'
 		
 	});
 	
   });
 
+  //select2 para listar CLIENTE  a quien pertenece el cpu
+$(document).ready(function() {
+	$('.mi-selector-cliente').select2({
+		//width : 'resolve'
+		width: '380px'
+		
+	});
+	
+  });
 
-
+  $(document).ready(function() {
+	$(":input").inputmask();
+  });

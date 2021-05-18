@@ -93,7 +93,7 @@ MODAL AGREGAR PRODUCTO CPU
 <div id="modalAgregarProductoCpu" class="modal fade" role="dialog">
 
 
-  <div class="modal-dialog">
+  <div class="modal-dialog  modal-lg">
 
     <div class="modal-content">
 
@@ -118,14 +118,17 @@ MODAL AGREGAR PRODUCTO CPU
         <div class="modal-body">
 
           <div class="box-body">
+            
 
 
-
+       <div class="row">
+          <div class="col-lg-6 col-xs-12">
             <!-- ENTRADA PARA SELECCIONAR CODIGO DE PRODUCTO DE LA CATEGORIA CPU -->
 
             <div class="form-group">
-
+            <label for="nuevoCodProductoCpu">Ingrese Codigo CPU</label>
               <div class="input-group">
+            
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
@@ -154,10 +157,62 @@ MODAL AGREGAR PRODUCTO CPU
 
             </div>
 
+            </div>
+            
+
+            <div class="col-lg-6 col-xs-12">
+
+              <!--=====================================
+                ENTRADA PARA REGISTRAR A QUIEN PERTENECE ESTE CPU
+                ======================================-->
+
+                <div class="form-group">
+                <label for="nuevoEmpleado">Asignado A:</label>
+
+                  <div class="input-group">
+
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+
+                    <select class="form-control input-md mi-selector-cliente" id="nuevoEmpleado" name="nuevoEmpleado" required>
+
+                      <option value="">Seleccionar Empleado</option>
+
+                      <?php
+
+                      $item = null;
+                      $valor = null;
+
+                      $modelo = ControladorEmpleados::ctrMostrarEmpleados($item, $valor);
+
+                      foreach ($modelo as $key => $value) {
+
+                        echo '<option value="' . $value["idempleado"] . '">' . $value["nombres"] . " " . $value["ape_pat"] . " " . $value["ape_mat"] ." " . $value["num_documento"] . '</option>';
+                      }
+
+                      ?>
+
+                    </select>
+                   
+
+                  </div>
+
+
+                </div>
+
+                </div>
+
+                </div> <!-- FIN DE LA PRIMERA FILA -->
+
+          
+
+            
+
             <!-- ENTRADA PARA SELECCIONAR EL TIPO DE DISCO DURO -->
+            <div class="row">
+            <div class="col-lg-4 col-xs-12">
 
             <div class="form-group">
-
+            <label for="nuevoTipoDisco">Ingrese tipo de disco</label>
               <div class="input-group">
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
@@ -175,12 +230,17 @@ MODAL AGREGAR PRODUCTO CPU
 
             </div>
 
+            </div>    
+            
+            
+            
+                
 
 
             <!-- ENTRADA PARA CANTIDAD DE DISCO -->
-
+            <div class="col-lg-4 col-xs-12">
             <div class="form-group">
-
+            <label for="nuevoTipoDisco">Ingrese cantidad de disco</label>
               <div class="input-group">
 
                 <span class="input-group-addon"><i class="fa fa-signal"></i></span>
@@ -191,10 +251,43 @@ MODAL AGREGAR PRODUCTO CPU
 
             </div>
 
+            </div>
+
+
+             <!-- ENTRADA PARA SELECCIONAR EL TIPO DE PROCESADOR-->
+             <div class="col-lg-4 col-xs-12">   
+             <div class="form-group">
+             <label for="nuevoProcesador">Ingrese Procesador</label>     
+            <div class="input-group">
+
+            <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+            <select class="form-control input-md" id="nuevoProcesador" name="nuevoProcesador" required>
+
+                <option value="">Seleccionar tipo de Procesador</option>
+                <option value="i9">i9</option>
+                <option value="i7">i7</option>
+                <option value="i5">i5</option>
+                <option value="i3">i3</option>
+               <option value="corel 2 duo">Corel 2 duo</option>
+               <option value="amd">AMD</option>
+            </select>
+
+          </div>
+
+          </div>
+
+                </div>
+
+ </div>   <!-- FIN DE ROW SEGUNDA FILA -->
+
+
+
+            <div class="row">
             <!-- ENTRADA PARA SELECCIONAR EL TIPO DE MEMORIA RAM -->
-
+            <div class="col-lg-4 col-xs-12">    
             <div class="form-group">
-
+            <label for="nuevoTipoDisco">Ingrese tipo de memoria</label>
               <div class="input-group">
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
@@ -213,13 +306,14 @@ MODAL AGREGAR PRODUCTO CPU
               </div>
 
             </div>
+            </div>
 
 
-
+            <div class="col-lg-4 col-xs-12">
             <!-- ENTRADA PARA CANTIDAD DE MEMORIA RAM -->
 
             <div class="form-group">
-
+            <label for="nuevaCantRam">Ingrese cantidad de memoria</label>
               <div class="input-group">
 
                 <span class="input-group-addon"><i class="fa fa-signal"></i></span>
@@ -230,35 +324,14 @@ MODAL AGREGAR PRODUCTO CPU
 
             </div>
 
-            <!-- ENTRADA PARA SELECCIONAR EL TIPO DE PROCESADOR-->
-
-            <div class="form-group">
-
-              <div class="input-group">
-
-                <span class="input-group-addon"><i class="fa fa-th"></i></span>
-
-                <select class="form-control input-md" id="nuevoProcesador" name="nuevoProcesador" required>
-
-                  <option value="">Seleccionar tipo de Procesador</option>
-                  <option value="i9">i9</option>
-                  <option value="i7">i7</option>
-                  <option value="i5">i5</option>
-                  <option value="i3">i3</option>
-                  <option value="corel 2 duo">Corel 2 duo</option>
-                  <option value="amd">AMD</option>
-
-
-                </select>
-
-              </div>
-
             </div>
 
+           
+            <div class="col-lg-4 col-xs-12">
             <!-- ENTRADA PARA SELECCIONAR EL SISTEMA OPERATIVO-->
 
             <div class="form-group">
-
+            <label for="nuevoSistemaOperativo">Ingrese Sistema Operativo</label>
               <div class="input-group">
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
@@ -277,11 +350,40 @@ MODAL AGREGAR PRODUCTO CPU
               </div>
 
             </div>
+            </div>
 
+            </div> <!-- FIN DE ROW DE LA TERCERA FILA-->
+
+
+            <div class="row">
+               
+
+             
+
+
+                <div class="col-lg-4 col-xs-12">
+                <div class="form-group">
+                  <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Direccion IP:</font></font></label>
+
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-laptop" aria-hidden="true"></i></span>
+                    
+                    <input type="text" class="form-control" data-inputmask="'alias': 'ip'" data-mask="" im-insert="true" name="nuevoIp" id="nuevoIp">
+                  </div>
+                  <!-- /.input group -->
+                </div>
+
+                </div>
+
+
+
+
+                <div class="col-lg-8 col-xs-12">
             <!-- ENTRADA PARA LAS OBSERVACIONES-->
 
-            <div class="form-group">
 
+            <div class="form-group">
+            <label for="nuevaObservacion">Describa alguna observacion</label>        
               <div class="input-group">
 
                 <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
@@ -291,9 +393,10 @@ MODAL AGREGAR PRODUCTO CPU
               </div>
 
             </div>
-
+            </div>       
 
           </div>
+          </div>   <!-- FIN DE FILA-->
         </div>
 
         <!--=====================================
