@@ -142,7 +142,8 @@ class ControladorProductosCpu
 					"procesador" => $_POST["nuevoProcesador"],
 					"sistema_operativo" => $_POST["nuevoSistemaOperativo"],
 					"direccion_ip" => $_POST["nuevoIp"],
-					"observaciones" => $_POST["nuevaObservacion"]
+					"observaciones" => $_POST["nuevaObservacion"],
+					"creado_por" => $_POST["creado_por"]
 				);
 				
 
@@ -192,19 +193,27 @@ class ControladorProductosCpu
 			) {
 
 				$tabla = "producto_cpu";
+				date_default_timezone_set('America/Bogota');
 
+				$fecha = date('Y-m-d');
+				$hora = date('H:i:s');
+				$fechaActual = $fecha . ' ' . $hora;
 
 				$datos = array(
-				
+					"id_empleado" => strtoupper($_POST["editarEmpleado"]),
 					"tipo_disco" => strtoupper($_POST["editarTipoDisco"]),
 					"cant_disco" => strtoupper($_POST["editarCantDisco"]),
 					"tipo_ram" => $_POST["editarTipoRam"],
 					"cant_ram" => $_POST["editarCantRam"],
 					"procesador" => $_POST["editarProcesador"],
 					"sistema_operativo" => $_POST["editarSistemaOperativo"],
+					"direccion_ip" => $_POST["editarIp"],
 					"observaciones" => $_POST["editarObservacion"],
+					"actualizado_por" => $_POST["actualizado_por"],
+					"fecha_actualizacion" => $fechaActual,
 					"id" => $_POST["id"]
 				);
+				
 
 				$respuesta = ModeloProductosCpu::mdlEditarProductoCpu($tabla, $datos);
 

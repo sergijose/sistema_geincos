@@ -116,6 +116,8 @@ class TablaProductosCpu
                   "' .$productosCpu[$i]["cant_ram"] .'",
 				  "' .$productosCpu[$i]["procesador"] .'",
 				  "' .$productosCpu[$i]["sistema_operativo"] .'",
+				  "' .$productosCpu[$i]["direccion_ip"] .'",
+				  "' .$productosCpu[$i]["observaciones"] .'",
 			      "' . $botones . '"
 			    ],';
 		}
