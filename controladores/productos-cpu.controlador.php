@@ -122,13 +122,8 @@ class ControladorProductosCpu
 		if (isset($_POST["nuevoCodProductoCpu"])) {
 
 			if (
-				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoCodProductoCpu"]) &&
-				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoTipoDisco"]) &&
-				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevaCantDisco"]) &&	
-				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoTipoRam"]) &&
-				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevaCantRam"]) &&
-				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoProcesador"]) &&
-				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoSistemaOperativo"])
+				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoCodProductoCpu"]) 
+				
 				
 
 				
@@ -139,17 +134,21 @@ class ControladorProductosCpu
 
 				$datos = array(
 					"idproducto" => $_POST["nuevoCodProductoCpu"],
-					"tipo_disco" => strtoupper($_POST["nuevoTipoDisco"]),
-					"cant_disco" => strtoupper($_POST["nuevaCantDisco"]),
+					"idempleado" => $_POST["nuevoEmpleado"],
+					"tipo_disco" =>$_POST["nuevoTipoDisco"],
+					"cant_disco" => $_POST["nuevaCantDisco"],
 					"tipo_memoria" => $_POST["nuevoTipoRam"],
 					"cant_memoria" => $_POST["nuevaCantRam"],
 					"procesador" => $_POST["nuevoProcesador"],
 					"sistema_operativo" => $_POST["nuevoSistemaOperativo"],
+					"direccion_ip" => $_POST["nuevoIp"],
 					"observaciones" => $_POST["nuevaObservacion"]
 				);
+				
 
 				$respuesta = ModeloProductosCpu::mdlIngresarProductoCpu($tabla, $datos);
 
+				
 				if ($respuesta == "ok") {
 
 					echo '<script>
@@ -163,7 +162,7 @@ class ControladorProductosCpu
 				echo '<script>
 
 				alertify.error("No se pudo agregar ");
-						})
+						
 
 			  	</script>';
 			}

@@ -98,6 +98,11 @@ session_start();
   <!-- Select 2 -->
   <script src="vistas/bower_components/select2/dist/js/select2.full.js"></script>
 
+  <!-- MASCARA IP -->
+  <script src="vistas/bower_components/moment/min/moment.min.js"></script>
+  <script src="vistas/bower_components/inputmask/dist/jquery.inputmask.bundle.js"></script>
+
+
   <!-- By default SweetAlert2 doesn't support IE. To enable IE 11 support, include Promise polyfill:-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 
