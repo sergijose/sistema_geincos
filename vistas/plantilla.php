@@ -17,7 +17,7 @@ session_start();
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-  <link rel="icon" href="vistas/img/plantilla/login-02.jpg">
+  <link rel="icon" href="vistas/img/plantilla/logo-07.jpg">
   <!-- Barcode-->
   <script src="vistas/plugins/barcode/JsBarcode.all.min.js"></script>
 

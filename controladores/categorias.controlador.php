@@ -17,7 +17,7 @@ class ControladorCategorias{
 			
 
 				$datos = array(
-					"categoria" => $_POST["nuevaCategoria"],
+					"categoria" => strtolower($_POST["nuevaCategoria"]),
 					"creado_por" => $_POST["creado_por"]
 				);
 

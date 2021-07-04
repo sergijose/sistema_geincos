@@ -67,18 +67,25 @@ class TablaProductosCpu
 			$Producto = ControladorProductos::ctrMostrarProductos($item, $valor,$order);
 
 			
-			/*=============================================
- 	 		ESTADO DEL PRODUCTO
-  			=============================================
+			
+ 	 		/*=============================================
+ 	 		TRAEMOS LA DESCRIPCION DEL SISTEMA OPERATIVO
+  			=============================================*/
 
 
 			$item = "id";
-			$valor = $productos[$i]["idestado"];
-			$order = "id";
+			$valor = $productosCpu[$i]["sistema_operativo"];
+			$sistemaOperativo = ControladorProductosCpu::ctrMostrarListaSistemaOperativo($item, $valor);
 
-			$estadoProducto = ControladorProductos::ctrMostrarEstadoProducto($item, $valor, $order);
-			*/
 
+			/*=============================================
+			TRAEMOS LA DESCRIPCION DEL PROCESADOR
+			=============================================*/
+
+
+		  $item = "id";
+		  $valor = $productosCpu[$i]["procesador"];
+		  $procesador = ControladorProductosCpu::ctrMostrarListaProcesadores($item, $valor);
 
 
 			/*=============================================
@@ -114,8 +121,8 @@ class TablaProductosCpu
 				  "' . $productosCpu[$i]["cant_disco"] . '",
 				  "' . $productosCpu[$i]["tipo_ram"] . '",
                   "' .$productosCpu[$i]["cant_ram"] .'",
-				  "' .$productosCpu[$i]["procesador"] .'",
-				  "' .$productosCpu[$i]["sistema_operativo"] .'",
+				  "' .$procesador["descripcion"] .'",
+				  "' .$sistemaOperativo["descripcion"] .'",
 				  "' .$productosCpu[$i]["direccion_ip"] .'",
 				  "' .$productosCpu[$i]["observaciones"] .'",
 			      "' . $botones . '"

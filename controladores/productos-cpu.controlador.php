@@ -148,7 +148,7 @@ class ControladorProductosCpu
 		if (isset($_POST["nuevoCodProductoCpu"])) {
 
 			if (
-				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoCodProductoCpu"]) 
+			preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoCodProductoCpu"]) 
 				
 				
 
@@ -160,7 +160,6 @@ class ControladorProductosCpu
 
 				$datos = array(
 					"idproducto" => $_POST["nuevoCodProductoCpu"],
-					"idempleado" => $_POST["nuevoEmpleado"],
 					"tipo_disco" =>$_POST["nuevoTipoDisco"],
 					"cant_disco" => $_POST["nuevaCantDisco"],
 					"tipo_memoria" => $_POST["nuevoTipoRam"],
@@ -175,7 +174,8 @@ class ControladorProductosCpu
 
 				$respuesta = ModeloProductosCpu::mdlIngresarProductoCpu($tabla, $datos);
 
-				
+				var_dump($datos);
+				var_dump($respuesta);
 				if ($respuesta == "ok") {
 
 					echo '<script>
@@ -226,9 +226,8 @@ class ControladorProductosCpu
 				$fechaActual = $fecha . ' ' . $hora;
 
 				$datos = array(
-					"id_empleado" => strtoupper($_POST["editarEmpleado"]),
-					"tipo_disco" => strtoupper($_POST["editarTipoDisco"]),
-					"cant_disco" => strtoupper($_POST["editarCantDisco"]),
+					"tipo_disco" => $_POST["editarTipoDisco"],
+					"cant_disco" => $_POST["editarCantDisco"],
 					"tipo_ram" => $_POST["editarTipoRam"],
 					"cant_ram" => $_POST["editarCantRam"],
 					"procesador" => $_POST["editarProcesador"],

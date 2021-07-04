@@ -151,49 +151,7 @@ MODAL AGREGAR PRODUCTO CPU
                 </div>
               </div>
 
-              <div class="col-lg-6 col-xs-12">
-                <!--=====================================
-                ENTRADA PARA REGISTRAR A QUIEN PERTENECE ESTE CPU
-                ======================================-->
-                <div class="form-group">
-                  <label for="nuevoEmpleado">Asignado A:</label>
-
-                  <div class="input-group">
-
-                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                    <select class="form-control input-md mi-selector-cliente" id="nuevoEmpleado" name="nuevoEmpleado">
-                      <option value="">Seleccionar Empleado</option>
-
-                      <?php
-
-                      $item = null;
-                      $valor = null;
-
-                      $modelo =
-                        ControladorEmpleados::ctrMostrarEmpleados(
-                          $item,
-                          $valor
-                        );
-
-                      foreach ($modelo as $key => $value) {
-
-                        echo '<option value="' . $value["idempleado"] . '">'
-                          . $value["nombres"] . " " . $value["ape_pat"] . " "
-                          . $value["ape_mat"] . " " . $value["num_documento"] .
-                          '</option>';
-                      }
-
-                      ?>
-
-                    </select>
-
-
-                  </div>
-
-
-                </div>
-
-              </div>
+             
 
             </div> <!-- FIN DE LA PRIMERA FILA -->
 
@@ -360,20 +318,21 @@ MODAL AGREGAR PRODUCTO CPU
 
 
 
-
-              <div class="col-lg-4 col-xs-12">
+            <div class="col-lg-4 col-xs-12">
                 <div class="form-group">
                   <label>Direccion Ip</label>
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-laptop" aria-hidden="true"></i></span>
 
-                    <input type="text" class="form-control" data-inputmask="'alias': 'ip'" data-mask="" im-insert="true" name="nuevoIp" id="nuevoIp">
-                    <input type="hidden" class="form-control input-lg" name="creado_por" value="<?php echo $_SESSION["id"]; ?>" required>
+                    <input type="text" class="form-control" data-inputmask="'alias': 'ip'" data-mask="" im-insert="true"
+                      name="nuevoIp" id="nuevoIp">
+                      <input type="hidden" class="form-control input-lg" name="creado_por" value="<?php echo $_SESSION["id"]; ?>" required>
                   </div>
                   <!-- /.input group -->
                 </div>
 
               </div>
+
 
 
 
@@ -484,49 +443,7 @@ MODAL EDITAR PRODUCTO CPU
               </div>
 
 
-              <div class="col-lg-6 col-xs-12">
-                <!--=====================================
-                      ENTRADA PARA REGISTRAR A QUIEN PERTENECE ESTE CPU
-                      ======================================-->
-                <div class="form-group">
-                  <label for="editarEmpleado">Asignado A:</label>
-
-                  <div class="input-group">
-
-                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                    <select class="form-control input-md mi-selector-cliente" id="editarEmpleado" name="editarEmpleado">
-                      <option value="">Seleccionar Empleado</option>
-
-                      <?php
-
-                      $item = null;
-                      $valor = null;
-
-                      $modelo =
-                        ControladorEmpleados::ctrMostrarEmpleados(
-                          $item,
-                          $valor
-                        );
-
-                      foreach ($modelo as $key => $value) {
-
-                        echo '<option value="' . $value["idempleado"] . '">'
-                          . $value["nombres"] . " " . $value["ape_pat"] . " "
-                          . $value["ape_mat"] . " " . $value["num_documento"] .
-                          '</option>';
-                      }
-
-                      ?>
-
-                    </select>
-
-
-                  </div>
-
-
-                </div>
-
-              </div>
+           
 
             </div> <!-- FIN DE LA PRIMERA FILA -->
 
@@ -625,7 +542,7 @@ MODAL EDITAR PRODUCTO CPU
                       <option value="DDR4">DDR4</option>
                       <option value="DDR3">DDR3</option>
                       <option value="DDR2">DDR2</option>
-                      <option value="DDR">DR</option>
+                      <option value="DDR">DDR</option>
 
 
                     </select>

@@ -12,10 +12,10 @@ class ModeloProductosCpu
 	static public function mdlIngresarProductoCpu($tabla, $datos)
 	{
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(idproducto,idempleado,tipo_disco,cant_disco,tipo_ram,cant_ram,procesador,sistema_operativo,direccion_ip,observaciones,creado_por) VALUES (:idproducto,:idempleado,:tipo_disco,:cant_disco,:tipo_ram,:cant_ram,:procesador,:sistema_operativo,:direccion_ip,:observaciones,:creado_por)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(idproducto,tipo_disco,cant_disco,tipo_ram,cant_ram,procesador,sistema_operativo,direccion_ip,observaciones,creado_por) VALUES (:idproducto,:tipo_disco,:cant_disco,:tipo_ram,:cant_ram,:procesador,:sistema_operativo,:direccion_ip,:observaciones,:creado_por)");
 
 		$stmt->bindParam(":idproducto", $datos["idproducto"], PDO::PARAM_INT);
-		$stmt->bindParam(":idempleado", $datos["idempleado"], PDO::PARAM_INT);
+		//$stmt->bindParam(":idempleado", $datos["idempleado"], PDO::PARAM_INT);
 		$stmt->bindParam(":tipo_disco", $datos["tipo_disco"], PDO::PARAM_STR);
 		$stmt->bindParam(":cant_disco", $datos["cant_disco"], PDO::PARAM_INT);
 		$stmt->bindParam(":tipo_ram", $datos["tipo_memoria"], PDO::PARAM_STR);
@@ -113,9 +113,9 @@ class ModeloProductosCpu
 	static public function mdlEditarProductoCpu($tabla, $datos)
 	{
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET idempleado=:id_empleado,tipo_disco=:tipo_disco,cant_disco=:cant_disco,tipo_ram=:tipo_ram,cant_ram=:cant_ram,procesador=:procesador,sistema_operativo=:sistema_operativo,direccion_ip=:direccion_ip,observaciones=:observaciones,actualizado_por=:actualizado_por,fecha_actualizacion=:fecha_actualizacion WHERE id=:id");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET tipo_disco=:tipo_disco,cant_disco=:cant_disco,tipo_ram=:tipo_ram,cant_ram=:cant_ram,procesador=:procesador,sistema_operativo=:sistema_operativo,direccion_ip=:direccion_ip,observaciones=:observaciones,actualizado_por=:actualizado_por,fecha_actualizacion=:fecha_actualizacion WHERE id=:id");
 
-		$stmt->bindParam(":id_empleado", $datos["id_empleado"], PDO::PARAM_INT);
+		//$stmt->bindParam(":id_empleado", $datos["id_empleado"], PDO::PARAM_INT);
 		$stmt->bindParam(":tipo_disco", $datos["tipo_disco"], PDO::PARAM_STR);
 		$stmt->bindParam(":cant_disco", $datos["cant_disco"], PDO::PARAM_INT);
 		$stmt->bindParam(":tipo_ram", $datos["tipo_ram"], PDO::PARAM_STR);
