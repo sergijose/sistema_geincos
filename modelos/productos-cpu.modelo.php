@@ -20,8 +20,8 @@ class ModeloProductosCpu
 		$stmt->bindParam(":cant_disco", $datos["cant_disco"], PDO::PARAM_INT);
 		$stmt->bindParam(":tipo_ram", $datos["tipo_memoria"], PDO::PARAM_STR);
 		$stmt->bindParam(":cant_ram", $datos["cant_memoria"], PDO::PARAM_INT);
-		$stmt->bindParam(":procesador", $datos["procesador"], PDO::PARAM_STR);
-		$stmt->bindParam(":sistema_operativo", $datos["sistema_operativo"], PDO::PARAM_STR);
+		$stmt->bindParam(":procesador", $datos["procesador"], PDO::PARAM_INT);
+		$stmt->bindParam(":sistema_operativo", $datos["sistema_operativo"], PDO::PARAM_INT);
 		$stmt->bindParam(":direccion_ip", $datos["direccion_ip"], PDO::PARAM_STR);
 		$stmt->bindParam(":observaciones", $datos["observaciones"], PDO::PARAM_STR);
 		$stmt->bindParam(":creado_por", $datos["creado_por"], PDO::PARAM_INT);
@@ -120,8 +120,8 @@ class ModeloProductosCpu
 		$stmt->bindParam(":cant_disco", $datos["cant_disco"], PDO::PARAM_INT);
 		$stmt->bindParam(":tipo_ram", $datos["tipo_ram"], PDO::PARAM_STR);
 		$stmt->bindParam(":cant_ram", $datos["cant_ram"], PDO::PARAM_INT);
-		$stmt->bindParam(":procesador", $datos["procesador"], PDO::PARAM_STR);
-		$stmt->bindParam(":sistema_operativo", $datos["sistema_operativo"], PDO::PARAM_STR);
+		$stmt->bindParam(":procesador", $datos["procesador"], PDO::PARAM_INT);
+		$stmt->bindParam(":sistema_operativo", $datos["sistema_operativo"], PDO::PARAM_INT);
 		$stmt->bindParam(":direccion_ip", $datos["direccion_ip"], PDO::PARAM_STR);
 		$stmt->bindParam(":observaciones", $datos["observaciones"], PDO::PARAM_STR);
 		$stmt->bindParam(":actualizado_por", $datos["actualizado_por"], PDO::PARAM_INT);
@@ -299,4 +299,62 @@ class ModeloProductosCpu
 
 		$stmt = null;
 	}
+
+
+
+	//MOSTRAR LISTA DE PROCESADORES
+	static public function mdlMostrarListaProcesadores($tabla, $item, $valor)
+	{
+
+		if ($item != null) {
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY id asc");
+
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_INT);
+
+			$stmt->execute();
+
+			return $stmt->fetch();
+		} else {
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla  ORDER BY id asc");
+
+			$stmt->execute();
+
+			return $stmt->fetchAll();
+		}
+
+
+
+		$stmt = null;
+	}
+
+
+	//MOSTRAR LISTA DE SISTEMA OPERATIVO
+	static public function mdlMostrarListaSistemaOperativo($tabla, $item, $valor)
+	{
+
+		if ($item != null) {
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY id asc");
+
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_INT);
+
+			$stmt->execute();
+
+			return $stmt->fetch();
+		} else {
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla  ORDER BY id asc");
+
+			$stmt->execute();
+
+			return $stmt->fetchAll();
+		}
+
+
+
+		$stmt = null;
+	}
+
 }

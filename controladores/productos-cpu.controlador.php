@@ -59,6 +59,32 @@ class ControladorProductosCpu
 		return $respuesta;
 	}
 
+		/*=============================================
+	MOSTRAR LISTA DE PROCESADOREDS
+	=============================================*/
+	static public function ctrMostrarListaProcesadores($item, $valor)
+	{
+
+		$tabla = "tipo_procesador";
+		$respuesta = ModeloProductosCpu::mdlMostrarListaProcesadores($tabla, $item, $valor);
+
+		return $respuesta;
+	}
+
+	
+		/*=============================================
+	MOSTRAR LISTA DE SISTEMA OPERATIVO
+	=============================================*/
+	static public function ctrMostrarListaSistemaOperativo($item, $valor)
+	{
+
+		$tabla = "tipo_sistema_operativo";
+		$respuesta = ModeloProductosCpu::mdlMostrarListaSistemaOperativo($tabla, $item, $valor);
+
+		return $respuesta;
+	}
+
+
 	/*=============================================
 	MOSTRAR TOTAL DE PRODUCTOS
 	=============================================*/
@@ -230,7 +256,7 @@ class ControladorProductosCpu
 				echo '<script>
 
 					
-						alertify.error("No se pudo Actualizar ");
+						alertify.error("No se pudo Actualizar");
 						
 
 			  	</script>';

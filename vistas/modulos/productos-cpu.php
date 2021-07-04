@@ -1,5 +1,5 @@
 <?php
-  if ($_SESSION["perfil" ] =="Visitante" ) {
+if ($_SESSION["perfil"] == "Visitante") {
 
   echo '<script>
 
@@ -7,7 +7,7 @@
 
 </script>';
 
-return;
+  return;
 }
 
 ?>
@@ -126,25 +126,24 @@ MODAL AGREGAR PRODUCTO CPU
 
 
                     <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                    <select class="form-control input-md mi-selector2" id="nuevoCodProductoCpu"
-                      name="nuevoCodProductoCpu" required>
+                    <select class="form-control input-md mi-selector2" id="nuevoCodProductoCpu" name="nuevoCodProductoCpu" required>
 
                       <option value="">Seleccionar Codigo CPU</option>
 
                       <?php
 
 
-                        $categoria="CPU" ;
+                      $categoria = "CPU";
 
 
-                        $codProducto=ControladorProductosCpu::ctrMostrarCodigoProductoCpu($categoria);
-                        foreach ($codProducto as $key=> $value) {
+                      $codProducto = ControladorProductosCpu::ctrMostrarCodigoProductoCpu($categoria);
+                      foreach ($codProducto as $key => $value) {
 
                         echo '<option value="' . $value["id"] . '">' .
                           $value["cod_producto"] . '</option>';
-                        }
+                      }
 
-                        ?>
+                      ?>
 
                     </select>
 
@@ -167,22 +166,24 @@ MODAL AGREGAR PRODUCTO CPU
 
                       <?php
 
-                          $item= null;
-                          $valor= null;
+                      $item = null;
+                      $valor = null;
 
-                          $modelo=
-                          ControladorEmpleados::ctrMostrarEmpleados($item,
-                          $valor);
+                      $modelo =
+                        ControladorEmpleados::ctrMostrarEmpleados(
+                          $item,
+                          $valor
+                        );
 
-                          foreach ($modelo as $key=> $value) {
+                      foreach ($modelo as $key => $value) {
 
-                          echo '<option value="' . $value["idempleado"] . '">'
-                            . $value["nombres"] . " " . $value["ape_pat"] . " "
-                            . $value["ape_mat"] ." " . $value["num_documento"] .
-                            '</option>';
-                          }
+                        echo '<option value="' . $value["idempleado"] . '">'
+                          . $value["nombres"] . " " . $value["ape_pat"] . " "
+                          . $value["ape_mat"] . " " . $value["num_documento"] .
+                          '</option>';
+                      }
 
-                          ?>
+                      ?>
 
                     </select>
 
@@ -235,8 +236,7 @@ MODAL AGREGAR PRODUCTO CPU
                   <div class="input-group">
 
                     <span class="input-group-addon"><i class="fa fa-signal"></i></span>
-                    <input type="number" class="form-control input-md" id="nuevaCantDisco" name="nuevaCantDisco"
-                      placeholder="Ingrese GB de disco duro" required>
+                    <input type="number" class="form-control input-md" id="nuevaCantDisco" name="nuevaCantDisco" placeholder="Ingrese GB de disco duro" required>
                   </div>
 
                 </div>
@@ -253,12 +253,19 @@ MODAL AGREGAR PRODUCTO CPU
                     <span class="input-group-addon"><i class="fa fa-th"></i></span>
                     <select class="form-control input-md" id="nuevoProcesador" name="nuevoProcesador" required>
                       <option value="">Seleccionar tipo de Procesador</option>
-                      <option value="i9">i9</option>
-                      <option value="i7">i7</option>
-                      <option value="i5">i5</option>
-                      <option value="i3">i3</option>
-                      <option value="corel 2 duo">Corel 2 duo</option>
-                      <option value="amd">AMD</option>
+                      <?php
+
+                      $item = null;
+                      $valor = null;
+
+                      $procesador = ControladorProductosCpu::ctrMostrarListaProcesadores($item, $valor);
+
+                      foreach ($procesador as $key => $value) {
+
+                        echo '<option value="' . $value["id"] . '">' . $value["descripcion"] . '</option>';
+                      }
+
+                      ?>
                     </select>
 
                   </div>
@@ -282,10 +289,10 @@ MODAL AGREGAR PRODUCTO CPU
                     <select class="form-control input-md" id="nuevoTipoRam" name="nuevoTipoRam" required>
 
                       <option value="">Seleccionar tipo de Memoria Ram</option>
-                      <option value="DR4">DR4</option>
-                      <option value="DR3">DR3</option>
-                      <option value="DR2">DR2</option>
-                      <option value="DR">DR</option>
+                      <option value="DDR4">DDR4</option>
+                      <option value="DDR3">DDR3</option>
+                      <option value="DDR2">DDR2</option>
+                      <option value="DDR">DDR</option>
 
 
                     </select>
@@ -304,8 +311,7 @@ MODAL AGREGAR PRODUCTO CPU
                   <div class="input-group">
 
                     <span class="input-group-addon"><i class="fa fa-signal"></i></span>
-                    <input type="number" class="form-control input-md" id="nuevaCantRam" name="nuevaCantRam"
-                      placeholder="Ingrese GB de Memoria Ram" required>
+                    <input type="number" class="form-control input-md" id="nuevaCantRam" name="nuevaCantRam" placeholder="Ingrese GB de Memoria Ram" required>
                   </div>
 
                 </div>
@@ -322,15 +328,22 @@ MODAL AGREGAR PRODUCTO CPU
                   <div class="input-group">
 
                     <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                    <select class="form-control input-md" id="nuevoSistemaOperativo" name="nuevoSistemaOperativo"
-                      required>
+                    <select class="form-control input-md" id="nuevoSistemaOperativo" name="nuevoSistemaOperativo" required>
 
                       <option value="">Seleccionar Sistema Operativo</option>
-                      <option value="windows 10">WIN 10</option>
-                      <option value="windows 8">WIN 8</option>
-                      <option value="windows 7">WIN 7</option>
-                      <option value="linux">LINUX</option>
+                      <?php
 
+                      $item = null;
+                      $valor = null;
+
+                      $sistemaOperativo = ControladorProductosCpu::ctrMostrarListaSistemaOperativo($item, $valor);
+
+                      foreach ($sistemaOperativo as $key => $value) {
+
+                        echo '<option value="' . $value["id"] . '">' . $value["descripcion"] . '</option>';
+                      }
+
+                      ?>
 
                     </select>
 
@@ -354,9 +367,8 @@ MODAL AGREGAR PRODUCTO CPU
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-laptop" aria-hidden="true"></i></span>
 
-                    <input type="text" class="form-control" data-inputmask="'alias': 'ip'" data-mask="" im-insert="true"
-                      name="nuevoIp" id="nuevoIp">
-                      <input type="hidden" class="form-control input-lg" name="creado_por" value="<?php echo $_SESSION["id"]; ?>" required>
+                    <input type="text" class="form-control" data-inputmask="'alias': 'ip'" data-mask="" im-insert="true" name="nuevoIp" id="nuevoIp">
+                    <input type="hidden" class="form-control input-lg" name="creado_por" value="<?php echo $_SESSION["id"]; ?>" required>
                   </div>
                   <!-- /.input group -->
                 </div>
@@ -375,8 +387,7 @@ MODAL AGREGAR PRODUCTO CPU
                   <div class="input-group">
 
                     <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                    <textarea class="form-control" id="nuevaObservacion" name="nuevaObservacion" cols="5" rows="5"
-                      placeholder="escriba aqui si tiene alguna observacion
+                    <textarea class="form-control" id="nuevaObservacion" name="nuevaObservacion" cols="5" rows="5" placeholder="escriba aqui si tiene alguna observacion
                           de este producto" required> </textarea>
 
                   </div>
@@ -407,10 +418,10 @@ MODAL AGREGAR PRODUCTO CPU
 
       <?php
 
-            $crearProductoCpu= new ControladorProductosCpu();
-            $crearProductoCpu->ctrCrearProductoCpu();
+      $crearProductoCpu = new ControladorProductosCpu();
+      $crearProductoCpu->ctrCrearProductoCpu();
 
-            ?>
+      ?>
 
     </div>
 
@@ -462,8 +473,7 @@ MODAL EDITAR PRODUCTO CPU
 
 
                     <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                    <input type="text" class="form-control input-md" id="editarCodProductoCpu"
-                      name="editarCodProductoCpu" required readonly>
+                    <input type="text" class="form-control input-md" id="editarCodProductoCpu" name="editarCodProductoCpu" required readonly>
 
 
 
@@ -488,23 +498,25 @@ MODAL EDITAR PRODUCTO CPU
                       <option value="">Seleccionar Empleado</option>
 
                       <?php
-      
-                                $item= null;
-                                $valor= null;
-      
-                                $modelo=
-                                ControladorEmpleados::ctrMostrarEmpleados($item,
-                                $valor);
-      
-                                foreach ($modelo as $key=> $value) {
-      
-                                echo '<option value="' . $value["idempleado"] . '">'
-                                  . $value["nombres"] . " " . $value["ape_pat"] . " "
-                                  . $value["ape_mat"] ." " . $value["num_documento"] .
-                                  '</option>';
-                                }
-      
-                                ?>
+
+                      $item = null;
+                      $valor = null;
+
+                      $modelo =
+                        ControladorEmpleados::ctrMostrarEmpleados(
+                          $item,
+                          $valor
+                        );
+
+                      foreach ($modelo as $key => $value) {
+
+                        echo '<option value="' . $value["idempleado"] . '">'
+                          . $value["nombres"] . " " . $value["ape_pat"] . " "
+                          . $value["ape_mat"] . " " . $value["num_documento"] .
+                          '</option>';
+                      }
+
+                      ?>
 
                     </select>
 
@@ -557,8 +569,7 @@ MODAL EDITAR PRODUCTO CPU
                   <div class="input-group">
 
                     <span class="input-group-addon"><i class="fa fa-signal"></i></span>
-                    <input type="number" class="form-control input-md" id="editarCantDisco" name="editarCantDisco"
-                      placeholder="Ingrese GB de disco duro" required>
+                    <input type="number" class="form-control input-md" id="editarCantDisco" name="editarCantDisco" placeholder="Ingrese GB de disco duro" required>
                   </div>
 
                 </div>
@@ -574,14 +585,21 @@ MODAL EDITAR PRODUCTO CPU
 
                     <span class="input-group-addon"><i class="fa fa-th"></i></span>
                     <select class="form-control input-md" id="editarProcesador" name="editarProcesador" required>
-                      <option value="">Seleccionar tipo de Procesador</option>
-                      <option value="i9">i9</option>
-                      <option value="i7">i7</option>
-                      <option value="i5">i5</option>
-                      <option value="i3">i3</option>
-                      <option value="corel 2 duo">Corel 2 duo</option>
-                      <option value="amd">AMD</option>
-                    </select>
+                    <option value="">Seleccionar tipo de Procesador</option>
+                      <?php
+
+                      $item = null;
+                      $valor = null;
+
+                      $procesador = ControladorProductosCpu::ctrMostrarListaProcesadores($item, $valor);
+
+                      foreach ($procesador as $key => $value) {
+
+                        echo '<option value="' . $value["id"] . '">' . $value["descripcion"] . '</option>';
+                      }
+
+                      ?>
+                      </select>
 
                   </div>
 
@@ -604,10 +622,10 @@ MODAL EDITAR PRODUCTO CPU
                     <select class="form-control input-md" id="editarTipoRam" name="editarTipoRam" required>
 
                       <option value="">Seleccionar tipo de Memoria Ram</option>
-                      <option value="DR4">DR4</option>
-                      <option value="DR3">DR3</option>
-                      <option value="DR2">DR2</option>
-                      <option value="DR">DR</option>
+                      <option value="DDR4">DDR4</option>
+                      <option value="DDR3">DDR3</option>
+                      <option value="DDR2">DDR2</option>
+                      <option value="DDR">DR</option>
 
 
                     </select>
@@ -626,8 +644,7 @@ MODAL EDITAR PRODUCTO CPU
                   <div class="input-group">
 
                     <span class="input-group-addon"><i class="fa fa-signal"></i></span>
-                    <input type="number" class="form-control input-md" id="editarCantRam" name="editarCantRam"
-                      placeholder="Ingrese GB de Memoria Ram" required>
+                    <input type="number" class="form-control input-md" id="editarCantRam" name="editarCantRam" placeholder="Ingrese GB de Memoria Ram" required>
                   </div>
 
                 </div>
@@ -644,17 +661,26 @@ MODAL EDITAR PRODUCTO CPU
                   <div class="input-group">
 
                     <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                    <select class="form-control input-md" id="editarSistemaOperativo" name="editarSistemaOperativo"
-                      required>
+                    <select class="form-control input-md" id="editarSistemaOperativo" name="editarSistemaOperativo" required>
 
-                      <option value="">Seleccionar Sistema Operativo</option>
-                      <option value="windows 10">WIN 10</option>
-                      <option value="windows 8">WIN 8</option>
-                      <option value="windows 7">WIN 7</option>
-                      <option value="linux">LINUX</option>
+                      <?php
 
+                      $item = null;
+                      $valor = null;
+
+                      $sistemaOperativo = ControladorProductosCpu::ctrMostrarListaSistemaOperativo($item, $valor);
+
+                      foreach ($sistemaOperativo as $key => $value) {
+
+                        echo '<option value="' . $value["id"] . '">' . $value["descripcion"] . '</option>';
+                      }
+
+                      ?>
 
                     </select>
+
+
+                   
 
                   </div>
 
@@ -672,17 +698,14 @@ MODAL EDITAR PRODUCTO CPU
 
               <div class="col-lg-4 col-xs-12">
                 <div class="form-group">
-                  <label>
-                    <font style="vertical-align: inherit;">
-                      <font style="vertical-align: inherit;">Direccion IP:</font>
-                    </font>
+                  <label for="editarIp">DIreccion IP
+
                   </label>
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-laptop" aria-hidden="true"></i></span>
 
-                    <input type="text" class="form-control" data-inputmask="'alias': 'ip'" data-mask="" im-insert="true"
-                      name="editarIp" id="editarIp">
-                      <input type="hidden" class="form-control input-lg" name="actualizado_por" value="<?php echo $_SESSION["id"]; ?>" required>
+                    <input type="text" class="form-control" data-inputmask="'alias': 'ip'" data-mask="" im-insert="true" name="editarIp" id="editarIp">
+                    <input type="hidden" class="form-control input-lg" name="actualizado_por" value="<?php echo $_SESSION["id"]; ?>" required>
                     <input type="hidden" id="id" name="id" require> <!-- /.id pára editar -->
                   </div>
                   <!-- /.input group -->
@@ -702,8 +725,7 @@ MODAL EDITAR PRODUCTO CPU
                   <div class="input-group">
 
                     <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                    <textarea class="form-control" id="editarObservacion" name="editarObservacion" cols="5" rows="5"
-                      placeholder="escriba aqui si tiene alguna observacion
+                    <textarea class="form-control" id="editarObservacion" name="editarObservacion" cols="5" rows="5" placeholder="escriba aqui si tiene alguna observacion
                                 de este producto" required> </textarea>
 
                   </div>
@@ -729,10 +751,10 @@ MODAL EDITAR PRODUCTO CPU
 
       <?php
 
-            $editarProductoCpu= new ControladorProductosCpu();
-            $editarProductoCpu->ctrEditarProductoCpu();
+      $editarProductoCpu = new ControladorProductosCpu();
+      $editarProductoCpu->ctrEditarProductoCpu();
 
-            ?>
+      ?>
 
     </div>
 
@@ -746,7 +768,7 @@ MODAL EDITAR PRODUCTO
 ======================================-->
 <?php
 
-        $eliminarProductoCpu= new ControladorProductosCpu();
-        $eliminarProductoCpu->ctrEliminarProductoCpu();
+$eliminarProductoCpu = new ControladorProductosCpu();
+$eliminarProductoCpu->ctrEliminarProductoCpu();
 
-        ?>
+?>
