@@ -231,8 +231,10 @@ class ModeloProductosCpu
 
 
 		$stmt = Conexion::conectar()->prepare(
-			"SELECT COUNT(*) AS TOTAL,sistema_operativo FROM producto_cpu 
-			GROUP BY sistema_operativo  ORDER BY TOTAL DESC"
+			"SELECT COUNT(*) AS TOTAL,tso.descripcion AS sistema_operativo FROM producto_cpu 
+			INNER JOIN tipo_sistema_operativo tso
+			ON producto_cpu.sistema_operativo=tso.id
+			GROUP BY tso.descripcion  ORDER BY TOTAL DESC"
 		);
 
 		$stmt->execute();
