@@ -95,6 +95,7 @@
               <!--<th>Usuario</th>-->
               <th>Empleado</th>
               <th>Codigo Prestamo</th>
+              <th>Productos</th>
               <th>F_Prestamo</th>
               <th>F_Devolucion</th>
               <th>observacion_prestamo</th>
@@ -156,8 +157,16 @@
               echo '<td>' . $respuestaProducto["cod_producto"] . '</td>';
               */
 
-               echo '<td>' . $value["codigo_prestamo"] . '</td>
-               <td>' . $value["fecha_prestamo"] . '</td>
+               echo '<td>' . $value["codigo_prestamo"] . '</td>';
+               $productos=json_decode($value["productos"],true);
+               echo '<td>';
+                foreach($productos as $key=>$valueProductos){
+ 
+                 echo ($valueProductos["codigo"].'<br>');
+                }
+                echo '</td>';
+
+               echo'<td>' . $value["fecha_prestamo"] . '</td>
               <td>' . $value["fecha_devolucion"] . '</td>
               <td>' . $value["observacion_prestamo"] . '</td>
               <td>' . $value["observacion_devolucion"] . '</td>';
