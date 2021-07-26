@@ -93,7 +93,7 @@ $bloque1 = <<<EOF
 					<br>
 					serviciosgenerales@geincos.com
 					<br>
-					Teléfono:943 540 293	
+					Teléfono:941 540 293	
 								
 					
 				</div>
@@ -303,17 +303,66 @@ $bloque5 = <<<EOF
 		</td>
 
 	</tr>
-
-		
 	
-
 	</table>
+	
+	
 
 EOF;
 
 $pdf->writeHTML($bloque5, false, false, false, false, '');
 
+$bloque6 = <<<EOF
 
+	
+	<div style="font-size:12px; text-align:left;">
+	<b style="font-size:10px">AVISO IMPORTANTE</b>
+	<p>quien recibe los bienes de la empresa se compromete a garantizar el estado fisico de lo prestado,al momento de la devolucion,la entrega es personal y en las instalaciones de la empresa GEINCOS</p>
+	<b style="font-size:10px">EVIDENCIA DE ENTREGA</b>
+	</div>
+	<br>
+	<br>
+	<br>
+	<table>
+	<tr>
+	<td style="width:280px; text-align:center">entregado por</td>
+	<td style="width:170px; text-align:center;pa-left: 30px;">recibido por</td>
+	</tr>
+	<tr>
+	
+	<td style="width:280px; text-align:center">firma y nombre completo</td>
+	
+	<td style="width:170px; text-align:center;pa-left: 30px;">firma y nombre completo</td>
+	</tr>
+	</table>
+	<br>
+	<br>
+	<b style="font-size:10px">EVIDENCIA DE RECEPCION</b>
+	<br>
+	<br>
+	<br>
+	<br>
+	<table>
+	<tr>
+	<td style="width:280px; text-align:center">entregado por</td>
+	<td style="width:170px; text-align:center;pa-left: 30px;">recibido por</td>
+	</tr>
+
+	<tr>
+	<td style="width:280px; text-align:center">firma y nombre completo</td>
+	<td style="width:170px; text-align:center;pa-left: 30px;">firma y nombre completor</td>
+	</tr>
+	</table>
+	
+
+	
+	
+	
+	
+
+EOF;
+
+$pdf->writeHTML($bloque6, false, false, false, false, '');
 
 
 //SALIDA DEL ARCHIVO 
