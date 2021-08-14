@@ -10,13 +10,14 @@ class ModeloProductos{
 
 	static public function mdlIngresarProducto($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(idmodelo,cod_producto,num_serie,idestado,estado_prestamo,creado_por) VALUES (:idmodelo,:cod_producto,:num_serie,:idestado,:estado_prestamo,:creado_por)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(idmodelo,cod_producto,num_serie,idestado,estado_prestamo,observaciones,creado_por) VALUES (:idmodelo,:cod_producto,:num_serie,:idestado,:estado_prestamo,:observaciones,:creado_por)");
 
 		$stmt->bindParam(":idmodelo", $datos["idmodelo"], PDO::PARAM_INT);
 		$stmt->bindParam(":cod_producto", $datos["cod_producto"], PDO::PARAM_STR);
 		$stmt->bindParam(":num_serie", $datos["num_serie"], PDO::PARAM_STR);
 		$stmt->bindParam(":idestado", $datos["idestado"], PDO::PARAM_INT);
 		$stmt->bindParam(":estado_prestamo", $datos["estado_prestamo"], PDO::PARAM_STR);
+		$stmt->bindParam(":observaciones", $datos["observaciones"], PDO::PARAM_STR);
 		$stmt->bindParam(":creado_por", $datos["creado_por"], PDO::PARAM_INT);
 
 		if($stmt->execute()){
@@ -59,6 +60,33 @@ class ModeloProductos{
 			return $stmt -> fetchAll();
 
 		}
+	}
+
+		/*=============================================
+	MOSTRAR LISTA DE ESTADOS DE PRODUCTOS
+	=============================================*/
+
+	static public function mdlMostrarEstadoFisicoProducto($tabla, $item, $valor){
+
+		if($item != null){
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item" );
+
+			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_INT);
+
+			$stmt -> execute();
+
+			return $stmt -> fetch();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
 
 	
 
@@ -84,13 +112,14 @@ class ModeloProductos{
 
 	static public function mdlEditarProducto($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET idmodelo=:idmodelo,cod_producto=:cod_producto,num_serie=:num_serie, idestado=:idestado,estado_prestamo=:estado_prestamo,actualizado_por=:actualizado_por,fecha_actualizacion=:fecha_actualizacion WHERE id=:id");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET idmodelo=:idmodelo,cod_producto=:cod_producto,num_serie=:num_serie, idestado=:idestado,estado_prestamo=:estado_prestamo,observaciones=:observaciones,actualizado_por=:actualizado_por,fecha_actualizacion=:fecha_actualizacion WHERE id=:id");
 
 		$stmt -> bindParam(":idmodelo", $datos["idmodelo"], PDO::PARAM_INT);
 		$stmt -> bindParam(":cod_producto", $datos["cod_producto"], PDO::PARAM_STR);
 		$stmt -> bindParam(":num_serie", $datos["num_serie"], PDO::PARAM_STR);
 		$stmt -> bindParam(":idestado", $datos["idestado"], PDO::PARAM_INT);
 		$stmt -> bindParam(":estado_prestamo", $datos["estado_prestamo"], PDO::PARAM_STR);
+		$stmt -> bindParam(":observaciones", $datos["observaciones"], PDO::PARAM_STR);
 		$stmt -> bindParam(":actualizado_por", $datos["actualizado_por"], PDO::PARAM_STR);
 		$stmt -> bindParam(":fecha_actualizacion", $datos["fecha_actualizacion"], PDO::PARAM_STR);
 		$stmt -> bindParam(":id", $datos["id"], PDO::PARAM_INT);

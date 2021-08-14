@@ -175,6 +175,7 @@ $(".tablaProductos tbody").on("click", "button.btnEditarProducto", function () {
 			$("#editarNumSerie").val(respuesta["num_serie"]);
 
 			$("#editarEstadoPrestamo").val(respuesta["estado_prestamo"]);
+			$("#editarObservaciones").val(respuesta["observaciones"]);
 			//para editar producto -capturando el id
 			$("#id").val(respuesta["id"]);
 			

@@ -18,6 +18,20 @@ class ControladorProductos
 	}
 
 	/*=============================================
+	MOSTRAR PRODUCTOS
+	=============================================*/
+
+	static public function ctrMostrarEstadoFisicoProducto($item, $valor)
+	{
+
+		$tabla = "estado";
+
+		$respuesta = ModeloProductos::mdlMostrarEstadoFisicoProducto($tabla, $item, $valor);
+
+		return $respuesta;
+	}
+
+	/*=============================================
 	MOSTRAR PRODUCTOS REPETIDOS CODIGO Y NUMERO DE SERIE
 	=============================================*/
 
@@ -100,6 +114,7 @@ class ControladorProductos
 					"num_serie" => strtoupper($_POST["nuevoNumSerie"]),
 					"idestado" => $_POST["nuevoEstado"],
 					"estado_prestamo" => $_POST["nuevoEstadoPrestamo"],
+					"observaciones" => $_POST["nuevaObservaciones"],
 					"creado_por" => $_POST["creado_por"]
 						);
 
@@ -155,6 +170,7 @@ class ControladorProductos
 					"num_serie" => $_POST["editarNumSerie"],
 					"idestado" => $_POST["editarEstado"],
 					"estado_prestamo" => $_POST["editarEstadoPrestamo"],
+					"observaciones" => $_POST["editarObservaciones"],
 					"actualizado_por"=>$_POST["actualizado_por"],
 					"fecha_actualizacion"=>$fechaActual,
 					"id" => $_POST["id"]

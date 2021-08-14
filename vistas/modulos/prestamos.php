@@ -146,7 +146,7 @@
               $valorEmpleado = $value["idempleado"];
               $respuestaEmpleado = ControladorEmpleados::ctrMostrarEmpleados($itemEmpleado, $valorEmpleado);
               
-              echo '<td>' . $respuestaEmpleado["nombres"]." ".$respuestaEmpleado["ape_pat"]." ".$respuestaEmpleado["ape_mat"].'</td>';
+              echo '<td>' . $respuestaEmpleado["nombres"]." ".$respuestaEmpleado["ape_pat"]." ".$respuestaEmpleado["ape_mat"]."-".$respuestaEmpleado["num_documento"].'</td>';
               /*
               $item = "id";
               $valor = $value["idproducto"];

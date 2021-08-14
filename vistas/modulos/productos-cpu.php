@@ -69,6 +69,7 @@ if ($_SESSION["perfil"] == "Visitante") {
               <th>Procesador</th>
               <th>Sistema Operativo</th>
               <th>Direccion ip</th>
+              <th>Modelo Placa</th>
               <th>Observaciones</th>
 
               <th>Acciones</th>
@@ -98,7 +99,7 @@ MODAL AGREGAR PRODUCTO CPU
 
     <div class="modal-content">
 
-      <form role="form" method="post" enctype="multipart/form-data">
+      <form role="form" method="post">
         <!--=====================================
         CABEZA DEL MODAL
         ======================================-->
@@ -151,7 +152,7 @@ MODAL AGREGAR PRODUCTO CPU
                 </div>
               </div>
 
-             
+
 
             </div> <!-- FIN DE LA PRIMERA FILA -->
 
@@ -194,7 +195,7 @@ MODAL AGREGAR PRODUCTO CPU
                   <div class="input-group">
 
                     <span class="input-group-addon"><i class="fa fa-signal"></i></span>
-                    <input type="number" class="form-control input-md" id="nuevaCantDisco" name="nuevaCantDisco" placeholder="Ingrese GB de disco duro" required>
+                    <input type="number" class="form-control input-md" id="nuevaCantDisco" min="1"  name="nuevaCantDisco" placeholder="Ingrese GB de disco duro" required>
                   </div>
 
                 </div>
@@ -269,7 +270,7 @@ MODAL AGREGAR PRODUCTO CPU
                   <div class="input-group">
 
                     <span class="input-group-addon"><i class="fa fa-signal"></i></span>
-                    <input type="number" class="form-control input-md" id="nuevaCantRam" name="nuevaCantRam" placeholder="Ingrese GB de Memoria Ram" required>
+                    <input type="number" class="form-control input-md" id="nuevaCantRam" min="1" name="nuevaCantRam" placeholder="Ingrese GB de Memoria Ram" required>
                   </div>
 
                 </div>
@@ -318,15 +319,26 @@ MODAL AGREGAR PRODUCTO CPU
 
 
 
-            <div class="col-lg-4 col-xs-12">
+              <div class="col-lg-4 col-xs-12">
                 <div class="form-group">
                   <label>Direccion Ip</label>
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-laptop" aria-hidden="true"></i></span>
 
-                    <input type="text" class="form-control" data-inputmask="'alias': 'ip'" data-mask="" im-insert="true"
-                      name="nuevoIp" id="nuevoIp">
-                      <input type="hidden" class="form-control input-lg" name="creado_por" value="<?php echo $_SESSION["id"]; ?>" required>
+                    <input type="text" class="form-control" data-inputmask="'alias': 'ip'" data-mask="" im-insert="true" name="nuevoIp" id="nuevoIp">
+                    <input type="hidden" class="form-control input-lg" name="creado_por" value="<?php echo $_SESSION["id"]; ?>" required>
+                  </div>
+                  <!-- /.input group -->
+                </div>
+
+              </div>
+              <div class="col-lg-4 col-xs-12">
+                <div class="form-group">
+                  <label for="nuevoModeloPlaca">Modelo Placa</label>
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-th" aria-hidden="true"></i></span>
+
+                    <input type="text" class="form-control input-md" name="nuevoModeloPlaca" id="nuevoModeloPlaca">
                   </div>
                   <!-- /.input group -->
                 </div>
@@ -337,20 +349,15 @@ MODAL AGREGAR PRODUCTO CPU
 
 
 
-              <div class="col-lg-8 col-xs-12">
+              <div class="col-lg-4 col-xs-12">
                 <!-- ENTRADA PARA LAS OBSERVACIONES-->
 
 
                 <div class="form-group">
-                  <label for="nuevaObservacion">Describa alguna observacion</label>
-                  <div class="input-group">
-
-                    <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                    <textarea class="form-control" id="nuevaObservacion" name="nuevaObservacion" cols="5" rows="5" placeholder="escriba aqui si tiene alguna observacion
-                          de este producto" required> </textarea>
-
-                  </div>
-
+                  <label for="nuevaObservacion">Nota/observacion</label>
+                  <textarea class="form-control" id="nuevaObservacion" name="nuevaObservacion">
+                   
+                  </textarea>
                 </div>
               </div>
 
@@ -443,7 +450,7 @@ MODAL EDITAR PRODUCTO CPU
               </div>
 
 
-           
+
 
             </div> <!-- FIN DE LA PRIMERA FILA -->
 
@@ -486,7 +493,7 @@ MODAL EDITAR PRODUCTO CPU
                   <div class="input-group">
 
                     <span class="input-group-addon"><i class="fa fa-signal"></i></span>
-                    <input type="number" class="form-control input-md" id="editarCantDisco" name="editarCantDisco" placeholder="Ingrese GB de disco duro" required>
+                    <input type="number" class="form-control input-md" id="editarCantDisco" min="1"  name="editarCantDisco" placeholder="Ingrese GB de disco duro" required>
                   </div>
 
                 </div>
@@ -502,7 +509,7 @@ MODAL EDITAR PRODUCTO CPU
 
                     <span class="input-group-addon"><i class="fa fa-th"></i></span>
                     <select class="form-control input-md" id="editarProcesador" name="editarProcesador" required>
-                    <option value="">Seleccionar tipo de Procesador</option>
+                      <option value="">Seleccionar tipo de Procesador</option>
                       <?php
 
                       $item = null;
@@ -516,7 +523,7 @@ MODAL EDITAR PRODUCTO CPU
                       }
 
                       ?>
-                      </select>
+                    </select>
 
                   </div>
 
@@ -561,7 +568,7 @@ MODAL EDITAR PRODUCTO CPU
                   <div class="input-group">
 
                     <span class="input-group-addon"><i class="fa fa-signal"></i></span>
-                    <input type="number" class="form-control input-md" id="editarCantRam" name="editarCantRam" placeholder="Ingrese GB de Memoria Ram" required>
+                    <input type="number" class="form-control input-md" id="editarCantRam" min="1" name="editarCantRam" placeholder="Ingrese GB de Memoria Ram" required>
                   </div>
 
                 </div>
@@ -597,7 +604,7 @@ MODAL EDITAR PRODUCTO CPU
                     </select>
 
 
-                   
+
 
                   </div>
 
@@ -631,19 +638,29 @@ MODAL EDITAR PRODUCTO CPU
               </div>
 
 
+              <div class="col-lg-4 col-xs-12">
+                <div class="form-group">
+                  <label for="editarModeloPlaca">Modelo Placa</label>
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-th" aria-hidden="true"></i></span>
+
+                    <input type="text" class="form-control input-md" name="editarModeloPlaca" id="editarModeloPlaca">
+                  </div>
+                  <!-- /.input group -->
+                </div>
+
+              </div>
 
 
-              <div class="col-lg-8 col-xs-12">
+
+              <div class="col-lg-4 col-xs-12">
                 <!-- ENTRADA PARA LAS OBSERVACIONES-->
 
 
                 <div class="form-group">
-                  <label for="editarObservacion">Describa alguna observacion</label>
+                  <label for="editarObservacion">Nota/Observacion</label>
                   <div class="input-group">
-
-                    <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                    <textarea class="form-control" id="editarObservacion" name="editarObservacion" cols="5" rows="5" placeholder="escriba aqui si tiene alguna observacion
-                                de este producto" required> </textarea>
+           <textarea class="form-control" id="editarObservacion" name="editarObservacion"required rows="4" cols="50"></textarea>
 
                   </div>
 

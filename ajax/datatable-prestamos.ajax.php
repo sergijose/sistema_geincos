@@ -71,15 +71,15 @@ class TablaProductosPrestamos{
 
               if($estadoProducto["descripcion"] =="MALOGRADO"){
 
-                $estado = "<button class='btn btn-danger'>".$estadoProducto["descripcion"]."</button>";
+                $estado = "<button class='btn btn-danger  btn-xs'>".$estadoProducto["descripcion"]."</button>";
 
             }else if($estadoProducto["descripcion"]=="REPARACION GARANTIA" or $estadoProducto["descripcion"]=="REPARACION INTERNA" ){
 
-                $estado = "<button class='btn btn-warning'>".$estadoProducto["descripcion"]."</button>";
+                $estado = "<button class='btn btn-warning  btn-xs'>".$estadoProducto["descripcion"]."</button>";
 
             }else{
 
-                $estado = "<button class='btn btn-success'>".$estadoProducto["descripcion"]."</button>";
+                $estado = "<button class='btn btn-success  btn-xs'>".$estadoProducto["descripcion"]."</button>";
 
             }
 
@@ -90,11 +90,11 @@ class TablaProductosPrestamos{
 
   			if($productos[$i]["estado_prestamo"] =="OCUPADO"){
 
-                $estadoPrestamoProducto = "<button class='btn btn-danger'>".$productos[$i]["estado_prestamo"]."</button>";
+                $estadoPrestamoProducto = "<button class='btn btn-danger  btn-xs'>".$productos[$i]["estado_prestamo"]."</button>";
 
   			}else{
 
-                $estadoPrestamoProducto = "<button class='btn btn-success'>".$productos[$i]["estado_prestamo"]."</button>";
+                $estadoPrestamoProducto = "<button class='btn btn-success  btn-xs'>".$productos[$i]["estado_prestamo"]."</button>";
 
   			}
 

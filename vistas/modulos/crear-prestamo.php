@@ -136,13 +136,13 @@ if ($_SESSION["perfil"] == "Visitante") {
 
                       foreach ($modelo as $key => $value) {
 
-                        echo '<option value="' . $value["idempleado"] . '">' . $value["nombres"] . " " . $value["ape_pat"] . " " . $value["ape_mat"] . '</option>';
+                        echo '<option value="' . $value["idempleado"] . '">' . $value["nombres"] . " " . $value["ape_pat"] . " " . $value["ape_mat"] ."-".$value["num_documento"]. '</option>';
                       }
 
                       ?>
 
                     </select>
-                    <span class="input-group-addon"><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modalAgregarEmpleado" data-dismiss="modal">Agregar cliente</button></span>
+                    <span class="input-group-addon"><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modalAgregarEmpleado" data-dismiss="modal">Agregar Empleado</button></span>
 
                   </div>
 

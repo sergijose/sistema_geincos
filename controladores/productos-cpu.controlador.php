@@ -167,15 +167,14 @@ class ControladorProductosCpu
 					"procesador" => $_POST["nuevoProcesador"],
 					"sistema_operativo" => $_POST["nuevoSistemaOperativo"],
 					"direccion_ip" => $_POST["nuevoIp"],
+					"modelo_placa" => $_POST["nuevoModeloPlaca"],
 					"observaciones" => $_POST["nuevaObservacion"],
 					"creado_por" => $_POST["creado_por"]
 				);
 				
 
 				$respuesta = ModeloProductosCpu::mdlIngresarProductoCpu($tabla, $datos);
-
-				var_dump($datos);
-				var_dump($respuesta);
+				
 				if ($respuesta == "ok") {
 
 					echo '<script>
@@ -233,6 +232,7 @@ class ControladorProductosCpu
 					"procesador" => $_POST["editarProcesador"],
 					"sistema_operativo" => $_POST["editarSistemaOperativo"],
 					"direccion_ip" => $_POST["editarIp"],
+					"modelo_placa" => $_POST["editarModeloPlaca"],
 					"observaciones" => $_POST["editarObservacion"],
 					"actualizado_por" => $_POST["actualizado_por"],
 					"fecha_actualizacion" => $fechaActual,

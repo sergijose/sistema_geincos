@@ -48,13 +48,13 @@ if ($_SESSION["perfil"] == "Visitante") {
 
         <a href="productos-cpu">
 
-        <button class="btn btn-primary">
+          <button class="btn btn-primary">
 
-       Ver Detalle de CPU
+            Ver Detalle de CPU
 
-      </button>
-      </a>
-        
+          </button>
+        </a>
+
 
       </div>
 
@@ -70,8 +70,9 @@ if ($_SESSION["perfil"] == "Visitante") {
               <th>Modelo</th>
               <th>Código</th>
               <th>Numero de Serie</th>
-              <th>Estado Producto</th>
-              <th>Disponibilidad</th>
+              <th>Estado Fisico</th>
+              <th>Observaciones</th>
+              <th>Disp.Prestamo</th>
               <th>Fecha_Registro</th>
               <th>Acciones</th>
 
@@ -102,7 +103,7 @@ MODAL AGREGAR PRODUCTO
 
     <div class="modal-content">
 
-      <form role="form" method="post"  enctype="multipart/form-data" >
+      <form role="form" method="post" enctype="multipart/form-data">
 
         <!--=====================================
         CABEZA DEL MODAL
@@ -121,7 +122,7 @@ MODAL AGREGAR PRODUCTO
         ======================================-->
 
         <div class="modal-body">
-          
+
           <div class="box-body">
 
 
@@ -134,7 +135,7 @@ MODAL AGREGAR PRODUCTO
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                <select class="form-control input-lg" id="nuevoModelo" name="nuevoModelo" required>
+                <select class="form-control input-md" id="nuevoModelo" name="nuevoModelo" required>
 
                   <option value="">Seleccionar Modelo</option>
 
@@ -142,13 +143,13 @@ MODAL AGREGAR PRODUCTO
 
                   $item = null;
                   $valor = null;
-                  
+
 
                   $modelo = ControladorModelos::ctrMostrarModelo($item, $valor);
 
                   foreach ($modelo as $key => $value) {
 
-                    echo '<option value="' . $value["id"] . '">' . $value["categoria"] ."| ".$value["marca"] ."| ".$value["descripcion"] . '</option>';
+                    echo '<option value="' . $value["id"] . '">' . $value["categoria"] . "| " . $value["marca"] . "| " . $value["descripcion"] . '</option>';
                   }
 
                   ?>
@@ -167,8 +168,8 @@ MODAL AGREGAR PRODUCTO
 
                 <span class="input-group-addon"><i class="fa fa-code"></i></span>
 
-                <input type="text" class="form-control input-lg" id="nuevoCodigo" name="nuevoCodigo" placeholder="Ingrese Codigo" required>
-                <input type="hidden" class="form-control input-lg" name="creado_por" value="<?php echo $_SESSION["id"]; ?>" required>
+                <input type="text" class="form-control input-md" id="nuevoCodigo" name="nuevoCodigo" placeholder="Ingrese Codigo" required>
+                <input type="hidden" class="form-control input-md" name="creado_por" value="<?php echo $_SESSION["id"]; ?>" required>
               </div>
 
             </div>
@@ -180,7 +181,7 @@ MODAL AGREGAR PRODUCTO
 
                 <span class="input-group-addon"><i class="fa fa-code"></i></span>
 
-                <input type="text" class="form-control input-lg" id="nuevoNumSerie" name="nuevoNumSerie" placeholder="Ingrese numero de serie" >
+                <input type="text" class="form-control input-md" id="nuevoNumSerie" name="nuevoNumSerie" placeholder="Ingrese numero de serie">
 
               </div>
 
@@ -193,7 +194,7 @@ MODAL AGREGAR PRODUCTO
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                <select class="form-control input-lg" id="nuevoEstado" name="nuevoEstado" required>
+                <select class="form-control input-md" id="nuevoEstado" name="nuevoEstado" required>
 
                   <option value="">Seleccionar estado del producto</option>
 
@@ -201,10 +202,10 @@ MODAL AGREGAR PRODUCTO
 
                   $item = null;
                   $valor = null;
-                  $orden = "id";
 
 
-                  $estado = ControladorProductos::ctrMostrarEstadoProducto($item, $valor, $orden);
+
+                  $estado = ControladorProductos::ctrMostrarEstadoFisicoProducto($item, $valor);
 
                   foreach ($estado as $key => $value) {
 
@@ -229,7 +230,7 @@ MODAL AGREGAR PRODUCTO
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                <select class="form-control input-lg" id="nuevoEstadoPrestamo" name="nuevoEstadoPrestamo" required>
+                <select class="form-control input-md" id="nuevoEstadoPrestamo" name="nuevoEstadoPrestamo" required>
 
                   <option value="">Seleccionar estado del prestamo</option>
                   <option value="DISPONIBLE">DISPONIBLE</option>
@@ -239,8 +240,21 @@ MODAL AGREGAR PRODUCTO
               </div>
 
             </div>
+            <!-- ENTRADA PARA LA DESCRIPCIÓN -->
 
-  <!-- ENTRADA PARA IMAGEN CODIGO DE BARRAS DEL PRODUCTO 
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+
+                <input type="text" class="form-control input-md" id="nuevaObservaciones" name="nuevaObservaciones" placeholder="Ingresar observaciones o notas" required>
+
+              </div>
+
+            </div>
+
+            <!-- ENTRADA PARA IMAGEN CODIGO DE BARRAS DEL PRODUCTO 
 
   <div class="form-group">
 
@@ -255,7 +269,7 @@ MODAL AGREGAR PRODUCTO
 
           </div>
         </div>
-        
+
 
         <!--=====================================
         PIE DEL MODAL
@@ -328,7 +342,7 @@ MODAL EDITAR PRODUCTO
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                <select class="form-control input-lg" id="editarModelo" name="editarModelo" required>
+                <select class="form-control input-md" id="editarModelo" name="editarModelo" required>
 
                   <option value="">Seleccionar Modelo</option>
 
@@ -341,7 +355,7 @@ MODAL EDITAR PRODUCTO
 
                   foreach ($modelo as $key => $value) {
 
-                    echo '<option value="' . $value["id"] . '">' . $value["categoria"] ."| ".$value["marca"] ."| ".$value["descripcion"] . '</option>';
+                    echo '<option value="' . $value["id"] . '">' . $value["categoria"] . "| " . $value["marca"] . "| " . $value["descripcion"] . '</option>';
                   }
 
                   ?>
@@ -360,10 +374,10 @@ MODAL EDITAR PRODUCTO
 
                 <span class="input-group-addon"><i class="fa fa-code"></i></span>
 
-                <input type="text" class="form-control input-lg" id="editarCodigo" name="editarCodigo" placeholder="Ingrese Codigo" required>
+                <input type="text" class="form-control input-md" id="editarCodigo" name="editarCodigo" placeholder="Ingrese Codigo" required>
                 <!-- oculto el id del producto para poder editar -->
                 <input type="hidden" id="id" name="id" require>
-                <input type="hidden" class="form-control input-lg" name="actualizado_por" value="<?php echo $_SESSION["id"]; ?>" required>
+                <input type="hidden" class="form-control input-md" name="actualizado_por" value="<?php echo $_SESSION["id"]; ?>" required>
 
 
               </div>
@@ -377,7 +391,7 @@ MODAL EDITAR PRODUCTO
 
                 <span class="input-group-addon"><i class="fa fa-code"></i></span>
 
-                <input type="text" class="form-control input-lg" id="editarNumSerie" name="editarNumSerie" placeholder="editar numero de serie" >
+                <input type="text" class="form-control input-md" id="editarNumSerie" name="editarNumSerie" placeholder="editar numero de serie">
 
               </div>
 
@@ -391,7 +405,7 @@ MODAL EDITAR PRODUCTO
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                <select class="form-control input-lg" id="editarEstado" name="editarEstado" required>
+                <select class="form-control input-md" id="editarEstado" name="editarEstado" required>
 
                   <option value="">Seleccionar estado del producto</option>
 
@@ -399,10 +413,10 @@ MODAL EDITAR PRODUCTO
 
                   $item = null;
                   $valor = null;
-                  $orden = "id";
 
 
-                  $estado = ControladorProductos::ctrMostrarEstadoProducto($item, $valor, $orden);
+
+                  $estado = ControladorProductos::ctrMostrarEstadoFisicoProducto($item, $valor);
 
                   foreach ($estado as $key => $value) {
 
@@ -427,7 +441,7 @@ MODAL EDITAR PRODUCTO
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                <select class="form-control input-lg" id="editarEstadoPrestamo" name="editarEstadoPrestamo" required>
+                <select class="form-control input-md" id="editarEstadoPrestamo" name="editarEstadoPrestamo" required>
 
                   <option value="">Seleccionar estado del prestamo</option>
                   <option value="DISPONIBLE">DISPONIBLE</option>
@@ -437,6 +451,21 @@ MODAL EDITAR PRODUCTO
               </div>
 
             </div>
+
+                      <!-- ENTRADA PARA LA DESCRIPCIÓN -->
+
+            <div class="form-group">
+
+<div class="input-group">
+
+  <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+
+  <input type="text" class="form-control input-md" id="editarObservaciones" name="editarObservaciones" placeholder="Ingresar descripción o notas" required>
+
+</div>
+
+</div>
+
 
           </div>
         </div>
