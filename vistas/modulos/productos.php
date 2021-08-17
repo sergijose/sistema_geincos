@@ -248,7 +248,7 @@ MODAL AGREGAR PRODUCTO
 
                 <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
 
-                <input type="text" class="form-control input-md" id="nuevaObservaciones" name="nuevaObservaciones" placeholder="Ingresar observaciones o notas" required>
+                <input type="text" class="form-control input-md" id="nuevaObservaciones" name="nuevaObservaciones" placeholder="Ingresar observaciones o notas">
 
               </div>
 
@@ -460,7 +460,7 @@ MODAL EDITAR PRODUCTO
 
   <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
 
-  <input type="text" class="form-control input-md" id="editarObservaciones" name="editarObservaciones" placeholder="Ingresar descripción o notas" required>
+  <input type="text" class="form-control input-md" id="editarObservaciones" name="editarObservaciones" placeholder="Ingresar descripción o notas">
 
 </div>
 
