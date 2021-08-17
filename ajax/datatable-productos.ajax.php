@@ -63,12 +63,13 @@ class TablaProductos
 			$modelos = ControladorModelos::ctrMostrarModelo($item, $valor);
 
 			$idcategoria=$modelos["idcategoria"];
+			$idmarca=$modelos["idmarca"];
 
 			$categoria = ControladorCategorias::ctrMostrarCategorias($item,$idcategoria);
 
 
 
-			$marca=ControladorMarcas::ctrMostrarMarca($item,$idcategoria);
+			$marca=ControladorMarcas::ctrMostrarMarca($item,$idmarca);
 			/*=============================================
  	 		ESTADO DEL PRODUCTO
   			=============================================*/
