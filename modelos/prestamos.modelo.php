@@ -43,7 +43,7 @@ class ModeloPrestamos{
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT DISTINCT idempleado FROM $tabla WHERE $item=:$item ORDER BY idempleado ASC");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item=:$item ORDER BY idempleado ASC");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 

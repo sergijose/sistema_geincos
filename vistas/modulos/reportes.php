@@ -54,6 +54,7 @@ if ($_SESSION["perfil"] == "Visitante") {
 
                   <th style="width:10px">#</th>
                   <th>Empleado</th>
+                  <th>Productos</th>
                   <th>Num Documento</th>
 
                 </tr>
@@ -79,6 +80,13 @@ if ($_SESSION["perfil"] == "Visitante") {
                   $EmpleadoPrestamo = ControladorEmpleados::ctrMostrarEmpleados($item, $valor);
 
                   echo '<td class="text-uppercase">' . $EmpleadoPrestamo["nombres"] . " " . $EmpleadoPrestamo["ape_pat"] . " " . $EmpleadoPrestamo["ape_mat"] . '</td>';
+                  $productos=json_decode($value["productos"],true);
+               echo '<td>';
+                foreach($productos as $key=>$valueProductos){
+ 
+                 echo ($valueProductos["codigo"].'<br>');
+                }
+                echo '</td>';
                   echo '<td class="text-uppercase">' . $EmpleadoPrestamo["num_documento"] . '</td>';
 
                   echo ' </tr>';
