@@ -48,7 +48,7 @@ class TablaProductos
 
 			//	$imagen = "<img src='".$productos[$i]["imagen"]."' width='40px'>";
 
-				/*=============================================
+			/*=============================================
  	 		SVG codigo barras
   			=============================================*/
 
@@ -62,13 +62,13 @@ class TablaProductos
 
 			$modelos = ControladorModelos::ctrMostrarModelo($item, $valor);
 
-			$idcategoria=$modelos["idcategoria"];
+			$idcategoria = $modelos["idcategoria"];
 
-			$categoria = ControladorCategorias::ctrMostrarCategorias($item,$idcategoria);
+			$categoria = ControladorCategorias::ctrMostrarCategorias($item, $idcategoria);
 
 
 
-			$marca=ControladorMarcas::ctrMostrarMarca($item,$idcategoria);
+			$marca = ControladorMarcas::ctrMostrarMarca($item, $idcategoria);
 			/*=============================================
  	 		ESTADO DEL PRODUCTO
   			=============================================*/
@@ -95,18 +95,18 @@ class TablaProductos
 			/*=============================================
  	 		TRAEMOS LAS ACCIONES
 			  =============================================*/
-			  
-			  if(isset($_GET["perfilOculto"]) && $_GET["perfilOculto"] == "Especial"){
+
+			if (isset($_GET["perfilOculto"]) && $_GET["perfilOculto"] == "Especial") {
 				$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='" . $productos[$i]["id"] . "' idModelo='" . $productos[$i]["idmodelo"] . "'idEstado='" . $productos[$i]["idestado"] . "' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pencil'></i></button></div>";
-
-
-			}else{
-			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='" . $productos[$i]["id"] . "' idModelo='" . $productos[$i]["idmodelo"] . "'idEstado='" . $productos[$i]["idestado"] . "' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarProducto' idProducto='" . $productos[$i]["id"] . "'><i class='fa fa-times'></i></button></div>";
-		}
+			} else {
+				$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='" . $productos[$i]["id"] . "' idModelo='" . $productos[$i]["idmodelo"] . "'idEstado='" . $productos[$i]["idestado"] . "' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarProducto' idProducto='" . $productos[$i]["id"] . "'><i class='fa fa-times'></i></button></div>";
+			}
 
 			$datosJson .= '[
 			      "' . ($i + 1) . '",
-                  "' . $categoria["descripcion"]."|".$marca["descripcion"]."|".$modelos["descripcion"]. '",
+           		 "' . $categoria["descripcion"] .'",
+				"' . $marca["descripcion"] .'",
+				"' . $modelos["descripcion"] .'",
 				  "' . $productos[$i]["cod_producto"] . '",
 				  "' . $productos[$i]["num_serie"] . '",
                   "' . $estadoProducto["descripcion"] . '",

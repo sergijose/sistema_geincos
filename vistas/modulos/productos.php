@@ -67,6 +67,8 @@ if ($_SESSION["perfil"] == "Visitante") {
             <tr>
 
               <th style="width:10px">#</th>
+              <th>Categoria</th>
+              <th>Marca</th>
               <th>Modelo</th>
               <th>Código</th>
               <th>Numero de Serie</th>
