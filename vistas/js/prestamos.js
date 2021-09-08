@@ -545,7 +545,7 @@ $(".daterangepicker.opensleft .ranges li").on("click", function(){
 
 
 //BOTON EDITAR PRESTAMO
-$(".btnEditarPrestamo").click(function(){
+$(".tablas").on("click", ".btnEditarPrestamo", function(){
 var idPrestamo=$(this).attr("idPrestamo");
 window.location="index.php?ruta=editar-prestamo&idPrestamo="+idPrestamo;
 
