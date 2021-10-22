@@ -68,7 +68,7 @@ class ModeloEmpleado{
 
 	static public function mdlEditarEmpleado($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET ape_pat = :ape_pat, ape_mat = :ape_mat, nombres = :nombres, num_documento = :num_documento,estado=:estado,actualizado_por=:actualizado_por,fecha_actualizacion=:fecha_actualizacion  WHERE idempleado = :idempleado");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET ape_pat = :ape_pat, ape_mat = :ape_mat, nombres = :nombres, num_documento = :num_documento,estado=:estado,actualizado_por=:actualizado_por,fecha_actualizado=:fecha_actualizacion  WHERE idempleado = :idempleado");
 		$stmt->bindParam(":ape_pat", $datos["ape_pat"], PDO::PARAM_STR);
 		$stmt->bindParam(":ape_mat", $datos["ape_mat"], PDO::PARAM_STR);
 		$stmt->bindParam(":nombres", $datos["nombres"], PDO::PARAM_STR);

@@ -97,7 +97,7 @@ class ControladorEmpleados{
 
 	static public function ctrEditarEmpleado(){
 
-		if(isset($_POST["editarApePat"])){
+		if(isset($_POST["editarNombres"])){
 
             if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarApePat"]) &&
             preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarApeMat"]) &&
@@ -105,7 +105,7 @@ class ControladorEmpleados{
 			   preg_match('/^[0-9]+$/', $_POST["editarNumDocumento"]) &&
                preg_match('/^[0-9]+$/', $_POST["editarEstado"])  ){
 
-			  		 	$tabla = "empleado";
+			  	$tabla ="empleado";
 				   date_default_timezone_set('America/Bogota');
 
 				   $fecha = date('Y-m-d');
@@ -123,8 +123,9 @@ class ControladorEmpleados{
                                
 
 			   	$respuesta = ModeloEmpleado::mdlEditarEmpleado($tabla, $datos);
-
-			   	if($respuesta == "ok"){
+				   var_dump($datos);
+				   var_dump($respuesta);
+			   	if($respuesta =="ok"){
 
 					echo'<script>
 
