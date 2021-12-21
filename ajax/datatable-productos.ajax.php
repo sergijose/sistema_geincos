@@ -94,6 +94,10 @@ class TablaProductos
 
 				$estado = "<button class='btn   btn-xs btn-warning'>NO APLICA</button>";
 			}
+			else if($productos[$i]["estado_prestamo"] == "EN OFICINA"){
+
+				$estado = "<button class='btn   btn-xs btn-warning'>EN OFICINA</button>";
+			}
 			else {
 
 				$estado = "<button class='btn   btn-xs btn-danger'>OCUPADO</button>";

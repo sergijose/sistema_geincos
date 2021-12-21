@@ -238,6 +238,7 @@ MODAL AGREGAR PRODUCTO
                   <option value="DISPONIBLE">DISPONIBLE</option>
                   <option value="OCUPADO">OCUPADO</option>
                   <option value="NO APLICA">NO APLICA</option>
+                  <option value="EN OFICINA">EN OFICINA</option>
                 </select>
 
               </div>
@@ -450,6 +451,7 @@ MODAL EDITAR PRODUCTO
                   <option value="DISPONIBLE">DISPONIBLE</option>
                   <option value="OCUPADO">OCUPADO</option>
                   <option value="NO APLICA">NO APLICA</option>
+                  <option value="EN OFICINA">EN OFICINA</option>
                 </select>
 
               </div>
