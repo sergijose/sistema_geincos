@@ -126,7 +126,7 @@ $(".tablaProductosUbicacion tbody").on("click", "button.btnEditarProductoUbicaci
 				},
 			});
 			
-		
+			$("#editarReferencia").val(respuesta["referencia"]);
 			$("#editarUbicacion").val(respuesta["id_ubicacion"]);
 			$("#editarPosicion").val(respuesta["posicion"]);
 			//para editar producto -capturando el id

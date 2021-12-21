@@ -237,6 +237,7 @@ MODAL AGREGAR PRODUCTO
                   <option value="">Seleccionar estado del prestamo</option>
                   <option value="DISPONIBLE">DISPONIBLE</option>
                   <option value="OCUPADO">OCUPADO</option>
+                  <option value="NO APLICA">NO APLICA</option>
                 </select>
 
               </div>
@@ -448,6 +449,7 @@ MODAL EDITAR PRODUCTO
                   <option value="">Seleccionar estado del prestamo</option>
                   <option value="DISPONIBLE">DISPONIBLE</option>
                   <option value="OCUPADO">OCUPADO</option>
+                  <option value="NO APLICA">NO APLICA</option>
                 </select>
 
               </div>

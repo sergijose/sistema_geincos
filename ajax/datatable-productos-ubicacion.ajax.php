@@ -84,6 +84,7 @@ class TablaProductosUbicacion
                   "' . $productos["cod_producto"] .'",
 				  "' . $ubicacion["descripcion"] . '",
 				  "' . $productosUbicacion[$i]["posicion"] . '",
+                  "' . $productosUbicacion[$i]["referencia"] . '",
 			      "' . $botones . '"
 			    ],';
         }

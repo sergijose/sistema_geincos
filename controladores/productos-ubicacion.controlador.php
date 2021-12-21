@@ -20,6 +20,7 @@ class ControladorProductoUbicacion{
 					"id_producto" => $_POST["nuevoProductoUbicacion"],
 					"id_ubicacion" => $_POST["nuevaUbicacion"],
 					"posicion" => $_POST["nuevaPosicion"],
+					"referencia" => $_POST["nuevaReferencia"],
 					"creado_por" => $_POST["creado_por"]
 
 				);
@@ -120,6 +121,7 @@ class ControladorProductoUbicacion{
 
 				$datos = array("id_ubicacion"=>$_POST["editarUbicacion"],
 								"posicion"=>$_POST["editarPosicion"],
+								"referencia"=>$_POST["editarReferencia"],
 								"actualizado_por"=>$_POST["actualizado_por"],
 								"fecha_actualizacion"=>$fechaActual,
 								  "id"=>$_POST["id"]);

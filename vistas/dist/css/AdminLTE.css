@@ -3399,11 +3399,12 @@ table.text-center th {
 
 .login-page #back{
   position: absolute;
+  opacity: 1;
   top:0;
   left:0;
   width:100%;
   height:100vh;
-  background: url(../../img/plantilla/fondo2.jpg);
+  background: url(../../img/plantilla/logo-geincos.jfif);
   background-size:cover;
   overflow:hidden;
   z-index:-1;

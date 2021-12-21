@@ -87,6 +87,7 @@ class ControladorModelos{
 				$datos = array("idcategoria" => $_POST["nuevaCategoria"],
 					           "idmarca" => $_POST["nuevaMarca"],
 					           "descripcion" =>$_POST["nuevoModelo"],
+							   "informacion" =>$_POST["nuevaInformacion"],
 					           "imagen" => $ruta
 					          );
 				
@@ -248,6 +249,7 @@ class ControladorModelos{
 				$datos = array("idcategoria"=>$_POST["editarCategoria"],
 							   "idmarca"=>$_POST["editarMarca"],
 							   "descripcion"=>$_POST["editarModelo"],
+							   "informacion"=>$_POST["editarInformacion"],
 							   "imagen"=>$ruta,
 							   "id"=>$_POST["id"]);
 

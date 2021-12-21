@@ -92,7 +92,13 @@ class TablaProductosPrestamos{
 
                 $estadoPrestamoProducto = "<button class='btn btn-danger  btn-xs'>".$productos[$i]["estado_prestamo"]."</button>";
 
-  			}else{
+  			}
+			  else if($productos[$i]["estado_prestamo"] =="NO APLICA"){
+
+                $estadoPrestamoProducto = "<button class='btn btn-warning  btn-xs'>".$productos[$i]["estado_prestamo"]."</button>";
+
+  			} 
+			  else{
 
                 $estadoPrestamoProducto = "<button class='btn btn-success  btn-xs'>".$productos[$i]["estado_prestamo"]."</button>";
 

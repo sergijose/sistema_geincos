@@ -1,14 +1,13 @@
 <?php
-if($_SESSION["perfil"] == "Visitante" ||$_SESSION["perfil"] == "Especial"){
+if ($_SESSION["perfil"] == "Visitante" || $_SESSION["perfil"] == "Especial") {
 
-echo '<script>
+  echo '<script>
 
   window.location = "inicio";
 
 </script>';
 
-return;
-
+  return;
 }
 
 ?>
@@ -59,6 +58,7 @@ return;
               <th>Categoria</th>
               <th>Marca</th>
               <th>Modelo</th>
+              <th>Detalles</th>
               <th>Imagen</th>
               <th>Acciones</th>
 
@@ -83,7 +83,8 @@ return;
 
                     <td class="text-uppercase">' . $value["categoria"] . '</td>
                     <td class="text-uppercase">' . $value["marca"] . '</td>
-                    <td class="text-uppercase">' . $value["descripcion"] . '</td>';
+                    <td class="text-uppercase">' . $value["descripcion"] . '</td>
+                    <td class="text-uppercase">' . $value["informacion"] . '</td>';
 
               if ($value["imagen"] != "") {
 
@@ -126,32 +127,32 @@ return;
 <!--=====================================
 MODAL MOSTRAR MOSTRARIMAGEN MARCAS
 ======================================-->
-<div id="modalMostrar" class="modal fade" role="dialog" >
-<div class="modal-header" style="background:#129F9B; color:white">
+<div id="modalMostrar" class="modal fade" role="dialog">
+  <div class="modal-header" style="background:#129F9B; color:white">
 
-<button type="button" class="close" data-dismiss="modal">&times;</button>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
 
 
 
-</div>
+  </div>
 
   <div class="modal-dialog modal-sm">
 
     <div class="modal-content">
 
-      <h4 align="center" class="modal-title" ><b>IMAGEN</b></h4>
+      <h4 align="center" class="modal-title"><b>IMAGEN</b></h4>
 
       <!--=====================================
         CUERPO DEL MODAL
         ======================================-->
 
-      <div class="modal-body"width="80px" >
+      <div class="modal-body" width="80px">
 
         <div class="box-body modal-xs" align="center">
 
           <!-- ENTRADA PARA EL NOMBRE -->
-          <img src="vistas/img/modelos/default/anonymous.png" class="img-thumbnail previsualizarimagen" width="800px" >
-        
+          <img src="vistas/img/modelos/default/anonymous.png" class="img-thumbnail previsualizarimagen" width="800px">
+
 
         </div>
 
@@ -274,6 +275,20 @@ MODAL AGREGAR MODELO
               </div>
 
             </div>
+            <!-- ENTRADA PARA LA NOTA O OBSERVACION DEL MODELO -->
+
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+
+                <input type="text" class="form-control input-lg" name="nuevaInformacion" placeholder="Ingresar Nota o Modelo">
+
+              </div>
+
+            </div>
             <!-- ENTRADA PARA FOTO DEL MODELO -->
             <div class="form-group">
 
@@ -300,7 +315,7 @@ MODAL AGREGAR MODELO
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Guardar marca</button>
+          <button type="submit" class="btn btn-primary">Guardar modelo</button>
 
         </div>
 
@@ -434,6 +449,22 @@ MODAL EDITAR MODELO
               </div>
 
             </div>
+            <!-- ENTRADA PARA EDITAR LA INFORMACIONDEL MODELO -->
+
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+
+                <input type="text" class="form-control input-lg" name="editarInformacion" id="editarInformacion" placeholder="Ingresar Informacion/detalle">
+
+              </div>
+
+            </div>
+
+
             <!-- ENTRADA PARA EDITAR FOTO DEL MODELO -->
             <div class="form-group">
 
@@ -478,7 +509,7 @@ MODAL EDITAR MODELO
 </div>
 <?php
 
-  $eliminarModelo = new ControladorModelos();
-  $eliminarModelo -> ctrEliminarModelo();
+$eliminarModelo = new ControladorModelos();
+$eliminarModelo->ctrEliminarModelo();
 
-?>      
+?>

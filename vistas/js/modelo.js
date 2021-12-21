@@ -71,6 +71,7 @@ $(".tablas").on("click", ".btnEditarModelo", function(){
 			$("#editarCategoria").val(respuesta["idcategoria"]);
 			$("#editarMarca").val(respuesta["idmarca"]);
 			$("#editarModelo").val(respuesta["descripcion"]);
+			$("#editarInformacion").val(respuesta["informacion"]);
 			//$("#imagenActual").val(respuesta["imagen"]);
 			$("#id").val(respuesta["id"]);
 			if(respuesta["imagen"] != ""){

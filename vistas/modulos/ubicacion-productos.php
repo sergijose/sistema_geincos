@@ -58,6 +58,7 @@ if ($_SESSION["perfil"] == "Visitante") {
                                     <th>Producto</th>
                                     <th>Oficina</th>
                                     <th>Posicion</th>
+                                    <th>Referencia</th>
                                     <th>Acciones</th>
 
                                 </tr>
@@ -262,6 +263,7 @@ MODAL AGREGAR PRODUCTO UBICACION
 
                         </div>
 
+
                         <div class="form-group">
 
                             <div class="input-group">
@@ -270,6 +272,18 @@ MODAL AGREGAR PRODUCTO UBICACION
 
                                 <input type="number" class="form-control input-md" name="nuevaPosicion" placeholder="Ingresar Posicion" required>
                                 <input type="hidden" class="form-control input-lg" name="creado_por" value="<?php echo $_SESSION["id"]; ?>" required>
+                            </div>
+
+                        </div>
+                        <!--CAMPO REFERENCIA-->
+                        <div class="form-group">
+
+                            <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-product-hunt" aria-hidden="true"></i></span>
+
+                                <input type="text" class="form-control input-md" name="nuevaReferencia" id="nuevaReferencia" placeholder="Ingresar Referencia">
+
                             </div>
 
                         </div>
@@ -286,7 +300,7 @@ MODAL AGREGAR PRODUCTO UBICACION
 
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-                    <button type="submit" class="btn btn-primary">Guardar categoría</button>
+                    <button type="submit" class="btn btn-primary">Guardar ubicacion</button>
 
                 </div>
 
@@ -405,33 +419,45 @@ MODAL EDITAR PRODUCTO UBICACION
 
                         </div>
 
+                        <!--CAMPO REFERENCIA-->
+                        <div class="form-group">
+
+                            <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-product-hunt" aria-hidden="true"></i></span>
+
+                                <input type="text" class="form-control input-md" id="editarReferencia" name="editarReferencia" placeholder="Ingresar Referencia">
+
+                            </div>
+
+                        </div>
+
                     </div>
-
-                </div>
-
-                <!--=====================================
+                                    
+                    <!--=====================================
         PIE DEL MODAL
         ======================================-->
 
-                <div class="modal-footer">
+                    <div class="modal-footer">
 
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-                    <button type="submit" class="btn btn-primary">Actualizar Ubicacion de Producto</button>
+                        <button type="submit" class="btn btn-primary">Actualizar Ubicacion de Producto</button>
 
-                </div>
+                    </div>
 
-                <?php
+                    <?php
 
-                $editarProductosUbicacion = new ControladorProductoUbicacion();
-                $editarProductosUbicacion->ctrEditarProductoUbicacion();
+                    $editarProductosUbicacion = new ControladorProductoUbicacion();
+                    $editarProductosUbicacion->ctrEditarProductoUbicacion();
 
-                ?>
+                    ?>
 
             </form>
 
         </div>
 
+    </div>
     </div>
 
 </div>

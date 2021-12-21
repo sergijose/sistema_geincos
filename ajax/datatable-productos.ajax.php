@@ -88,7 +88,13 @@ class TablaProductos
 			if ($productos[$i]["estado_prestamo"] == "DISPONIBLE") {
 
 				$estado = "<button class='btn  btn-xs btn-success'>DISPONIBLE</button>";
-			} else {
+			} 
+			
+			else if($productos[$i]["estado_prestamo"] == "NO APLICA"){
+
+				$estado = "<button class='btn   btn-xs btn-warning'>NO APLICA</button>";
+			}
+			else {
 
 				$estado = "<button class='btn   btn-xs btn-danger'>OCUPADO</button>";
 			}
