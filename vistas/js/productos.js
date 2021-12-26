@@ -165,7 +165,7 @@ $(".tablaProductos tbody").on("click", "button.btnEditarProducto", function () {
 				processData: false,
 				dataType: "json",
 				success: function (respuesta) {
-					;
+					
 					$("#editarEstado").val(respuesta["id"]);
 					// $("#editarEstado").html(respuesta["descripcion"]);
 				},

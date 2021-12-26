@@ -116,6 +116,16 @@
 				</a>
 
 			</li>
+			<li>
+
+				<a href="productos-lotes">
+
+					<i class="fa fa-product-hunt"></i>
+					<span>Productos Generales</span>
+
+				</a>
+
+			</li>
 			
 			<li>
 
@@ -159,7 +169,8 @@
 
 						</a>
 
-					</li>';
+					</li>
+					';
 
 					if ($_SESSION["perfil"] == "Administrador"  || $_SESSION["perfil"] == "Especial") {	
 					echo '<li>
@@ -188,7 +199,41 @@
 
 				echo '</ul>
 
-			</li>';
+			</li>
+			
+			<li class="treeview">
+						<a href="#">
+							<i class="fa fa-usd"></i>							
+							<span>Pedidos</span>							
+							<span class="pull-right-container">
+								<i class="fa fa-angle-left pull-right"></i>
+							</span>
+						</a>
+						<ul class="treeview-menu">						
+                            <li>
+								<a href="listar-pedido">									
+									<i class="fa fa-plus"></i>
+									<span>Listar Pedido</span>
+								</a>
+							</li>
+							<li>
+								<a href="historial-pedido">									
+									<i class="fa fa-file-o"></i>
+									<span>Historial pedido</span>
+								</a>
+							</li>
+						</ul>
+					</li>';
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			}
 			?>
 
