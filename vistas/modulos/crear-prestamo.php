@@ -180,7 +180,7 @@ if ($_SESSION["perfil"] == "Visitante") {
                 ======================================-->
 
               <div class="form-group">
-              <p><b>Escriba algun comentario para este prestamo<b/></p>
+              <p><strong>Escriba algun comentario para este prestamo </strong></p>
                 <div class="input-group">
                
 

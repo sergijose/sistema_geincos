@@ -9,6 +9,7 @@ require_once "controladores/productos.controlador.php";
 require_once "controladores/productos-cpu.controlador.php";
 require_once "controladores/productos-lotes.controlador.php";
 require_once "controladores/prestamos.controlador.php";
+require_once "controladores/pedidos.controlador.php";
 require_once "controladores/empleados.controlador.php";
 require_once "controladores/productos-ubicacion.controlador.php";
 
@@ -20,6 +21,7 @@ require_once "modelos/productos.modelo.php";
 require_once "modelos/productos-cpu.modelo.php";
 require_once "modelos/productos-lotes.modelo.php";
 require_once "modelos/prestamos.modelo.php";
+require_once "modelos/pedidos.modelo.php";
 require_once "modelos/empleados.modelo.php";
 require_once "modelos/productos-ubicacion.modelo.php";
 $plantilla = new ControladorPlantilla();

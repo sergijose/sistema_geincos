@@ -161,7 +161,9 @@ CUERPO DOCUMENTO
         $_GET["ruta"] == "modelo" ||
         $_GET["ruta"] == "crear-prestamo" ||
         $_GET["ruta"] == "editar-prestamo" ||
+        $_GET["ruta"] == "crear-pedido" ||
         $_GET["ruta"] == "prestamos" ||
+        $_GET["ruta"] == "pedidos" ||
         $_GET["ruta"] == "reportes" ||
         $_GET["ruta"] == "ubicacion-productos" ||
         $_GET["ruta"] == "salir"
@@ -202,6 +204,8 @@ CUERPO DOCUMENTO
   <script src="vistas/js/productos-lotes.js"></script>
   <script src="vistas/js/productos-ubicacion.js"></script>
   <script src="vistas/js/prestamos.js"></script>
+  <script src="vistas/js/pedidos.js"></script>
+  <script src="vistas/js/pedidos2.js"></script>
   <script src="vistas/js/empleados.js"></script>
 
 

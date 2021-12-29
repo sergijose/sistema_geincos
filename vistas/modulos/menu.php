@@ -211,15 +211,15 @@
 						</a>
 						<ul class="treeview-menu">						
                             <li>
-								<a href="listar-pedido">									
+								<a href="crear-pedido">									
 									<i class="fa fa-plus"></i>
 									<span>Listar Pedido</span>
 								</a>
 							</li>
 							<li>
-								<a href="historial-pedido">									
+								<a href="pedidos">									
 									<i class="fa fa-file-o"></i>
-									<span>Historial pedido</span>
+									<span>Historial pedidos</span>
 								</a>
 							</li>
 						</ul>
