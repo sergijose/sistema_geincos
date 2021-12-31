@@ -551,19 +551,10 @@ $(".tablas").on("click", ".btnEliminarPedido", function () {
 IMPRIMIR FACTURA
 =============================================*/
 $(".tablas").on("click", ".btnImprimirPedido", function () {
-  var codigoPedido = $(this).attr("codigoPedido");
+  var codigoPedido = $(this).attr("codigopedido");
   window.open("extensiones/tcpdf/pdf/ticket.php?codigo=" + codigoPedido, "_blank");
 })
-/*=============================================
 
 
-/*=============================================
-ABRIR ARCHIVO XML EN NUEVA PESTAÑA
-=============================================*/
-$(".abrirXML").click(function () {
-
-  var archivo = $(this).attr("archivo");
-  window.open(archivo, "_blank");
-})
 
 

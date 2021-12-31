@@ -159,7 +159,7 @@ if ($_SESSION["perfil"] == "Visitante") {
 
                 </div>
 
-                <input type="hidden" id="listaProductosPrestamos" name="listaProductosPrestamos">
+                <input type="hidden" id="listaProductosPrestamos" name="listaProductos">
 
 
 
