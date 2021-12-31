@@ -213,13 +213,13 @@
                             <li>
 								<a href="crear-pedido">									
 									<i class="fa fa-plus"></i>
-									<span>Listar Pedido</span>
+									<span>Crear Pedido</span>
 								</a>
 							</li>
 							<li>
 								<a href="pedidos">									
 									<i class="fa fa-file-o"></i>
-									<span>Historial pedidos</span>
+									<span>Listar pedidos</span>
 								</a>
 							</li>
 						</ul>

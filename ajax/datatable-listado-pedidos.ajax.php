@@ -31,7 +31,8 @@ class TablaListadoPedidos
     // Definir el valor que se va a comparar en la consulta en la base de datos PARA COMPRAS ES ID VENDEDOR
     $valor = null;
     // Se pide la respuesta para todas las ventas filtradas por id_vendedor
-    $respuesta = ControladorPedidos::ctrMostrarPedido($item, $valor);
+    $order="DESC";
+    $respuesta = ControladorPedidos::ctrMostrarPedido($item, $valor,$order);
 
     if (!$respuesta) {
       // Si no hay respuesta se manda la estructura json vacía
@@ -59,6 +60,16 @@ class TablaListadoPedidos
       $valorUsuario = $value["id_usuario"];
       $respuestaUsuario = ControladorUsuarios::ctrMostrarUsuarios($itemUsuario, $valorUsuario);
       $usuario = $respuestaUsuario["nombre"];
+
+
+/*==================================
+      TRAER AREA
+      ==================================*/
+      $itemArea = "id";
+      $valorArea = $value["id_area"];
+      $respuestaArea= ControladorPedidos::ctrMostrarArea($itemArea, $valorArea);
+      $area = $respuestaArea["descripcion"];
+
       /*==============================
       DETALLES DE LOS PRODUCTOS
       ==============================*/
@@ -101,11 +112,11 @@ class TablaListadoPedidos
      /* $botones = "<div class='btn-group'><button class='btn btn-success btnImprimirFactura' codigoVenta='" . $value["codigo"] . "'><i class='fa fa-print'></i></button>
       <button class='btn btn-danger btnEliminarVenta' idVenta='" . $value["id"] . "'><i class='fa fa-times'></i></button></div>";
       */
-      if (isset($_GET["perfilOculto"]) && $_GET["perfilOculto"] == "Vendedor") {
-        $botones = "<div class='btn-group'><button class='btn btn-success btnImprimirPedido' codigoPedido='" . $value["id"] . "'><i class='fa fa-print'></i></button><button class='btn btn-danger btnEliminarPedido' idPedido='" . $value["id"] . "'><i class='fa fa-times'></i></button></div>";
+      if (isset($_GET["perfilOculto"]) && $_GET["perfilOculto"] == "Administrador") {
+        $botones = "<div class='btn-group'><button class='btn btn-success btnImprimirPedido' codigoPedido='" . $value["id"] . "'><i class='fa fa-print'></i></button><button class='btn btn-warning btnEditarPedido' idPedido='".$value["id"]."' data-toggle='modal' data-target='#modalEditarPedido'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarPedido' idPedido='" . $value["id"] . "'><i class='fa fa-times'></i></button></div>";
     } else {
       
-      $botones = "<div class='btn-group'><button class='btn btn-success btnImprimirPedido' codigoPedido='" . $value["id"] . "'><i class='fa fa-print'></i></button><button class='btn btn-warning btnEditarPedido' idPedido='".$value["id"]."' data-toggle='modal' data-target='#modalEditarPedido'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarPedido' idPedido='" . $value["id"] . "'><i class='fa fa-times'></i></button></div>";
+      $botones = "<div class='btn-group'><button class='btn btn-success btnImprimirPedido' codigoPedido='" . $value["id"] . "'><i class='fa fa-print'></i></button><button class='btn btn-warning btnEditarPedido' idPedido='".$value["id"]."' data-toggle='modal' data-target='#modalEditarPedido'><i class='fa fa-pencil'></i></button></div>";
     }
       /*$botones = "<div class='btn-group'><button class='btn btn-success btnImprimirFactura' codigoVenta='" . $value["codigo"] . "'><i class='fa fa-print'></i></button><button class='btn btn-warning btnEditarVenta' idVenta='".$value["id"]."' data-toggle='modal' data-target='#modalEditarVenta'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarVenta' idventa='" . $value["id"] . "'><i class='fa fa-times'></i></button>";*/
       /*===================================
@@ -117,7 +128,7 @@ class TablaListadoPedidos
         "' . $usuario . '",
         "' . $cantidad . '",
         "' . $listadoProductos . '",
-        "' . $value["area_solicitante"] . '",
+        "' . $area. '",
         "' . $value["descripcion"] . '",
         "' . $value["fecha_registro"] . '",
         "' . $botones . '"
@@ -142,7 +153,7 @@ class TablaListadoPedidos
 
 
 /*=============================================
-ACTIVAR TABLA DE PRODUCTOS
+ACTIVAR TABLA DE PEDIDOS
 =============================================*/
 $tablaListadoPedidos = new TablaListadoPedidos();
 $tablaListadoPedidos->mostrarTablaListadoPedidos();

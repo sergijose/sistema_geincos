@@ -27,23 +27,23 @@ class ModeloPedidos
 /*======================================= 
 MOSTRAR VENTAS CON FILTRO DE VENDEDOR 
 =============================================*/
-  static public function mdlMostrarPedido($tabla, $item, $valor)
+  static public function mdlMostrarPedido($tabla, $item, $valor,$order)
   {
 
     if ($item != null) {
 
       // Aquí se compara con el valor que viene dinamico que vendria siendo id_vendedor
-      $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY id ASC");
+      $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY id ");
       // Aquí se pasa el parametro con los valores...
       $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
       // Esto no sirve acá
       // $stmt->bindParam(":idUsuario", $idUsuario, PDO::PARAM_INT);
       $stmt->execute();
 
-      return $stmt->fetchAll();
+      return $stmt->fetch();
     } else {
 
-      $stmt = Conexion::conectar()->prepare("SELECT *,DATE_FORMAT(fecha_registro, '%d/%m/%Y') AS fecha_registro FROM $tabla");
+      $stmt = Conexion::conectar()->prepare("SELECT *,DATE_FORMAT(fecha_registro, '%d/%m/%Y') AS fecha_registro FROM $tabla ORDER BY id $order");
       $stmt->execute();
       return $stmt->fetchAll();
     }
@@ -54,18 +54,50 @@ MOSTRAR VENTAS CON FILTRO DE VENDEDOR
 
 
   /*=============================================
+	MOSTRAR AREA
+	=============================================*/
+
+	static public function mdlMostrarArea($tabla, $item, $valor){
+
+		if($item != null){
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+
+			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+			$stmt -> execute();
+
+			return $stmt -> fetch();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+
+		$stmt = null;
+
+	}
+
+
+
+  /*=============================================
 	REGISTRO DE PEDIDO
 	=============================================*/
   static public function mdlIngresarPedido($tabla, $datos)
   {
 
-    $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(codigo,id_usuario,id_empleado,productos,area_solicitante,descripcion) VALUES (:codigo,:id_usuario, :id_empleado,:productos,:area_solicitante, :descripcion)");
+    $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(codigo,id_usuario,id_empleado,productos,id_area,descripcion) VALUES (:codigo,:id_usuario, :id_empleado,:productos,:id_area, :descripcion)");
 
     $stmt->bindParam(":codigo", $datos["codigo"], PDO::PARAM_INT);
     $stmt->bindParam(":id_usuario", $datos["id_usuario"], PDO::PARAM_INT);
     $stmt->bindParam(":id_empleado", $datos["id_empleado"], PDO::PARAM_INT);
     $stmt->bindParam(":productos", $datos["productos"], PDO::PARAM_STR);
-    $stmt->bindParam(":area_solicitante", $datos["area_solicitante"], PDO::PARAM_STR);
+    $stmt->bindParam(":id_area", $datos["id_area"], PDO::PARAM_INT);
     $stmt->bindParam(":descripcion", $datos["descripcion"], PDO::PARAM_STR);
     if ($stmt->execute()) {
 
@@ -80,17 +112,19 @@ MOSTRAR VENTAS CON FILTRO DE VENDEDOR
   }
 
   /*=============================================
-  EDITAR VENTA
-  =============================================
+  EDITAR PEDIDO
+  =============================================*/
   static public function mdlEditarPedido($tabla, $datos)
   {
 
-    $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET  id_usuario = :id_usuario, id_empleado = :id_empleado,destino=:destino,productos = :productos,descripcion = :descripcion WHERE id = :id");
+    $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET codigo=:codigo,  id_usuario = :id_usuario, id_empleado = :id_empleado,id_area=:id_area,productos = :productos,descripcion = :descripcion,fecha_actualizacion=:fecha_actualizacion WHERE id = :id");
+    $stmt->bindParam(":codigo", $datos["codigo"], PDO::PARAM_INT);
     $stmt->bindParam(":id_usuario", $datos["id_usuario"], PDO::PARAM_INT);
     $stmt->bindParam(":id_empleado", $datos["id_empleado"], PDO::PARAM_INT);
-    $stmt->bindParam(":destino", $datos["destino"], PDO::PARAM_STR);
+    $stmt->bindParam(":id_area", $datos["id_area"], PDO::PARAM_INT);
     $stmt->bindParam(":productos", $datos["productos"], PDO::PARAM_STR);   
     $stmt->bindParam(":descripcion", $datos["descripcion"], PDO::PARAM_STR);
+    $stmt->bindParam(":fecha_actualizacion", $datos["fecha_actualizacion"], PDO::PARAM_STR);
     $stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
 
     if ($stmt->execute()) {
@@ -102,7 +136,7 @@ MOSTRAR VENTAS CON FILTRO DE VENDEDOR
     // $stmt->close();
     $stmt = null;
   }
-  */
+
   /*=============================================
   ELIMINAR VENTA
   =============================================*/
@@ -125,45 +159,10 @@ MOSTRAR VENTAS CON FILTRO DE VENDEDOR
   /*================================ 
   RANGO FECHAS 
   =============================================*/
-  static public function mdlRangoFechasVentas($tabla, $fechaInicial, $fechaFinal)
-  {
-
-    if ($fechaInicial == null) {
-      $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY id ASC");
-      $stmt->execute();
-      return $stmt->fetchAll();
-    } else if ($fechaInicial == $fechaFinal) {
-
-      $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha like '%$fechaFinal%'");
-      $stmt->bindParam(":fecha", $fechaFinal, PDO::PARAM_STR);
-      $stmt->execute();
-      return $stmt->fetchAll();
-    } else {
-
-      $fechaActual = new DateTime();
-      $fechaActual->add(new DateInterval("P1D"));
-      $fechaActualMasUno = $fechaActual->format("Y-m-d");
-
-      $fechaFinal2 = new DateTime($fechaFinal);
-      $fechaFinal2->add(new DateInterval("P1D"));
-      $fechaFinalMasUno = $fechaFinal2->format("Y-m-d");
-
-      if ($fechaFinalMasUno == $fechaActualMasUno) {
-
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha BETWEEN '$fechaInicial' AND '$fechaFinalMasUno'");
-      } else {
-
-
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha BETWEEN '$fechaInicial' AND '$fechaFinal'");
-      }
-
-      // $stmt -> execute();
-      return $stmt->fetchAll();
-    }
-  }
+  
   /*=============================================
   SUMAR EL TOTAL DE VENTAS
-  =============================================*/
+  =============================================
   static public function mdlSumaTotalVentas($tabla)
   {
 
@@ -174,20 +173,7 @@ MOSTRAR VENTAS CON FILTRO DE VENDEDOR
     // $stmt -> close();
     $stmt = null;
   }
+  */
 
-  static public function mdlSumaTotalVentasXdia($tabla, $fechaInicial, $fechaFinal)
-  {
-
-    $stmt = Conexion::conectar()->prepare("SELECT SUM(total) as total FROM $tabla WHERE fecha BETWEEN :fechaInicial AND :fechaFinal");
-    $stmt->bindParam(":fechaInicial", $fechaInicial, PDO::PARAM_STR);
-    $stmt->bindParam(":fechaFinal", $fechaFinal, PDO::PARAM_STR);
-
-    $stmt->execute();
-
-    return $stmt->fetch();
-    
-
-    // $stmt -> close();
-    $stmt = null;
-  }
+ 
 }

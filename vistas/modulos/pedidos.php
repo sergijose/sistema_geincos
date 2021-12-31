@@ -9,6 +9,8 @@
       <a href="crear-pedido">
         <button class="btn btn-primary">Agregar pedido</button>
       </a>
+    
+
       <!-- <button type="button" class="btn btn-default pull-right" id="daterange-btn">
             <span><i class="fa fa-calendar"></i> Rango de fecha</span><i class="fa fa-caret-down"></i>
          </button> -->
@@ -40,6 +42,6 @@
   </section>
 </div>
 <?php
-//$eliminarPedido = new ControladorPedidos();
-//$eliminarPedido->ctrEliminarPedidos();
+$eliminarPedido = new ControladorPedidos();
+$eliminarPedido->ctrEliminarPedido();
 ?>

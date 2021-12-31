@@ -1,5 +1,5 @@
 <?php
-if($_SESSION["perfil"] != "Administrador"){
+if($_SESSION["perfil"] == "Visitante"){
   echo '<script>
     window.location = "inicio";
   </script>';

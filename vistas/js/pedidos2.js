@@ -62,8 +62,8 @@ BORRAR VENTA
 =============================================*/
 $(".tablaListadoPedidos").on("click", ".btnEliminarPedido", function () {
 
-  var idPedido = $(this).attr("idPedido");
-console.log(idVenta);
+  var idPedido = $(this).attr("idpedido");
+console.log(idPedido);
   swal({
     title: '¿Está seguro de borrar el Pedido?',
     text: "¡Si no lo está puede cancelar la accíón!",

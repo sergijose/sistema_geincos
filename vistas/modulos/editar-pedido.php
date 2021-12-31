@@ -14,18 +14,43 @@
           <form role="form" method="post" class="formularioPedido">
             <div class="box-body">
               <div class="box">
+                <?php
+
+                $item = "id";
+                $valor = $_GET["idPedido"];
+                
+
+                $pedidos = ControladorPedidos::ctrMostrarPedido($item, $valor,null);
+
+                $itemUsuario = "id";
+                $valorUsuario = $pedidos["id_usuario"];
+                $usuario = ControladorUsuarios::ctrMostrarUsuarios($itemUsuario, $valorUsuario);
+                //var_dump($pedido["id_usuario"]);
+
+                $itemEmpleado = "idempleado";
+                $valorEmpleado = $pedidos["id_empleado"];
+                $empleado = ControladorEmpleados::ctrMostrarEmpleados($itemEmpleado, $valorEmpleado);
+
+                $itemArea = "id";
+                $valorArea = $pedidos["id_area"];
+                $area = ControladorPedidos::ctrMostrarArea($itemArea, $valorArea);
+
+                ?>
+
                 <!--==================================== 
                   ENTRADA DEL VENDEDOR 
           ======================================-->
                 <!-- primera fila-->
                 <div class="row">
+
                   <div class="col-xs-4">
                     <div class="form-group">
                       <label>Responsable de entrega:</label>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                        <input type="text" class="form-control" id="nuevoVendedor" value="<?php echo $_SESSION["nombre"]; ?>" readonly>
-                        <input type="hidden" name="idVendedor" value="<?php echo $_SESSION["id"]; ?>">
+                        <input type="text" class="form-control" id="nuevoVendedor" value="<?php echo $usuario["nombre"]; ?>" readonly>
+                        <input type="hidden" name="idVendedor" value="<?php echo $usuario["id"]; ?>">
+                        <input type="hidden" name="idPedido" value="<?php echo $valor; ?>">
                       </div>
                     </div>
                   </div>
@@ -39,25 +64,25 @@
                       <label>Area Solicitante:</label>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-cube"></i></span>
-                        <select class="form-control input-md mi-selector" id="nuevaArea" name="nuevaArea" required>
+                        <select class="form-control input-md mi-selector" id="editarArea" name="editarArea" required>
 
-                      <option value="">Seleccionar Area</option>
+                          <option value="<?php echo $area["id"]; ?>"><?php echo $area["descripcion"]; ?></option>
 
-                      <?php
+                          <?php
 
-                      $item = null;
-                      $valor = null;
+                          $item = null;
+                          $valor = null;
 
-                      $modelo = ControladorPedidos::ctrMostrarArea($item, $valor);
+                          $mostrarArea = ControladorPedidos::ctrMostrarArea($item, $valor);
 
-                      foreach ($modelo as $key => $value) {
+                          foreach ($mostrarArea as $key => $value) {
 
-                        echo '<option value="' . $value["id"] . '">' . $value["descripcion"] .'</option>';
-                      }
+                            echo '<option value="' . $value["id"] . '">' . $value["descripcion"] . '</option>';
+                          }
 
-                      ?>
+                          ?>
 
-                    </select>
+                        </select>
                       </div>
                     </div>
                   </div>
@@ -65,102 +90,133 @@
                   <!--=====================================
       CORRELATIVO DEL COMPROBANTE
 ======================================-->
+
                   <div class="col-xs-3">
                     <div class="form-group">
                       <label>Correlativo:</label>
                       <div class="input-group">
+
                         <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                        <?php
-                        $item = null;
-                        $valor = null;
-                        $order="asc";
-                        $pedido = ControladorPedidos::ctrMostrarPedido($item, $valor,$order);
 
-                        if (!$pedido) {
-                          echo '<input type="text" class="form-control" id="nuevoPedido" name="nuevoPedido"  value="10001" readonly>';
-                        } else {
 
-                          foreach ($pedido as $key => $value) {
-                          }
 
-                          $codigo =$value["codigo"] + 1;
-                       
+                        <input type="text" class="form-control" id="nuevoPedido" name="editarPedido" value="<?php echo $pedidos["codigo"]; ?>" readonly>
 
-                          echo '<input type="text" class="form-control" id="nuevoPedido" name="nuevoPedido" value="' . $codigo . '" readonly>';
-                        }
-                        ?>
                       </div>
+
                     </div>
-                  </div>
+                  </div>  
+                  
 
-                </div>
 
-                <!--fin de primera fila-->
 
-                <!--========================================================= 
+
+                  <!--fin de primera fila-->
+
+                  <!--========================================================= 
         ENTRADA DEL CLIENTE 
 ==========================================================-->
-                <div class="row">
-                  <div class="col-xs-12">
-                    <div class="form-group">
-                      <label>Entregado a:</label>
-                      <div class="input-group">
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <div class="form-group">
+                        <label>Entregado a:</label>
+                        <div class="input-group">
 
-                        <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                          <span class="input-group-addon"><i class="fa fa-users"></i></span>
 
-                        <select class="form-control input-md mi-selector" id="nuevoEmpleado" name="nuevoEmpleado" required>
+                          <select class="form-control input-md mi-selector" id="editarEmpleado" name="editarEmpleado" required>
+                            <option value="<?php echo $empleado["idempleado"]; ?>"><?php echo $empleado["nombres"] . " " . $empleado["ape_pat"] . " " . $empleado["ape_mat"]; ?></option>
 
-                          <option value="">Seleccionar Empleado</option>
+                            <?php
 
-                          <?php
+                            $item = null;
+                            $valor = null;
 
-                          $item = null;
-                          $valor = null;
+                            $modelo = ControladorEmpleados::ctrMostrarEmpleados($item, $valor);
 
-                          $modelo = ControladorEmpleados::ctrMostrarEmpleados($item, $valor);
+                            foreach ($modelo as $key => $value) {
 
-                          foreach ($modelo as $key => $value) {
+                              echo '<option value="' . $value["idempleado"] . '">' . $value["nombres"] . " " . $value["ape_pat"] . " " . $value["ape_mat"] . "-[D.N.I:" . $value["num_documento"] . ']</option>';
+                            }
 
-                            echo '<option value="' . $value["idempleado"] . '">' . $value["nombres"] . " " . $value["ape_pat"] . " " . $value["ape_mat"] . "-[D.N.I:" . $value["num_documento"] . ']</option>';
-                          }
+                            ?>
 
-                          ?>
+                          </select>
 
-                        </select>
-                        <span class="input-group-addon"><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modalAgregarEmpleado" data-dismiss="modal">Agregar Empleado</button></span>
+                          <span class="input-group-addon"><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modalAgregarEmpleado" data-dismiss="modal">Agregar Empleado</button></span>
+
+                        </div>
+
 
                       </div>
-
-
                     </div>
+
                   </div>
 
-                </div>
 
 
-
-                <!--======================================= 
+                  <!--======================================= 
       ENTRADA PARA AGREGAR PRODUCTO  
 =========================================-->
-                <div class="form-group row nuevoProducto">
+                  <div class="form-group row nuevoProducto">
+
+                    <?php
+                    $listaProducto = json_decode($pedidos["productos"], true);
+
+                    foreach ($listaProducto as $key => $value) {
+                      $item = "id";
+                      $valor = $value["id"];
+                      $orden = "id";
+                      $respuesta = ControladorProductosLotes::ctrMostrarProductosLotes($item, $valor, $orden);
+                      $stockAntiguo = $respuesta["stock"] + $value["cantidad"];
+
+                      echo '<div class="row" style="padding:5px 15px">
+  <!-- Descripción del producto -->
+  <div class="col-xs-6" style="padding-right:0px">
+  <div class="input-group">
+  <span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto="' . $value["id"] . '">
+  <i class="fa fa-times"></i></button></span>
+  <input type="text" class="form-control nuevaDescripcionProducto" idProducto="' . $value["id"] . '" name="agregarProducto" value="' . $value["descripcion"] .  '" readonly required>
+  </div>
+  </div>
+  <!-- Cantidad del producto -->
+  <div class="col-xs-3">
+  <input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="' . $value["cantidad"] . '" stock="' . $stockAntiguo . '" nuevoStock="' . $value["stock"] . '" required>
+  </div>
+  <!-- Precio del producto -->
+  <div class="col-xs-3 ingresoPrecio" style="padding-left:0px">
+  <div class="input-group">
+  <span class="input-group-addon"><i class="">stock</i></span>
+  <input type="text" class="form-control nuevoPrecioProducto" precioReal="' . $respuesta["precio_venta"] . '" name="nuevoPrecioProducto" value="' . $value["stock"] . '" readonly required>
+  </div>
+  </div>
+  </div>';
+                    }
+
+
+
+                    ?>
+
+                  </div>
+
                 </div>
                 <input type="hidden" id="listaProductosPedidos" name="listaProductos">
 
                 <div class="form-group">
-              <p><strong> Escriba algun comentario para este pedidos</strong></p>
-                <div class="input-group">
-               
-
-                  <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
-
-                  <textarea class="form-control" id="nuevaObservacion" name="nuevaObservacion" cols="5" rows="2" placeholder="observaciones del prestamo"></textarea>
+                  <p><strong> Escriba algun comentario para este pedidos</strong></p>
+                  <div class="input-group">
 
 
+                    <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
+
+                    <textarea class="form-control" id="editarDescripcion" name="editarDescripcion" cols="5" rows="2" placeholder="observaciones del prestamo"><?php echo $pedidos["descripcion"]; ?></textarea>
+
+
+
+                  </div>
 
                 </div>
 
-              </div>
-               
                 <!--=================================== 
         BOTÓN PARA AGREGAR PRODUCTO 
 ======================================-->
@@ -174,18 +230,19 @@
 
 
             <div class="box-footer">
-              <button type="submit" class="btn btn-flat btn-dark pull-right">Guardar Pedido</button>
+              <button type="submit" class="btn btn-flat btn-dark pull-right">Editar Venta</button>
             </div>
-           
+
           </form>
           <?php
-          $guardarPedido = new ControladorPedidos();
-          $guardarPedido->ctrCrearPedido();
+          $editarPedido = new ControladorPedidos();
+          $editarPedido->ctrEditarPedido();
           ?>
         </div>
 
-      
+
       </div>
+
 
 
       <!--=====================================
@@ -207,7 +264,7 @@
                 </tr>
               </thead>
 
-              
+
             </table>
           </div>
         </div>

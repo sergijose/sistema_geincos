@@ -138,7 +138,7 @@ $(".tablaPrestamos tbody").on("click", "button.agregarProducto", function () {
           "<!-- Agregar OBSERVACION DE PRESTAMO-->" +
           "</div>"
       );
-      listarProductos();
+      listarProductosPrestamos();
       listarProductos2();
       localStorage.removeItem("quitarProducto");
     },
@@ -197,7 +197,7 @@ $(".formularioPrestamo").on("click", "button.quitarProducto", function () {
     "btn-primary agregarProducto"
   );
 
-  listarProductos();
+  listarProductosPrestamos();
   listarProductos2();
 });
 
@@ -294,7 +294,7 @@ $(".formularioPrestamo").on(
         $(nuevaDescripcionProducto).attr("idProducto", respuesta["id"]);
         // AGRUPAR PRODUCTOS EN FORMATO JSON
 
-        listarProductos();
+        listarProductosPrestamos();
         // listarProductos2();
       },
     });
@@ -305,36 +305,36 @@ $(".formularioPrestamo").on(
 LISTAR TODOS LOS PRODUCTOS
 =============================================*/
 
-function listarProductos() {
-  var listaProductos = [];
+function listarProductosPrestamos() {
+  var listaProductosPrestamos = [];
 
   var codigo = $(".nuevoCodigoProducto");
 
   for (var i = 0; i < codigo.length; i++) {
-    listaProductos.push({
+    listaProductosPrestamos.push({
       id: $(codigo[i]).attr("idProducto"),
       codigo: $(codigo[i]).val(),
     });
   }
 
-  $("#listaProductos").val(JSON.stringify(listaProductos));
+  $("#listaProductosPrestamos").val(JSON.stringify(listaProductosPrestamos));
 }
 /*=============================================
 LISTAR TODOS LOS PRODUCTOS PARA GENERAR PRESTAMOS
 =============================================*/
 function listarProductos2() {
-  var listaProductos2 = [];
+  var listaProductosPrestamos2 = [];
 
   var observacion = $(".nuevaObservacion");
 
   //para llenar lista de productos 2
   for (var i = 0; i < observacion.length; i++) {
-    listaProductos2.push({
+    listaProductosPrestamos2.push({
       id: $(observacion[i]).attr("idproducto"),
       observacion: $(observacion[i]).val(),
     });
   }
-  $("#listaProductos2").val(JSON.stringify(listaProductos2));
+  $("#listaProductosPrestamos2").val(JSON.stringify(listaProductosPrestamos2));
 }
 /*
 //aparecer swal para llenar observaciones

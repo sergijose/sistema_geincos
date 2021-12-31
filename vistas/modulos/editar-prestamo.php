@@ -190,7 +190,7 @@ if ($_SESSION["perfil"] == "Visitante") {
 
                 </div>
 
-                <input type="hidden" id="listaProductos" name="listaProductos">
+                <input type="hidden" id="listaProductosPrestamos" name="listaProductos">
 
                 <input type="hidden" class="form-control input-lg" name="actualizado_por" value="<?php echo $_SESSION["id"]; ?>" required>
 
