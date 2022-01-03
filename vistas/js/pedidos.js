@@ -1,13 +1,13 @@
 /*=============================================
 CARGAR LA TABLA DINÁMICA DE PEDIDOS
-=============================================*/
+=============================================
  $.ajax({
  	url: "ajax/datatable-pedidos.ajax.php",
  	success:function(respuesta){
 	console.log("respuestalista", respuesta);
  	}
  });// 
-
+*/
 
 // Obtener el Id del usuario desde el input oculto
 var idUsuario = $("#idUsuario").val();

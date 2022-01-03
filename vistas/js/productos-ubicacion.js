@@ -69,7 +69,7 @@ $("#nuevoProductoUbicacion").change(function(){
 	    processData: false,
 	    dataType: "json",
 	    success:function(respuesta){
-	    	console.log("res",respuesta);
+
 	    	if(respuesta){
 
 	    		$("#nuevoProductoUbicacion").parent().after('<div class="alert alert-warning">Este codigo de producto ya esta registrado</div>');

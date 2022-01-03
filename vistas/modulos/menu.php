@@ -103,7 +103,13 @@
 				</ul>
 
 			</li>
-
+			<li>
+						
+			<a href="proveedores">
+				<i class="fa fa-th"></i>
+				<span>Proveedores</span>
+			</a>
+			</li>
 			
 
 			<li>

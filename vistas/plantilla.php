@@ -153,6 +153,7 @@ CUERPO DOCUMENTO
         $_GET["ruta"] == "inicio" ||
         $_GET["ruta"] == "usuarios" ||
         $_GET["ruta"] == "categorias" ||
+        $_GET["ruta"] == "proveedores" ||
         $_GET["ruta"] == "productos" ||
         $_GET["ruta"] == "productos-cpu" ||
         $_GET["ruta"] == "productos-lotes" ||
@@ -200,6 +201,7 @@ CUERPO DOCUMENTO
   <script src="vistas/js/categorias.js"></script>
   <script src="vistas/js/marcas.js"></script>
   <script src="vistas/js/modelo.js"></script>
+  <script src="vistas/js/proveedores.js"></script>
   <script src="vistas/js/productos.js"></script>
   <script src="vistas/js/productos-cpu.js"></script>
   <script src="vistas/js/productos-lotes.js"></script>
@@ -208,6 +210,7 @@ CUERPO DOCUMENTO
   <script src="vistas/js/pedidos.js"></script>
   <script src="vistas/js/pedidos2.js"></script>
   <script src="vistas/js/empleados.js"></script>
+  <script src="vistas/js/consultas.js"></script>
 
 
 </body>

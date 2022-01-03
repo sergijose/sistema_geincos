@@ -55,10 +55,6 @@ class ControladorProductosLotes
         );
 
         $respuesta = ModeloProductosLotes::mdlIngresarProductoLotes($tabla, $datos);
-        
-        var_dump($datos);
-         var_dump("mensaje",$respuesta);
-        // return;
 
         if ($respuesta == "ok") {
           echo '<script>
@@ -126,9 +122,7 @@ class ControladorProductosLotes
           "id" => $_POST["id"]);
 
         $respuesta = ModeloProductosLotes::mdlEditarProductoLotes($tabla, $datos);
-        // var_dump($respuesta);
-        // var_dump($datos);
-        // var_dump($respuesta);
+     
 
         if ($respuesta == "ok") {
 

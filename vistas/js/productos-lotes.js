@@ -1,12 +1,13 @@
 /*====================== 
 CARGAR LA TABLA DINÁMICA DE PRODUCTOS PRINCIPAL 
-=============================================*/
+=============================================
  $.ajax({
 url: "ajax/datatable-productos-lotes.ajax.php",
  	success:function(respuesta){	
-		 	console.log("respuesta", respuesta);
+
 	}
 })
+*/
 
 var perfilOculto = $("#perfilOculto").val();
 $('.tablaProductosLotes').DataTable( {

@@ -1,6 +1,6 @@
 /*=============================================
 CARGAR LA TABLA DINÁMICA DE PRODUCTOS CPU
-=============================================*/
+=============================================
 
 $.ajax({
 	url: "ajax/datatable-productos-cpu.ajax.php",
@@ -8,6 +8,7 @@ $.ajax({
 	//	console.log("respuesta", respuesta);
 	},
 });
+*/
 
 var perfilOculto = $("#perfilOculto").val();
 
