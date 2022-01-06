@@ -137,9 +137,9 @@ $totalProductos = count($productos);
 
 
 
-  <div class="col-lg-7 col-xs-12">
+  <div class="col-lg-12 col-xs-12">
     <h3 class="box-title">ESTADO FISICO DE PRODUCTOS</h3>
-    <table class="table table-bordered table-striped dt-responsive" width="100%">
+    <table class="table-hover   dt-responsive tablas" width="100%">
 
       <thead>
 
@@ -148,11 +148,13 @@ $totalProductos = count($productos);
           <th style="width:10px">#</th>
           <th>CATEGORIA</th>
           <th>MARCA</th>
-          <th>TOTAL</th>
+          <th>MODELO</th>
           <th>OPERATIVOS</th>
           <th>MALOGRADOS</th>
           <th>REPARACION INTERNA</th>
           <th>REPARACION GARANTIA</th>
+          <th>DSCTO POR MAL USO</th>
+          <th>TOTAL</th>
 
         </tr>
 
@@ -175,12 +177,13 @@ $totalProductos = count($productos);
                  
                    <td class="text-uppercase">' . $value["CATEGORIA"] . '</td>
                    <td class="text-uppercase">' . $value["MARCA"] . '</td>
-                   <td class="text-uppercase">' . $value["TOTAL"] . '</td>
-
-                  <td>' . $value["OPERATIVO"] . '</td>
-                  <td>' . $value["MALOGRADO"] . '</td>
-                  <td>' . $value["REPARACION_INTERNA"] . '</td>
-                  <td>' . $value["REPARACION_GARANTIA"] . '</td>
+                   <td class="text-uppercase">' . $value["MODELO"] . '</td>
+                   <td>' . $value["OPERATIVO"] . '</td>
+                   <td>' . $value["MALOGRADO"] . '</td>
+                   <td>' . $value["REPARACION_INTERNA"] . '</td>
+                    <td>' . $value["REPARACION_GARANTIA"] . '</td>
+                    <td>' . $value["DESCUENTO_MAL_USO"] . '</td>
+                  <td class="text-uppercase">' . $value["TOTAL"] . '</td>
                    
 
                  </tr>';
@@ -198,9 +201,9 @@ $totalProductos = count($productos);
   </div>
 
 
-  <div class="col-lg-5 col-xs-12 ">
+  <div class="col-lg-12 col-xs-12 ">
     <h3 class="box-title">ESTADO DE PRESTAMO DE PRODUCTOS</h3>
-    <table class="table table-bordered table-striped dt-responsive" width="100%">
+    <table class="table-hover   dt-responsive tablas" width="100%">
 
       <thead>
 
@@ -209,9 +212,12 @@ $totalProductos = count($productos);
           <th style="width:10px">#</th>
           <th>CATEGORIA</th>
           <th>MARCA</th>
-          <th>TOTAL</th>
+          <th>MODELO</th>
           <th>OCUPADO</th>
-          <th>LIBRE</th>
+          <th>DISPONIBLE PRESTAMO</th>
+          <th>NO APLICA PRESTAMO</th>
+          <th>UBICADO EN OFICINA</th>
+          <th >TOTAL</th>
 
         </tr>
 
@@ -229,13 +235,16 @@ $totalProductos = count($productos);
           echo ' <tr>
  
                      <td>' . ($key + 1) . '</td>
- 
                      <td class="text-uppercase">' . $value["CATEGORIA"] . '</td>
                      <td class="text-uppercase">' . $value["MARCA"] . '</td>
-
+                     <td class="text-uppercase">' . $value["MODELO"] . '</td>
+                     <td>' . $value["OCUPADO"] . '</td>
+                     <td>' . $value["LIBRE"] . '</td>
+                     <td>' . $value["NO APLICA"] . '</td>
+                     <td>' . $value["EN OFICINA"] . '</td>
                     <td>' . $value["TOTAL"] . '</td>
-                    <td>' . $value["OCUPADO"] . '</td>
-                    <td>' . $value["LIBRE"] . '</td>
+                   
+                   
                      
  
                    </tr>';

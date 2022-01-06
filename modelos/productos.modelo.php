@@ -203,15 +203,18 @@ class ModeloProductos{
 
 		
 
-			$stmt = Conexion::conectar()->prepare("SELECT  cat.descripcion AS CATEGORIA,mar.descripcion AS MARCA,COUNT(pro.idestado) AS TOTAL,SUM(pro.estado_prestamo='OCUPADO') AS OCUPADO,
-			sum(pro.estado_prestamo='DISPONIBLE') AS LIBRE FROM producto pro 
+			$stmt = Conexion::conectar()->prepare("SELECT  cat.descripcion AS CATEGORIA,mar.descripcion AS MARCA,mo.descripcion AS MODELO,
+			SUM(pro.estado_prestamo='OCUPADO') AS OCUPADO,
+			sum(pro.estado_prestamo='DISPONIBLE') AS LIBRE,sum(pro.estado_prestamo='NO APLICA')AS 'NO APLICA',
+			sum(pro.estado_prestamo='EN OFICINA')AS 'EN OFICINA',		
+			COUNT(pro.idestado) AS TOTAL FROM producto pro 
 			inner JOIN modelo mo
 			ON pro.idmodelo=mo.id
 			INNER JOIN marca mar
 			ON mar.id=mo.idmarca
 			INNER JOIN categoria cat
 			ON  cat.id=mo.idcategoria
-			GROUP BY cat.descripcion,mar.descripcion"
+			GROUP BY cat.descripcion,mar.descripcion,mo.descripcion"
 			);
 
 			$stmt -> execute();
@@ -229,11 +232,13 @@ class ModeloProductos{
 
 	static public function mdlMostrarTotalProductosPorEstados(){
 
-		$stmt = Conexion::conectar()->prepare("SELECT  cat.descripcion AS CATEGORIA,mar.descripcion AS MARCA,COUNT(*) AS TOTAL,
+		$stmt = Conexion::conectar()->prepare("SELECT  cat.descripcion AS CATEGORIA,mar.descripcion AS MARCA,mo.descripcion AS MODELO,
 		SUM(es.descripcion='OPERATIVO')AS OPERATIVO,
 		SUM(es.descripcion='MALOGRADO')AS MALOGRADO,
 		SUM(es.descripcion='REPARACION INTERNA')AS REPARACION_INTERNA,
-		SUM(es.descripcion='REPARACION GARANTIA')AS REPARACION_GARANTIA
+		SUM(es.descripcion='REPARACION GARANTIA')AS REPARACION_GARANTIA,
+			SUM(es.descripcion='DESCUENTO POR MAL USO')AS DESCUENTO_MAL_USO,
+		COUNT(pro.idestado) AS TOTAL
 		 FROM producto pro 
 			inner JOIN modelo mo
 			ON pro.idmodelo=mo.id
@@ -243,7 +248,7 @@ class ModeloProductos{
 			ON  cat.id=mo.idcategoria
 			INNER JOIN estado es
 			ON pro.idestado=es.id
-			GROUP BY cat.descripcion,mar.descripcion");
+			GROUP BY cat.descripcion,mar.descripcion,mo.descripcion");
 		
 		$stmt -> execute();
 

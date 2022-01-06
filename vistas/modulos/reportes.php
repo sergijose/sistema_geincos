@@ -44,9 +44,9 @@ if ($_SESSION["perfil"] == "Visitante") {
 
         <div class="row">
 
-          <div class="col-md-6 col-xs-12">
-            <h3 class="box-title">Lista de personal que tienen prestamos pendientes</h3>
-            <table class="table table-bordered table-striped dt-responsive tablas " width="100%">
+          <div class="col-md-12 col-xs-12">
+            <h3 class="box-title">PERSONAL CON PRESTAMOS PENDIENTES</h3>
+            <table class="table-hover dt-responsive tablas " width="100%">
 
               <thead>
 
@@ -100,62 +100,70 @@ if ($_SESSION["perfil"] == "Visitante") {
             </table>
 
 
+            <div class="box-header with-border box box-success">
+        </div>
 
 
           </div>
+         
+
+
+          <div class="col-lg-12 col-xs-12 ">
+    <h3 class="box-title">ESTADO DE PRESTAMO DE PRODUCTOS</h3>
+    <table class="table-hover   dt-responsive tablas" width="100%">
+
+      <thead>
+
+        <tr>
+
+          <th style="width:10px">#</th>
+          <th>CATEGORIA</th>
+          <th>MARCA</th>
+          <th>MODELO</th>
+          <th>OCUPADO</th>
+          <th>DISPONIBLE PRESTAMO</th>
+          <th>NO APLICA PRESTAMO</th>
+          <th>UBICADO EN OFICINA</th>
+          <th >TOTAL</th>
+
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <?php
+
+        $productosTotal = ControladorProductos::ctrMostrarTotalProductos();
 
 
 
-          <div class="col-md-6 col-xs-12 ">
-            <h3 class="box-title">LISTA DE ESTADO DE PRESTAMO DE PRODUCTO</h3>
-            <table class="table table-bordered table-striped dt-responsive" width="100%">
-
-              <thead>
-
-                <tr>
-
-                  <th style="width:10px">#</th>
-                  <th>CATEGORIA</th>
-                  <th>MARCA</th>
-                  <th>TOTAL</th>
-                  <th>OCUPADO</th>
-                  <th>LIBRE</th>
-
-                </tr>
-
-              </thead>
-
-              <tbody>
-
-                <?php
-
-                $productosTotal = ControladorProductos::ctrMostrarTotalProductos();
-
-
-
-                foreach ($productosTotal  as $key => $value) {
-                  echo ' <tr>
+        foreach ($productosTotal  as $key => $value) {
+          echo ' <tr>
  
                      <td>' . ($key + 1) . '</td>
- 
                      <td class="text-uppercase">' . $value["CATEGORIA"] . '</td>
                      <td class="text-uppercase">' . $value["MARCA"] . '</td>
-
+                     <td class="text-uppercase">' . $value["MODELO"] . '</td>
+                     <td>' . $value["OCUPADO"] . '</td>
+                     <td>' . $value["LIBRE"] . '</td>
+                     <td>' . $value["NO APLICA"] . '</td>
+                     <td>' . $value["EN OFICINA"] . '</td>
                     <td>' . $value["TOTAL"] . '</td>
-                    <td>' . $value["OCUPADO"] . '</td>
-                    <td>' . $value["LIBRE"] . '</td>
+                   
+                   
                      
  
                    </tr>';
-                }
+        }
 
-                ?>
+        ?>
 
-              </tbody>
+      </tbody>
 
-            </table>
+    </table>
 
-          </div>
+  </div>
           <!--  FIN DE PRIMERA FILA-->
 
 
@@ -174,65 +182,68 @@ if ($_SESSION["perfil"] == "Visitante") {
         <div class="row">
         
 
-          <div class="col-md-6 col-xs-12">
-            <h3 class="box-title">LISTA DE ESTADOS FISICOS DE PRODUCTOS</h3>
-            <table class="table table-bordered table-striped dt-responsive" width="100%">
+        <div class="col-lg-12 col-xs-12">
+    <h3 class="box-title">ESTADO FISICO DE PRODUCTOS</h3>
+    <table class="table-hover   dt-responsive tablas" width="100%">
 
-              <thead>
+      <thead>
 
-                <tr>
+        <tr>
 
-                  <th style="width:10px">#</th>
-                  <th>CATEGORIA</th>
-                  <th>MARCA</th>
-                  <th>TOTAL</th>
-                  <th>OPERATIVOS</th>
-                  <th>MALOGRADOS</th>
-                  <th>REPARACION INTERNA</th>
-                  <th>REPARACION GARANTIA</th>
+          <th style="width:10px">#</th>
+          <th>CATEGORIA</th>
+          <th>MARCA</th>
+          <th>MODELO</th>
+          <th>OPERATIVOS</th>
+          <th>MALOGRADOS</th>
+          <th>REPARACION INTERNA</th>
+          <th>REPARACION GARANTIA</th>
+          <th>DSCTO POR MAL USO</th>
+          <th>TOTAL</th>
 
-                </tr>
+        </tr>
 
-              </thead>
+      </thead>
 
-              <tbody>
+      <tbody>
 
-                <?php
-               
-
-                $productosEstados = ControladorProductos::ctrMostrarTotalProductosPorEstados();
+        <?php
 
 
-                foreach ($productosEstados  as $key => $value) {
+        $productosEstados = ControladorProductos::ctrMostrarTotalProductosPorEstados();
 
-                  echo ' <tr>
- 
-                     <td>' . ($key + 1) . '</td>
- 
-                   
-                     <td class="text-uppercase">' . $value["CATEGORIA"] . '</td>
-                     <td class="text-uppercase">' . $value["MARCA"] . '</td>
-                     <td class="text-uppercase">' . $value["TOTAL"] . '</td>
 
-                    <td>' . $value["OPERATIVO"] . '</td>
-                    <td>' . $value["MALOGRADO"] . '</td>
-                    <td>' . $value["REPARACION_INTERNA"] . '</td>
+        foreach ($productosEstados  as $key => $value) {
+
+          echo ' <tr>
+
+                   <td>' . ($key + 1) . '</td>
+
+                 
+                   <td class="text-uppercase">' . $value["CATEGORIA"] . '</td>
+                   <td class="text-uppercase">' . $value["MARCA"] . '</td>
+                   <td class="text-uppercase">' . $value["MODELO"] . '</td>
+                   <td>' . $value["OPERATIVO"] . '</td>
+                   <td>' . $value["MALOGRADO"] . '</td>
+                   <td>' . $value["REPARACION_INTERNA"] . '</td>
                     <td>' . $value["REPARACION_GARANTIA"] . '</td>
-                     
- 
-                   </tr>';
-                }
+                    <td>' . $value["DESCUENTO_MAL_USO"] . '</td>
+                  <td class="text-uppercase">' . $value["TOTAL"] . '</td>
+                   
 
-                ?>
+                 </tr>';
+        }
 
-              </tbody>
+        ?>
 
-            </table>
+      </tbody>
+
+    </table>
 
 
 
 
-          </div>
+  </div>
 
         
 
