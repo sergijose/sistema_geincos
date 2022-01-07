@@ -1,2 +1,3 @@
 img/modelos/*
+extensiones/tcpdf/pdf/images/qr/*
 !.gitignore
