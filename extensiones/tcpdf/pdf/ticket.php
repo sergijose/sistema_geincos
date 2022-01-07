@@ -26,7 +26,9 @@ public function traerImpresionTicket(){ // Funcion par Impresion de Datos
 //TRAEMOS LA INFORMACIÓN DE LA VENTA
 $itemVenta = "codigo";
 $codigoPedido = $this->codigo;
+//PARA QR
 $text_qr = $this->codigo; 
+$ruta_qr = "./images/qr/ticket-".$text_qr.'.png';
 
 //Recorremos la tabla de ventas para sacar la informacion
 $respuestaVenta = ControladorPedidos::ctrMostrarPedido($itemVenta, $codigoPedido,"ASC");
@@ -157,13 +159,15 @@ $bloque1 = <<<EOF
 		
 	</tr>
 </table>
+<p style="font-size:6.5px; text-align:left;"><b>[escanea el código QR para ver la lista de productos]</b><p/>
 
 EOF;
 $pdf->writeHTML($bloque1, false, false, false, false, '');
 // ---------------------------------------------------------
 // Aca colocamos losdatos de la tabla de arriba CANT DETALLE P.U y TOTAL
 foreach ($productos as $key => $item) {
-
+$valorQr=$item["cantidad"]." ". $item["descripcion"]."\n";
+$listaPedido.=$valorQr;
 
 $bloque2 = <<<EOF
 <table id="valoresProducto" style="font-size:6px;">
@@ -176,7 +180,9 @@ $bloque2 = <<<EOF
 
 EOF;
 
-$pdf->writeHTML($bloque2, false, false, false, false, '');
+//OCULTAMOS LA LISTA DE PRODCUTOS PARA QUE NO APAREZCA EN EL TICKET PARA
+//UTILIZAR EL DODIGO QR
+//$pdf->writeHTML($bloque2, false, false, false, false, '');
 }
 
 // ---------------------------------------------------------
@@ -216,8 +222,8 @@ EOF;
 //$pdf->SetXY(7, 30);
 $pdf->writeHTML($bloque3, false, false, false, false, '');
 
-$ruta_qr = "./images/qr/ticket-".$text_qr.'.png';
-QRcode::png($text_qr, $ruta_qr, 'Q',15, 0);
+//CREACION DE CODIGO QR Y GUARDAR EN IMAGEN
+QRcode::png($listaPedido, $ruta_qr, 'Q',15, 0);
 $pdf->Image($ruta_qr, 28 , $pdf->GetY(),25,25);
 // ---------------------------------------------------------
 //SALIDA DEL ARCHIVO 
