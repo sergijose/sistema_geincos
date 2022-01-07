@@ -124,6 +124,7 @@ class TablaListadoPedidos
       ===================================*/
       $datosJson   .= '[
         "' . ($key + 1) . '",
+        "' . $value["codigo"] . '",
         "' . $empleado . '",
         "' . $usuario . '",
         "' . $cantidad . '",

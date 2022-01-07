@@ -10,6 +10,7 @@ require_once "../../../modelos/usuarios.modelo.php";
 
 require_once "../../../controladores/productos-lotes.controlador.php";
 require_once "../../../modelos/productos-lotes.modelo.php";
+require_once("phpqrcode/qrlib.php");
 
 
 
@@ -25,6 +26,7 @@ public function traerImpresionTicket(){ // Funcion par Impresion de Datos
 //TRAEMOS LA INFORMACIÓN DE LA VENTA
 $itemVenta = "codigo";
 $codigoPedido = $this->codigo;
+$text_qr = $this->codigo; 
 
 //Recorremos la tabla de ventas para sacar la informacion
 $respuestaVenta = ControladorPedidos::ctrMostrarPedido($itemVenta, $codigoPedido,"ASC");
@@ -60,6 +62,8 @@ $respuestaVendedor = ControladorUsuarios::ctrMostrarUsuarios($itemVendedor, $val
 $itemArea = "id";
 $valorArea = $respuestaVenta["id_area"];
 $respuestaArea = ControladorPedidos::ctrMostrarArea($itemArea,$valorArea);
+
+
 
 
 //REQUERIMOS LA CLASE TCPDF
@@ -171,8 +175,10 @@ $bloque2 = <<<EOF
 </table>
 
 EOF;
+
 $pdf->writeHTML($bloque2, false, false, false, false, '');
 }
+
 // ---------------------------------------------------------
 $bloque3 = <<<EOF
 <div  style="text-align:center;font-size:7px;">*******************************************************</div>
@@ -205,8 +211,14 @@ $bloque3 = <<<EOF
 <div  style="text-align:center;font-size:7px;">*******************************************************</div>
 
 EOF;
+
+
 //$pdf->SetXY(7, 30);
 $pdf->writeHTML($bloque3, false, false, false, false, '');
+
+$ruta_qr = "./images/qr/ticket-".$text_qr.'.png';
+QRcode::png($text_qr, $ruta_qr, 'Q',15, 0);
+$pdf->Image($ruta_qr, 28 , $pdf->GetY(),25,25);
 // ---------------------------------------------------------
 //SALIDA DEL ARCHIVO 
 //$pdf->Output('factura.pdf', 'D');

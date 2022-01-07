@@ -24,6 +24,7 @@
         <thead>
           <tr>
             <th style="width:10px">#</th>
+            <th>ticket</th>
             <th>Entregado a</th>
             <th>Responsable de entrega</th>
             <th>Cantidad</th>
