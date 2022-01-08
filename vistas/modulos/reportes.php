@@ -123,7 +123,6 @@ if ($_SESSION["perfil"] == "Visitante") {
           <th>OCUPADO</th>
           <th>DISPONIBLE PRESTAMO</th>
           <th>NO APLICA PRESTAMO</th>
-          <th>UBICADO EN OFICINA</th>
           <th >TOTAL</th>
 
         </tr>
@@ -148,7 +147,6 @@ if ($_SESSION["perfil"] == "Visitante") {
                      <td>' . $value["OCUPADO"] . '</td>
                      <td>' . $value["LIBRE"] . '</td>
                      <td>' . $value["NO APLICA"] . '</td>
-                     <td>' . $value["EN OFICINA"] . '</td>
                     <td>' . $value["TOTAL"] . '</td>
                    
                    

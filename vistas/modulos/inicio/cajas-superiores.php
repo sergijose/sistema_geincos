@@ -214,9 +214,8 @@ $totalProductos = count($productos);
           <th>MARCA</th>
           <th>MODELO</th>
           <th>OCUPADO</th>
-          <th>DISPONIBLE PRESTAMO</th>
+          <th>PARA PRESTAMO</th>
           <th>NO APLICA PRESTAMO</th>
-          <th>UBICADO EN OFICINA</th>
           <th >TOTAL</th>
 
         </tr>
@@ -241,7 +240,6 @@ $totalProductos = count($productos);
                      <td>' . $value["OCUPADO"] . '</td>
                      <td>' . $value["LIBRE"] . '</td>
                      <td>' . $value["NO APLICA"] . '</td>
-                     <td>' . $value["EN OFICINA"] . '</td>
                     <td>' . $value["TOTAL"] . '</td>
                    
                    
