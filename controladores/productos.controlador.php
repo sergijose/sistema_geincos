@@ -80,6 +80,14 @@ class ControladorProductos
 		return $respuesta;
 	}
 
+	static public function ctrMostrarTotalProductosPorOficina()
+	{
+
+		$respuesta = ModeloProductos::mdlMostrarTotalProductosPorOficina();
+
+		return $respuesta;
+	}
+
 	
 
 	/*=============================================

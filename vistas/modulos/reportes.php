@@ -80,14 +80,14 @@ if ($_SESSION["perfil"] == "Visitante") {
                   $EmpleadoPrestamo = ControladorEmpleados::ctrMostrarEmpleados($item, $valor);
 
                   echo '<td class="text-uppercase">' . $EmpleadoPrestamo["nombres"] . " " . $EmpleadoPrestamo["ape_pat"] . " " . $EmpleadoPrestamo["ape_mat"] . '</td>';
-                  
-                  $productos=json_decode($value["productos"],true);
-               echo '<td>';
-                foreach($productos as $key=>$valueProductos){
- 
-                 echo ($valueProductos["codigo"].'<br>');
-                }
-                echo '</td>';
+
+                  $productos = json_decode($value["productos"], true);
+                  echo '<td>';
+                  foreach ($productos as $key => $valueProductos) {
+
+                    echo ($valueProductos["codigo"] . '<br>');
+                  }
+                  echo '</td>';
                   echo '<td class="text-uppercase">' . $EmpleadoPrestamo["num_documento"] . '</td>';
 
                   echo ' </tr>';
@@ -101,44 +101,44 @@ if ($_SESSION["perfil"] == "Visitante") {
 
 
             <div class="box-header with-border box box-success">
-        </div>
+            </div>
 
 
           </div>
-         
+
 
 
           <div class="col-lg-12 col-xs-12 ">
-    <h3 class="box-title">ESTADO DE PRESTAMO DE PRODUCTOS</h3>
-    <table class="table-hover   dt-responsive tablas" width="100%">
+            <h3 class="box-title">ESTADO DE PRESTAMO DE PRODUCTOS</h3>
+            <table class="table-hover   dt-responsive tablas" width="100%">
 
-      <thead>
+              <thead>
 
-        <tr>
+                <tr>
 
-          <th style="width:10px">#</th>
-          <th>CATEGORIA</th>
-          <th>MARCA</th>
-          <th>MODELO</th>
-          <th>OCUPADO</th>
-          <th>DISPONIBLE PRESTAMO</th>
-          <th>NO APLICA PRESTAMO</th>
-          <th >TOTAL</th>
+                  <th style="width:10px">#</th>
+                  <th>CATEGORIA</th>
+                  <th>MARCA</th>
+                  <th>MODELO</th>
+                  <th>OCUPADO</th>
+                  <th>DISPONIBLE PRESTAMO</th>
+                  <th>NO APLICA PRESTAMO</th>
+                  <th>TOTAL</th>
 
-        </tr>
+                </tr>
 
-      </thead>
+              </thead>
 
-      <tbody>
+              <tbody>
 
-        <?php
+                <?php
 
-        $productosTotal = ControladorProductos::ctrMostrarTotalProductos();
+                $productosTotal = ControladorProductos::ctrMostrarTotalProductos();
 
 
 
-        foreach ($productosTotal  as $key => $value) {
-          echo ' <tr>
+                foreach ($productosTotal  as $key => $value) {
+                  echo ' <tr>
  
                      <td>' . ($key + 1) . '</td>
                      <td class="text-uppercase">' . $value["CATEGORIA"] . '</td>
@@ -153,15 +153,15 @@ if ($_SESSION["perfil"] == "Visitante") {
                      
  
                    </tr>';
-        }
+                }
 
-        ?>
+                ?>
 
-      </tbody>
+              </tbody>
 
-    </table>
+            </table>
 
-  </div>
+          </div>
           <!--  FIN DE PRIMERA FILA-->
 
 
@@ -171,49 +171,49 @@ if ($_SESSION["perfil"] == "Visitante") {
 
         </div>
 
-        
+
         <div class="box-header with-border box box-success">
         </div>
 
         <!--  SEGUNDA FILA DE REPORTES-->
 
         <div class="row">
-        
-
-        <div class="col-lg-12 col-xs-12">
-    <h3 class="box-title">ESTADO FISICO DE PRODUCTOS</h3>
-    <table class="table-hover   dt-responsive tablas" width="100%">
-
-      <thead>
-
-        <tr>
-
-          <th style="width:10px">#</th>
-          <th>CATEGORIA</th>
-          <th>MARCA</th>
-          <th>MODELO</th>
-          <th>OPERATIVOS</th>
-          <th>MALOGRADOS</th>
-          <th>REPARACION INTERNA</th>
-          <th>REPARACION GARANTIA</th>
-          <th>DSCTO POR MAL USO</th>
-          <th>TOTAL</th>
-
-        </tr>
-
-      </thead>
-
-      <tbody>
-
-        <?php
 
 
-        $productosEstados = ControladorProductos::ctrMostrarTotalProductosPorEstados();
+          <div class="col-lg-12 col-xs-12">
+            <h3 class="box-title">ESTADO FISICO DE PRODUCTOS</h3>
+            <table class="table-hover   dt-responsive tablas" width="100%">
+
+              <thead>
+
+                <tr>
+
+                  <th style="width:10px">#</th>
+                  <th>CATEGORIA</th>
+                  <th>MARCA</th>
+                  <th>MODELO</th>
+                  <th>OPERATIVOS</th>
+                  <th>MALOGRADOS</th>
+                  <th>REPARACION INTERNA</th>
+                  <th>REPARACION GARANTIA</th>
+                  <th>DSCTO POR MAL USO</th>
+                  <th>TOTAL</th>
+
+                </tr>
+
+              </thead>
+
+              <tbody>
+
+                <?php
 
 
-        foreach ($productosEstados  as $key => $value) {
+                $productosEstados = ControladorProductos::ctrMostrarTotalProductosPorEstados();
 
-          echo ' <tr>
+
+                foreach ($productosEstados  as $key => $value) {
+
+                  echo ' <tr>
 
                    <td>' . ($key + 1) . '</td>
 
@@ -230,46 +230,98 @@ if ($_SESSION["perfil"] == "Visitante") {
                    
 
                  </tr>';
-        }
+                }
 
-        ?>
+                ?>
 
-      </tbody>
+              </tbody>
 
-    </table>
+            </table>
+            <div class="box-header with-border box box-success">
+        </div>
 
 
 
+          </div>
+          
 
-  </div>
+          <div class="col-lg-12 col-xs-12 ">
+            <h3 class="box-title">TOTAL PRODUCTOS POR OFICINA</h3>
+            <table class="table-hover   dt-responsive tablas" width="100%">
 
-        
+              <thead>
 
- <div class="col-md-6 col-xs-12">
-             
-             <?php
+                <tr>
+
+                  <th style="width:10px">#</th>
+                  <th>CATEGORIA</th>
+                  <th>MARCA</th>
+                  <th>MODELO</th>
+                  <th>OFICINA</th>
+                  <th>TOTAL</th>
+
+                </tr>
+
+              </thead>
+
+              <tbody>
+
+                <?php
+
+                $productosTotal = ControladorProductos::ctrMostrarTotalProductosPorOficina();
+
+
+
+                foreach ($productosTotal  as $key => $value) {
+                  echo ' <tr>
  
-             include "inicio/productos-sistema-operativo.php";
- 
-             ?>
- 
-            </div>
+                     <td>' . ($key + 1) . '</td>
+                     <td class="text-uppercase">' . $value["CATEGORIA"] . '</td>
+                     <td class="text-uppercase">' . $value["MARCA"] . '</td>
+                     <td class="text-uppercase">' . $value["MODELO"] . '</td>
+                     <td class="text-uppercase">' . $value["OFICINA"] . '</td>
+                     <td class="text-uppercase">' . $value["TOTAL"] . '</td>
+                     
+                   </tr>';
+                }
 
-            </div>
+                ?>
 
-        
+              </tbody>
 
-      
+            </table>
+
+          </div>
+
+
+
+
+
+          <div class="col-md-6 col-xs-12">
+
+            <?php
+
+            include "inicio/productos-sistema-operativo.php";
+
+            ?>
+
+          </div>
+
+        </div>
+
+
+
+
 
       </div>
 
-     
 
 
 
 
 
-      </div>
+
+    </div>
 
 
 

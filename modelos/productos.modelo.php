@@ -226,6 +226,40 @@ class ModeloProductos{
 	}
 
 	/*=============================================
+	MOSTRAR TOTAL DE PRODCUTOS POR OFICINA
+	=============================================*/
+
+	static public function mdlMostrarTotalProductosPorOficina(){
+
+		
+
+		$stmt = Conexion::conectar()->prepare("SELECT  cat.descripcion AS CATEGORIA,mar.descripcion AS MARCA,mo.descripcion AS MODELO,
+		ubi.descripcion AS OFICINA,
+		COUNT(mo.descripcion) AS TOTAL FROM producto pro 
+		inner JOIN modelo mo
+		ON pro.idmodelo=mo.id
+		INNER JOIN marca mar
+		ON mar.id=mo.idmarca
+		INNER JOIN categoria cat
+		ON  cat.id=mo.idcategoria
+		LEFT JOIN ubicacion_productos ubipro
+		ON ubipro.id_producto=pro.id
+		INNER JOIN ubicacion ubi
+		ON ubi.id=ubipro.id_ubicacion
+		GROUP BY cat.descripcion,ubi.descripcion,mo.descripcion 
+		ORDER BY cat.descripcion,ubi.descripcion"
+		);
+
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
+
+
+	$stmt = null;
+
+}
+
+	/*=============================================
 	MOSTRAR ESTADOS FISICOS DE PRODUCTOS 
 	=============================================*/
 
@@ -283,6 +317,8 @@ class ModeloProductos{
 	$stmt = null;
 
 }
+
+
 
 
 

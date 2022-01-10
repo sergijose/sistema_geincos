@@ -255,5 +255,54 @@ $totalProductos = count($productos);
     </table>
 
   </div>
+
+  <div class="col-lg-12 col-xs-12 ">
+    <h3 class="box-title">TOTAL PRODUCTOS POR OFICINA</h3>
+    <table class="table-hover   dt-responsive tablas" width="100%">
+
+      <thead>
+
+        <tr>
+
+          <th style="width:10px">#</th>
+          <th>CATEGORIA</th>
+          <th>MARCA</th>
+          <th>MODELO</th>
+          <th>OFICINA</th>
+          <th>TOTAL</th>
+
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <?php
+
+        $productosTotal = ControladorProductos::ctrMostrarTotalProductosPorOficina();
+
+
+
+        foreach ($productosTotal  as $key => $value) {
+          echo ' <tr>
+ 
+                     <td>' . ($key + 1) . '</td>
+                     <td class="text-uppercase">' . $value["CATEGORIA"] . '</td>
+                     <td class="text-uppercase">' . $value["MARCA"] . '</td>
+                     <td class="text-uppercase">' . $value["MODELO"] . '</td>
+                     <td class="text-uppercase">' . $value["OFICINA"] . '</td>
+                     <td class="text-uppercase">' . $value["TOTAL"] . '</td>
+                     
+                   </tr>';
+        }
+
+        ?>
+
+      </tbody>
+
+    </table>
+
+  </div>
+  
   
 
