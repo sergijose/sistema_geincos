@@ -144,7 +144,7 @@
 =========================================-->
                 <div class="form-group row nuevoProducto">
                 </div>
-                <input type="hidden" id="listaProductosPedidos" name="listaProductos">
+                <input type="hidden" id="listaProductosPedidos" name="listaProductosPedidos">
 
                 <div class="form-group">
               <p><strong> Escriba algun comentario para este pedidos</strong></p>

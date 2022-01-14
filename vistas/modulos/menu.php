@@ -230,6 +230,34 @@
 							</li>
 						</ul>
 					</li>';
+					if($_SESSION["perfil"] == "Administrador"|| $_SESSION["perfil"] == "Especial"){
+						echo '<li class="treeview">
+								<a href="#">
+									<i class="fa fa-shopping-cart"></i>
+									<span>Compras</span>
+									<span class="pull-right-container">
+										<i class="fa fa-angle-left pull-right"></i>
+									</span>
+								</a>
+								<ul class="treeview-menu">							
+									<li>
+										<a href="crear-compra">										
+											<i class="fa fa-plus"></i>
+											<span>Nueva Compra</span>
+									   </a>
+									</li>
+									<li>
+										<a href="compras">									
+											<i class="fa fa-file-o"></i>
+											<span>Listado de Compras</span>
+										</a>
+									</li>
+	
+								</ul>
+							</li>';
+					}
+					
+					
 			
 			
 			

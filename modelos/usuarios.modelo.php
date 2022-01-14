@@ -144,9 +144,10 @@ class ModeloUsuarios{
 
 		}
 
-		
+		$stmt = null; // obligado para cerrar la conexión
+		$pdo = null;
 
-		$stmt = null;
+		
 
 
 	}

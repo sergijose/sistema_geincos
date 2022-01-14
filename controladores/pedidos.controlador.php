@@ -48,7 +48,7 @@ class ControladorPedidos
 			ACTUALIZAR LAS COMPRAS DEL CLIENTE Y REDUCIR EL STOCK Y AUMENTAR LAS VENTAS DE LOS PRODUCTOS
 			=============================================*/
 
-      if ($_POST["listaProductos"] == "") { // Si no hay productos en la lista de ventas
+      if ($_POST["listaProductosPedidos"] == "") { // Si no hay productos en la lista de ventas
         echo '<script>
 				swal({
 					  type: "error",
@@ -65,7 +65,7 @@ class ControladorPedidos
       }
 
 
-      $listaProductos = json_decode($_POST["listaProductos"], true);
+      $listaProductos = json_decode($_POST["listaProductosPedidos"], true);
       $totalProductosComprados = array();
 
       foreach ($listaProductos as $key => $value) {
@@ -113,7 +113,7 @@ class ControladorPedidos
         "codigo" => $_POST["nuevoPedido"],
         "id_usuario" => $_POST["idVendedor"],
         "id_empleado" => $_POST["nuevoEmpleado"],
-        "productos" => $_POST["listaProductos"],
+        "productos" => $_POST["listaProductosPedidos"],
         "id_area" => $_POST["nuevaArea"],
         "descripcion" => $_POST["nuevaObservacion"],
       );
@@ -124,7 +124,7 @@ class ControladorPedidos
         echo '<script>
         swal({
             type: "success",
-            title: "La venta ha sido guardada correctamente",
+            title: "El pedido ha sido guardada correctamente",
             showConfirmButton: true,
 					  allowOutsideClick: false,
 					  confirmButtonText: "Cerrar"
@@ -156,13 +156,13 @@ class ControladorPedidos
       /*=============================================
 			REVISAR SI VIENE PRODUCTOS EDITADOS
 			=============================================*/
-      if ($_POST["listaProductos"] == "") {
+      if ($_POST["listaProductosPedidos"] == "") {
 
         $listaProductos = $traerPedido["productos"];
         $cambioProducto = false;
       } else {
 
-        $listaProductos = $_POST["listaProductos"];
+        $listaProductos = $_POST["listaProductosPedidos"];
         $cambioProducto = true;
       }
 

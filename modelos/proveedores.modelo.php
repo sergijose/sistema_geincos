@@ -20,7 +20,8 @@ class ModeloProveedor{
     }
 
     //$stmt -> close();
-    $stmt = null;
+    $stmt = null; // obligado para cerrar la conexión
+  
   }
     /*=============================================
   Nuevo Proveedor
