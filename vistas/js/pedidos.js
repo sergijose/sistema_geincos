@@ -113,7 +113,7 @@ $(".tablaN tbody").on("click", "button.agregarProducto", function () {
       // AGREGAR IMPUESTO
       //agregarImpuesto()
       // AGRUPAR PRODUCTOS EN FORMATO JSON
-      listarProductos()
+      listarProductosPedidos()
       // PONER FORMATO AL PRECIO DE LOS PRODUCTOS
      // $(".nuevoPrecioProducto").number(true, 2);
       localStorage.removeItem("quitarProducto");
@@ -172,7 +172,7 @@ $(".formularioPedido").on("click", "button.quitarProducto", function () {
     // AGREGAR IMPUESTO
     //agregarImpuesto()
     // AGRUPAR PRODUCTOS EN FORMATO JSON
-    listarProductos()
+    listarProductosPedidos()
   }
 })
 /*========================================
@@ -269,7 +269,7 @@ $(".formularioPedido").on("change", "select.nuevaDescripcionProducto", function 
      // $(nuevoPrecioProducto).attr("precioReal", respuesta["precio_venta"]);
 
       // AGRUPAR PRODUCTOS EN FORMATO JSON
-      listarProductos()
+      listarProductosPedidos()
     }
   })
 })
@@ -310,7 +310,7 @@ SI LA CANTIDAD ES SUPERIOR AL STOCK REGRESAR VALORES INICIALES
   // AGREGAR IMPUESTO       
   //agregarImpuesto()
   // AGRUPAR PRODUCTOS EN FORMATO JSON
-  listarProductos()
+  listarProductosPedidos()
 })
 /*=============================================
 SUMAR TODOS LOS PRECIOS
@@ -444,7 +444,7 @@ CAMBIO TRANSACCIÓN
 /*=============================================
 LISTAR TODOS LOS PRODUCTOS
 =============================================*/
-function listarProductos() {
+function listarProductosPedidos() {
 
   var listaProductos = [];
   var descripcion = $(".nuevaDescripcionProducto");

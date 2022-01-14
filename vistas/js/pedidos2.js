@@ -1,14 +1,14 @@
 
 
-
+/*
  $.ajax({
   url: "ajax/datatable-listado-pedidos.ajax.php",
   success:function(respuesta){
   console.log("res", respuesta);
   }
-});// 
+});
 
-
+*/
 var perfilOculto = $("#perfilOculto").val();
 var idUsuario = $("#idUsuario").val();
 $('.tablaListadoPedidos').dataTable({
