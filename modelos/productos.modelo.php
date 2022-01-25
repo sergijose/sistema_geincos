@@ -97,13 +97,23 @@ class ModeloProductos{
 
 		//para validar no repetir codigo y numero de serie del producto
 	static public function mdlMostrarProductosRepetidos($tabla, $item, $valor){
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item =:$item");
 
 		$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
 		$stmt -> execute();
 
 		return $stmt -> fetch();
+	}
+
+	static public function mdlMostrarProductosParaPrestamo($tabla, $item, $valor){
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item <> :$item");
+
+		$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
 	}
 
 	/*=============================================

@@ -6,7 +6,7 @@
 
   <div class="login-box-body">
 
-    <p class="login-box-msg"><b>Ingresar al sistema</b></p>
+    <p class="login-box-msg"><strong>Ingresar al sistema</strong></p>
     <div class="login-logo">
 
       <img src="vistas/img/plantilla/logo-07.jpg" class="img-responsive" style="padding:30px 100px 0px 100px  ">

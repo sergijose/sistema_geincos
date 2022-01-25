@@ -16,11 +16,11 @@ class TablaProductosPrestamos{
 
 	public function mostrarTablaProductosPrestamos(){
 
-		$item = null;
-    	$valor = null;
+		$item = "estado_prestamo";
+    	$valor = "NO APLICA";
     	$orden = "id";
 
-          $productos = ControladorProductos::ctrMostrarProductos($item, $valor, $orden);
+          $productos = ControladorProductos::ctrMostrarProductosParaPrestamo($item, $valor, $orden);
           
 
 

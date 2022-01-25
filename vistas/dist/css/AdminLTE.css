@@ -3415,6 +3415,10 @@ table.text-center th {
 .register-box {
   width: 360px;
   margin: 7% auto;
+  opacity: 0.9; 
+  border: solid #D29BFD;
+  
+  /*para poner transparente el cuadro de login*/
 }
 @media (max-width: 768px) {
   .login-box,
