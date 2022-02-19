@@ -53,7 +53,7 @@ $respuestaEmpleado = ControladorEmpleados::ctrMostrarEmpleados($itemEmpleado, $v
 
 //TRAEMOS LA INFORMACIÓN DEL VENDEDOR
 $itemVendedor = "id";
-$valorVendedor = $respuestaVenta[0]["id_usuario"];
+$valorVendedor = $respuestaVenta["id_usuario"];
 $respuestaVendedor = ControladorUsuarios::ctrMostrarUsuarios($itemVendedor, $valorVendedor);
 
 //TRAEMOS EL AREA
