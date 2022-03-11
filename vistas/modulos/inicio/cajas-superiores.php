@@ -137,9 +137,9 @@ $totalProductos = count($productos);
 
 
 
-  <div class="col-lg-7 col-xs-12">
+  <div class="col-lg-12 col-xs-12">
     <h3 class="box-title">ESTADO FISICO DE PRODUCTOS</h3>
-    <table class="table table-bordered table-striped dt-responsive" width="100%">
+    <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
 
       <thead>
 
@@ -198,9 +198,9 @@ $totalProductos = count($productos);
   </div>
 
 
-  <div class="col-lg-5 col-xs-12 ">
+  <div class="col-lg-12 col-xs-12  ">
     <h3 class="box-title">ESTADO DE PRESTAMO DE PRODUCTOS</h3>
-    <table class="table table-bordered table-striped dt-responsive" width="100%">
+    <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
 
       <thead>
 

@@ -51,7 +51,7 @@ class TablaListadoPedidos
       $itemEmpleado = "idempleado";
       $valorEmpleado = $value["id_empleado"];
       $respuestaEmpleado = ControladorEmpleados::ctrMostrarEmpleados($itemEmpleado, $valorEmpleado);
-      $empleado = $respuestaEmpleado["nombres"];
+      $empleado = $respuestaEmpleado["nombres"]." ".$respuestaEmpleado["ape_pat"]." ".$respuestaEmpleado["ape_mat"];
      
       /*==================================
       TRAER EL VENDEDOR

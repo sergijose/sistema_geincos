@@ -14,6 +14,10 @@ require_once "../controladores/categorias.controlador.php";
 require_once "../modelos/categorias.modelo.php";
 
 
+require_once "../controladores/marcas.controlador.php";
+require_once "../modelos/marcas.modelo.php";
+
+
 class TablaProductosUbicacion
 {
 
@@ -64,8 +68,25 @@ class TablaProductosUbicacion
               $item = "id";
               $valor = $productosUbicacion[$i]["id_ubicacion"];
               $ubicacion = ControladorProductoUbicacion::ctrMostrarUbicacionLista($item, $valor);
+              
+             /*=============================================
+ 	 		TRAEMOS MODELOS, MARCA,CATEGORTIA
+  			=============================================*/
 
 
+              $item = "id";
+              $valor = $productos["idmodelo"];
+  
+              $modelos = ControladorModelos::ctrMostrarModelo($item, $valor);
+  
+              $idcategoria = $modelos["idcategoria"];
+              $idMarca= $modelos["idmarca"];
+  
+              $categoria = ControladorCategorias::ctrMostrarCategorias($item, $idcategoria);
+  
+  
+  
+              $marca = ControladorMarcas::ctrMostrarMarca($item, $idMarca);
 
 
 
@@ -81,6 +102,9 @@ class TablaProductosUbicacion
 
             $datosJson .= '[
 			      "' . ($i + 1) . '",
+                  "' . $categoria["descripcion"] .'",
+                  "' . $marca["descripcion"] .'",
+                  "' . $modelos["descripcion"] .'",
                   "' . $productos["cod_producto"] .'",
 				  "' . $ubicacion["descripcion"] . '",
 				  "' . $productosUbicacion[$i]["posicion"] . '",

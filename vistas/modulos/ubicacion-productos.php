@@ -20,7 +20,7 @@ if ($_SESSION["perfil"] == "Visitante") {
 
     <div class="row">
 
-        <div class="col-lg-5 col-xs-6">
+        <div class="col-lg-7 col-xs-12">
 
             <section class="content-header">
 
@@ -53,8 +53,10 @@ if ($_SESSION["perfil"] == "Visitante") {
                             <thead>
 
                                 <tr>
-
-                                    <th style="width:10px">#</th>
+                                <th style="width:10px">#</th>
+                                    <th>Categoria</th>
+                                    <th>Marca</th>
+                                    <th>Modelo</th>
                                     <th>Producto</th>
                                     <th>Oficina</th>
                                     <th>Posicion</th>
@@ -75,7 +77,7 @@ if ($_SESSION["perfil"] == "Visitante") {
         </div>
 
 
-        <div class="col-lg-7 col-xs-6">
+        <div class="col-lg-5 col-xs-12">
 
             <section class="content-header">
 
