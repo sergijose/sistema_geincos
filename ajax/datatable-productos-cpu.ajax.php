@@ -124,6 +124,7 @@ class TablaProductosCpu
 				  "' .$procesador["descripcion"] .'",
 				  "' .$sistemaOperativo["descripcion"] .'",
 				  "' .$productosCpu[$i]["direccion_ip"] .'",
+				  "' .$productosCpu[$i]["mac"] .'",
 				  "' .$productosCpu[$i]["modelo_placa"] .'",
 				  "' .$productosCpu[$i]["observaciones"] .'",
 			      "' . $botones . '"

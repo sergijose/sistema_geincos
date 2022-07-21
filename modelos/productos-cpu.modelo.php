@@ -12,7 +12,7 @@ class ModeloProductosCpu
 	static public function mdlIngresarProductoCpu($tabla, $datos)
 	{
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(idproducto,tipo_disco,cant_disco,tipo_ram,cant_ram,procesador,sistema_operativo,direccion_ip,modelo_placa,observaciones,creado_por) VALUES (:idproducto,:tipo_disco,:cant_disco,:tipo_ram,:cant_ram,:procesador,:sistema_operativo,:direccion_ip,:modelo_placa,:observaciones,:creado_por)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(idproducto,tipo_disco,cant_disco,tipo_ram,cant_ram,procesador,sistema_operativo,direccion_ip,modelo_placa,observaciones,generacion,mac,edicion_so,creado_por) VALUES (:idproducto,:tipo_disco,:cant_disco,:tipo_ram,:cant_ram,:procesador,:sistema_operativo,:direccion_ip,:modelo_placa,:observaciones,:generacion,:mac,:edicion_so,:creado_por)");
 
 		$stmt->bindParam(":idproducto", $datos["idproducto"], PDO::PARAM_INT);
 		//$stmt->bindParam(":idempleado", $datos["idempleado"], PDO::PARAM_INT);
@@ -25,6 +25,9 @@ class ModeloProductosCpu
 		$stmt->bindParam(":direccion_ip", $datos["direccion_ip"], PDO::PARAM_STR);
 		$stmt->bindParam(":modelo_placa", $datos["modelo_placa"], PDO::PARAM_STR);
 		$stmt->bindParam(":observaciones", $datos["observaciones"], PDO::PARAM_STR);
+		$stmt->bindParam(":generacion", $datos["generacion"], PDO::PARAM_STR);
+		$stmt->bindParam(":mac", $datos["mac"], PDO::PARAM_STR);
+		$stmt->bindParam(":edicion_so", $datos["edicion_so"], PDO::PARAM_STR);
 		$stmt->bindParam(":creado_por", $datos["creado_por"], PDO::PARAM_INT);
 
 		if ($stmt->execute()) {
@@ -114,7 +117,7 @@ class ModeloProductosCpu
 	static public function mdlEditarProductoCpu($tabla, $datos)
 	{
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET tipo_disco=:tipo_disco,cant_disco=:cant_disco,tipo_ram=:tipo_ram,cant_ram=:cant_ram,procesador=:procesador,sistema_operativo=:sistema_operativo,direccion_ip=:direccion_ip,modelo_placa=:modelo_placa,observaciones=:observaciones,actualizado_por=:actualizado_por,fecha_actualizacion=:fecha_actualizacion WHERE id=:id");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET tipo_disco=:tipo_disco,cant_disco=:cant_disco,tipo_ram=:tipo_ram,cant_ram=:cant_ram,procesador=:procesador,sistema_operativo=:sistema_operativo,direccion_ip=:direccion_ip,modelo_placa=:modelo_placa,observaciones=:observaciones,generacion=:generacion,mac=:mac,edicion_so=:edicion_so,actualizado_por=:actualizado_por,fecha_actualizacion=:fecha_actualizacion WHERE id=:id");
 
 		//$stmt->bindParam(":id_empleado", $datos["id_empleado"], PDO::PARAM_INT);
 		$stmt->bindParam(":tipo_disco", $datos["tipo_disco"], PDO::PARAM_STR);
@@ -126,6 +129,9 @@ class ModeloProductosCpu
 		$stmt->bindParam(":direccion_ip", $datos["direccion_ip"], PDO::PARAM_STR);
 		$stmt->bindParam(":modelo_placa", $datos["modelo_placa"], PDO::PARAM_STR);
 		$stmt->bindParam(":observaciones", $datos["observaciones"], PDO::PARAM_STR);
+		$stmt->bindParam(":generacion", $datos["generacion"], PDO::PARAM_STR);
+		$stmt->bindParam(":mac", $datos["mac"], PDO::PARAM_STR);
+		$stmt->bindParam(":edicion_so", $datos["edicion_so"], PDO::PARAM_STR);
 		$stmt->bindParam(":actualizado_por", $datos["actualizado_por"], PDO::PARAM_INT);
 		$stmt->bindParam(":fecha_actualizacion", $datos["fecha_actualizacion"], PDO::PARAM_STR);
 		$stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);

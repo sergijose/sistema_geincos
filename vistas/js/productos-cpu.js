@@ -136,6 +136,9 @@ $(".tablaProductosCpu tbody").on("click", "button.btnEditarProductoCpu", functio
 			//$("#editarEmpleado").select2("val", respuesta["idempleado"]);
 			$("#editarIp").val(respuesta["direccion_ip"]);
 			$("#editarModeloPlaca").val(respuesta["modelo_placa"]);
+			$("#editarEdicion").val(respuesta["edicion_so"]);
+			$("#editarMac").val(respuesta["mac"]);
+			$("#editarGeneracion").val(respuesta["generacion"]);
 			
 			//para editar producto -capturando el id
 			$("#id").val(respuesta["id"]);

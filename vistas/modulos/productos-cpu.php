@@ -20,7 +20,7 @@ if ($_SESSION["perfil"] == "Visitante") {
 
     <h1>
 
-      Administrar detalles de productos
+      Administrar detalles de CPU <i class="fa fa-desktop" aria-hidden="true"></i>
 
     </h1>
 
@@ -63,12 +63,13 @@ if ($_SESSION["perfil"] == "Visitante") {
               <th style="width:10px">#</th>
               <th>Codigo</th>
               <th>Tipo Disco</th>
-              <th>Tamaño Disco</th>
+              <th>Disco</th>
               <th>Tipo Ram</th>
-              <th>Tamaño Ram</th>
+              <th>Ram</th>
               <th>Procesador</th>
-              <th>Sistema Operativo</th>
+              <th>Sistema O.</th>
               <th>Direccion ip</th>
+              <th>Mac</th>
               <th>Modelo Placa</th>
               <th>Observaciones</th>
 
@@ -170,7 +171,7 @@ MODAL AGREGAR PRODUCTO CPU
 
                     <span class="input-group-addon"><i class="fa fa-th"></i></span>
                     <select class="form-control input-md" id="nuevoTipoDisco" name="nuevoTipoDisco" required>
-                      <option value="">Seleccionar tipo de disco</option>
+                      <option value="">--Seleccionar--</option>
                       <option value="MECANICO">MECANICO</option>
                       <option value="SOLIDO">SOLIDO</option>
 
@@ -182,11 +183,6 @@ MODAL AGREGAR PRODUCTO CPU
                 </div>
 
               </div>
-
-
-
-
-
 
               <!-- ENTRADA PARA CANTIDAD DE DISCO -->
               <div class="col-lg-4 col-xs-12">
@@ -202,6 +198,9 @@ MODAL AGREGAR PRODUCTO CPU
 
               </div>
 
+              </div> <!-- FIN DE ROW SEGUNDA FILA -->    
+
+              <div class="row">
 
               <!-- ENTRADA PARA SELECCIONAR EL TIPO DE PROCESADOR-->
               <div class="col-lg-4 col-xs-12">
@@ -211,7 +210,7 @@ MODAL AGREGAR PRODUCTO CPU
 
                     <span class="input-group-addon"><i class="fa fa-th"></i></span>
                     <select class="form-control input-md" id="nuevoProcesador" name="nuevoProcesador" required>
-                      <option value="">Seleccionar tipo de Procesador</option>
+                      <option value="">--Seleccionar--</option>
                       <?php
 
                       $item = null;
@@ -232,11 +231,25 @@ MODAL AGREGAR PRODUCTO CPU
                 </div>
 
               </div>
+              <div class="col-lg-6 col-xs-12">
+                <div class="form-group">
+                  <label>Generacion del Procesador</label>
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-laptop" aria-hidden="true"></i></span>
 
-            </div> <!-- FIN DE ROW SEGUNDA FILA -->
+                    <input type="text" class="form-control" name="nuevaGeneracion" id="nuevaGeneracion">
+                   
+                  </div>
+                  <!-- /.input group -->
+                </div>
+
+              </div>
 
 
-
+              </div>
+                <!-- fin de fila -->
+       
+           
             <div class="row">
               <!-- ENTRADA PARA SELECCIONAR EL TIPO DE MEMORIA RAM -->
               <div class="col-lg-4 col-xs-12">
@@ -247,7 +260,7 @@ MODAL AGREGAR PRODUCTO CPU
                     <span class="input-group-addon"><i class="fa fa-th"></i></span>
                     <select class="form-control input-md" id="nuevoTipoRam" name="nuevoTipoRam" required>
 
-                      <option value="">Seleccionar tipo de Memoria Ram</option>
+                      <option value="">--Seleccionar--</option>
                       <option value="DDR4">DDR4</option>
                       <option value="DDR3">DDR3</option>
                       <option value="DDR2">DDR2</option>
@@ -276,8 +289,9 @@ MODAL AGREGAR PRODUCTO CPU
                 </div>
 
               </div>
+              </div> <!-- FIN DE ROW DE LA TERCERA FILA-->     
 
-
+              <div class="row">
               <div class="col-lg-4 col-xs-12">
                 <!-- ENTRADA PARA SELECCIONAR EL SISTEMA OPERATIVO-->
 
@@ -289,7 +303,7 @@ MODAL AGREGAR PRODUCTO CPU
                     <span class="input-group-addon"><i class="fa fa-th"></i></span>
                     <select class="form-control input-md" id="nuevoSistemaOperativo" name="nuevoSistemaOperativo" required>
 
-                      <option value="">Seleccionar Sistema Operativo</option>
+                      <option value="">--Seleccionar--</option>
                       <?php
 
                       $item = null;
@@ -311,8 +325,37 @@ MODAL AGREGAR PRODUCTO CPU
                 </div>
               </div>
 
-            </div> <!-- FIN DE ROW DE LA TERCERA FILA-->
+              <div class="col-lg-4 col-xs-12">
+                <div class="form-group">
+                  <label>Edicion de S.O</label>
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-laptop" aria-hidden="true"></i></span>
 
+                    <input type="text" class="form-control" name="nuevaEdicion" id="nuevaEdicion">
+                   
+                  </div>
+                  <!-- /.input group -->
+                </div>
+
+              </div>
+
+              <div class="col-lg-4 col-xs-12">
+                <div class="form-group">
+                  <label>MAC.</label>
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-laptop" aria-hidden="true"></i></span>
+
+                    <input type="text" class="form-control" name="nuevaMac" id="nuevaMac">
+                   
+                  </div>
+                  <!-- /.input group -->
+                </div>
+
+              </div>
+
+           
+              </div>
+              <!--fin de fila-->
 
             <div class="row">
 
@@ -354,10 +397,8 @@ MODAL AGREGAR PRODUCTO CPU
 
 
                 <div class="form-group">
-                  <label for="nuevaObservacion">Nota/observacion</label>
-                  <textarea class="form-control" id="nuevaObservacion" name="nuevaObservacion">
-                   
-                  </textarea>
+                  <label for="nuevaObservacion">Nota</label>
+                <textarea class="form-control" id="nuevaObservacion" cols="50" rows="4"  name="nuevaObservacion"></textarea>
                 </div>
               </div>
 
@@ -500,7 +541,10 @@ MODAL EDITAR PRODUCTO CPU
 
               </div>
 
+                    </div>
+<!--FIN DE FILA -->
 
+                      <div class="row">
               <!-- ENTRADA PARA SELECCIONAR EL TIPO DE PROCESADOR-->
               <div class="col-lg-4 col-xs-12">
                 <div class="form-group">
@@ -530,6 +574,19 @@ MODAL EDITAR PRODUCTO CPU
                 </div>
 
               </div>
+              <div class="col-lg-6 col-xs-12">
+                <div class="form-group">
+                  <label>Generacion del Procesador</label>
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-laptop" aria-hidden="true"></i></span>
+
+                    <input type="text" class="form-control" name="editarGeneracion" id="editarGeneracion">
+                   
+                  </div>
+                  <!-- /.input group -->
+                </div>
+
+              </div>
 
             </div> <!-- FIN DE ROW SEGUNDA FILA -->
 
@@ -545,7 +602,7 @@ MODAL EDITAR PRODUCTO CPU
                     <span class="input-group-addon"><i class="fa fa-th"></i></span>
                     <select class="form-control input-md" id="editarTipoRam" name="editarTipoRam" required>
 
-                      <option value="">Seleccionar tipo de Memoria Ram</option>
+                      <option value="">--Seleccionar--</option>
                       <option value="DDR4">DDR4</option>
                       <option value="DDR3">DDR3</option>
                       <option value="DDR2">DDR2</option>
@@ -575,7 +632,10 @@ MODAL EDITAR PRODUCTO CPU
 
               </div>
 
+                    </div>
+                        <!-- FIN DE FILA-->
 
+                      <div class="row">
               <div class="col-lg-4 col-xs-12">
                 <!-- ENTRADA PARA SELECCIONAR EL SISTEMA OPERATIVO-->
 
@@ -609,6 +669,34 @@ MODAL EDITAR PRODUCTO CPU
                   </div>
 
                 </div>
+              </div>
+
+              <div class="col-lg-4 col-xs-12">
+                <div class="form-group">
+                  <label>Edicion de S.O</label>
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-laptop" aria-hidden="true"></i></span>
+
+                    <input type="text" class="form-control" name="editarEdicion" id="editarEdicion">
+                   
+                  </div>
+                  <!-- /.input group -->
+                </div>
+
+              </div>
+
+              <div class="col-lg-4 col-xs-12">
+                <div class="form-group">
+                  <label>MAC.</label>
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-laptop" aria-hidden="true"></i></span>
+
+                    <input type="text" class="form-control" name="editarMac" id="editarMac">
+                   
+                  </div>
+                  <!-- /.input group -->
+                </div>
+
               </div>
 
             </div> <!-- FIN DE ROW DE LA TERCERA FILA-->
@@ -660,7 +748,7 @@ MODAL EDITAR PRODUCTO CPU
                 <div class="form-group">
                   <label for="editarObservacion">Nota/Observacion</label>
                   <div class="input-group">
-           <textarea class="form-control" id="editarObservacion" name="editarObservacion"required rows="4" cols="50"></textarea>
+           <textarea class="form-control" id="editarObservacion" name="editarObservacion"required  cols="50" rows="4"></textarea>
 
                   </div>
 
@@ -678,7 +766,7 @@ MODAL EDITAR PRODUCTO CPU
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Guardar Informacion</button>
+          <button type="submit" class="btn btn-primary">Actualizar Informacion</button>
         </div>
 
       </form>

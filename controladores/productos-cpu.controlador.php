@@ -169,6 +169,9 @@ class ControladorProductosCpu
 					"direccion_ip" => $_POST["nuevoIp"],
 					"modelo_placa" => $_POST["nuevoModeloPlaca"],
 					"observaciones" => $_POST["nuevaObservacion"],
+					"generacion" => $_POST["nuevaGeneracion"],
+					"mac" => $_POST["nuevaMac"],
+					"edicion_so" => $_POST["nuevaEdicion"],
 					"creado_por" => $_POST["creado_por"]
 				);
 				
@@ -234,6 +237,9 @@ class ControladorProductosCpu
 					"direccion_ip" => $_POST["editarIp"],
 					"modelo_placa" => $_POST["editarModeloPlaca"],
 					"observaciones" => $_POST["editarObservacion"],
+					"generacion" => $_POST["editarGeneracion"],
+					"mac" => $_POST["editarMac"],
+					"edicion_so" => $_POST["editarEdicion"],
 					"actualizado_por" => $_POST["actualizado_por"],
 					"fecha_actualizacion" => $fechaActual,
 					"id" => $_POST["id"]
