@@ -73,16 +73,17 @@ class ModeloProductosCpu
 	}
 
 	//MOSTRAR LISTA DE CODIGOS DE PRODUCTOS DE LA CATEGORIA CPU
-	static public function mdlMostrarCodigoProductoCpu($cat)
+	static public function mdlMostrarCodigoProductoCpu($cat,$cat2)
 	{
 		$stmt = Conexion::conectar()->prepare("SELECT pro.id,pro.cod_producto FROM producto pro
 				INNER JOIN modelo mo
 				ON pro.idmodelo=mo.id
 				INNER JOIN categoria cat
 				ON mo.idcategoria=cat.id 
-				WHERE cat.descripcion=:$cat");
+				WHERE cat.descripcion=:$cat or cat.descripcion=:$cat2");
 
 		$stmt->bindParam(":" . $cat, $cat, PDO::PARAM_STR);
+		$stmt->bindParam(":" . $cat2, $cat2, PDO::PARAM_STR);
 		$stmt->execute();
 
 		return $stmt->fetchAll();

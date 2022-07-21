@@ -20,7 +20,7 @@ if ($_SESSION["perfil"] == "Visitante") {
 
     <h1>
 
-      Administrar detalles de CPU <i class="fa fa-desktop" aria-hidden="true"></i>
+    Administrar detalles de CPU's y Laptop's <i class="fa fa-desktop" aria-hidden="true"></i>
 
     </h1>
 
@@ -106,7 +106,7 @@ MODAL AGREGAR PRODUCTO CPU
         ======================================-->
         <div class="modal-header" style="background:#0e0302; color:white">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Agregar informacion del CPU</h4>
+          <h4 class="modal-title">Agregar informacion</h4>
 
         </div>
 
@@ -123,22 +123,24 @@ MODAL AGREGAR PRODUCTO CPU
               <div class="col-lg-6 col-xs-12">
                 <!-- ENTRADA PARA SELECCIONAR CODIGO DE PRODUCTO DE LA CATEGORIA CPU -->
                 <div class="form-group">
-                  <label for="nuevoCodProductoCpu">Ingrese Codigo CPU</label>
+                  <label for="nuevoCodProductoCpu">Ingrese Codigo CPU o Laptop</label>
                   <div class="input-group">
 
 
                     <span class="input-group-addon"><i class="fa fa-th"></i></span>
                     <select class="form-control input-md mi-selector2" id="nuevoCodProductoCpu" name="nuevoCodProductoCpu" required>
 
-                      <option value="">Seleccionar Codigo CPU</option>
+                      <option value="">Seleccionar Codigo</option>
 
                       <?php
 
 
-                      $categoria = "CPU";
+                      $categoria1 = "CPU";
+                      $categoria2 ="laptop";
 
 
-                      $codProducto = ControladorProductosCpu::ctrMostrarCodigoProductoCpu($categoria);
+                      $codProducto = ControladorProductosCpu::ctrMostrarCodigoProductoCpu($categoria1, $categoria2);
+                    
                       foreach ($codProducto as $key => $value) {
 
                         echo '<option value="' . $value["id"] . '">' .
@@ -475,7 +477,7 @@ MODAL EDITAR PRODUCTO CPU
               <div class="col-lg-6 col-xs-12">
                 <!-- ENTRADA PARA SELECCIONAR CODIGO DE PRODUCTO DE LA CATEGORIA CPU -->
                 <div class="form-group">
-                  <label for="editarCodProductoCpu">Ingrese Codigo CPU</label>
+                  <label for="editarCodProductoCpu">Ingrese Codigo</label>
                   <div class="input-group">
 
 

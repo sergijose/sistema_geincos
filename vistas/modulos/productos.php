@@ -50,7 +50,7 @@ if ($_SESSION["perfil"] == "Visitante") {
 
           <button class="btn btn-primary">
 
-            Ver Detalle de CPU
+            Ver Detalle de CPU's y Laptop's <i class="fa fa-laptop" aria-hidden="true"></i>
 
           </button>
         </a>

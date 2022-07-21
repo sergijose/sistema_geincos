@@ -72,7 +72,7 @@ $("#nuevoCodProductoCpu").change(function(){
 	    	console.log("res",respuesta);
 	    	if(respuesta){
 
-	    		$("#nuevoCodProductoCpu").parent().after('<div class="alert alert-warning">Este codigo de cpu ya esta registrado</div>');
+	    		$("#nuevoCodProductoCpu").parent().after('<div class="alert alert-warning">Este codigo ya esta registrado, ingrese otro</div>');
 
 	    		$("#nuevoCodProductoCpu").val("");
 

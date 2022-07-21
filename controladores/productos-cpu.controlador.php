@@ -21,12 +21,12 @@ class ControladorProductosCpu
 	MOSTRAR CODIGO DE PRODUCTOS DE LA CATEGORIA CPU
 	=============================================*/
 
-	static public function ctrMostrarCodigoProductoCpu($cat)
+	static public function ctrMostrarCodigoProductoCpu($cat,$cat2)
 	{
 
 		
 
-		$respuesta = ModeloProductosCpu::mdlMostrarCodigoProductoCpu($cat);
+		$respuesta = ModeloProductosCpu::mdlMostrarCodigoProductoCpu($cat,$cat2);
 
 		return $respuesta;
 	}
