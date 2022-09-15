@@ -20,7 +20,7 @@ if ($_SESSION["perfil"] == "Visitante") {
 
     <h1>
 
-    Administrar detalles de CPU's y Laptop's <i class="fa fa-desktop" aria-hidden="true"></i>
+      Administrar detalles de CPU's y Laptop's <i class="fa fa-desktop" aria-hidden="true"></i>
 
     </h1>
 
@@ -140,7 +140,7 @@ MODAL AGREGAR PRODUCTO CPU
 
 
                       $codProducto = ControladorProductosCpu::ctrMostrarCodigoProductoCpu($categoria1, $categoria2);
-                    
+
                       foreach ($codProducto as $key => $value) {
 
                         echo '<option value="' . $value["id"] . '">' .
@@ -193,16 +193,16 @@ MODAL AGREGAR PRODUCTO CPU
                   <div class="input-group">
 
                     <span class="input-group-addon"><i class="fa fa-signal"></i></span>
-                    <input type="number" class="form-control input-md" id="nuevaCantDisco" min="1"  name="nuevaCantDisco" placeholder="Ingrese GB de disco duro" required>
+                    <input type="number" class="form-control input-md" id="nuevaCantDisco" min="1" name="nuevaCantDisco" placeholder="Ingrese GB de disco duro" required>
                   </div>
 
                 </div>
 
               </div>
 
-              </div> <!-- FIN DE ROW SEGUNDA FILA -->    
+            </div> <!-- FIN DE ROW SEGUNDA FILA -->
 
-              <div class="row">
+            <div class="row">
 
               <!-- ENTRADA PARA SELECCIONAR EL TIPO DE PROCESADOR-->
               <div class="col-lg-4 col-xs-12">
@@ -240,7 +240,7 @@ MODAL AGREGAR PRODUCTO CPU
                     <span class="input-group-addon"><i class="fa fa-laptop" aria-hidden="true"></i></span>
 
                     <input type="text" class="form-control" name="nuevaGeneracion" id="nuevaGeneracion">
-                   
+
                   </div>
                   <!-- /.input group -->
                 </div>
@@ -248,10 +248,10 @@ MODAL AGREGAR PRODUCTO CPU
               </div>
 
 
-              </div>
-                <!-- fin de fila -->
-       
-           
+            </div>
+            <!-- fin de fila -->
+
+
             <div class="row">
               <!-- ENTRADA PARA SELECCIONAR EL TIPO DE MEMORIA RAM -->
               <div class="col-lg-4 col-xs-12">
@@ -291,9 +291,9 @@ MODAL AGREGAR PRODUCTO CPU
                 </div>
 
               </div>
-              </div> <!-- FIN DE ROW DE LA TERCERA FILA-->     
+            </div> <!-- FIN DE ROW DE LA TERCERA FILA-->
 
-              <div class="row">
+            <div class="row">
               <div class="col-lg-4 col-xs-12">
                 <!-- ENTRADA PARA SELECCIONAR EL SISTEMA OPERATIVO-->
 
@@ -334,7 +334,7 @@ MODAL AGREGAR PRODUCTO CPU
                     <span class="input-group-addon"><i class="fa fa-laptop" aria-hidden="true"></i></span>
 
                     <input type="text" class="form-control" name="nuevaEdicion" id="nuevaEdicion">
-                   
+
                   </div>
                   <!-- /.input group -->
                 </div>
@@ -348,16 +348,16 @@ MODAL AGREGAR PRODUCTO CPU
                     <span class="input-group-addon"><i class="fa fa-laptop" aria-hidden="true"></i></span>
 
                     <input type="text" class="form-control" name="nuevaMac" id="nuevaMac">
-                   
+
                   </div>
                   <!-- /.input group -->
                 </div>
 
               </div>
 
-           
-              </div>
-              <!--fin de fila-->
+
+            </div>
+            <!--fin de fila-->
 
             <div class="row">
 
@@ -401,27 +401,27 @@ MODAL AGREGAR PRODUCTO CPU
                 <div class="form-group">
                   <label for="nuevaObservacion">Nota</label>
                 <textarea class="form-control" id="nuevaObservacion" cols="50" rows="4"  name="nuevaObservacion"></textarea>
+                  </div>
                 </div>
+
               </div>
 
-            </div>
+
+
+            </div> <!-- FIN DE FILA-->
+          </div>
 
 
 
-          </div> <!-- FIN DE FILA-->
-        </div>
-
-
-
-        <!--=====================================
+          <!--=====================================
         PIE DEL MODAL
         ======================================-->
-        <div class="modal-footer">
+          <div class="modal-footer">
 
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Guardar Informacion</button>
-        </div>
+            <button type="submit" class="btn btn-primary">Guardar Informacion</button>
+          </div>
 
       </form>
 
@@ -543,10 +543,10 @@ MODAL EDITAR PRODUCTO CPU
 
               </div>
 
-                    </div>
-<!--FIN DE FILA -->
+            </div>
+            <!--FIN DE FILA -->
 
-                      <div class="row">
+            <div class="row">
               <!-- ENTRADA PARA SELECCIONAR EL TIPO DE PROCESADOR-->
               <div class="col-lg-4 col-xs-12">
                 <div class="form-group">
@@ -583,7 +583,7 @@ MODAL EDITAR PRODUCTO CPU
                     <span class="input-group-addon"><i class="fa fa-laptop" aria-hidden="true"></i></span>
 
                     <input type="text" class="form-control" name="editarGeneracion" id="editarGeneracion">
-                   
+
                   </div>
                   <!-- /.input group -->
                 </div>
@@ -634,10 +634,10 @@ MODAL EDITAR PRODUCTO CPU
 
               </div>
 
-                    </div>
-                        <!-- FIN DE FILA-->
+            </div>
+            <!-- FIN DE FILA-->
 
-                      <div class="row">
+            <div class="row">
               <div class="col-lg-4 col-xs-12">
                 <!-- ENTRADA PARA SELECCIONAR EL SISTEMA OPERATIVO-->
 
@@ -680,7 +680,7 @@ MODAL EDITAR PRODUCTO CPU
                     <span class="input-group-addon"><i class="fa fa-laptop" aria-hidden="true"></i></span>
 
                     <input type="text" class="form-control" name="editarEdicion" id="editarEdicion">
-                   
+
                   </div>
                   <!-- /.input group -->
                 </div>
@@ -694,7 +694,7 @@ MODAL EDITAR PRODUCTO CPU
                     <span class="input-group-addon"><i class="fa fa-laptop" aria-hidden="true"></i></span>
 
                     <input type="text" class="form-control" name="editarMac" id="editarMac">
-                   
+
                   </div>
                   <!-- /.input group -->
                 </div>
@@ -750,26 +750,26 @@ MODAL EDITAR PRODUCTO CPU
                 <div class="form-group">
                   <label for="editarObservacion">Nota/Observacion</label>
                   <div class="input-group">
-           <textarea class="form-control" id="editarObservacion" name="editarObservacion"required  cols="50" rows="4"></textarea>
+           <textarea class="form-control" id="editarObservacion" name="editarObservacion" rows="4" cols="50"></textarea>
 
-                  </div>
+                </div>
 
                 </div>
               </div>
 
             </div>
-          </div> <!-- FIN DE FILA-->
-        </div>
+            </div> <!-- FIN DE FILA-->
+          </div>
 
-        <!--=====================================
+          <!--=====================================
         PIE DEL MODAL
         ======================================-->
-        <div class="modal-footer">
+          <div class="modal-footer">
 
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Actualizar Informacion</button>
-        </div>
+            <button type="submit" class="btn btn-primary">Actualizar Informacion</button>
+          </div>
 
       </form>
 

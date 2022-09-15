@@ -88,10 +88,10 @@ if ($_SESSION["perfil"] == "Visitante" || $_SESSION["perfil"] == "Especial") {
 
               if ($value["imagen"] != "") {
 
-                echo '<td><img src="' . $value["imagen"] . '" class="img-thumbnail btnMostrarImagen" width="40px" data-toggle="modal"  data-target="#modalMostrar" id="' . $value["id"] . '"></td>';
+                echo '<td><img src="' . $value["imagen"] . '" class="img-thumbnail btnMostrarImagen" width="100px" data-toggle="modal"  data-target="#modalMostrar" id="' . $value["id"] . '"></td>';
               } else {
 
-                echo '<td><img src="vistas/img/modelos/default/anonymous.png" class="img-thumbnail btnMostrarImagen"  width="40px" data-toggle="modal"  data-target="#modalMostrar" id="' . $value["id"] . '"></td>';
+                echo '<td><img src="vistas/img/modelos/default/anonymous.png" class="img-thumbnail btnMostrarImagen"  width="100px" data-toggle="modal"  data-target="#modalMostrar" id="' . $value["id"] . '"></td>';
               }
 
 

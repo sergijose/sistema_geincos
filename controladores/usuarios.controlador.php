@@ -112,7 +112,7 @@ class ControladorUsuarios{
 
 				$ruta = "";
 
-				if(isset($_FILES["nuevaFoto"]["tmp_name"])){
+					if(isset($_FILES["nuevaFoto"]["tmp_name"])&& $_FILES["nuevaFoto"]["tmp_name"]!=""){
 
 					list($ancho, $alto) = getimagesize($_FILES["nuevaFoto"]["tmp_name"]);
 
@@ -184,6 +184,8 @@ class ControladorUsuarios{
 					           "foto"=>$ruta);
 
 				$respuesta = ModeloUsuarios::mdlIngresarUsuario($tabla, $datos);
+				//var_dump($respuesta);
+				//return;
 			
 				if($respuesta == "ok"){
 

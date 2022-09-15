@@ -20,7 +20,7 @@ class ControladorModelos{
 
 				$ruta = "vistas/img/modelos/default/anonymous.png";
 
-				if(isset($_FILES["nuevaImagen"]["tmp_name"])){
+				if(isset($_FILES["nuevaImagen"]["tmp_name"])&& $_FILES["nuevaImagen"]["tmp_name"]!=""){
 
 				 list($ancho, $alto) = getimagesize($_FILES["nuevaImagen"]["tmp_name"]);
 
