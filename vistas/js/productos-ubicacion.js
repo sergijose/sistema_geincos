@@ -2,11 +2,11 @@
 CARGAR LA TABLA DINÁMICA DE PRODUCTOS UBICACION
 =============================================*/
 
-
-/*$.ajax({
+/*
+$.ajax({
 	url: "ajax/datatable-productos-ubicacion.ajax.php",
 	success: function (respuesta) {
-		//console.log("respuesta", respuesta);
+		console.log("respuesta", respuesta);
 	},
 });
 */

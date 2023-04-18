@@ -18,9 +18,9 @@ class ControladorEmpleados{
 
 			   	$tabla = "empleado";
 
-			   	$datos = array("ape_pat"=>$_POST["nuevoApePat"],
-					           "ape_mat"=>$_POST["nuevoApeMat"],
-					           "nombres"=>$_POST["nuevoNombres"],
+			   	$datos = array("ape_pat"=>strtolower($_POST["nuevoApePat"]),
+					           "ape_mat"=>strtolower($_POST["nuevoApeMat"]),
+					           "nombres"=>strtolower($_POST["nuevoNombres"]),
                                "num_documento"=>$_POST["nuevoNumDocumento"],
                                "estado"=>$_POST["nuevoEstado"],
 							   "creado_por" => $_POST["creado_por"]);
