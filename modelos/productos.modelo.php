@@ -290,6 +290,39 @@ class ModeloProductos{
 
 }
 
+public static function search($searchTerm,$posicion) {
+	$stmt = Conexion::conectar()->prepare("SELECT pro.cod_producto,cat.descripcion AS categorias,mar.descripcion AS marcas,mo.descripcion AS modelos,
+	tipopro.descripcion AS procesador, procpu.generacion,procpu.tipo_disco,procpu.cant_disco,procpu.tipo_ram,procpu.cant_ram,
+	tso.descripcion AS sistema_operativo,procpu.edicion_so AS edicion_so,procpu.direccion_ip,procpu.mac, IF(pro.estado_prestamo='ocupado','EN PRESTAMO',ubi.descripcion) as oficina,ubipro.posicion,est.descripcion AS estado_fisico,
+	pro.estado_prestamo AS estado_prestamo,procpu.observaciones AS nota_equipo,ubipro.referencia AS referencia
+	FROM producto pro
+	 LEFT JOIN producto_cpu procpu
+	 ON pro.id=procpu.idproducto
+	 LEFT JOIN tipo_procesador tipopro
+	 ON procpu.procesador=tipopro.id
+	 INNER  JOIN modelo mo
+	 ON pro.idmodelo=mo.id
+	 INNER JOIN estado est
+	 ON pro.idestado=est.id
+	 INNER JOIN categoria cat
+	 ON mo.idcategoria=cat.id
+	 INNER JOIN marca mar
+	 ON mo.idmarca=mar.id
+	 LEFT JOIN  ubicacion_productos ubipro
+	 ON ubipro.id_producto=pro.id
+	 LEFT JOIN ubicacion ubi
+	 ON ubipro.id_ubicacion=ubi.id
+	 LEFT JOIN tipo_sistema_operativo tso
+	 ON procpu.sistema_operativo=tso.id
+	 WHERE ubi.descripcion LIKE :searchTerm AND ubipro.posicion like :posicion"
+	);
+	$stmt->bindValue(":searchTerm", '%' . $searchTerm . '%', PDO::PARAM_STR);
+	$stmt->bindValue(":posicion", '%' . $posicion . '%', PDO::PARAM_STR);
+	$stmt->execute();
+	$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $results;
+}
+
 
 
 
