@@ -248,11 +248,4 @@ class ControladorProductos
 			}
 		}
 	}
-
-
-	public static function search($searchTerm,$posicion) {
-        $results = ModeloProductos::search($searchTerm,$posicion);
-        return $results;
-    }
-
 }
