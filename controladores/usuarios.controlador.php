@@ -9,7 +9,6 @@ class ControladorUsuarios{
 	=============================================*/
 
 	static public function ctrIngresoUsuario(){
-
 		if(isset($_POST["ingUsuario"])){
 
 			if(preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingUsuario"]) &&
@@ -27,6 +26,7 @@ class ControladorUsuarios{
 				if(is_array($respuesta) && $respuesta["usuario"] == $_POST["ingUsuario"] && $respuesta["password"] == $encriptar){
 
 					if($respuesta["estado"] == 1){
+
 
 						$_SESSION["iniciarSesion"] = "ok";
 						$_SESSION["id"] = $respuesta["id"];
@@ -64,7 +64,6 @@ class ControladorUsuarios{
 								showConfirmButton: true,
 								allowOutsideClick: false
 								}).then(function(result){
-									
 										  if (result.value) {
 	  
 										  window.location = "inicio";

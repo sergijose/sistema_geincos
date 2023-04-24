@@ -38,15 +38,15 @@
 
       </div>
 
-      <?php
-
-      $login = new ControladorUsuarios();
-      $login->ctrIngresoUsuario();
-
-      ?>
+      
 
     </form>
+    <?php
 
+$login = new ControladorUsuarios();
+$login->ctrIngresoUsuario();
+
+?>
   </div>
 
 </div>
