@@ -3390,11 +3390,11 @@ table.text-center th {
 }
 .login-logo a,
 .register-logo a {
-  color: #444;
+  color: #fff;
 }
 .login-page,
 .register-page {
-  background: linear-gradient(rgba(0,0,0,1), rgba(0,30,50,1));
+  background: linear-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 1));
 }
 
 .login-page #back{
@@ -3404,7 +3404,7 @@ table.text-center th {
   left:0;
   width:100%;
   height:100vh;
-  background: url(../../img/plantilla/logo-geincos.jfif);
+  /*background: url(../../img/plantilla/logo4.jpg); */
   background-size:cover;
   overflow:hidden;
   z-index:-1;
@@ -3416,7 +3416,7 @@ table.text-center th {
   width: 360px;
   margin: 7% auto;
   opacity: 0.9; 
-  border: solid #D29BFD;
+  border: solid #fff;
   
   /*para poner transparente el cuadro de login*/
 }
@@ -3432,11 +3432,11 @@ table.text-center th {
   background: #fff;
   padding: 20px;
   border-top: 0;
-  color: #666;
+  color: #fff;
 }
 .login-box-body .form-control-feedback,
 .register-box-body .form-control-feedback {
-  color: #777;
+  color: #fff;
 }
 .login-box-msg,
 .register-box-msg {

@@ -64,6 +64,7 @@ class ControladorUsuarios{
 								showConfirmButton: true,
 								allowOutsideClick: false
 								}).then(function(result){
+									document.getElementById("miDiv").style.opacity = 1;
 										  if (result.value) {
 	  
 										  window.location = "inicio";
