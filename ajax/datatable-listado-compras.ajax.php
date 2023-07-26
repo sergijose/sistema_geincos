@@ -110,12 +110,12 @@ class TablaListadoCompras
       ==================================*/
 
       if (isset($_GET["perfilOculto"]) && $_GET["perfilOculto"] == "Administrador") {
-        $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarCompra' idCompra='".$value["id"]."' data-toggle='modal' data-target='#modalEditarCompra'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarCompra' idCompra='" . $value["id"] . "'><i class='fa fa-times'></i></button></div>";
+        $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarCompra' idCompra='".$value["id"]."' data-toggle='modal' data-target='#modalEditarCompra'><i class='fas fa-pencil-alt'></i></button><button class='btn btn-danger btnEliminarCompra' idCompra='" . $value["id"] . "'><i class='fa fa-times'></i></button></div>";
       
       }
       else{
-        $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarCompra' idCompra='".$value["id"]."' data-toggle='modal' data-target='#modalEditarCompra'><i class='fa fa-pencil'></i></button>";
-      // $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarCompra' idCompra='".$value["id"]."' data-toggle='modal' data-target='#modalEditarCompra'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarCompra' idCompra='" . $value["id"] . "'><i class='fa fa-times'></i></button></div>";
+        $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarCompra' idCompra='".$value["id"]."' data-toggle='modal' data-target='#modalEditarCompra'><i class='fas fa-pencil-alt'></i></button>";
+      // $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarCompra' idCompra='".$value["id"]."' data-toggle='modal' data-target='#modalEditarCompra'><i class='fas fa-pencil-alt'></i></button><button class='btn btn-danger btnEliminarCompra' idCompra='" . $value["id"] . "'><i class='fa fa-times'></i></button></div>";
       }
 
       /*===================================

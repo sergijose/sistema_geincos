@@ -67,7 +67,7 @@
 
               <div class="btn-group">
                   
-                <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
+                <button class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
 
                 <button class="btn btn-danger"><i class="fa fa-times"></i></button>
 
@@ -89,7 +89,7 @@
 
               <div class="btn-group">
                   
-                <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
+                <button class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
 
                 <button class="btn btn-danger"><i class="fa fa-times"></i></button>
 
@@ -111,7 +111,7 @@
 
               <div class="btn-group">
                   
-                <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
+                <button class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
 
                 <button class="btn btn-danger"><i class="fa fa-times"></i></button>
 

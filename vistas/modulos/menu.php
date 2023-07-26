@@ -24,7 +24,7 @@
 
 				<a href="usuarios">
 
-					<i class="fa fa-user"></i>
+					<i class="fas fa-user-cog"></i>
 					<span>Usuarios</span>
 
 				</a>
@@ -35,7 +35,7 @@
 
 				<a href="empleados">
 
-					<i class="fa fa-users"></i>
+					<i class="fas fa-user"></i>
 					<span>Empleados</span>
 
 				</a>
@@ -106,7 +106,7 @@
 			<li>
 						
 			<a href="proveedores">
-				<i class="fa fa-th"></i>
+				<i class="fas fa-briefcase"></i>
 				<span>Proveedores</span>
 			</a>
 			</li>
@@ -115,8 +115,8 @@
 			<li>
 
 				<a href="productos">
-
-					<i class="fa fa-product-hunt"></i>
+				<i class="fas fa-headphones"></i><i class="fas fa-desktop"></i>
+				
 					<span>Productos</span>
 
 				</a>
@@ -126,7 +126,7 @@
 
 				<a href="productos-lotes">
 
-					<i class="fa fa-product-hunt"></i>
+					<i class="fas fa-box-open"></i>
 					<span>Productos Generales</span>
 
 				</a>
@@ -137,7 +137,7 @@
 
 				<a href="ubicacion-productos">
 
-					<i class="fa fa-map-marker"></i>
+					<i class="fas fa-map-marker-alt"></i>
 					<span>Ubicacion de Productos</span>
 
 				</a>
@@ -150,7 +150,7 @@
 
 				<a href="#">
 
-					<i class="fa fa-leanpub"></i>
+					<i class="fas fa-tasks"></i>
 
 					<span>Prestamos</span>
 
@@ -209,7 +209,7 @@
 			
 			<li class="treeview">
 						<a href="#">
-							<i class="fa fa-usd"></i>							
+							<i class="fas fa-shopping-cart"></i>							
 							<span>Pedidos</span>							
 							<span class="pull-right-container">
 								<i class="fa fa-angle-left pull-right"></i>
@@ -233,7 +233,7 @@
 					if($_SESSION["perfil"] == "Administrador"|| $_SESSION["perfil"] == "Especial"){
 						echo '<li class="treeview">
 								<a href="#">
-									<i class="fa fa-shopping-cart"></i>
+									<i class="fas fa-shopping-bag"></i>
 									<span>Compras</span>
 									<span class="pull-right-container">
 										<i class="fa fa-angle-left pull-right"></i>

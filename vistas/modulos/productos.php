@@ -67,14 +67,11 @@ if ($_SESSION["perfil"] == "Visitante") {
             <tr>
 
               <th style="width:10px">#</th>
-              <th>Categoria</th>
-              <th>Marca</th>
-              <th>Modelo</th>
               <th>Código</th>
-              <th>Numero de Serie</th>
+              <th>Detalle Producto</th>
               <th>Estado Fisico</th>
-              <th>Observaciones</th>
-              <th>Disp.Prestamo</th>
+              <th>Nota</th>
+              <th>Prestamo</th>
               <th>Fecha_Registro</th>
               <th>Acciones</th>
 
@@ -458,19 +455,19 @@ MODAL EDITAR PRODUCTO
 
             </div>
 
-                      <!-- ENTRADA PARA LA DESCRIPCIÓN -->
+            <!-- ENTRADA PARA LA DESCRIPCIÓN -->
 
             <div class="form-group">
 
-<div class="input-group">
+              <div class="input-group">
 
-  <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
 
-  <input type="text" class="form-control input-md" id="editarObservaciones" name="editarObservaciones" placeholder="Ingresar descripción o notas">
+                <input type="text" class="form-control input-md" id="editarObservaciones" name="editarObservaciones" placeholder="Ingresar descripción o notas">
 
-</div>
+              </div>
 
-</div>
+            </div>
 
 
           </div>
@@ -502,9 +499,119 @@ MODAL EDITAR PRODUCTO
   </div>
 
 </div>
+
+
+
+<!-- MODAL VER UBICACION DE PRODUCTO -->
+<div class="modal fade" id="modalVerUbicacionProducto" tabindex="-1" role="dialog" aria-labelledby="modalProductoLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="modalProductoLabel">Ubicacion del Producto</h4>
+      </div>
+      <div class="modal-body">
+        <!-- Contenido del modal con la información del producto -->
+        <p><strong>Oficina:</strong> <span id="oficinaProducto"></span></p>
+        <p><strong>Posicion:</strong><span id="posicionProducto"></p>
+        <p><strong>Referencia:</strong> <span id="referenciaProducto"></p>
+        <!-- Agregar más detalles del producto según tus necesidades -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Para Caracteristicas de cpu -->
+<!-- Modal -->
+<div class="modal fade" id="modalVerCaracteristicasCpu" tabindex="-1" role="dialog" aria-labelledby="modalCPULabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="modalCPULabel"> <i class="fas fa-barcode"> </i><span id="cod_producto"></span></h4>
+
+      </div>
+      <div class="modal-body">
+    
+        <div class="col-sm-12">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <i class="fas fa-memory"></i><span id="ram"></span>
+            </li>
+            </ul>     
+            <ul class="list-group">     
+            <li class="list-group-item">
+              <i class="fas fa-microchip"></i> <span id="procesador"></span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-sm-12">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <i class="fas fa-hdd"></i> <span id="disco_duro"></span>
+            </li>
+            </ul>
+            <ul class="list-group">
+            <li class="list-group-item">
+              <i class="fab fa-windows"></i><i class="fab fa-linux"></i><span id="sistema_operativo"></span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-sm-6">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <i class="fas fa-network-wired"></i><span id="mac"></span>
+            </li>
+
+          </ul>
+        </div>
+
+        <div class="col-sm-6">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <i class="fas fa-laptop"></i><span id="direccion_ip"></span>
+            </li>
+          </ul>
+        </div>
+
+        
+        <div class="col-sm-6">
+          <ul class="list-group">
+            <li class="list-group-item">
+            <i class="fas fa-microchip"></i><span id="modelo_placa"></span>
+            </li>
+
+          </ul>
+        </div>
+
+        <div class="col-sm-6">
+          <ul class="list-group">
+            <li class="list-group-item">
+            <i class="fas fa-pencil-alt"></i></i><span id="notas"></span>
+            </li>
+
+          </ul>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <?php
 
 $eliminarProducto = new ControladorProductos();
 $eliminarProducto->ctrEliminarProducto();
 
 ?>
+

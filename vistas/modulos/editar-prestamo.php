@@ -216,7 +216,7 @@ if ($_SESSION["perfil"] == "Visitante") {
                 <div class="input-group">
 
 
-                  <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                  <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
 
                   <textarea class="form-control" id="observacionPrestamo" name="observacionPrestamo" cols="5" rows="2" placeholder="observaciones del prestamo"><?php echo $prestamo["observacion_prestamo"]; ?></textarea>
               
@@ -252,7 +252,7 @@ if ($_SESSION["perfil"] == "Visitante") {
             <div class="input-group" readonly style="display:none" id="caja">
 
 
-              <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
+              <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
 
               <textarea class="form-control" id="observacionDevolucion" name="observacionDevolucion" cols="5" rows="2" placeholder="observaciones de la devolucion del prestamo" readonly style="display:none" required></textarea>
 

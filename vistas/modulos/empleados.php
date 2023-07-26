@@ -108,7 +108,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
                       <div class="btn-group">
                           
-                        <button class="btn btn-warning btnEditarEmpleado" data-toggle="modal" data-target="#modalEditarEmpleado" idEmpleado="' . $value["idempleado"] . '"><i class="fa fa-pencil"></i></button>';
+                        <button class="btn btn-warning btnEditarEmpleado" data-toggle="modal" data-target="#modalEditarEmpleado" idEmpleado="' . $value["idempleado"] . '"><i class="fas fa-pencil-alt"></i></button>';
 
                             if ($_SESSION["perfil"] == "Administrador") {
 

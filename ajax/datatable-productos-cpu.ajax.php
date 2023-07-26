@@ -107,11 +107,11 @@ class TablaProductosCpu
 			  =============================================*/
 			  
 			  if(isset($_GET["perfilOculto"]) && $_GET["perfilOculto"] == "Especial"){
-				$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarProductoCpu' idProductoCpu='" . $productosCpu[$i]["id"] ."' data-toggle='modal' data-target='#modalEditarProductoCpu'><i class='fa fa-pencil'></i></button></div>";
+				$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarProductoCpu' idProductoCpu='" . $productosCpu[$i]["id"] ."' data-toggle='modal' data-target='#modalEditarProductoCpu'><i class='fas fa-pencil-alt'></button></div>";
 
 
 			}else{
-			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarProductoCpu' idProductoCpu='" . $productosCpu[$i]["id"] . "' data-toggle='modal' data-target='#modalEditarProductoCpu'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarProductoCpu' idProductoCpu='" . $productosCpu[$i]["id"] . "'><i class='fa fa-times'></i></button></div>";
+			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarProductoCpu' idProductoCpu='" . $productosCpu[$i]["id"] . "' data-toggle='modal' data-target='#modalEditarProductoCpu'><i class='fas fa-pencil-alt-alt'></i></button><button class='btn btn-danger btnEliminarProductoCpu' idProductoCpu='" . $productosCpu[$i]["id"] . "'><i class='fa fa-times'></i></button></div>";
 		}
 
 			$datosJson .= '[

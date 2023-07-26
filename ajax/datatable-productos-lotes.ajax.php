@@ -60,10 +60,10 @@ class TablaProductosLotes
         TRAEMOS LAS ACCIONES 
         =============================================*/
         if(isset($_GET["perfilOculto"]) && $_GET["perfilOculto"] == "Administrador"){
-          $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarProductoLotes' idProducto='" . $productosLotes[$i]["id"] . "' data-toggle='modal' data-target='#modalEditarProductoLotes'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarProductoLotes ' idProducto='" . $productosLotes[$i]["id"] . "'><i class='fa fa-times'></i></button></div>";
+          $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarProductoLotes' idProducto='" . $productosLotes[$i]["id"] . "' data-toggle='modal' data-target='#modalEditarProductoLotes'><i class='fas fa-pencil-alt'></i></button><button class='btn btn-danger btnEliminarProductoLotes ' idProducto='" . $productosLotes[$i]["id"] . "'><i class='fa fa-times'></i></button></div>";
         }
         else{
-          $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarProductoLotes' idProducto='" . $productosLotes[$i]["id"] . "' data-toggle='modal' data-target='#modalEditarProductoLotes'><i class='fa fa-pencil'></i></button></div>";
+          $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarProductoLotes' idProducto='" . $productosLotes[$i]["id"] . "' data-toggle='modal' data-target='#modalEditarProductoLotes'><i class='fas fa-pencil-alt'></i></button></div>";
         }
        
         $datosJson .= '[

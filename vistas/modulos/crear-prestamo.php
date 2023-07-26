@@ -184,7 +184,7 @@ if ($_SESSION["perfil"] == "Visitante") {
                 <div class="input-group">
                
 
-                  <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                  <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
 
                   <textarea class="form-control" id="observacionPrestamo" name="observacionPrestamo" cols="5" rows="2" placeholder="observaciones del prestamo"></textarea>
 

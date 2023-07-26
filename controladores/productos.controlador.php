@@ -16,6 +16,17 @@ class ControladorProductos
 
 		return $respuesta;
 	}
+	/*=============================================
+	MOSTRAR PRODUCTOS DETALLE CPU
+	=============================================*/
+
+	static public function ctrMostrarProductosDetalle($valor)
+	{
+
+		$respuesta = ModeloProductos::mdlMostrarProductosDetalle($valor);
+
+		return $respuesta;
+	}
 
 	/*=============================================
 	MOSTRAR PRODUCTOS

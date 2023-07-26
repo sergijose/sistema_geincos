@@ -115,9 +115,9 @@ class TablaProductosUbicacion
 			  =============================================*/
 
             if (isset($_GET["perfilOculto"]) && $_GET["perfilOculto"] == "Especial") {
-                $botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarProductoUbicacion' idProductoUbicacion='" . $productosUbicacion[$i]["id"] . "'  data-toggle='modal' data-target='#modalEditarProductoUbicacion'><i class='fa fa-pencil'></i></button></div>";
+                $botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarProductoUbicacion' idProductoUbicacion='" . $productosUbicacion[$i]["id"] . "'  data-toggle='modal' data-target='#modalEditarProductoUbicacion'><i class='fas fa-pencil-alt'></i></button></div>";
             } else {
-                $botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarProductoUbicacion' idProductoUbicacion='" . $productosUbicacion[$i]["id"] . "' data-toggle='modal' data-target='#modalEditarProductoUbicacion'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarProductoUbicacion' idProductoUbicacion='" . $productosUbicacion[$i]["id"] . "'><i class='fa fa-times'></i></button></div>";
+                $botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarProductoUbicacion' idProductoUbicacion='" . $productosUbicacion[$i]["id"] . "' data-toggle='modal' data-target='#modalEditarProductoUbicacion'><i class='fas fa-pencil-alt'></i></button><button class='btn btn-danger btnEliminarProductoUbicacion' idProductoUbicacion='" . $productosUbicacion[$i]["id"] . "'><i class='fa fa-times'></i></button></div>";
             }
 
             $datosJson .= '[

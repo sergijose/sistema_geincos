@@ -113,12 +113,12 @@ class TablaListadoPedidos
       <button class='btn btn-danger btnEliminarVenta' idVenta='" . $value["id"] . "'><i class='fa fa-times'></i></button></div>";
       */
       if (isset($_GET["perfilOculto"]) && $_GET["perfilOculto"] == "Administrador") {
-        $botones = "<div class='btn-group'><button class='btn btn-success btnImprimirPedido' codigoPedido='" . $value["codigo"] . "'><i class='fa fa-print'></i></button><button class='btn btn-warning btnEditarPedido' idPedido='".$value["id"]."' data-toggle='modal' data-target='#modalEditarPedido'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarPedido' idPedido='" . $value["id"] . "'><i class='fa fa-times'></i></button></div>";
+        $botones = "<div class='btn-group'><button class='btn btn-success btnImprimirPedido' codigoPedido='" . $value["codigo"] . "'><i class='fa fa-print'></i></button><button class='btn btn-warning btnEditarPedido' idPedido='".$value["id"]."' data-toggle='modal' data-target='#modalEditarPedido'><i class='fas fa-pencil-alt'></i></button><button class='btn btn-danger btnEliminarPedido' idPedido='" . $value["id"] . "'><i class='fa fa-times'></i></button></div>";
     } else {
       
-      $botones = "<div class='btn-group'><button class='btn btn-success btnImprimirPedido' codigoPedido='" . $value["codigo"] . "'><i class='fa fa-print'></i></button><button class='btn btn-warning btnEditarPedido' idPedido='".$value["id"]."' data-toggle='modal' data-target='#modalEditarPedido'><i class='fa fa-pencil'></i></button></div>";
+      $botones = "<div class='btn-group'><button class='btn btn-success btnImprimirPedido' codigoPedido='" . $value["codigo"] . "'><i class='fa fa-print'></i></button><button class='btn btn-warning btnEditarPedido' idPedido='".$value["id"]."' data-toggle='modal' data-target='#modalEditarPedido'><i class='fas fa-pencil-alt'></i></button></div>";
     }
-      /*$botones = "<div class='btn-group'><button class='btn btn-success btnImprimirFactura' codigoVenta='" . $value["codigo"] . "'><i class='fa fa-print'></i></button><button class='btn btn-warning btnEditarVenta' idVenta='".$value["id"]."' data-toggle='modal' data-target='#modalEditarVenta'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarVenta' idventa='" . $value["id"] . "'><i class='fa fa-times'></i></button>";*/
+      /*$botones = "<div class='btn-group'><button class='btn btn-success btnImprimirFactura' codigoVenta='" . $value["codigo"] . "'><i class='fa fa-print'></i></button><button class='btn btn-warning btnEditarVenta' idVenta='".$value["id"]."' data-toggle='modal' data-target='#modalEditarVenta'><i class='fas fa-pencil-alt'></i></button><button class='btn btn-danger btnEliminarVenta' idventa='" . $value["id"] . "'><i class='fa fa-times'></i></button>";*/
       /*===================================
       DEVOLVER LOS DATOS
       ===================================*/

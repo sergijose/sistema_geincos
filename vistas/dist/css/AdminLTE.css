@@ -260,9 +260,14 @@
    padding: 15px 15px;
    font-family: fontAwesome;
  }
- .main-header .sidebar-toggle:before {
+ .main-header .sidebar-toggle::before {
    content: "\f0c9";
+   font-family: "Font Awesome 5 Free";
+  font-weight: 900;
  }
+ .sidebar-toggle::before {
+  content: "\f0c9";
+}
  .main-header .sidebar-toggle:hover {
    color: #fff;
  }

@@ -207,7 +207,7 @@
                   <div class="input-group">
 
 
-                    <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                    <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
 
                     <textarea class="form-control" id="editarDescripcion" name="editarDescripcion" cols="5" rows="2" placeholder="observaciones del prestamo"><?php echo $pedidos["descripcion"]; ?></textarea>
 

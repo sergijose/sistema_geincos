@@ -1,14 +1,14 @@
 /*=============================================
 CARGAR LA TABLA DINÁMICA DE PRODUCTOS
 =============================================*/
-/*
+
 $.ajax({
 	url: "ajax/datatable-productos.ajax.php",
 	success: function (respuesta) {
 		//	console.log("respuesta", respuesta);
 	},
 });
-*/
+
 var perfilOculto = $("#perfilOculto").val();
 
 
@@ -121,7 +121,7 @@ $("#nuevoNumSerie").change(function(){
 EDITAR PRODUCTO
 =============================================*/
 
-$(".tablaProductos tbody").on("click", "button.btnEditarProducto", function () {
+$(".tablaProductos tbody").on("click", "a.btnEditarProducto", function () {
 	var idProducto = $(this).attr("idProducto");
 
 	var datos = new FormData();
@@ -189,7 +189,7 @@ ELIMINAR PRODUCTO
 
 $(".tablaProductos tbody").on(
 	"click",
-	"button.btnEliminarProducto",
+	"a.btnEliminarProducto",
 	function () {
 		var idProducto = $(this).attr("idProducto");
 		swal({
@@ -211,6 +211,105 @@ $(".tablaProductos tbody").on(
 	}
 );
 
+
+/*=============================================
+MOSTRAR DATOS DE DETALLE UBICACION PRODUCTO
+=============================================*/
+$(".tablaProductos tbody").on("click", "a.btnMostrarDetalleProducto", function(){
+	//console.log("hola")
+	var idProducto = $(this).attr("idProducto");
+	var datos = new FormData();
+	datos.append("idProducto", idProducto);
+
+	$.ajax({
+		url: "ajax/productos-detalle.ajax.php",
+		method: "POST",
+      	data: datos,
+      	cache: false,
+     	contentType: false,
+     	processData: false,
+     	dataType:"json",
+     	success: function(data){
+
+
+
+			if(data.oficina==null ||data.oficina=="" ){
+				$('#oficinaProducto').text("Sin Registro");
+			} 
+			
+			else{
+				$('#oficinaProducto').text(data.oficina);
+			}
+
+			if(data.posicion==null ||data.posicion=="" ){
+				$('#posicionProducto').text("Sin Registro");
+			} 
+
+			else{
+				$('#posicionProducto').text(data.posicion);
+			}
+
+
+			if(data.referencia==null ||data.referencia==""){
+				$('#referenciaProducto').text("Sin Registro");
+			} 
+			else{
+				$('#referenciaProducto').text(data.referencia);
+			}
+			
+     	},
+		 error: function (jqXHR, textStatus, errorThrown) {
+           console.error('Error en la solicitud:', textStatus, errorThrown);
+            // Aquí puedes mostrar un mensaje de error al usuario o tomar otras acciones para manejar el error
+        }
+
+	})
+
+
+})
+
+
+/*=============================================
+MOSTRAR DATOS MODALDETALLES CPU PRODUCTO
+=============================================*/
+$(".tablaProductos tbody").on("click", "a.btnMostrarCaracteristicasCpu", function(){
+	//console.log("hola")
+	var idProducto = $(this).attr("idProducto");
+	var datos = new FormData();
+	datos.append("idProducto", idProducto);
+
+	$.ajax({
+		url: "ajax/productos-detalle.ajax.php",
+		method: "POST",
+      	data: datos,
+      	cache: false,
+     	contentType: false,
+     	processData: false,
+     	dataType:"json",
+     	success: function(data){
+			console.log(data)
+			$('#ram').html('<b> Memoria RAM:</b>'  +data.cant_ram + 'GB ' +data.tipo_ram);
+			$('#procesador').html('<b> Procesador:</b>'  +data.procesador +'<b> Generacion:</b>'+data.generacion);
+			$('#disco_duro').html('<b> Disco Duro:</b>'  +data.cantidad_disco+ 'GB ' +data.tipo_disco);
+			$('#sistema_operativo').html('<b> Sistema Operativo:</b>'  +data.sistema_operativo+'<b> Edicion:</b>'+data.generacion);
+			$('#direccion_ip').html('<b> Direccion Ip:</b>'  +data.direccion_ip+'<b>');
+			$('#mac').html('<b> Mac:</b>'  +data.mac+'<b>');
+			$('#modelo_placa').html('<b> Modelo Placa:</b>'  +data.modelo_placa+'<b>');
+			$('#notas').html('<b> Notas:</b>'  +data.observaciones+'<b>');
+			$('#cod_producto').html('<b> ' + data.cod_producto+'<b>');
+
+			
+			
+     	},
+		 error: function (jqXHR, textStatus, errorThrown) {
+           console.error('Error en la solicitud:', textStatus, errorThrown);
+            // Aquí puedes mostrar un mensaje de error al usuario o tomar otras acciones para manejar el error
+        }
+
+	})
+
+
+})
 
 
 /*para llenar atributo del svg el codigo del producto

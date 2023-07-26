@@ -99,7 +99,7 @@ if ($_SESSION["perfil"] == "Visitante" || $_SESSION["perfil"] == "Especial") {
 
                       <div class="btn-group">
                           
-                        <button class="btn btn-warning btnEditarModelo" idModelo="' . $value["id"] . '" data-toggle="modal" data-target="#modalEditarModelo"><i class="fa fa-pencil"></i></button>
+                        <button class="btn btn-warning btnEditarModelo" idModelo="' . $value["id"] . '" data-toggle="modal" data-target="#modalEditarModelo"><i class="fas fa-pencil-alt"></i></button>
 
                         <button class="btn btn-danger btnEliminarModelo" idModelo="' . $value["id"] . '" fotoModelo="' . $value["imagen"] . '"  modelo="' . $value["descripcion"] . '"><i class="fa fa-times"></i></button>
 
