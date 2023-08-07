@@ -1,20 +1,36 @@
 /*=============================================
 CARGAR LA TABLA DINÁMICA DE PRODUCTOS
 =============================================*/
-
+/*
 $.ajax({
 	url: "ajax/datatable-productos.ajax.php",
 	success: function (respuesta) {
 		//	console.log("respuesta", respuesta);
 	},
 });
+*/
 
 var perfilOculto = $("#perfilOculto").val();
 
+var tableProduct =$(".tablaProductos").DataTable({
 
-$(".tablaProductos").DataTable({
-	ajax: "ajax/datatable-productos.ajax.php?perfilOculto=" + perfilOculto,
+	ajax: {
+		url: "ajax/datatable-productos.ajax.php?perfilOculto=" + perfilOculto,
+		type: 'POST',
+		data: function(d) {
+		  console.log(d);
+			d.categoria = $('#categoria').val();
+		 d.busqueda = $('#busqueda').val();
+		 d.marca = $('#marca').val();
+		 d.oficina = $('#oficina').val();
+		 d.posicion = $('#posicion').val();
+		 d.referencia = $('#referencia').val();
+		 d.direccion_ip = $('#direccion_ip').val();
+		},
+	  },
+	  
 	deferRender: true,
+	searching: false, // Esto deshabilitará la barra de búsqueda
 	retrieve: true,
 	processing: true,
 	language: {
@@ -43,6 +59,55 @@ $(".tablaProductos").DataTable({
 		},
 	},
 });
+
+$('#categoria').on('change', function() {
+	tableProduct.ajax.reload();
+});
+
+$('#marca').on('change', function() {
+	tableProduct.ajax.reload();
+});
+
+
+$('.busqueda').on('keyup', function() {
+	tableProduct.ajax.reload();
+});
+$('.oficina').on('keyup', function() {
+	tableProduct.ajax.reload();
+});
+$('.posicion').on('keyup', function() {
+	tableProduct.ajax.reload();
+});
+$('.referencia').on('keyup', function() {
+	tableProduct.ajax.reload();
+});
+$('.direccion_ip').on('keyup', function() {
+	tableProduct.ajax.reload();
+});
+
+//LIMPIRAR FILTROS
+$('#limpiarFiltrosButton').click(function() {
+	// Limpia el contenido de todas las cajas de texto de filtro
+	$('#categoria').val('').trigger('change');;
+	$('#busqueda').val('');
+	$('#marca').val('').trigger('change');;
+	$('#oficina').val('');
+	$('#posicion').val('');
+	$('#referencia').val('');
+	$('#direccion_ip').val('');
+
+	// Vuelve a cargar los datos en la tabla
+	tableProduct.ajax.reload();
+});
+
+
+
+
+
+
+
+
+
 
 /*=============================================
 REVISAR SI EL CODIGO DEL PRODUCTO YA ESTÁ REGISTRADO
@@ -230,9 +295,6 @@ $(".tablaProductos tbody").on("click", "a.btnMostrarDetalleProducto", function()
      	processData: false,
      	dataType:"json",
      	success: function(data){
-
-
-
 			if(data.oficina==null ||data.oficina=="" ){
 				$('#oficinaProducto').text("Sin Registro");
 			} 
@@ -291,15 +353,13 @@ $(".tablaProductos tbody").on("click", "a.btnMostrarCaracteristicasCpu", functio
 			$('#ram').html('<b> Memoria RAM:</b>'  +data.cant_ram + 'GB ' +data.tipo_ram);
 			$('#procesador').html('<b> Procesador:</b>'  +data.procesador +'<b> Generacion:</b>'+data.generacion);
 			$('#disco_duro').html('<b> Disco Duro:</b>'  +data.cantidad_disco+ 'GB ' +data.tipo_disco);
-			$('#sistema_operativo').html('<b> Sistema Operativo:</b>'  +data.sistema_operativo+'<b> Edicion:</b>'+data.generacion);
+			$('#sistema_operativo').html('<b> Sistema Operativo:</b>'  +data.sistema_operativo+'<b> Edicion:</b>'+data.edicion_so);
 			$('#direccion_ip').html('<b> Direccion Ip:</b>'  +data.direccion_ip+'<b>');
 			$('#mac').html('<b> Mac:</b>'  +data.mac+'<b>');
 			$('#modelo_placa').html('<b> Modelo Placa:</b>'  +data.modelo_placa+'<b>');
 			$('#notas').html('<b> Notas:</b>'  +data.observaciones+'<b>');
 			$('#cod_producto').html('<b> ' + data.cod_producto+'<b>');
 
-			
-			
      	},
 		 error: function (jqXHR, textStatus, errorThrown) {
            console.error('Error en la solicitud:', textStatus, errorThrown);
@@ -310,6 +370,23 @@ $(".tablaProductos tbody").on("click", "a.btnMostrarCaracteristicasCpu", functio
 
 
 })
+
+//select2 LISTA DE CATEGORIA
+$(document).ready(function() {
+	
+ $('.categoria').select2({
+	width: '250px'
+
+ });
+ 
+ $('.marca').select2({
+	width: '250px'
+
+ });
+});
+
+
+
 
 
 /*para llenar atributo del svg el codigo del producto
@@ -331,5 +408,3 @@ $("#nuevoCodigo").change(function(){
 //var codigo_barras=document.querySelectorAll("barcodetabla");
 //console.log("barras",codigo_barras);
 */
-
-

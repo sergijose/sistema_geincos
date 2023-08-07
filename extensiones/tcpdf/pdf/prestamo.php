@@ -44,6 +44,7 @@ $itemUsuario = "id";
 $valorUsuario = $respuestaPrestamo["idusuario"];
 
 $respuestaUsuario = ControladorUsuarios::ctrMostrarUsuarios($itemUsuario, $valorUsuario);
+$nombreUsuario=strtoupper($respuestaUsuario["nombre"]);
 
 $productos = json_decode($respuestaPrestamo["productos"], true);
 
@@ -53,7 +54,7 @@ $itemEmpleado = "idempleado";
 $valorEmpleado = $respuestaPrestamo["idempleado"];
 
 $respuestaEmpleado = ControladorEmpleados::ctrMostrarEmpleados($itemEmpleado, $valorEmpleado);
-
+$nombreEmpleado=strtoupper($respuestaEmpleado["nombres"]." ".$respuestaEmpleado["ape_pat"]." ".$respuestaEmpleado["ape_mat"]);
 
 //REQUERIMOS LA CLASE TCPDF
 
@@ -73,7 +74,7 @@ $bloque1 = <<<EOF
 		
 		<tr>
 			
-			<td style="width:150px"><img src="images/logo-geincos.png"></td>
+			<td style="width:100px"><img src="images/logo-geincos-actual.jpg"></td>
 
 			<td style="background-color:white; width:140px">
 				
@@ -86,21 +87,21 @@ $bloque1 = <<<EOF
 
 			</td>
 
-			<td style="background-color:white; width:140px">
+			<td style="background-color:white; width:100px">
 
 				<div style="font-size:8.5px; text-align:right; line-height:15px;">
 					
 					<br>
-					serviciosgenerales@geincos.com
+					soporte@geincos.com
 					<br>
-					Teléfono:941 540 293	
+					Teléfono:941 524 646	
 								
 					
 				</div>
 				
 			</td>
 
-			<td style="background-color:white; width:110px; text-align:center; color:red"><br><br>PRESTAMO N.<br>$codigoPrestamo</td>
+			<td style="background-color:white; width:140px; text-align:center; color:red"><br><br>PRESTAMO N.<br>$codigoPrestamo</td>
 
 		</tr>
 
@@ -115,24 +116,22 @@ $pdf->writeHTML($bloque1, false, false, false, false, '');
 
 
 $bloque2 = <<<EOF
-
 	<table>
 		
-		<tr>
-			
-			<td style="width:540px"><img src="images/back.jpg"></td>
+	<tr>
 		
-		</tr>
+		<td style="width:540px"><img src="images/back.jpg"></td>
+	
+	</tr>
 
-	</table>
-
+</table>
 	<table style="font-size:10px; padding:5px 10px;">
 	
 		<tr>
 		
 			<td style="border: 1px solid #666; background-color:white; width:220px">
 
-				Empleado:  $respuestaEmpleado[nombres] $respuestaEmpleado[ape_pat] $respuestaEmpleado[ape_mat]
+				Empleado:  $nombreEmpleado
 
 			</td>
 			<td style="border: 1px solid #666; background-color:white; width:150px">
@@ -151,7 +150,7 @@ $bloque2 = <<<EOF
 
 		<tr>
 		
-			<td style="border: 1px solid #666; background-color:white; width:370px">Usuario: $respuestaUsuario[nombre]</td>
+			<td style="border: 1px solid #666; background-color:white; width:370px">Responsable Prestamo:$nombreUsuario</td>
 			<td style="border: 1px solid #666; background-color:white; width:170px">Fecha devolucion:$fechaDevolucion</td>
 
 		</tr>
@@ -188,10 +187,10 @@ $bloque3 = <<<EOF
 
 		<tr>
 		
-		<td style="border: 1px solid #666; background-color:white; width:120px; text-align:center">CATEGORIA</td>
-		<td style="border: 1px solid #666; background-color:white; width:140px; text-align:center">MODELO</td>
-		<td style="border: 1px solid #666; background-color:white; width:140px; text-align:center">MARCA</td>
-		<td style="border: 1px solid #666; background-color:white; width:140px; text-align:center">COD PRODUCTO</td>
+		<td style="border: 1px solid #666; background-color:white; width:200px; text-align:center">CATEGORIA</td>
+		<td style="border: 1px solid #666; background-color:white; width:120px; text-align:center">MODELO</td>
+		<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">MARCA</td>
+		<td style="border: 1px solid #666; background-color:white; width:120px; text-align:center">COD PRODUCTO</td>
 		</tr>
 
 		</table>
@@ -211,7 +210,9 @@ foreach ($productos as $key => $item) {
 	$orden = null;
 	
 	$respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
-
+	
+	//TRAEMOS LA INFORMACION DE PRODUCTOS CPU
+	$respuestaProductoCpu = ControladorProductos::ctrMostrarProductosDetalleXid($respuestaProducto["id"]);
 //TRAEMOS LA INFORMACIÓN DEL MODELO
 $itemModelo = "id";
 $valorModelo = $respuestaProducto["idmodelo"];
@@ -224,6 +225,7 @@ $itemCategoria = "id";
 $valorCategoria = $respuestaModelo["idcategoria"];
 
 $respuestaCategoria = ControladorCategorias::ctrMostrarCategorias($itemCategoria, $valorCategoria);
+$nombreCategoria=strtoupper($respuestaCategoria["descripcion"]);
 
 //TRAEMOS LA INFORMACIÓN DE LA MARCA
 $itemMarca = "id";
@@ -231,16 +233,22 @@ $valorMarca = $respuestaModelo["idmarca"];
 
 $respuestaMarca = ControladorMarcas::ctrMostrarMarca($itemMarca, $valorMarca);
 
-$bloque4 = <<<EOF
+if($respuestaCategoria["descripcion"]=="cpu" ||$respuestaCategoria["descripcion"]=="laptop" ){
+	$bloque4 = <<<EOF
 
 	<table style="font-size:10px; padding:5px 10px;">
 
 		<tr>
 		
-		<td style="border: 1px solid #666; background-color:white; width:120px; text-align:center">$respuestaCategoria[descripcion]</td>
-		<td style="border: 1px solid #666; background-color:white; width:140px; text-align:center">$respuestaModelo[descripcion]</td>
-		<td style="border: 1px solid #666; background-color:white; width:140px; text-align:center">$respuestaMarca[descripcion]</td>
-		<td style="border: 1px solid #666; background-color:white; width:140px; text-align:center">$respuestaProducto[cod_producto]</td>
+		<td style="border: 1px solid #666; background-color:white; width:200px; text-align:center">$nombreCategoria
+		<b>Procesador:</b> $respuestaProductoCpu[procesador] $respuestaProductoCpu[generacion]<br>
+		<b>S.O:</b>$respuestaProductoCpu[sistema_operativo] $respuestaProductoCpu[edicion_so]  
+		<b>Disco:</b>$respuestaProductoCpu[tipo_disco] $respuestaProductoCpu[cantidad_disco]GB <br>
+		<b>Ram:</b> $respuestaProductoCpu[tipo_ram] $respuestaProductoCpu[cant_ram]GB 
+		</td>
+		<td style="border: 1px solid #666; background-color:white; width:120px; text-align:center">$respuestaModelo[descripcion]</td>
+		<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">$respuestaMarca[descripcion]</td>
+		<td style="border: 1px solid #666; background-color:white; width:120px; text-align:center">$respuestaProducto[cod_producto]</td>
 
 		</tr>
 
@@ -249,6 +257,29 @@ $bloque4 = <<<EOF
 EOF;
 
 $pdf->writeHTML($bloque4, false, false, false, false, '');
+}
+
+else{
+	$bloque4 = <<<EOF
+
+	<table style="font-size:10px; padding:5px 10px;">
+
+		<tr>
+		
+		<td style="border: 1px solid #666; background-color:white; width:200px; text-align:center">$nombreCategoria</td>
+		<td style="border: 1px solid #666; background-color:white; width:120px; text-align:center">$respuestaModelo[descripcion]</td>
+		<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">$respuestaMarca[descripcion]</td>
+		<td style="border: 1px solid #666; background-color:white; width:120px; text-align:center">$respuestaProducto[cod_producto]</td>
+
+		</tr>
+
+	</table>
+
+EOF;
+
+$pdf->writeHTML($bloque4, false, false, false, false, '');
+}
+
 
 }
 
@@ -265,8 +296,7 @@ $bloque5 = <<<EOF
 	</tr>
 
 	</table>
-
-	<table >
+	<table>
 		
 		<tr>
 			

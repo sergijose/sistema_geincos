@@ -37,11 +37,88 @@ class ModeloProductos
 	MOSTRAR PRODUCTOS DETALLE CARACTERISTICAS
 	=============================================*/
 
-	static public function mdlMostrarProductosDetalle($valor)
+	static public function mdlMostrarProductosDetalle($categoria, $busqueda, $marca, $oficina, $posicion, $referencia, $direccion_ip)
+	{
+
+		if ($categoria != null || $busqueda != null || $marca != null || $oficina != null || $posicion != null || $referencia != null || $direccion_ip != null) {
+			$stmt = Conexion::conectar()->prepare("SELECT pro.id,pro.idmodelo,pro.idestado,pro.cod_producto as codigo,pro.num_serie,pro.observaciones,pro.fecha,cat.descripcion AS categoria,mar.descripcion AS marca,mo.descripcion AS modelo,mo.imagen as imagen,
+		tipopro.descripcion AS procesador, procpu.generacion as generacion,procpu.tipo_disco as tipo_disco,procpu.cant_disco as cantidad_disco,procpu.tipo_ram ,procpu.cant_ram,
+		tso.descripcion AS sistema_operativo,procpu.edicion_so AS edicion_so,procpu.direccion_ip,procpu.mac, IF(pro.estado_prestamo='ocupado','EN PRESTAMO',ubi.descripcion) as oficina,ubipro.posicion as posicion,est.descripcion AS estado_fisico,
+		pro.estado_prestamo AS estado_prestamo,procpu.observaciones AS nota_equipo,ubipro.referencia AS referencia
+		FROM producto pro
+		 LEFT JOIN producto_cpu procpu
+		 ON pro.id=procpu.idproducto
+		 LEFT JOIN tipo_procesador tipopro
+		 ON procpu.procesador=tipopro.id
+		 INNER  JOIN modelo mo
+		 ON pro.idmodelo=mo.id
+		 INNER JOIN estado est
+		 ON pro.idestado=est.id
+		 INNER JOIN categoria cat
+		 ON mo.idcategoria=cat.id
+		 INNER JOIN marca mar
+		 ON mo.idmarca=mar.id
+		 LEFT JOIN  ubicacion_productos ubipro
+		 ON ubipro.id_producto=pro.id
+		 LEFT JOIN ubicacion ubi
+		 ON ubipro.id_ubicacion=ubi.id
+		 LEFT JOIN tipo_sistema_operativo tso
+		 ON procpu.sistema_operativo=tso.id 
+		 WHERE (cat.id=:categoria  OR :categoria IS NULL) 
+		 AND (mar.id=:marca  OR :marca IS NULL)
+		 AND (pro.cod_producto LIKE :busqueda OR :busqueda IS NULL)
+		 AND (ubipro.referencia LIKE :referencia OR :referencia IS NULL)
+		 AND (procpu.direccion_ip LIKE :direccion_ip OR :direccion_ip IS NULL)
+		 AND (ubi.descripcion =:oficina OR :oficina IS NULL)
+		 AND (ubipro.posicion =:posicion OR :posicion IS NULL);
+		 ORDER BY pro.id desc");
+			$stmt->bindValue(":categoria", $categoria !== '' ? $categoria : null, PDO::PARAM_INT);
+			$stmt->bindValue(":busqueda", !empty($busqueda) ? "%$busqueda%" : null, PDO::PARAM_STR);
+			$stmt->bindValue(":referencia", !empty($referencia) ? "%$referencia%" : null, PDO::PARAM_STR);
+			$stmt->bindValue(":direccion_ip", !empty($direccion_ip) ? "%$direccion_ip%" : null, PDO::PARAM_STR);
+			$stmt->bindValue(":marca", $marca !== '' ? $marca : null, PDO::PARAM_INT);
+			$stmt->bindValue(":oficina", !empty($oficina) ? $oficina : null, PDO::PARAM_STR);
+			$stmt->bindValue(":posicion", !empty($posicion) ? $posicion : null, PDO::PARAM_STR);
+			$stmt->execute();
+			return $stmt->fetchAll();
+		} else {
+
+			$stmt = Conexion::conectar()->prepare("SELECT pro.id,pro.idmodelo,pro.idestado,pro.cod_producto as codigo,pro.num_serie,pro.observaciones,pro.fecha,cat.descripcion AS categoria,mar.descripcion AS marca,mo.descripcion AS modelo,mo.imagen as imagen,
+		tipopro.descripcion AS procesador, procpu.generacion as generacion,procpu.tipo_disco as tipo_disco,procpu.cant_disco as cantidad_disco,procpu.tipo_ram ,procpu.cant_ram,
+		tso.descripcion AS sistema_operativo,procpu.edicion_so AS edicion_so,procpu.direccion_ip,procpu.mac, IF(pro.estado_prestamo='ocupado','EN PRESTAMO',ubi.descripcion) as oficina,ubipro.posicion as posicion,est.descripcion AS estado_fisico,
+		pro.estado_prestamo AS estado_prestamo,procpu.observaciones AS nota_equipo,ubipro.referencia AS referencia
+		FROM producto pro
+		 LEFT JOIN producto_cpu procpu
+		 ON pro.id=procpu.idproducto
+		 LEFT JOIN tipo_procesador tipopro
+		 ON procpu.procesador=tipopro.id
+		 INNER  JOIN modelo mo
+		 ON pro.idmodelo=mo.id
+		 INNER JOIN estado est
+		 ON pro.idestado=est.id
+		 INNER JOIN categoria cat
+		 ON mo.idcategoria=cat.id
+		 INNER JOIN marca mar
+		 ON mo.idmarca=mar.id
+		 LEFT JOIN  ubicacion_productos ubipro
+		 ON ubipro.id_producto=pro.id
+		 LEFT JOIN ubicacion ubi
+		 ON ubipro.id_ubicacion=ubi.id
+		 LEFT JOIN tipo_sistema_operativo tso
+		 ON procpu.sistema_operativo=tso.id  ORDER BY pro.id desc");
+			$stmt->execute();
+
+			return $stmt->fetchAll();
+		}
+	}
+
+	//BUSCAR PRODUCTOS POR ID CON CARACTERISTICAS DE CPU Y LAPTOP FUNCIONARA CON AJAX 
+
+	static public function mdlMostrarProductosDetalleXid($valor)
 	{
 
 		if ($valor != null) {
-		$stmt = Conexion::conectar()->prepare("SELECT pro.id,pro.cod_producto,pro.idmodelo,pro.idestado,pro.cod_producto as codigo,pro.num_serie,pro.observaciones,pro.fecha,cat.descripcion AS categoria,mar.descripcion AS marca,mo.descripcion AS modelo,
+			$stmt = Conexion::conectar()->prepare("SELECT pro.id,pro.cod_producto,pro.idmodelo,pro.idestado,pro.cod_producto as codigo,pro.num_serie,pro.observaciones,pro.fecha,cat.descripcion AS categoria,mar.descripcion AS marca,mo.descripcion AS modelo,
 		tipopro.descripcion AS procesador,procpu.generacion as generacion,procpu.modelo_placa,procpu.tipo_disco as tipo_disco,procpu.cant_disco as cantidad_disco,procpu.tipo_ram,procpu.cant_ram,
 		tso.descripcion AS sistema_operativo,procpu.edicion_so AS edicion_so,procpu.direccion_ip,procpu.mac, IF(pro.estado_prestamo='ocupado','EN PRESTAMO',ubi.descripcion) as oficina,ubipro.posicion as posicion,est.descripcion AS estado_fisico,
 		pro.estado_prestamo AS estado_prestamo,procpu.observaciones AS nota_equipo,ubipro.referencia AS referencia,tiposis.descripcion as sistema_operativo
@@ -66,43 +143,14 @@ class ModeloProductos
 		 ON procpu.sistema_operativo=tiposis.id
 		 LEFT JOIN tipo_sistema_operativo tso
 		 ON procpu.sistema_operativo=tso.id WHERE pro.id= :$valor ORDER BY pro.id desc");
-		$stmt->bindParam(":" . $valor, $valor, PDO::PARAM_INT);
-		$stmt->execute();
 
-		return $stmt->fetch();
 
-	} else {
+			$stmt->bindParam(":" . $valor, $valor, PDO::PARAM_INT);
+			$stmt->execute();
 
-		$stmt = Conexion::conectar()->prepare("SELECT pro.id,pro.idmodelo,pro.idestado,pro.cod_producto as codigo,pro.num_serie,pro.observaciones,pro.fecha,cat.descripcion AS categoria,mar.descripcion AS marca,mo.descripcion AS modelo,
-		tipopro.descripcion AS procesador, procpu.generacion as generacion,procpu.tipo_disco as tipo_disco,procpu.cant_disco as cantidad_disco,procpu.tipo_ram ,procpu.cant_ram,
-		tso.descripcion AS sistema_operativo,procpu.edicion_so AS edicion_so,procpu.direccion_ip,procpu.mac, IF(pro.estado_prestamo='ocupado','EN PRESTAMO',ubi.descripcion) as oficina,ubipro.posicion as posicion,est.descripcion AS estado_fisico,
-		pro.estado_prestamo AS estado_prestamo,procpu.observaciones AS nota_equipo,ubipro.referencia AS referencia
-		FROM producto pro
-		 LEFT JOIN producto_cpu procpu
-		 ON pro.id=procpu.idproducto
-		 LEFT JOIN tipo_procesador tipopro
-		 ON procpu.procesador=tipopro.id
-		 INNER  JOIN modelo mo
-		 ON pro.idmodelo=mo.id
-		 INNER JOIN estado est
-		 ON pro.idestado=est.id
-		 INNER JOIN categoria cat
-		 ON mo.idcategoria=cat.id
-		 INNER JOIN marca mar
-		 ON mo.idmarca=mar.id
-		 LEFT JOIN  ubicacion_productos ubipro
-		 ON ubipro.id_producto=pro.id
-		 LEFT JOIN ubicacion ubi
-		 ON ubipro.id_ubicacion=ubi.id
-		 LEFT JOIN tipo_sistema_operativo tso
-		 ON procpu.sistema_operativo=tso.id  ORDER BY pro.id desc");
-		 $stmt->execute();
-
-		 return $stmt->fetchAll();
+			return $stmt->fetch();
+		};
 	}
-	
-	}
-
 	/*=============================================
 	MOSTRAR PRODUCTOS
 	=============================================*/

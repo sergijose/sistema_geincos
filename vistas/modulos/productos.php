@@ -46,17 +46,99 @@ if ($_SESSION["perfil"] == "Visitante") {
 
         </button>
 
+
         <a href="productos-cpu">
+
 
           <button class="btn btn-primary">
 
-            Ver Detalle de CPU's y Laptop's <i class="fa fa-laptop" aria-hidden="true"></i>
+            Agregar Detalle de CPU's y Laptop's <i class="fa fa-laptop" aria-hidden="true"></i>
 
           </button>
         </a>
 
+        <button class="btn btn-dark" id="limpiarFiltrosButton"><i class="fas fa-times-circle"></i> Eliminar Filtro</button>
+
+        <div class="card" style="margin-top:15px;">
+          <div class="card-body">
+
+            <div class="form-group row">
+              <div class="col-md-3">
+                <label for="categoria">Categoria</label>
+                <select class="form-control input-md categoria" id="categoria" name="categoria">
+
+                  <option value="">Seleccionar Categoria</option>
+                  <?php
+
+                  $item = null;
+                  $valor = null;
+
+                  $categoria = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+
+                  foreach ($categoria as $key => $value) {
+
+                    echo '<option value="' . $value["id"] . '">' . $value["descripcion"] . '</option>';
+                  }
+
+                  ?>
+
+                </select>
+              </div>
+              <div class="col-md-3">
+                <label for="marca">Marca</label>
+                <select class="form-control input-md marca" id="marca" name="marca">
+
+                  <option value="">Seleccionar Marca</option>
+                  <?php
+
+                  $item = null;
+                  $valor = null;
+
+                  $marca = ControladorMarcas::ctrMostrarMarca($item, $valor);
+
+                  foreach ($marca as $key => $value) {
+
+                    echo '<option value="' . $value["id"] . '">' . $value["descripcion"] . '</option>';
+                  }
+
+                  ?>
+
+                </select>
+              </div>
+            
+            </div>
+
+            <div class="form-group row">
+
+              <div class="col-md-2">
+                <label for="codigo">Codigo de Producto</label>
+                <input type="text" id="busqueda" class="form-control busqueda" placeholder="Codigo Producto">
+              </div>
+              <div class="col-md-2">
+                <label for="oficina">Oficina</label>
+                <input type="text" id="oficina" class="form-control oficina" placeholder="oficina">
+              </div>
+              <div class="col-md-2">
+                <label for="posicion">Posicion</label>
+                <input type="text" id="posicion" class="form-control posicion" placeholder="posicion">
+                </div>
+                <div class="col-md-2">
+                <label for="posicion">Referencia</label>
+                <input type="text" id="referencia" class="form-control referencia" placeholder="referencia">
+                </div>
+                <div class="col-md-2">
+                <label for="posicion">IP</label>
+                <input type="text" id="direccion_ip" class="form-control direccion_ip" placeholder="direccion_ip">
+                </div>
+              
+            </div>
+          </div>
+        </div>
+
+
 
       </div>
+
 
       <div class="box-body">
 
@@ -67,7 +149,8 @@ if ($_SESSION["perfil"] == "Visitante") {
             <tr>
 
               <th style="width:10px">#</th>
-              <th>Código</th>
+              <th>Codigo</th>
+              <th>Imagen</th>
               <th>Detalle Producto</th>
               <th>Estado Fisico</th>
               <th>Nota</th>
@@ -537,14 +620,14 @@ MODAL EDITAR PRODUCTO
 
       </div>
       <div class="modal-body">
-    
+
         <div class="col-sm-12">
           <ul class="list-group">
             <li class="list-group-item">
               <i class="fas fa-memory"></i><span id="ram"></span>
             </li>
-            </ul>     
-            <ul class="list-group">     
+          </ul>
+          <ul class="list-group">
             <li class="list-group-item">
               <i class="fas fa-microchip"></i> <span id="procesador"></span>
             </li>
@@ -556,8 +639,8 @@ MODAL EDITAR PRODUCTO
             <li class="list-group-item">
               <i class="fas fa-hdd"></i> <span id="disco_duro"></span>
             </li>
-            </ul>
-            <ul class="list-group">
+          </ul>
+          <ul class="list-group">
             <li class="list-group-item">
               <i class="fab fa-windows"></i><i class="fab fa-linux"></i><span id="sistema_operativo"></span>
             </li>
@@ -581,11 +664,11 @@ MODAL EDITAR PRODUCTO
           </ul>
         </div>
 
-        
+
         <div class="col-sm-6">
           <ul class="list-group">
             <li class="list-group-item">
-            <i class="fas fa-microchip"></i><span id="modelo_placa"></span>
+              <i class="fas fa-microchip"></i><span id="modelo_placa"></span>
             </li>
 
           </ul>
@@ -594,7 +677,7 @@ MODAL EDITAR PRODUCTO
         <div class="col-sm-6">
           <ul class="list-group">
             <li class="list-group-item">
-            <i class="fas fa-pencil-alt"></i></i><span id="notas"></span>
+              <i class="fas fa-pencil-alt"></i></i><span id="notas"></span>
             </li>
 
           </ul>
@@ -614,4 +697,3 @@ $eliminarProducto = new ControladorProductos();
 $eliminarProducto->ctrEliminarProducto();
 
 ?>
-

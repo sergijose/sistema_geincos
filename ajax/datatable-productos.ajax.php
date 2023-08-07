@@ -28,13 +28,21 @@ class TablaProductos
 
 	public function mostrarTablaProductos()
 	{
-
-		$item = null;
-		$valor = null;
 		
+		
+		$categoria = $_POST['categoria'];
+		$busqueda = $_POST['busqueda'] ;
+		$marca = $_POST['marca'];
+		$oficina = $_POST['oficina'];
+		$posicion = $_POST['posicion'];
+		$referencia = $_POST['referencia'];
+		$direccion_ip = $_POST['direccion_ip'];
+		
+		//$item = null;
+		//$valor =9;
 
-		$productos = ControladorProductos::ctrMostrarProductosDetalle($valor);
-
+		$productos = ControladorProductos::ctrMostrarProductosDetalle($categoria,$busqueda,$marca,$oficina,$posicion,$referencia,$direccion_ip);
+		//return var_dump($productos);
 		if (count($productos) == 0) {
 
 			echo '{"data": []}';
@@ -51,7 +59,7 @@ class TablaProductos
  	 		TRAEMOS LA IMAGEN
   			=============================================*/
 
-			//	$imagen = "<img src='".$productos[$i]["imagen"]."' width='40px'>";
+			$imagen = "<img src='".$productos[$i]["imagen"]."' width='70px'>";
 
 			/*=============================================*/
  	 		
@@ -118,6 +126,7 @@ class TablaProductos
 			$datosJson .= '[
 			      "' . ($i + 1) . '",
 				  "' . $productos[$i]["codigo"] . '",
+				  "' . $imagen.'",
 				  "' . $caracteristica.'",
 				  "' .$estadoFisicoProducto. '",
 				  "' . $productos[$i]["observaciones"] .'",

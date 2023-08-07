@@ -146,10 +146,10 @@ $totalProductos = count($productos);
       <div class="form-inline">
 
         <div class="form-group mr-2">
-          <input type="text" class="form-control" placeholder="oficina" id="searchTerm">
+          <input type="text" class="form-control" placeholder="OFICINA" id="searchTerm">
         </div>
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="posicion" id="posicion">
+          <input type="text" class="form-control" placeholder="NUMERO POSICION" id="posicion">
         </div>
       </div>
       <br>

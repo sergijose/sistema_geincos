@@ -13,14 +13,13 @@ class AjaxProductos{
 	=============================================*/	
 
 	public $idProducto;
+
+
 	
 
 	public function ajaxMostrarProducto(){
-
-		
 		$valor = $this->idProducto;
-
-		$respuesta = ControladorProductos::ctrMostrarProductosDetalle($valor);
+		$respuesta = ControladorProductos::ctrMostrarProductosDetalleXid($valor);
 		echo json_encode($respuesta);
 
 	}

@@ -20,10 +20,22 @@ class ControladorProductos
 	MOSTRAR PRODUCTOS DETALLE CPU
 	=============================================*/
 
-	static public function ctrMostrarProductosDetalle($valor)
+	static public function ctrMostrarProductosDetalle($categoria,$busqueda,$marca,$oficina,$posicion,$referencia,$direccion_ip)
 	{
 
-		$respuesta = ModeloProductos::mdlMostrarProductosDetalle($valor);
+		$respuesta = ModeloProductos::mdlMostrarProductosDetalle($categoria,$busqueda,$marca,$oficina,$posicion,$referencia,$direccion_ip);
+
+		return $respuesta;
+	}
+
+	/*=============================================
+	MOSTRAR PRODUCTOS DETALLE CPU X ID
+	=============================================*/
+
+	static public function ctrMostrarProductosDetalleXid($valor)
+	{
+
+		$respuesta = ModeloProductos::mdlMostrarProductosDetalleXid($valor);
 
 		return $respuesta;
 	}
