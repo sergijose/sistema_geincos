@@ -74,7 +74,7 @@ $bloque1 = <<<EOF
 		
 		<tr>
 			
-			<td style="width:100px"><img src="images/logo-geincos-actual.jpg"></td>
+			<td style="width:90px"><img src="images/logo-geincos-actual.jpg"></td>
 
 			<td style="background-color:white; width:140px">
 				
@@ -286,16 +286,6 @@ $pdf->writeHTML($bloque4, false, false, false, false, '');
 // ---------------------------------------------------------
 
 $bloque5 = <<<EOF
-
-	<table>
-		
-	<tr>
-	
-	<td style="width:540px"><img src="images/back.jpg"></td>
-
-	</tr>
-
-	</table>
 	<table>
 		
 		<tr>
