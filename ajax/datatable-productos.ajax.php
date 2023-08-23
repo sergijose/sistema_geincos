@@ -16,6 +16,25 @@ require_once "../controladores/marcas.controlador.php";
 require_once "../modelos/marcas.modelo.php";
 
 
+if (isset($_POST['descargarExcel'])) {
+	$categoria = $_POST['categoria'];
+	$busqueda = $_POST['busqueda'] ;
+	$marca = $_POST['marca'];
+	$oficina = $_POST['oficina'];
+	$posicion = $_POST['posicion'];
+	$referencia = $_POST['referencia'];
+	$direccion_ip = $_POST['direccion_ip'];
+	
+	//$item = null;
+	//$valor =9;
+
+	$productos = ControladorProductos::ctrMostrarProductosDetalle($categoria,$busqueda,$marca,$oficina,$posicion,$referencia,$direccion_ip);
+    
+
+    echo json_encode($productos);
+    exit; // Terminar la ejecución para evitar el resto del código
+
+}
 
 
 

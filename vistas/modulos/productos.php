@@ -63,7 +63,7 @@ if ($_SESSION["perfil"] == "Visitante") {
           <div class="card-body">
 
             <div class="form-group row">
-              <div class="col-md-3">
+              <div class="col-md-4">
                 <label for="categoria">Categoria</label>
                 <select class="form-control input-md categoria" id="categoria" name="categoria">
 
@@ -84,7 +84,7 @@ if ($_SESSION["perfil"] == "Visitante") {
 
                 </select>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-4">
                 <label for="marca">Marca</label>
                 <select class="form-control input-md marca" id="marca" name="marca">
 
@@ -134,7 +134,7 @@ if ($_SESSION["perfil"] == "Visitante") {
             </div>
           </div>
         </div>
-
+        <button id="descargarExcel" class="btn btn-success">Descargar Excel</button>
 
 
       </div>
@@ -659,7 +659,7 @@ MODAL EDITAR PRODUCTO
         <div class="col-sm-6">
           <ul class="list-group">
             <li class="list-group-item">
-              <i class="fas fa-laptop"></i><span id="direccion_ip"></span>
+              <i class="fas fa-laptop"></i><span id="direccion_ip_g"></span>
             </li>
           </ul>
         </div>

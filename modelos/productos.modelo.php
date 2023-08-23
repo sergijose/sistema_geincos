@@ -43,7 +43,7 @@ class ModeloProductos
 		if ($categoria != null || $busqueda != null || $marca != null || $oficina != null || $posicion != null || $referencia != null || $direccion_ip != null) {
 			$stmt = Conexion::conectar()->prepare("SELECT pro.id,pro.idmodelo,pro.idestado,pro.cod_producto as codigo,pro.num_serie,pro.observaciones,pro.fecha,cat.descripcion AS categoria,mar.descripcion AS marca,mo.descripcion AS modelo,mo.imagen as imagen,
 		tipopro.descripcion AS procesador, procpu.generacion as generacion,procpu.tipo_disco as tipo_disco,procpu.cant_disco as cantidad_disco,procpu.tipo_ram ,procpu.cant_ram,
-		tso.descripcion AS sistema_operativo,procpu.edicion_so AS edicion_so,procpu.direccion_ip,procpu.mac, IF(pro.estado_prestamo='ocupado','EN PRESTAMO',ubi.descripcion) as oficina,ubipro.posicion as posicion,est.descripcion AS estado_fisico,
+		tso.descripcion AS sistema_operativo,procpu.edicion_so AS edicion_so,procpu.direccion_ip as direccion_ip,procpu.mac, IF(pro.estado_prestamo='ocupado','EN PRESTAMO',ubi.descripcion) as oficina,ubipro.posicion as posicion,est.descripcion AS estado_fisico,
 		pro.estado_prestamo AS estado_prestamo,procpu.observaciones AS nota_equipo,ubipro.referencia AS referencia
 		FROM producto pro
 		 LEFT JOIN producto_cpu procpu
