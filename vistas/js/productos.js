@@ -13,7 +13,35 @@ $.ajax({
 var perfilOculto = $("#perfilOculto").val();
 
 var tableProduct = $(".tablaProductos").DataTable({
-
+	deferRender: true,
+	searching: false, // Esto deshabilitará la barra de búsqueda
+	retrieve: true,
+	processing: true,
+	language: {
+		sProcessing: "Procesando...",
+		sLengthMenu: "Mostrar _MENU_ registros",
+		sZeroRecords: "No se encontraron resultados",
+		sEmptyTable: "Ningún dato disponible en esta tabla",
+		sInfo: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+		sInfoEmpty: "Mostrando registros del 0 al 0 de un total de 0",
+		sInfoFiltered: "(filtrado de un total de _MAX_ registros)",
+		sInfoPostFix: "",
+		sSearch: "Buscar:",
+		sUrl: "",
+		sInfoThousands: ",",
+		sLoadingRecords: "Cargando...",
+		oPaginate: {
+			sFirst: "Primero",
+			sLast: "Último",
+			sNext: "Siguiente",
+			sPrevious: "Anterior",
+		},
+		oAria: {
+			sSortAscending: ": Activar para ordenar la columna de manera ascendente",
+			sSortDescending:
+				": Activar para ordenar la columna de manera descendente",
+		},
+	},
 	ajax: {
 		url: "ajax/datatable-productos.ajax.php?perfilOculto=" + perfilOculto,
 		type: 'POST',
@@ -28,43 +56,13 @@ var tableProduct = $(".tablaProductos").DataTable({
 			respuesta.direccion_ip = $('#direccion_ip').val();
 		},
 
-		deferRender: true,
-		searching: false, // Esto deshabilitará la barra de búsqueda
-		retrieve: true,
-		processing: true,
-		language: {
-			sProcessing: "Procesando...",
-			sLengthMenu: "Mostrar _MENU_ registros",
-			sZeroRecords: "No se encontraron resultados",
-			sEmptyTable: "Ningún dato disponible en esta tabla",
-			sInfo: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
-			sInfoEmpty: "Mostrando registros del 0 al 0 de un total de 0",
-			sInfoFiltered: "(filtrado de un total de _MAX_ registros)",
-			sInfoPostFix: "",
-			sSearch: "Buscar:",
-			sUrl: "",
-			sInfoThousands: ",",
-			sLoadingRecords: "Cargando...",
-			oPaginate: {
-				sFirst: "Primero",
-				sLast: "Último",
-				sNext: "Siguiente",
-				sPrevious: "Anterior",
-			},
-			oAria: {
-				sSortAscending: ": Activar para ordenar la columna de manera ascendente",
-				sSortDescending:
-					": Activar para ordenar la columna de manera descendente",
-			},
-		},
-
 	}
 });
 
 document.getElementById('descargarExcel').addEventListener('click', function () {
 	// Realizar la solicitud AJAX para obtener los datos
 	$.ajax({
-		url: 'ajax/datatable-productos.ajax.php', // Actualiza la URL según tu configuración
+		url: 'ajax/datatable-productos.ajax.php',
 		type: 'POST',
 		data: {
 			// Agrega aquí los parámetros necesarios para tu solicitud AJAX
@@ -118,16 +116,16 @@ function generarExcel(data) {
 		"Sistema Operativo",
 		"Edicion S.O",
 		"Direccion",
-		"Mac", 
+		"Mac",
 		"Nota CPU",
 	];
-	
+
 	// Agregar fila de encabezados
-var headerRow = worksheet.addRow(headers);
-// Aplicar formato negrita a las celdas de encabezado
-headerRow.eachCell(function(cell) {
-    cell.font = { bold: true };
-});
+	var headerRow = worksheet.addRow(headers);
+	// Aplicar formato negrita a las celdas de encabezado
+	headerRow.eachCell(function (cell) {
+		cell.font = { bold: true };
+	});
 	data.forEach(function (row) {
 		worksheet.addRow([
 			row["codigo"], // Valor de la primera propiedad numérica

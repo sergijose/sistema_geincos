@@ -325,7 +325,8 @@ class ModeloProductos
 
 		$stmt = Conexion::conectar()->prepare(
 			"SELECT  cat.descripcion AS CATEGORIA,mar.descripcion AS MARCA,COUNT(pro.idestado) AS TOTAL,SUM(pro.estado_prestamo='OCUPADO') AS OCUPADO,
-			sum(pro.estado_prestamo='DISPONIBLE') AS LIBRE FROM producto pro 
+			sum(pro.estado_prestamo='DISPONIBLE') AS LIBRE,
+			sum(pro.estado_prestamo='NO APLICA') AS NO_APLICA FROM producto pro 
 			inner JOIN modelo mo
 			ON pro.idmodelo=mo.id
 			INNER JOIN marca mar

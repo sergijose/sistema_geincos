@@ -133,7 +133,7 @@ $totalProductos = count($productos);
 
 </div>
 
-
+<!--
 <div class="row">
 
 
@@ -290,7 +290,7 @@ $totalProductos = count($productos);
 
 </div>
 
-
+        -->
 
 
 
@@ -370,6 +370,7 @@ $totalProductos = count($productos);
         <th>TOTAL</th>
         <th>OCUPADO</th>
         <th>LIBRE</th>
+        <th>NO APLICA</th>
 
       </tr>
 
@@ -394,6 +395,7 @@ $totalProductos = count($productos);
                     <td>' . $value["TOTAL"] . '</td>
                     <td>' . $value["OCUPADO"] . '</td>
                     <td>' . $value["LIBRE"] . '</td>
+                    <td>' . $value["NO_APLICA"] . '</td>
                      
  
                    </tr>';
